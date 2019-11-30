@@ -1,0 +1,402 @@
+# compile in georgian-morph/paradigms.lisp
+
+set flag-is-epsilon ON
+
+define Vowel [ა|ე|ი|ო|უ|a|o|O] ;
+
+define VowelVi Vowel | "ჳ" ;
+
+define sRoot [დ|თ|ტ|ძ|ც|წ|ჯ|ჩ|ჭ|E] ;
+
+define hRoot [გ|კ|ქ|პ|ყ] ;
+
+define hNullRoot [ბ|ფ|ზ|ს|შ|ღ|ხ|ლ|რ|მ|ნ|ვ|ჳ|ჴ] ;
+
+define nullRoot [ Vowel | ჰ ] ;
+
+define TransMonopers ["+<S-DO-Obl_ze>"|"+<S-DO-Padv>"|"+<S-DO-Pnom>"|"+<S-DO-Pred>" 
+       		     |"+<S-DO-R-Padv>"|"+<S-DO-R-Pred>"|"+<S-DO-R>"|"+<S-DO>"] ;
+
+# transitive
+define S=DO	    "+<S-DO>" | "+<S-DO-R>" | "+<S-DO-R-Padv>" | "+<S-DO-R-Pred>" | "+<S-DO-Pnom>"
+       		  | "+<S-DO-Pred>" | "+<S-DO-Padv>" | "+<S-DO-Obl_ze>" | "+<AuxTrans>" | "+<AuxTransHum>" ;
+define S=DO3=OBen "+<S-DO3-OBen>" | "+<S-DO3-OBen-Pred>" | "+<S-DO3-OBen-Padv>" ;
+define S=DO3=OLoc "+<S-DO3-OLoc>" ;
+define S=DO3=OTh  "+<S-DO3-OTh>" ;
+
+define Trans	    S=DO | S=DO3=OBen | S=DO3=OLoc | S=DO3=OTh ;
+
+# intransitive
+define S1= 	    "+<S>" | "+<S-R>" | "+<S-R-Obl_Si>" | "+<S-Pnom>" | "+<S-Padv>" | "+<S-Pred>"
+       		  | "+<S-Obl_ze>" | "+<S-Obl_inst>" | "+<S-Obl_adv>"
+       		  | "+<AuxIntr>" | "+<QoPnaAux>" ;
+define S=	  S1= | "+<S-[OTh]>" ;
+define S=OBen 	  "+<S-OBen>" ;
+define S=OLoc  	  "+<S-OLoc>" ;
+define S=OTh  	  "+<S-OTh>" | "+<S-OTh-Obl_Si>" ;
+define S=OGen  	  "+<S-OGen>" ;
+
+define Empty	  "+<Null>" ;
+
+# "+<S-[OTh]>" is used to keep formal object marker in OG state passives
+# has to be reworked
+define Intrans    S= | S=OBen | S=OLoc | S=OTh | S=OGen | Empty
+       		| "+Intrans" ; # only needed for paradigm display
+
+define IntrAbs    S1= | Empty
+       		| "+IntrAbs" ; # only needed for paradigm display
+
+define Absolute [ "+<S-DO-Obl_ze>"|"+<S-DO-Pred>" | "+<S-DO-Padv>" | "+<S-DO-Pnom>" 
+       		| "+<S-DO-R-Pred>" | "+<S-DO-R-Padv>"|"+<S-DO-R>"|"+<S-DO>"
+		| "+<S>" | "+<S-R>" | "+<S-R-Obl_Si>" | "+<S-Pnom>" | "+<S-Padv>" | "+<S-Pred>"
+       		| "+<S-Obl_ze>" | "+<S-Obl_inst>" | "+<S-Obl_adv>"
+		| "+Absolute" # only needed for paradigm display
+		] ;
+
+define SeriesII	     ["+Aor"|"+Opt"|"+IterAor"|"+ImpvAor"] ;
+
+define Imperative    ["+ImpvPres"|"+ImpvAor"] ;
+
+define Tags   Imperative | Absolute | Intrans | SeriesII
+       	    | "+PastPart" | "+PresPart" | "+FutPart" | "+NegPart"
+	    | "+Masdar"
+	    | "+Pres" | "+Fut" | "+Impf" # | "+იmpf"
+	    | "+Cond"
+	   # | {+Cოnd} # |{+Cონd} # workaround for upperside effect of o -> ო rule
+	    | "+ConjPres"
+	    | "+ConjFut" | "+IterPres" | "+IterImpf" | "+Perf"
+	    | "+PluPerf" | "+IterPerf" |"+IterPerf1" | "+ConjPerf"   
+	    | "+Trans" | "+Act" | "+Imperfective"
+	    | Trans | Intrans
+	    | "+IntrAbs"
+	    | "+Inv"
+	    # | "+Base" | "+Passive" | "+Causative"
+	    ;
+
+# root is in <…>
+# h is 2nd subj prefix
+# H is 3rd obj prefix
+# X is petrified 3rd obj prefix in დაჰბადა etc., and ხანმეტი ხ- for ი-passives
+# subj prefix before obj prefix
+# i: ი of strong aorist
+# N: active obj pl; imper-aor 3sg (??)
+# n: passive subj pl
+# a, o: optative
+# O: aorist
+# D: დ-passive
+# A, E: variabler Wurzelvokal (ა/0, ე/0)
+# I:    variabler Wurzelvokal (ე/ი)
+# V: ვ, das vor ო ausfällt
+# v: ვ, das nicht mit ი zu ჳ kontrahiert (obsolet, weil nur initial?)
+# u: ვ, das in OG und MG als უ etc. realisiert sein kann (oben immer უ)
+# e: ე, das als ჱ realisiert werden kann (oben immer ე)
+# d: დ in Advb
+# ":": word end marker ??
+# # is preverb marker
+# % subnorm/dialect (etc.) marker; forms having % in the root have to be treated specially, where
+#   the % is removed. Forms still having % before cleanup are removed 
+
+# OG
+# "Xი<ც>ის:+IntrAbs+Pres+Absolute" 
+# NG
+# "<უწყ>ის:+IntrAbs+Pres+Absolute" 
+
+
+define svlaXar		    [ {h<არ>} -> {ხ<არ>} ]
+       			.o. [ h (H) უ -> {უხ},
+       			      {hმი} -> {მიხ},
+       			      {hგვი} -> {გვიხ} || _ [ {<ვAლ>} | {<ვIდ>} ] ]
+       			.o. [ h (H) უ -> {უხ}  || _ [ {<ვAლ>} | {<ვIდ>} ] ]
+       			.o. [ h -> ხ, ვ -> 0   || _ [ {<ვAლ>} | {<ვIდ>} ] ] ;
+
+define phonotacticsNG	[ #    [ H -> 0	|| _ \"+Inv"* Absolute ]
+			# .o.
+			    svlaXar
+			.o. [ {<ვAლ>ს} -> {<ვა>} ]
+			.o. [ {<დი>ენ} -> {<დი>ან} ] # should be fixed elsewhere; not needed in Lisp version
+			.o. [ {ვ>ვ} (->) {ვ>} ] # ვჰყა(ვ)ვარ
+			.o. [ {<ქვ%>ს} -> {<ქ} (ვ) {>} || [მ|გ|ვ] ა _  ] # მაქ(ვ), გაქ(ვ)
+			.o. [ {<ქვ%>ს} -> {<ქვ>} ] # აქვ
+			.o. [ {<არ%>ის} -> {<არ>ი} ] # არი
+       			# root
+			.o. [ A -> ა, [E|I] -> ე || _ ? (?) ">" i ]
+			.o. [ u -> ვ || ე _ ] # ყEu
+       			.o. [ A -> ა || _ ?+ ">" \Vowel* .#. ] # <ვAლ>
+			.o. [ ჴ -> ხ  ]
+			.o. [ [ჱ|e] -> ე  ]
+			# H
+			.o. [ h -> 0 ] # was: (->)
+       			.o. [ h H -> [h|H] ]
+       			.o. [ h   -> ს  || _ "<" sRoot ]
+			.o. [ h   -> 0  || _ ("<") Vowel ]
+			.o. [ h   -> ჰ ]
+ 			.o. [ H -> 0    || _ Vowel ]
+			.o. [ H -> 0    || _ "<" nullRoot ]
+			.o. [ H -> (ჰ)  || _ "<" hNullRoot ]
+			.o. [ H -> ჰ    || _ "<" hRoot ]
+			.o. [ H -> ს    || _ "<" sRoot ]
+			.o. [ {ჰჰ} -> ჰ ]
+			# suffixes
+			.o. [ D -> დ ]
+			.o. [ i -> ი || დ _ ]
+			.o. [ i -> [ი|0] || [ა|ე] ? (?) ">" _ ]
+			.o. [ ვ (->) 0 || _ (">") ვ ] # გავულახა(ვ)ვარ, გინახა(ვ)ვარ
+			# general
+			.o. [ i -> ი ]
+			.o. [ a -> ა ]
+			.o. [ o -> ო ]
+			.o. [ O -> ო ]
+		    	.o. [ u -> ვ ]
+			] ;
+
+define OGRoots		    [ {<წმინდ>} -> {<წმიდ>} ]
+       			.o. [ {<წმენდ>} -> {<წმედ>} ]
+       			.o. [ {<წყმინდ>} -> {<წყმიდ>} ]
+       			.o. [ {<წყმენდ>} -> {<წყმედ>} ]
+       			.o. [ {<თბ>} -> {<ტფ>} ]
+			.o. [ {<ქEც>n} (->) {<ქEც>} ] # I-302
+			.o. [ {<ძ>ს} (->) {<ც>}]
+			.o. [ {<ძ>ნ} (->) {<ც>ნ}]
+			.o. [ n -> N ] ;
+
+# 111ა#ვH<ყEu>i:+Aor
+
+define phtOGCommon1	    [ H   -> 0  || _ ?* IntrAbs ]
+       			.o. [ H   -> 0  || .#. ([ვ|h]) _ ?* Absolute ] # no preverb, trans monopersonal
+       			.o. [ H   -> 0  || _ ?* SeriesII  Absolute ] # II. series, trans monopersonal
+			.o. [ h   -> 0  || _ ?* Imperative ]
+			.o. svlaXar
+       			.o. [ [H|X] -> 0  || h _ ]
+			.o. [ h -> 0 || _ [მ|გ] ]
+			.o. [ X   -> H ] ;
+
+define phtOGCommon2	    [ o -> ე || E ?* ნ ">" _ ] # I-195
+       			.o. [ A -> ა, [E|I] -> ე || _ ?+ ">" i ] # was: [i|N]
+       			.o. [ A -> ა || _ ?+ ">" \[Vowel|N]* .#. ] # <ვAლ>
+			.o. [ H     -> 0 || [{გვ}|{მ}|{გ}] _ "<" {E} ] # მომცენ etc.
+			.o. [ [H|h] -> 0 || _ ("<") Vowel ]
+			.o. [ [H|h] -> ს || _ "<" sRoot ]
+			# .o. [ [H|h] -> ჰ || _ "<" hRoot ]
+			.o. [ [H|h]  -> ჰ ]
+			.o. [ ს   (->) შ || _ "<" [ჩ|ჭ|ჯ] ]
+			# correct, but non-standard
+			# .o. [ ს   (->) [ჰ|{ჰს}] || _ "<" ]
+			.o. [ ჰ   (->) 0 || _ "<" [ს|ზ|ხ|შ] ]
+			.o. [ ვ   (->) 0 || _ უ "<" ] # optional?
+			.o. [ ვ   (->) 0 || _ "<" უ ] # უწყი
+			# general OG rules
+			.o. [ {ეჲ}  (->) ჱ ]
+       			.o. [ e  -> [ე|ჱ] ]
+       			.o. [ [ვ|u] {ი}  (->) ჳ || ? _ ] # (->) ?
+       			.o. [ {ვ<ი} (->) ჳ || ? _ ]
+			#.o. [  ვ    (->) უ || _ [ა|ე|ო] ]
+			.o. [ {გვი}  (->) {გჳ} || _ "<" ]
+			.o. [ {გვ}   (->) {გუ} || _ (?) "<" ]
+			# suffixes ; what about V here?
+			.o. [ {ავ} -> {ევ}, {ამ} -> {ემ} || ">" _ {დi} ]
+			.o. [ {ავ} -> {ვი}, {ამ} -> {მი} || ">" _ დ ]
+			.o. [ {ავ} -> {ვ},  {ამ} -> {მ}  || ">" _ Vowel ]
+			#.o. [ {ამ} -> {ემ} || ">" _ {დi} ]
+			#.o. [ {ამ} -> {მი} || ">" _ დ ]
+			#.o. [ {ამ} -> {მ} || ">" _ ე ]
+			.o. [ D -> დ || [რ|ლ|ნ] ">" _ ]
+			.o. [ D -> [დ|N] ] # was: || [ვ|მ] ">" _ ] # იმნაიშვილი 338, but:  დამავიწყდა
+			# was: .o. [ D -> N ]
+			# .o. [ N -> ნ ]
+			.o. [ [a|o] -> ე || N _ ] # here, n -> N is already done (see OGRoots)
+			.o. [ O -> ა || N _ ]
+			.o. [ a (->) ე  || {Eნ>} _ ] # I-190
+			.o. [ a -> ა ]
+			.o. [ [o|O] -> ო ]
+			# root
+			.o. [ u -> ვ || ე _ ] # ყEu
+			.o. [ ჱ (->) ე  ] # xxxxxx
+			# suffixes
+			.o. [ N N -> {ენინ} ] # დაწერენინ
+			.o. [ N -> ნ || _ Vowel ]
+			#.o. [ N -> ნ i || [VowelVi|E|I|A] ([ვ|V]) (">") _ ] # იყავნ
+			.o. [ N -> ნ i || [VowelVi|I] ([ვ|V]) (">") _ ] # იყავნ
+			.o. [ N -> {ენi} ] # მომეცენ?
+			.o. [ i (->) 0 	 || {ენ} _ თ ] # მიივლინენ(ი)თ
+			.o. [ i -> ი 	 || [ნ|დ] _ [ნ|თ] ]
+			.o. [ i -> [0|ი] || დ (">") _ ] # შთა<ვარდ>ი
+			.o. [ i -> [0|ი] || _ თ ]
+			.o. [ i -> 0 ]
+			# root
+			.o. [ ვ ">" ი (->) ჳ ] # სვი -> სჳ, but not უვის -> უჳს
+			.o. [ {<ძ>ევს} (->) {<ძ>ეს}] # is this more general?
+			.o. [ u -> U ]
+			.o. [ ე (->) ჱ || [უ|U] (">") _ ]
+			;
+
+define phtOG		    OGRoots
+       			.o. phtOGCommon1
+       			.o. phtOGCommon2
+			# .o. [ [U|უ] (->) {ოჳ} ]
+			;
+
+define MGRoots		    [ {<ქუნ>} -> {<ქვნ>} ] ; # აქვნდა
+
+# test
+define phtMG		    OGRoots
+       			.o. MGRoots
+       			.o. phtOGCommon1
+       			.o. phtOGCommon2 ;
+
+
+define phtXanmeti	    OGRoots
+       			.o. phtOGCommon1
+       			.o. [ {ვH}  ->  H   || _ უ "<" ]
+       			.o. [ {ვH}  -> {Hუ} || _ (?) "<"]
+			.o. [ [H|h] -> ხ ]
+			.o. phtOGCommon2
+			# .o. [ [U|უ] (->) {ოჳ} ]
+			;
+
+define phtHaemeti	    OGRoots
+       			.o. phtOGCommon1
+       			.o. [ {ვH}  ->  H   || _ უ "<" ]
+       			.o. [ {ვH}  -> {Hუ} || _ (?) "<" ]
+			.o. [ [H|h] -> ჰ ]
+			.o. phtOGCommon2
+			# .o. [ [U|უ] (->) {ოჳ} ]
+			;
+
+define notDigit \["0"|1|2|3|4|5|6|7|8|9] ;
+
+define cleanup 	        [ A -> 0 ]
+		    .o. [ E -> 0 ]
+		    .o. [ I -> ი ]
+		    .o. [ V -> 0 || _ ((რ) ">") [ო|უ|o] ] # იყოს, აშრო
+		    .o. [ V (->) 0 || \Vowel _ რ ">"  ] # აშ(ვ)რა
+		    .o. [ V -> ვ, v -> ვ ]
+		    .o. [ "<" -> 0 || _ ? ]
+	    	    .o. [ ">" -> 0 || ? _ ]
+		    .o. [ Tags -> 0 ]
+	    	    .o. [":" -> 0 || ? _ ]
+	    	    .o. \["H"]*
+		    .o. [ {ვო} (->) ო || VowelVi _ ]
+		    .o. [ {ოვუ} (->) {ოუ} ]
+		    #?? .o. [ {ოჳ} (->) {ოი}ო ]
+		    .o. [ U -> [უ|ვ|{უ̌}] ]
+		    # .o. [ ოჳ -> {ოჳ} ] # was protected in phtXanmeti
+		    .o. [ {ოვა} (->) {ოა} ] # პოა
+		    .o. [ {ოვე} (->) {ოე} ] # პოე
+		    .o. [ {ვო} (->) {ო} ] # მიუძღოდეს
+		    .o. [ {ოე} (->) {ოვე} ] # დაბოლოვება
+		    .o. [ {ია} (->) {ივა} ] # ამოერჩივა
+		    .o. [ {იე} (->) {ივე} ] # დაირიენ < დაირივენ  < დაირივნენ
+		    .o. [ {ოო} (->) {ოვო} ] # საბოლოვო (ჭავჭავაძე)
+		    # .o. [ "#" -> 0 || _ ? ]
+		    # .o. [ "-" (<-) "–" ]
+		    .o. [ 0 (<-) "-" || notDigit _ notDigit ] # too permissive?
+		    # insert extra hyphens on upper side, but don't create number ranges (e.g., 19-62)
+		    .o. [ "-" (->) 0 || notDigit _ notDigit ]
+	    	    .o. \["%"]*
+		    ;
+
+# for generation
+define cleanupGen 	[ A -> 0 ]
+		    .o. [ E -> 0 ]
+		    .o. [ I -> ი ]
+		    .o. [ V -> 0 || _ ((რ) ">") [ო|უ|o] ]
+		    .o. [ V (->) 0 || \Vowel _ რ ] # აშ(ვ)რა
+		    .o. [ V -> ვ, v -> ვ ]
+		    .o. [ ჳ -> {ვი} ]
+		   # .o. [ ოჳ -> უ ]
+		    .o. [ ჱ -> ე || [U|უ] _ ]
+		    .o. [ "<" -> 0 || _ ? ]
+	    	    .o. [ ">" -> 0 || ? _ ]
+		    .o. [ Tags -> 0 ]
+	    	    .o. [":" -> 0 || ? _ ]
+	    	    .o. \["H"]*
+		    .o. [ U -> {უ̌} ]
+		    #.o. [ ოჳ -> უ ]
+		    .o. [ "#" -> 0 || _ ? ]
+	    	    .o. \["%"]*
+		    ;
+
+# general metathesis rule
+define metathesis     [ {ლვ} -> {ვლ} || \[VowelVi | ხ | ჰ] _ ] # დაკლვა -> დაკვლა
+	    	  .o. [ {რვ} -> {ვრ} || \[VowelVi | ხ | ჰ] _ ] # დაკრვა -> დაკვრა
+	    	  .o. [ {ნვ} -> {ვნ} || \[VowelVi | ხ | ჰ] _ ] ;
+
+
+define NewG     phonotacticsNG
+       	    .o. [ {ა%} -> {ე} || [გ|დ|წ|.#.] _ "#" ] # dialectal preverb ; but: not ეწერა??
+       	    .o. [ {ო%} -> {ე} || მ _ "#" ] # dialectal preverb
+	    .o. cleanup
+	    .o. metathesis # ??
+	    ;
+
+define MiddleG  phtMG
+	    .o. cleanup ;
+
+undefine phtMG ;
+
+define OldG     phtOG
+	    .o. cleanup ;
+
+# undefine phtOG ;
+
+define Xanmeti  phtXanmeti
+	    .o. cleanup ;
+
+# undefine phtXanmeti ;
+
+define Haemeti  phtHaemeti
+	    .o. cleanup ;
+
+# undefine phtHaemeti ;
+
+# save all definitions
+save defined phonotactics.vars
+
+read regex NewG ;
+save stack phonotactics-ng.fst
+
+pop stack
+
+undefine NewG
+
+read regex phonotacticsNG .o. cleanupGen .o. metathesis ;
+save stack pht-gen-ng.fst
+
+pop stack
+
+read regex phtOG .o. cleanupGen ;
+save stack pht-gen-og.fst
+pop stack
+
+undefine phtOG ;
+
+read regex OldG ;
+save stack phonotactics-og.fst
+pop stack
+
+read regex MiddleG ;
+save stack phonotactics-mg.fst
+pop stack
+
+
+read regex phtXanmeti .o. cleanupGen ;
+save stack pht-gen-xanmeti.fst
+pop stack
+
+undefine phtXanmeti ;
+
+read regex Xanmeti ;
+save stack phonotactics-xanmeti.fst
+pop stack
+
+read regex phtHaemeti .o. cleanupGen ;
+save stack pht-gen-haemeti.fst
+pop stack
+
+undefine phtHaemeti ;
+
+read regex Haemeti ;
+save stack phonotactics-haemeti.fst
+
+
+# EOF

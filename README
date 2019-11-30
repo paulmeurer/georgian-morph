@@ -1,0 +1,270 @@
+After start reload paradigm.www b/o (setf lxml::*newline-after-endtag-p* nil)
+
+
+New frames have to be added both to verb-splice.regex and syntax.regex
+
+
+check frame for ამდის
+
+missing-past-part.txt
+etc.
+
+Code to add them in
+
+add-missing-participles.lisp
+
+PROBLEMS 2017:
+
+გალილეაჲსასა
+უთხრეს
+ერჩიან
+
+ლოყებდაკოხილი comp. analysis?
+
+რატმოაც არა? : Int + Rel:ც: is not Rel:ც!
+რომელიღაც: should be Indef
+
++ compare ვიღაც, ვიღაცამ
+
+გაცივებული -> გაციებული, გაცივებული
+
+ამეწყო -> /წყ, /წყვ
+
+PROBLEMS 2016:
+
+MG keeps +NG and +OG. e.g. ამბობ -> თქუმ[ა], თქმა
+
+ვასმევ Caus OG?
+
+მაცჳეს, მეცუა
+მვედიეს Aor?
+მიმრიდან ?
+
+ვიმატები check frame
+
+ჰრწმენა/ჰრწმენეს Stat?
+
+მოახს -> მოახდა? or მოახ(ლ)და?
+
+უდგს -> უდგანედ??
+has state pass in -ს also -ია, -იეს?
+
+--
+Corr:
+
+>>> მიზედოს
+
+OG
+
+ჰრქუა: რქუმ[ა]/[ა]რქუ, რქმ[ა]/რქუ ? (root: მბობ)
+
+--
+Noun codes to features: morphology.lisp
+
+REMARKS:
+
+მადგია should be MedPass
+
+ჩანს შეპირობებული vs. არის შეპირობებული (Aux??)
+
+თავისდა Adv?? საუბედუროდ
+
+-საგან is Inst?
+
+ვითარ-იგი: lemma: ვითარ-იგი?
+
+Pron Pers 1 Nom Pl -> Pron Pers Nom 1 Pl
+
+-ოდენა
+
+BUGS:
+
+გაუდით
+
+უგულითადესად no Adv?
+
++ რაღაც Rel
+
+დახოცა, ხოცა N ?? <- ჴოცა
+
+missing: -რე (მცირედრე, უშორესადრე)
+
+რვაწვეტიანი
+
+ჰურიათაგანნი etc. missing
+
+ესე Sg/Pl? (ჰურიანი ესე)
+
+ოდეს-იგი missing
+
+მისისაჲსა Pron+Gen+… (Poss missing)
+
++ გამოდიან etc. missing!
+
+სძაგდა correct analysis missing
+
+იგი Dem Nom Sg? (OG)
+
+-- VN (sic!)
+
+აიძულეს OG
+მიხარის missing
+ესე Pron OG
+
+ნურა-ჲ Dat Sg
+
+განმაშორებ DO:1Sg [Excl] ??
+მრქუა DO:1Sg [Excl]
+
+სცეს
+
++ წყლულისა PastPart (Part missing)
+
+remove double entries +Prop / +Prop+Name+FirstName
+
+ვიდრე Cj Comp
+თანამო*ე Hum Qual
+
+სჩვეოდა
+
++ #მზიანი
++ აძლევს
++ მომეცი -> მოცემა
+
++ ვეუბნები/ვუთხარი: MedPass/Act
++ ვიცი
++ გავლილი PastPart
+
+როგორღაც
+
++ ჭირზედა
+
+იმითი and -ითი+Inst
+
++ ვიყვნეთ (<- ვიყოთ),
+ჰცდილობს, ჰთამაშობდა, უქეიფნიათ, წაუთავაზებიათ, აგეყოლიათ (ჭავჭავაძე)
+ყმებიდგან
+
+იგი Dem Nom Sg: Sg is wrong? (OG)
+
+PassState Aor: <S> only?
+
++ გან-ნათლებულ-ი
+
+ხელისმომწერელ-ი + ხელისმომწერ[ე]ლ-ი etc.
+
+Missing:
+
+უგულისჴმოო Voc?
+
+ჩემსა Pron Pers
+
+წმიდაო Voc
+ანტიოქიისა Gen?
+ქრისტჱსა Gen?
+ქრისტჱსო DVoc?
+ღმრთისაო DVoc?
+ღმრთისათა DDir?
+-ებრ ?
+
+რაჲმე Abs
+რაჲს-მე
+მიდვის
+დაიდვის
+
+იყვნეს-ვე
+იყავნ
+მისგან -> იგი
+ნურას
+თჳთ
+არარაჲსაჲ
+
+შევეცვლევინე etc.
+ოცნებოდესთ
+ვინაჲ-ცა-იგი
+იყავნ
+მი-…-ამდე (მი-ცრუ-წინაწარმეტყუელადმდე)
+
+მო-ე -> Hum Qual
++ VN Pl
+
++ ცეკვები
++ მოადგილე
+ასოცირდება
+-გვარი (ოთხგვარი)
+ცელანისელი etc.
+
+ვერგაგება etc.
+პროტესტისმიერი
+ერთგანზომილებიანი
+თქმისაებრ
+
+რომლისა -> რომელი:მე ???
+
+ასკლეპიოს A prop name pers???
+
+დევნილა
+
+რაოდენ etc.
+
++ იმისაგან
++ ვისმეს
++ იმისა
+რაიცა
+მის-გამო
+რაღაცეებით
++ რაღას
+მაგითი
++ რაი
+ორივენი
+იმავ
++ რასმე
++ უ…ესი
+
++ +Sov -> +Nonstandard ??
+
++ ჳ… gibts fast nicht am Wortanfang
+
+მ-მდე
+
+სამ- ან ხუთფოთოლაკიანი
+მაგ.
+
+-- Batumi
+
+Deponentien
+
++ ismineba
+
++ Hum ghmerti!
+
+sanatreli Part only
+ese Pron Dem
+ლოცვის-ყოფად	
+
+Cj Coord (Cumulative/Copulative, Adversative, Disjunctive, Illative)
+Cj Sub
+
+ghmertisay L
+heretisasa L DL
+
++ bevri only Num
+
+kacisaysasa L DL DDL
+
+tamash-tamashit VN Redup Inst
+is productive!
+
+ganmeorebadi etc. fehlt!
+
+mqavdi OK,
+mkondi nein
+
+----
+;; PostgreSQL
+;;  ~/gnc/sql> pg_dump -U gnc gnc > gnc-2013-10-14.sql
+;;  (pw: kartuli)
+;; import: 
+;; psql -U gnc -d gnc < gnc-2013-01-15.sql
+;; 
+:: DB location: /var/lib/pgsql/9.1/data

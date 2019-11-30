@@ -1,0 +1,16 @@
+load stack verb1.fst
+
+define Morph1
+
+load stack verb2.fst
+
+define Morph2
+
+read regex [ Morph1 | Morph2 ] ;
+
+echo save stack morph.fst
+save stack morph.fst
+
+# compile : fst -f morph.regex
+# load : fst -s morph.fst
+# test : up "davcer"

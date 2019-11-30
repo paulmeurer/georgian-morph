@@ -1,0 +1,713 @@
+#generates all forms of a paradigm given the paradigm id
+
+load defined < noun.vars
+
+load stack finite-root-list.fst
+
+define Root 
+
+load stack svla-root-list.fst
+
+define SvlaRoot
+
+load stack past-part-list.fst
+
+define PastParticipleRoot 
+
+load stack future-part-list.fst
+
+define FutureParticipleRoot 
+
+load stack masdar-list.fst
+
+define MasdarRoot 
+
+# define ReduplicationRoot 0:{$} ;
+
+define GenResolveVerbFlagDiacritics "@D.Parsing.-@"
+  [ "@R.VClass.trans@" 0:"+Trans" | "@D.VClass.trans@" ]
+  [ "@R.VClass.unacc@" 0:"+Unacc" | "@D.VClass.unacc@" ]
+  [ "@R.VClass.unerg@" 0:"+Unerg" | "@D.VClass.unerg@" ]
+  [ "@R.VClass.inv@" 0:"+Inv" | "@D.VClass.inv@" ]
+  [ "@R.VClass.caus@" 0:"+Caus" | "@D.VClass.caus@" ]
+  [ "@R.VClass.part@" 0:"+Part" | "@D.VClass.part@" ]
+  [ "@R.Cat.v@" 0:"+V" | "@D.Cat.v@" ]
+  [ "@R.Tense.masdar@" 0:"+Masdar" | "@D.Tense.masdar@" ]
+  [ "@R.Tense.future-part@" 0:"+FutPart" | "@D.Tense.future-part@" ]
+  [ "@R.Tense.past-part@" 0:"+PastPart" | "@D.Tense.past-part@" ]
+  [ "@R.Tense.perfect@" 0:"+Perf" | "@D.Tense.perfect@" ]
+  [ "@R.Tense.conj-perfect@" 0:"+ConjPerf" | "@D.Tense.conj-perfect@" ]
+  [ "@R.Tense.pluperfect@" 0:"+PluPerf" | "@D.Tense.pluperfect@" ]
+  [ "@R.Tense.optative@" 0:"+Opt" | "@D.Tense.optative@" ]
+  [ "@R.Tense.aorist@" 0:"+Aor" | "@D.Tense.aorist@" ]
+  [ "@R.Tense.future@" 0:"+Fut" | "@D.Tense.future@" ]
+  [ "@R.Tense.present@" 0:"+Pres" | "@D.Tense.present@" ]
+  [ "@R.Tense.conj-future@" 0:"+ConjFut" | "@D.Tense.conj-future@" ]
+  [ "@R.Tense.conj-present@" 0:"+ConjPres" | "@D.Tense.conj-present@" ]
+  [ "@R.Tense.conditional@" 0:"+Cond" | "@D.Tense.conditional@" ]
+  [ "@R.Tense.imperfect@" 0:"+Impf" | "@D.Tense.imperfect@" ]
+  [ "@R.Subj-Pers.1@" [ "@R.Subj-Num.sg@" "@D.Subj-Num.pl@" 0:"+FSubj1Sg" | 
+                        "@D.Subj-Num.sg@" "@R.Subj-Num.pl@" 0:"+FSubj1Pl" | 
+                        "@D.Subj-Num.sg@" "@D.Subj-Num.pl@" 0:"+FSubj1" ]
+    | "@D.Subj-Pers.1@" ]
+  [ "@R.Subj-Pers.2@" [ "@R.Subj-Num.sg@" "@D.Subj-Num.pl@" 0:"+FSubj2Sg" | 
+                        "@D.Subj-Num.sg@" "@R.Subj-Num.pl@" 0:"+FSubj2Pl" | 
+                        "@D.Subj-Num.sg@" "@D.Subj-Num.pl@" 0:"+FSubj2" ]
+    | "@D.Subj-Pers.2@" ]
+  [ "@R.Subj-Pers.3@" [ "@R.Subj-Num.sg@" "@D.Subj-Num.pl@" 0:"+FSubj3Sg" | 
+                        "@D.Subj-Num.sg@" "@R.Subj-Num.pl@" 0:"+FSubj3Pl" | 
+                        "@D.Subj-Num.sg@" "@D.Subj-Num.pl@" 0:"+FSubj3" ]
+    | "@D.Subj-Pers.3@" ]
+  [ "@R.Obj-Pers.1@"  [ "@R.Obj-Num.sg@" "@D.Obj-Num.pl@" 0:"+FObj1Sg" | 
+                        "@D.Obj-Num.sg@" "@R.Obj-Num.pl@" 0:"+FObj1Pl" | 
+                        "@D.Obj-Num.sg@" "@D.Obj-Num.pl@" 0:"+FObj1" ]
+    | "@D.Obj-Pers.1@" ]
+  [ "@R.Obj-Pers.2@"  [ "@R.Obj-Num.sg@" "@D.Obj-Num.pl@" 0:"+FObj2Sg" | 
+                        "@D.Obj-Num.sg@" "@R.Obj-Num.pl@" 0:"+FObj2Pl" | 
+                        "@D.Obj-Num.sg@" "@D.Obj-Num.pl@" 0:"+FObj2" ]
+    | "@D.Obj-Pers.2@" ]
+  [ "@R.Obj-Pers.3@"  [ "@R.Obj-Num.sg@" "@D.Obj-Num.pl@" 0:"+FObj3Sg" | 
+                        "@D.Obj-Num.sg@" "@R.Obj-Num.pl@" 0:"+FObj3Pl" | 
+                        "@D.Obj-Num.sg@" "@D.Obj-Num.pl@" 0:"+FObj3" ]
+    | "@D.Obj-Pers.3@" ]
+
+[ "@R.Style.old@" 0:"+Old" | "@D.Style.old@" ]
+  [ "@R.Style.subnorm@" 0:"+Subnorm" | "@D.Style.subnorm@" ]
+ ;
+
+define GenResolveParticipleFlagDiacritics "@R.Parsing.+@"
+  [ "@R.Tense.masdar@" 0:"+Masdar" | "@D.Tense.masdar@" ]
+  [ "@R.Tense.future-part@" 0:"+FutPart" | "@D.Tense.future-part@" ]
+  [ "@R.Tense.past-part@" 0:"+PastPart" | "@D.Tense.past-part@" ]
+  "@R.Case.nom@" "@R.Num.sg@"
+  ResolveNounFlagDiacritics
+ ;
+
+# >>>>>>>>>> automatically generated
+
+define Pv [ [ 0:{mi} "@U.CPv.mi@"  "@U.Pv.mi@"  | 0:{mo} "@U.CPv.mo@"  "@U.Pv.mo@"  | 0:{mimo} "@U.CPv.mimo@"  "@U.Pv.mimo@"  | 0:{da} "@U.CPv.da@"  "@U.Pv.da@"  | 0:{aG} "@U.CPv.aG@"  "@U.Pv.aG@"  | 0:{a} "@U.CPv.a@"  "@U.Pv.a@"  | 0:{Se} "@U.CPv.Se@"  "@U.Pv.Se@"  | 0:{Xa} "@U.CPv.Xa@"  "@U.Pv.Xa@"  | 0:{car} "@U.CPv.car@"  "@U.Pv.car@"  | 0:{ca} "@U.CPv.ca@"  "@U.Pv.ca@"  | 0:{cina} "@U.CPv.cina@"  "@U.Pv.cina@"  | 0:{gada} "@U.CPv.gada@"  "@U.Pv.gada@"  | 0:{garda} "@U.CPv.garda@"  "@U.Pv.garda@"  | 0:{gan} "@U.CPv.gan@"  "@U.Pv.gan@"  | 0:{ga} "@U.CPv.ga@"  "@U.Pv.ga@"  | 0:{uku} "@U.CPv.uku@"  "@U.Pv.uku@"  | 0:{uar} "@U.CPv.uar@"  "@U.Pv.uar@"  | 0:{STa} "@U.CPv.STa@"  "@U.Pv.STa@"  | 0:{jal} "@U.CPv.jal@"  "@U.Pv.jal@"  | 0:{Tana} "@U.CPv.Tana@"  "@U.Pv.Tana@"  | 0:{iavar} "@U.CPv.iavar@"  "@U.Pv.iavar@" ]
+ | 0:{gad} "@U.CPv.gada@"  "@U.Pv.gad@"  | 0:{gard} "@U.CPv.garda@"  "@U.Pv.gard@" ]
+ ;
+
+define QopnaPv [ 0:{iavar} "@U.CRoot.qoP1@"  "@U.CPv.iavar@"  "@U.Pv.iavar@"  | 0:{ijulebul} "@U.CRoot.qoP1@"  "@U.CPv.ijulebul@"  "@U.Pv.ijulebul@"  | 0:{naTel} "@U.CRoot.qoP1@"  "@U.CPv.naTel@"  "@U.Pv.naTel@"  | 0:{srul} "@U.CRoot.qoP1@"  "@U.CPv.srul@"  "@U.Pv.srul@"  | 0:{ugulebel} "@U.CRoot.qoP1@"  "@U.CPv.ugulebel@"  "@U.Pv.ugulebel@"  | 0:{uzrunvel} "@U.CRoot.qoP1@"  "@U.CPv.uzrunvel@"  "@U.Pv.uzrunvel@"  | 0:{ukvdav} "@U.CRoot.qoP1@"  "@U.CPv.ukvdav@"  "@U.Pv.ukvdav@"  | 0:{uXinar} "@U.CRoot.qoP1@"  "@U.CPv.uXinar@"  "@U.Pv.uXinar@"  | 0:{GaGad} "@U.CRoot.qoP1@"  "@U.CPv.GaGad@"  "@U.Pv.GaGad@"  | 0:{SeuraCH} "@U.CRoot.qoP1@"  "@U.CPv.SeuraCH@"  "@U.Pv.SeuraCH@"  | 0:{CHad} "@U.CRoot.qoP1@"  "@U.CPv.CHad@"  "@U.Pv.CHad@"  | 0:{Hel} "@U.CRoot.qoP1@"  "@U.CPv.Hel@"  "@U.Pv.Hel@" ]
+ ;
+
+define PreverbGroup [  "@U.CPv.-@"  "@U.Pv.-@"  | [ [  Pv  |  QopnaPv  | 0:{damo} "@U.DirPv.mo@"  "@U.CPv.da@"  "@U.Pv.damo@"  | 0:{aGmo} "@U.DirPv.mo@"  "@U.CPv.aG@"  "@U.Pv.aGmo@"  | 0:{amo} "@U.DirPv.mo@"  "@U.CPv.a@"  "@U.Pv.amo@"  | 0:{Semo} "@U.DirPv.mo@"  "@U.CPv.Se@"  "@U.Pv.Semo@"  | 0:{Xamo} "@U.DirPv.mo@"  "@U.CPv.Xa@"  "@U.Pv.Xamo@"  | 0:{carmo} "@U.DirPv.mo@"  "@U.CPv.car@"  "@U.Pv.carmo@"  | 0:{camo} "@U.DirPv.mo@"  "@U.CPv.ca@"  "@U.Pv.camo@"  | 0:{gadmo} "@U.DirPv.mo@"  "@U.CPv.gada@"  "@U.Pv.gadmo@"  | 0:{gardmo} "@U.DirPv.mo@"  "@U.CPv.garda@"  "@U.Pv.gardmo@"  | 0:{gamo} "@U.DirPv.mo@"  "@U.CPv.ga@"  "@U.Pv.gamo@"  | 0:{STamo} "@U.DirPv.mo@"  "@U.CPv.STa@"  "@U.Pv.STamo@" ]
+ ]]
+ ;
+
+define VvAiue [ 0:{a} "@U.Vv.a@"  | 0:{i} "@U.Vv.i@"  | 0:{u} "@U.Vv.u@"  | 0:{e} "@U.Vv.e@" ]
+ ;
+
+define VvAie [ [ 0:{a} "@U.Vv.a@"  | 0:{e} "@U.Vv.e@" ]
+ | 0:{i}[  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+]
+ ;
+
+# define Root 0:{$} ;
+
+define Obj1sg 0:{m}[  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.e@"  |  "@U.Vv.u@" ]
+[  "@U.Subj-Pers.2@"  |  "@U.Subj-Pers.3@" ]
+ "@U.Obj-Num.sg@"  "@U.Obj-Pers.1@"  ;
+
+define Obj1pl 0:{gv}[  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.e@"  |  "@U.Vv.u@" ]
+[  "@U.Subj-Pers.2@"  |  "@U.Subj-Pers.3@" ]
+ "@U.Obj-Num.pl@"  "@U.Obj-Pers.1@"  ;
+
+define Obj2 0:{g}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.3@" ]
+ "@U.Obj-Pers.2@"  ;
+
+define Obj3H 0:{h} "@U.Vv.-@"  "@U.Relation.relative@"  "@U.Type-Obj3Pfx.+@"  "@U.Type-Root.h-root@"  "@U.Obj-Pers.3@"  ;
+
+define Obj3S 0:{s} "@U.Vv.-@"  "@U.Type-Obj3Pfx.+@"  "@U.Type-Root.s-root@"  "@U.Obj-Pers.3@"  ;
+
+define Subj1 0:{v} "@U.Subj-Pers.1@"  ;
+
+define Subj2X 0:{H} "@U.Vv.-@"  "@U.Type-Subj2Pfx.+@"  "@U.Obj-Pers.3@"  "@U.Subj-Pers.2@"  ;
+
+define PrefixGroup [  Subj2X  | [ [  Subj1  |  "@U.Type-Subj2Pfx.-@"  "@U.Subj-Pers.2@"  |  "@U.Subj-Pers.3@" ]
+ [  VvAiue  |  "@U.Type-Obj3Pfx.-@"  "@U.Vv.-@"  |  Obj3H  |  Obj3S ]
+  "@U.Obj-Pers.3@"  ] | [ [  Obj1sg  |  Obj1pl  |  Obj2 ]
+ [  VvAie  |  "@U.Vv.-@" ]
+ ]]
+ ;
+
+define Subj12PlT 0:{T} "@U.Subj-Num.pl@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ ;
+
+define Subj12PlTQ [  Subj12PlT  |  "@U.Subj-Num.sg@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+]
+ ;
+
+define Obj2PlT 0:{T} "@U.Obj-Num.pl@"  "@U.Obj-Pers.2@"  ;
+
+define Obj2PlTQ [  Obj2PlT  |  "@U.Obj-Num.sg@"  "@U.Obj-Pers.2@"  | [  "@U.Obj-Pers.1@"  |  "@U.Obj-Pers.3@" ]
+]
+ ;
+
+define Obj23PlT 0:{T} "@U.Obj-Num.pl@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ ;
+
+define Obj23PlTQ [  Obj23PlT  |  "@U.Obj-Num.sg@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ |  "@U.Obj-Pers.1@" ]
+ ;
+
+define Obj23PlTS [  Obj23PlT  | 0:{s} "@U.Subj-Pers.3@"  "@U.Obj-Num.sg@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ | 0:{s} "@U.Subj-Pers.3@"  "@U.Obj-Pers.1@" ]
+ ;
+
+define SubjPlT 0:{T} "@U.Subj-Num.pl@"  ;
+
+define SubjPlT 0:{T} "@U.Subj-Num.pl@"  ;
+
+define SubjPlTQ [  SubjPlT  |  "@U.Subj-Num.sg@" ]
+ ;
+
+define SubjPlTQ [  SubjPlT  |  "@U.Subj-Num.sg@" ]
+ ;
+
+define DStExt 0:{d} "@U.Type-PrStExt.d@" [  "@U.Tense.imperfect@"  |  "@U.Tense.conditional@"  |  "@U.Tense.conj-present@"  |  "@U.Tense.conj-future@" ]
+ "@U.PrStExt.d@"  ;
+
+define OdStExt 0:{od} "@U.Type-PrStExt.od@" [  "@U.Tense.imperfect@"  |  "@U.Tense.conditional@"  |  "@U.Tense.conj-present@"  |  "@U.Tense.conj-future@" ]
+ "@U.PrStExt.od@"  ;
+
+define Subj12TQ [ [ 0:{T} [  "@U.Subj-Num.pl@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.2@"  "@U.Subj-Num.sg@"  |  "@U.Obj-Num.pl@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ "@U.Subj-Pers.3@"  "@U.Subj-Num.sg@" ]
+ ] | [  "@U.Subj-Num.sg@"  [  "@U.Obj-Num.sg@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ |  "@U.Obj-Pers.1@"  |  "@U.Inverted.+@"  "@U.Obj-Num.pl@"  "@U.Obj-Pers.3@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Subj-Num.sg@" ]
+ ]]
+ ;
+
+define Subj12vTQ [ [ 0:{T} [  "@U.Subj-Num.pl@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.2@"  "@U.Subj-Num.sg@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.3@"  "@U.Subj-Pers.3@"  "@U.Subj-Num.sg@" ]
+ ] | [  "@U.Subj-Num.sg@"  [  "@U.Obj-Num.sg@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ |  "@U.Obj-Pers.1@"  |  "@U.Inverted.+@"  "@U.Obj-Num.pl@"  "@U.Obj-Pers.3@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Subj-Num.sg@" ]
+ ]]
+ ;
+
+define Subj3sgT [ 0:{T} [  "@U.Subj-Num.sg@"  |  "@U.Inverted.+@" ]
+ [  "@U.Obj-Num.pl@"  "@U.Obj-Pers.2@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.3@" ]
+ ] ;
+
+define Subj3sgTQ [  Subj3sgT  | [  "@U.Subj-Num.sg@"  [  "@U.Obj-Pers.1@"  |  "@U.Obj-Num.sg@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+]
+ ]]
+ ;
+
+define Subj3sgSQ [  "@U.Obj-Num.sg@"  "@U.Inverted.-@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  |  "@U.Obj-Num.sg@"  "@U.Inverted.+@"  "@U.Subj-Pers.3@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.1@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  |  "@U.Inverted.-@"  "@U.Obj-Num.pl@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  |  "@U.Inverted.+@"  "@U.Obj-Num.pl@"  "@U.Obj-Pers.1@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@" ]
+ ;
+
+define PsDPersSfx [ [ [ 0:{i}[  "@U.Tense.imperfect@"  |  "@U.Tense.conditional@" ]
+[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.i@"  | 0:{e}[  "@U.Tense.conj-present@"  |  "@U.Tense.conj-future@" ]
+[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.e@"  | 0:{e}[  "@U.Tense.conj-present@"  |  "@U.Tense.conj-future@" ]
+ "@U.Inverted.+@"  "@U.Obj-Num.pl@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ "@U.Subj-Pers.3@"  "@U.PersSfx.e@" ]
+  Subj12TQ  ] | [ 0:{a}[  "@U.Tense.imperfect@"  |  "@U.Tense.conditional@" ]
+ "@U.Inverted.-@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.a@"   Subj3sgTQ  ] | [ 0:{a}[  "@U.Tense.imperfect@"  |  "@U.Tense.conditional@" ]
+ "@U.Inverted.+@"  "@U.Subj-Pers.3@"  "@U.PersSfx.a@"   Subj3sgTQ  ] | [ 0:{es}[  "@U.Tense.conj-present@"  |  "@U.Tense.conj-future@" ]
+ "@U.PersSfx.es@"   Subj3sgSQ  ] | 0:{nen}[  "@U.Tense.imperfect@"  |  "@U.Tense.conditional@"  |  "@U.Tense.conj-present@"  |  "@U.Tense.conj-future@" ]
+ "@U.Inverted.-@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.nen@" ]
+ ;
+
+define SubjObjSfxTQ [ [ 0:{T} [  "@U.Subj-Num.pl@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Type-Subj12Sfx.-@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.2@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.1@"  "@U.Type-Subj12Sfx.-@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.2@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@" [  "@U.Type-Subj3Sfx.s@"  |  "@U.Type-Subj3Sfx.is@" ]
+ |  "@U.Inverted.+@"  "@U.Obj-Num.pl@"  "@U.Obj-Pers.3@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@" [  "@U.Type-Subj3Sfx.s@"  |  "@U.Type-Subj3Sfx.is@" ]
+ |  "@U.Inverted.+@"  "@U.Obj-Num.pl@" [  "@U.Obj-Pers.2@"  |  "@U.Obj-Pers.3@" ]
+ "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@" [  "@U.Type-Subj3Sfx.s@"  |  "@U.Type-Subj3Sfx.is@" ]
+]
+ ] | [ [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Subj-Num.sg@"  "@U.Type-Subj12Sfx.-@"  [ [  "@U.Obj-Pers.1@"  |  "@U.Obj-Pers.3@" ]
+ |  "@U.Obj-Num.sg@"  "@U.Obj-Pers.2@" ]
+ ]]
+ ;
+
+define PresentSeriesActiveSuffixGroup [  "@U.MorphType.active@"  [ [ [ [ 0:{am}[  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ "@U.Sf.am@"  | 0:{av}[  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ "@U.Sf.av@"  | 0:{oP}[  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ "@U.Sf.oP@"  | 0:{i}[  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ "@U.Sf.i@" ]
+ | [ [  "@U.Sf.-@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | [ 0:{ev} "@U.Sf.ev@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{v} "@U.Sf.v@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{em} "@U.Sf.em@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{m} "@U.Sf.m@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{eb} "@U.Sf.eb@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{ob} "@U.Sf.ob@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+]
+ |  "@U.Root.jeb@"  "@U.Sf.-@"  "@U.Vv.e@" ]
+ ]]
+  [ [ [ [ 0:{s} "@U.Type-Subj3Sfx.s@"  "@U.Subj-Pers.3@"  [  "@U.Inverted.-@"  "@U.Subj-Num.sg@"  |  "@U.Inverted.+@" ]
+ [  "@U.Obj-Num.sg@"  |  "@U.Inverted.-@"  "@U.Obj-Num.pl@" [  "@U.Obj-Pers.1@"  |  "@U.Obj-Pers.3@" ]
+ |  "@U.Inverted.+@"  "@U.Obj-Num.pl@"  "@U.Obj-Pers.1@" ]
+ ] | [ 0:{a} "@U.Type-Subj3Sfx.a@"  "@U.Sf.-@" [  "@U.Vv.-@"  |  "@U.Vv.u@"  |  "@U.Vv.a@" ]
+ "@U.Subj-Pers.3@"   Subj3sgTQ  ] | [  "@D.Sf.i@"  [ [ 0:{en} "@U.Inverted.-@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  [  "@D.Root.gvan@"   "@D.Root.dum@"   "@D.Root.varg@"   "@D.Root.sHed@"   "@D.Root.Xan@"   "@D.Root.cuH@"   "@D.Root.aHlav@"   "@D.Root.zi@"   "@D.Root.di@" ]
+ ] | 0:{an}[  "@U.Root.gvan@"  |  "@U.Root.dum@"  |  "@U.Root.varg@"  |  "@U.Root.sHed@"  |  "@U.Root.Xan@"  |  "@U.Root.cuH@"  |  "@U.Root.aHlav@"  |  "@U.Root.zi@"  |  "@U.Root.di@" ]
+ "@U.Inverted.-@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | 0:{nan} "@U.Root.dga@"  "@U.Inverted.-@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | 0:{anan} "@U.Root.cv@"  "@U.Inverted.-@"  "@U.CRoot.col@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@" ]
+ ] | 0:{an} "@U.CSf.i@"  "@U.Inverted.-@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | [ [ 0:{i} "@U.Type-Subj3Sfx.a@"  |  "@U.Type-Subj3Sfx.a@" [  "@U.Root.varg@" ]
+ |  "@U.Type-Subj3Sfx.s@"  |  "@U.Sf.i@" ]
+ [ 0:{var} "@U.Type-Subj12Sfx.var/Har@" [  "@U.CSf.-@"  |  "@U.CSf.i@" ]
+ "@U.Subj-Pers.1@"  | 0:{Har} "@U.Type-Subj12Sfx.var/Har@" [  "@U.CSf.-@"  |  "@U.CSf.i@" ]
+ "@U.Subj-Pers.2@" ]
+  Subj12TQ  ] |  SubjObjSfxTQ ]
+ [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ ] | [ [  "@U.Sf.i@"  |  "@D.Sf.i@" ]
+  DStExt   PsDPersSfx  ]]
+ ] | [  OdStExt   "@U.Sf.i@"   PsDPersSfx  ]]
+ ] ;
+
+define PresentSeriesCausativeSuffixGroup [  "@U.MorphType.causative@"  [ [ [ [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ "@U.Sf.-@"  | [ 0:{ev} "@U.Sf.ev@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{v} "@U.Sf.v@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{em} "@U.Sf.em@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{m} "@U.Sf.m@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{eb} "@U.Sf.eb@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{ob} "@U.Sf.ob@" [  "@U.Vv.-@"  |  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+]
+]
+ 0:{in}[  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ 0:{eb} "@U.CausSf.in@"  ] | [ 0:{m} "@U.Vv.a@"  "@U.CSf.am@"  "@U.Sf.m@"  0:{ev} "@U.CausSf.ev@"  "@U.Type-RootVowel.-@"  ] | [ [  "@U.CSf.i@"  "@U.Sf.-@"  | 0:{v} "@U.CSf.av@"  "@U.Sf.v@"  | 0:{m} "@U.CSf.am@"  "@U.Sf.m@" ]
+ 0:{ev} "@U.Type-RootVowel.-@"  0:{in} "@U.Vv.a@"  0:{eb} "@U.CausSf.evin@"  ]]
+ [ [ [ [ 0:{s} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  [  "@U.Obj-Num.sg@"  |  "@U.Obj-Num.pl@"  "@U.Obj-Pers.1@" ]
+ ] | 0:{en} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  |  SubjObjSfxTQ ]
+ [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ ] | [  DStExt   PsDPersSfx  ]]
+ ] ;
+
+define PresentSeriesPassiveSuffixGroup [  "@D.Root.val@"   "@D.Root.vl@"  [ [ [ 0:{deb} "@U.PassiveSfx.d+eb@"  | [ 0:{eb}[  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.e@"  |  "@U.Vv.u@" ]
+ "@U.Sf.-@"  "@U.PassiveSfx.eb@"  | 0:{ob}[  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.e@"  |  "@U.Vv.u@" ]
+ "@U.Sf.-@"  "@U.PassiveSfx.ob@"  | 0:{oP}[  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.e@"  |  "@U.Vv.u@" ]
+ "@U.Sf.-@"  "@U.PassiveSfx.oP@" ]
+ | 0:{eb} "@U.Vv.-@"  "@U.Sf.-@"  "@U.PassiveSfx.eb@"  | 0:{veb}[  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.eb@"  "@U.CSf.av@"  "@U.Sf.v@"  | [  "@U.Vv.e@"  [ [ 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  | 0:{ev} "@U.CSf.ev@"  "@U.Sf.ev@" ]
+ |  "@U.CSf.-@"  "@U.Sf.-@" ]
+ 0:{ineb} "@U.PassiveSfx.eb@"  "@U.CausSf.in@"  ] | 0:{meb}[  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.eb@"  "@U.CSf.am@"  "@U.Sf.m@"  | 0:{em}[  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.em@"  "@U.Sf.-@"  "@U.CSf.-@" ]
+ [ 0:{ian}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Inverted.-@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | [ 0:{a} "@U.Type-Subj3Sfx.a@" [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Inverted.-@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"   Subj3sgTQ  ] | [ 0:{a} "@U.Type-Subj3Sfx.a@" [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Inverted.+@"  "@U.Subj-Pers.3@"   Subj3sgTQ  ] | 0:{is} "@U.Type-Subj3Sfx.is@" [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  | [ 0:{i}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+  SubjObjSfxTQ  ] | [ 0:{od} "@U.PrStExt.od@"   PsDPersSfx  ]]
+ [  "@U.MorphType.passive@"  |  "@U.MorphType.stative-passive@" [  "@U.Tense.future@"  |  "@U.Tense.conditional@"  |  "@U.Tense.conj-future@" ]
+ "@U.Vv.e@" ]
+ ] | [ [ 0:{ev}[  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.ev@"  "@U.Sf.-@"  "@U.CSf.-@"  | 0:{mev}[  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.ev@"  "@U.Sf.m@"  "@U.CSf.am@" ]
+ [ 0:{ian}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Inverted.-@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | 0:{a}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  | [ 0:{a}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Inverted.+@"  "@U.Subj-Pers.3@"   Subj3sgTQ  ] | [ 0:{i}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+  SubjObjSfxTQ  ]]
+  "@U.MorphType.passive@"  ] | [ 0:{i} "@U.MorphType.passive@"  "@U.PassiveSfx.i@"  [ [ 0:{a} "@U.Type-Subj3Sfx.a@" [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Subj-Pers.3@"   Subj3sgTQ  ] | [ 0:{s} "@U.Type-Subj3Sfx.is@"  "@U.MorphType.passive@" [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"   Subj3sgSQ  ] | 0:{an}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | [ [ [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.MorphType.passive@"  "@U.Type-Subj3Sfx.is@"  "@U.Type-Subj12Sfx.-@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ | [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.MorphType.passive@"  "@U.Type-Subj3Sfx.is@"  "@U.Subj-Pers.3@"  | 0:{var}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Type-Subj12Sfx.var/Har@"  "@U.Subj-Pers.1@"  | 0:{Har}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Type-Subj12Sfx.var/Har@"  "@U.Subj-Pers.2@" ]
+  SubjObjSfxTQ  ]]
+ ] | [ 0:{od} "@U.PassiveSfx.-@" [  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PrStExt.od@"  [  "@U.MorphType.passive@"  |  "@U.MorphType.stative-passive@"  "@U.Vv.e@" ]
+  PsDPersSfx  ] | [ [ [ 0:{m} "@U.MorphType.passive@" [  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.m@"  | 0:{v} "@U.MorphType.passive@" [  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.v@" ]
+]
+ [ 0:{ian}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Obj-Num.sg@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | 0:{is}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  | [ 0:{i}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+  SubjObjSfxTQ  ] | [ 0:{od} "@U.PrStExt.od@"   PsDPersSfx  ]]
+ ] | [ [ 0:{e}[  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.ev@"  | 0:{me}[  "@U.Vv.i@"  |  "@U.Vv.e@" ]
+ "@U.PassiveSfx.ev@"  "@U.Sf.m@"  "@U.CSf.am@" ]
+ [ 0:{od} "@U.PrStExt.od@"  [  "@U.MorphType.passive@" ]
+  PsDPersSfx  ] ]]
+ ] ;
+
+define AoristSeriesSuffixGroup [ [ [  "@U.MorphType.active@"  |  "@U.MorphType.passive@" ]
+ "@U.Sf.-@"  "@U.PassiveSfx.-@" [  "@U.Vv.i@"  |  "@U.Vv.u@"  |  "@U.Vv.-@" ]
+ | [ 0:{i} "@U.MorphType.active@"  "@U.CSf.ev@"  "@U.Sf.i@" ]
+ | [  "@U.MorphType.active@"  |  "@U.MorphType.passive@" ]
+ "@U.Sf.-@"  "@U.PassiveSfx.-@"  "@U.Vv.a@"  |  "@U.MorphType.active@"  "@U.Root.jeb@"  "@U.Sf.-@"  "@U.Vv.e@"  |  "@U.MorphType.active@"  "@U.CRoot.Cem@"  "@U.Root.C@"  "@U.Sf.-@"  "@U.Vv.e@"  | [ [  "@U.CSf.i@"  "@U.Sf.-@"  | 0:{v} "@U.CSf.av@"  "@U.Sf.v@"  | 0:{m} "@U.CSf.am@"  "@U.Sf.m@" ]
+ 0:{ev} "@U.Type-RootVowel.-@"  0:{in} "@U.MorphType.causative@"  "@U.CausSf.evin@"  "@U.Vv.a@"  ] | [ [ [ 0:{ev} "@U.CSf.ev@"  "@U.Sf.ev@"  | 0:{v} "@U.CSf.ev@"  "@U.Sf.v@"  | 0:{em} "@U.CSf.em@"  "@U.Sf.em@"  | 0:{m} "@U.CSf.am@"  "@U.Sf.m@"  | 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@" ]
+ |  "@U.CSf.-@"  "@U.Sf.-@" ]
+ [ 0:{in} "@U.MorphType.causative@"  "@U.CausSf.in@" [  "@U.Vv.a@"  |  "@U.Vv.i@"  |  "@U.Vv.u@" ]
+ | 0:{in} "@U.MorphType.causative@"  "@U.CausSf.in@"  "@U.Vv.e@" ]
+ ] | [  "@U.MorphType.passive@"  "@U.Sf.-@"  "@U.PassiveSfx.ev@"  [ 0:{i} "@U.Type-Aorist.weak@"  "@U.Tense.aorist@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ |  "@U.Type-Aorist.strong@"  "@U.Tense.aorist@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ | 0:{i} "@U.Type-EvSfx.-@"  "@U.Type-Aorist.weak@"  "@U.Tense.aorist@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  |  "@U.Type-EvSfx.mixed@"  "@U.Type-Aorist.weak@"  "@U.Tense.aorist@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  |  "@U.Type-Aorist.strong@"  "@U.Tense.aorist@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  | 0:{iv} "@U.Type-Aorist.weak@"  "@U.Tense.aorist@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  |  "@U.Type-Aorist.strong@"  "@U.Tense.aorist@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | 0:{i} "@U.Type-Optative.o@"  "@U.Tense.optative@"  |  "@U.Type-Optative.e@"  "@U.Tense.optative@" ]
+ ] | 0:{d} "@U.MorphType.passive@"  "@U.Type-Aorist3sg.a@"  "@U.Type-Aorist.strong@"  "@U.Sf.-@"  "@U.PassiveSfx.d+eb@"  | [  "@U.MorphType.passive@"  |  "@U.MorphType.stative-passive@" ]
+ "@U.Sf.-@"  "@U.PassiveSfx.-@"  "@U.Vv.e@" ]
+ [ [ [ 0:{e}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Type-Aorist.weak@"  "@U.Tense.aorist@"  "@U.ScreeveSign.e@"  | 0:{i}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Type-Aorist.strong@"  "@U.Tense.aorist@"  "@U.ScreeveSign.i@"  | 0:{o}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Tense.optative@"  "@U.Type-EvSfx.-@"  "@U.Type-Optative.o@"  | [ 0:{a}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.a@"   "@D.CRoot.Cem@"  "@D.Root.C@"  ] | 0:{e}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.e@"  "@U.CRoot.Cem@"  "@U.Root.C@"  | 0:{e}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.MorphType.passive@"  "@U.Tense.optative@"  "@U.Type-Optative.e@"  | 0:{a}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+[  "@U.MorphType.passive@" ]
+ "@U.Tense.optative@"  "@U.Type-Optative.a@" ]
+  SubjObjSfxTQ  ] | [ [ 0:{a} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.Type-Aorist3sg.a@"  "@U.Tense.aorist@"  "@U.ScreeveSign.a@"  | 0:{o} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.Type-Aorist3sg.o@"  "@U.Tense.aorist@"  "@U.ScreeveSign.o@" ]
+  Subj3sgTQ  ] | [ [ 0:{os} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.Tense.optative@"  "@U.Type-EvSfx.-@"  "@U.Type-Optative.o@"  | 0:{es} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.MorphType.passive@"  "@U.Tense.optative@"  "@U.Type-Optative.e@"  | 0:{as} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.MorphType.passive@"  "@U.Tense.optative@"  "@U.Type-Optative.a@"  | [ 0:{as} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.a@"   "@D.CRoot.Cem@"  "@D.Root.C@"  ] | 0:{es} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.e@"  "@U.CRoot.Cem@"  "@U.Root.C@" ]
+  Subj3sgSQ  ] | 0:{es} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@" [  "@U.MorphType.active@"  |  "@U.MorphType.causative@" ]
+ "@U.Tense.aorist@"  "@U.ScreeveSign.es@"  | [ [ 0:{o} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.Tense.optative@"  "@U.Type-Optative.o@"  | [ 0:{a} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.a@"   "@D.CRoot.Cem@"  "@D.Root.C@"  ] | 0:{e} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.e@"  "@U.CRoot.Cem@"  "@U.Root.C@"  | 0:{e} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@" [  "@U.MorphType.passive@" ]
+ "@U.Tense.optative@"  "@U.Type-Optative.e@" ]
+  Subj3sgT  ] | 0:{nen} "@U.Obj-Num.sg@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@" [  "@U.MorphType.passive@"  |  "@U.MorphType.causative@" ]
+ "@U.Tense.aorist@"  "@U.ScreeveSign.nen@"  | 0:{on} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@" [  "@U.MorphType.active@"  |  "@U.MorphType.passive@"  |  "@U.MorphType.causative@" ]
+ "@U.Tense.optative@"  "@U.Type-EvSfx.-@"  "@U.Type-Optative.o@"  | [ 0:{an} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.a@"   "@D.CRoot.Cem@"  "@D.Root.C@"  ] | 0:{en} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.MorphType.active@"  "@U.Tense.optative@"  "@U.Type-Optative.e@"  "@U.CRoot.Cem@"  "@U.Root.C@"  | 0:{en} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.MorphType.passive@"  "@U.Tense.optative@"  "@U.Type-Optative3plEn.+@"  "@U.Type-Optative.e@"  | 0:{nen} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.MorphType.passive@"  "@U.Tense.optative@"  "@U.Type-Optative3plEn.-@"  "@U.Type-Optative.e@"  | 0:{an} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.MorphType.passive@"  "@U.Tense.optative@"  "@U.Type-Optative.a@" ]
+ ] ;
+
+define PluperfectSuffixGroup [  "@U.Vv.e@"  [ [ 0:{i} "@U.MorphType.active@"  "@U.CSf.ev@"  "@U.Sf.i@" ]
+ | [ 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  [  "@U.MorphType.active@"  | [ 0:{in} "@U.MorphType.causative@"  "@U.CausSf.in@"  0:{eb} "@U.PpfVv.eb@"  ]]
+ 0:{in} "@U.PpfInfix.in@"  ] | [ [  "@U.CSf.i@"  "@U.Sf.-@"  | 0:{v} "@U.CSf.av@"  "@U.Sf.v@"  | 0:{m} "@U.CSf.am@"  "@U.Sf.m@" ]
+ 0:{ev} "@U.Type-RootVowel.-@"  0:{in} "@U.MorphType.causative@"  "@U.CausSf.evin@"  0:{eb} "@U.PpfVv.eb@"  0:{in} "@U.PpfInfix.in@"  ] | [ [ [ 0:{ev} "@U.CSf.ev@"  "@U.Sf.ev@"  | 0:{v} "@U.CSf.ev@"  "@U.Sf.v@"  | 0:{em} "@U.CSf.em@"  "@U.Sf.em@"  | 0:{m} "@U.CSf.am@"  "@U.Sf.m@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@"  | 0:{en} "@U.CSf.en@"  "@U.Sf.en@" ]
+ |  "@U.CSf.-@"  "@U.Sf.-@" ]
+ 0:{in} "@U.MorphType.causative@"  "@U.CausSf.in@"  0:{eb} "@U.PpfVv.eb@"  0:{in} "@U.PpfInfix.in@"  ] | [  "@U.MorphType.active@"  "@U.Sf.-@"  | 0:{n} "@U.MorphType.active@"  "@U.NasalInfix.n@" ]
+]
+ [ [ [ 0:{e}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Type-Aorist.weak@"  "@U.Tense.pluperfect@"  "@U.ScreeveSign.e@"  | 0:{i}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Type-Aorist.strong@"  "@U.Tense.pluperfect@"  "@U.ScreeveSign.i@"  | 0:{o}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Type-Aorist.weak@"  "@U.Tense.conj-perfect@"  "@U.ScreeveSign.o@"  | [ 0:{a}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.Type-Aorist.strong@"  "@U.Tense.conj-perfect@"  "@U.ScreeveSign.a@"   "@D.CRoot.Cem@"  "@D.Root.C@"  ] | 0:{e}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.MorphType.active@"  "@U.Tense.conj-perfect@"  "@U.Type-Aorist.strong@"  "@U.Type-Optative.e@"  "@U.CRoot.Cem@"  "@U.Root.C@"  "@U.ScreeveSign.e@"  | 0:{a} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.Type-Aorist3sg.a@"  "@U.Tense.pluperfect@"  "@U.ScreeveSign.a@"  | 0:{o} "@U.Subj-Pers.3@"  "@U.Type-Aorist3sg.o@"  "@U.Tense.pluperfect@"  "@U.ScreeveSign.o@" ]
+  Obj23PlTQ  ] | [ [ 0:{o} "@U.Subj-Pers.3@"  "@U.Type-Optative.o@"  "@U.Tense.conj-perfect@"  "@U.ScreeveSign.os@"  | [ 0:{a} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.Type-Optative.a@"  "@U.Tense.conj-perfect@"  "@U.ScreeveSign.as@"   "@D.CRoot.Cem@"  "@D.Root.C@"  ] | 0:{e} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.MorphType.active@"  "@U.Tense.conj-perfect@"  "@U.Type-Optative.e@"  "@U.CRoot.Cem@"  "@U.Root.C@"  "@U.ScreeveSign.es@" ]
+  Obj23PlTS  ]]
+ ] ;
+
+define PerfectSuffixGroup [  "@U.Tense.perfect@"  "@U.Vv.u@"  [ [ [ [ [ 0:{eb} "@U.MorphType.active@"  "@U.Sf.eb@"  | 0:{ev} "@U.MorphType.active@"  "@U.Sf.ev@" ]
+ | [  "@U.Sf.-@"  "@U.MorphType.active@"  ( 0:{n} "@U.NasalInfix.n@"  ) ]]
+ | [ [ [ 0:{ev} "@U.CSf.ev@"  "@U.Sf.ev@"  | 0:{v} "@U.CSf.ev@"  "@U.Sf.v@"  | 0:{em} "@U.CSf.em@"  "@U.Sf.em@"  | 0:{m} "@U.CSf.am@"  "@U.Sf.m@"  | 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@" ]
+ |  "@U.CSf.-@"  "@U.Sf.-@" ]
+ 0:{in} "@U.MorphType.causative@"  0:{eb} "@U.CausSf.in@"  ] | [ [  "@U.CSf.i@"  "@U.Sf.-@"  | 0:{v} "@U.CSf.av@"  "@U.Sf.v@"  | 0:{m} "@U.CSf.am@"  "@U.Sf.m@" ]
+ 0:{ev} "@U.Type-RootVowel.-@"  0:{in} "@U.MorphType.causative@"  0:{eb} "@U.CausSf.evin@"  ] | 0:{mev} "@U.MorphType.causative@"  "@U.CausSf.ev@"  "@U.Sf.m@"  "@U.CSf.am@" ]
+ 0:{i} "@U.IInfix.i@"  [ 0:{a} "@U.Subj-Pers.3@"  "@U.PersSfx.a@"  | 0:{var} "@U.Subj-Pers.1@"  "@U.PersSfx.var@"  | 0:{Har} "@U.Subj-Pers.2@"  "@U.PersSfx.Har@" ]
+  Obj23PlTQ  ] | [ [ 0:{av} "@U.MorphType.active@"  "@U.CSf.av@"  "@U.Sf.av@"  | 0:{am} "@U.MorphType.active@"  "@U.CSf.am@"  "@U.Sf.am@" ]
+  Obj23PlTS  ] | [ [ 0:{v} "@U.Sf.av@"  | 0:{m} "@U.Sf.am@" ]
+ 0:{i} "@U.MorphType.active@"  "@U.IInfix.i@"  [ 0:{var} "@U.Subj-Pers.1@"  "@U.PersSfx.var@"  | 0:{Har} "@U.Subj-Pers.2@"  "@U.PersSfx.Har@" ]
+  Obj23PlTQ  ]]
+ ] ;
+
+define RelativePassivePerfectSf [ [ 0:{ev} "@U.Sf.ev@"  | 0:{v} "@U.Sf.v@"  | 0:{e} "@U.Sf.e@"  | 0:{m} "@U.Sf.m@"  | 0:{eb} "@U.Sf.eb@"  | 0:{ob} "@U.Sf.ob@" ]
+ | [ [ [ 0:{ev} "@U.Sf.ev@"  | 0:{eb} "@U.Sf.eb@" ]
+ |  "@U.Sf.-@" ]
+ 0:{ineb} "@U.CausSf.in@"  ] |  "@U.Sf.-@" ]
+ ;
+
+define RelativePassivePluperfectSf [ [ 0:{v} "@U.Sf.v@"  | 0:{e} "@U.Sf.e@"  | 0:{m} "@U.Sf.m@"  | 0:{eb} "@U.Sf.eb@"  | 0:{ob} "@U.Sf.ob@" ]
+ | 0:{e} "@U.Sf.ev@"  | [ [ [ 0:{ev} "@U.Sf.ev@"  | 0:{eb} "@U.Sf.eb@" ]
+ |  "@U.Sf.-@" ]
+ 0:{ineb} "@U.CausSf.in@"  ] |  "@U.Sf.-@" ]
+ ;
+
+define RelativePassivePerfectSuffixGroup [  "@U.MorphType.passive@"  "@U.Relation.relative@"  "@U.Vv.-@"  [ [ [  RelativePassivePerfectSf  | 0:{n} "@U.Sf.-@"  "@U.NasalInfix.n@" ]
+ 0:{i} "@U.Tense.perfect@"  "@U.IInfix.i@"  [ [ 0:{a} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.a@"   Subj3sgTQ  ] | [ [ 0:{var} "@U.Subj-Pers.1@"  "@U.PersSfx.var@"  | 0:{Har} "@U.Subj-Pers.2@"  "@U.PersSfx.Har@" ]
+  Subj12TQ  ] | 0:{an} "@U.Obj-Num.sg@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.an@" ]
+ ] | [  RelativePassivePluperfectSf  0:{od} "@U.Tense.pluperfect@"  "@U.StExt.od@"  [ [ 0:{i}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.i@"   Subj12TQ  ] | [ 0:{a} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.a@"   Subj3sgTQ  ] | 0:{nen} "@U.Obj-Num.sg@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.nen@" ]
+ ] | [  RelativePassivePluperfectSf  0:{od} "@U.Tense.conj-perfect@"  "@U.StExt.od@"  [ [ 0:{e}[  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.e@"   Subj12TQ  ] | 0:{es} "@U.Obj-Num.sg@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.es@"  | 0:{es} "@U.Obj-Num.pl@"  "@U.Obj-Pers.1@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.es@"  | [ 0:{e} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.es@"   Subj3sgT  ] | 0:{nen} "@U.Obj-Num.sg@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.nen@" ]
+ ]]
+ ] ;
+
+define StativePassivePresentSuffixGroup [  "@U.Tense.present@"  "@U.MorphType.stative-passive@"  "@U.Pv.-@"  [ [ [ [ 0:{en} "@U.Sf.en@"  | 0:{ev} "@U.Sf.ev@" ]
+ |  "@U.Sf.-@" ]
+ 0:{i} "@U.IInfix.i@"  [ [ 0:{a} "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.a@"   Subj3sgTQ  ] | [ [ 0:{var} "@U.Subj-Pers.1@"  | 0:{Har} "@U.Subj-Pers.2@" ]
+  Subj12TQ  ] | 0:{an} "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.an@" ]
+ ] | [ [ 0:{av} "@U.Root.kr@"  "@U.Vv.a@"  "@U.Sf.av@"  | 0:{ev}[  "@U.Root.d@"  |  "@U.Root.j@" ]
+ "@U.Sf.ev@"  | [  "@U.Root.Xn@"  |  "@U.Root.j@" ]
+ "@U.Sf.-@" ]
+ [ 0:{s} "@U.Type-Subj3Sfx.s@"  "@U.Subj-Pers.3@"  | 0:{var} "@U.Subj-Pers.1@"  | 0:{Har} "@U.Subj-Pers.2@"  |  SubjObjSfxTQ ]
+  "@U.MorphType.stative-passive@"  ]]
+ ] ;
+
+define PastParticipleStem [ [ 0:{m} "@U.PfPfx.-@"  "@U.PpPfx.m@"  | 0:{na} "@U.PfPfx.-@"  "@U.PpPfx.na@"  |  "@U.PfPfx.-@"  "@U.PpPfx.-@" ]
+  Root  [ [ [  "@U.Sf.-@"  | [ 0:{en} "@U.CSf.en@"  "@U.Sf.en@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@" ]
+]
+ 0:{il} "@U.PpSfx.il@"  "@U.PpPfx.-@"  ] | [ [  "@U.Sf.-@"  | [ 0:{eb} "@U.Sf.eb@"  | 0:{e} "@U.Sf.e@"  | 0:{m} "@U.Sf.m@" ]
+]
+ 0:{ul} "@U.PpSfx.ul@"  "@U.PpPfx.-@"  ] | [  "@U.Sf.-@"  [ 0:{ar} "@U.PpSfx.ar@"  "@U.PpPfx.m@"  | 0:{al} "@U.PpSfx.al@"  "@U.PpPfx.m@" ]
+ ] |  "@U.Sf.-@"  "@U.PpPfx.na@"  | [ 0:{en} "@U.CSf.en@"  "@U.Sf.en@"  "@U.PpPfx.na@"  | 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  "@U.PpPfx.na@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@"  "@U.PpPfx.na@"  | 0:{av} "@U.CSf.av@"  "@U.Sf.av@"  "@U.PpPfx.na@"  | 0:{ev} "@U.CSf.ev@"  "@U.Sf.ev@"  "@U.PpPfx.na@" ]
+]
+ ] ;
+
+define PastParticipleStem1 [ [ 0:{m} "@U.PfPfx.-@"  "@U.PpPfx.m@"  | 0:{na} "@U.PfPfx.-@"  "@U.PpPfx.na@"  |  "@U.PfPfx.-@"  "@U.PpPfx.-@" ]
+  PastParticipleRoot  [ [ [  "@U.Sf.-@"  | [ 0:{en} "@U.CSf.en@"  "@U.Sf.en@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@" ]
+]
+ 0:{il} "@U.PpSfx.il@"  "@U.PpPfx.-@"  ] | [ [  "@U.Sf.-@"  | [ 0:{eb} "@U.Sf.eb@"  | 0:{e} "@U.Sf.e@"  | 0:{m} "@U.Sf.m@" ]
+]
+ 0:{ul} "@U.PpSfx.ul@"  "@U.PpPfx.-@"  ] | [  "@U.Sf.-@"  [ 0:{ar} "@U.PpSfx.ar@"  "@U.PpPfx.m@"  | 0:{al} "@U.PpSfx.al@"  "@U.PpPfx.m@" ]
+ ] |  "@U.Sf.-@"  "@U.PpPfx.na@"  | [ 0:{en} "@U.CSf.en@"  "@U.Sf.en@"  "@U.PpPfx.na@"  | 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  "@U.PpPfx.na@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@"  "@U.PpPfx.na@"  | 0:{av} "@U.CSf.av@"  "@U.Sf.av@"  "@U.PpPfx.na@"  | 0:{ev} "@U.CSf.ev@"  "@U.Sf.ev@"  "@U.PpPfx.na@" ]
+]
+ ] ;
+
+define FutureParticipleStem [ 0:{sa} "@U.PpSfx.-@"  "@U.PpPfx.-@"  "@U.PfPfx.sa@"   FutureParticipleRoot  [ [ [  "@U.Sf.-@"  | [ 0:{m} "@U.CSf.am@"  "@U.Sf.m@"  | 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@" ]
+]
+ [ 0:{el} "@U.SyncStem.-@"  "@U.StemType.c@"  "@U.PfSfx.el@"  | 0:{l} "@U.SyncStem.+@"  "@U.StemType.c@"  "@U.PfSfx.el@" ]
+ ] | [ [  "@U.Sf.-@"  | [ 0:{en} "@U.Sf.en@"  | 0:{ev} "@U.Sf.ev@"  | 0:{av} "@U.Sf.av@"  | 0:{eb} "@U.Sf.eb@"  | 0:{ob} "@U.Sf.ob@" ]
+]
+  "@U.StemType.c@"  "@U.PfSfx.-@"  ] | [ [  "@U.Sf.-@"  | [ 0:{m} "@U.CSf.am@"  "@U.Sf.m@"  | 0:{eb} "@U.CSf.eb@"  "@U.Sf.eb@"  | 0:{ob} "@U.CSf.ob@"  "@U.Sf.ob@" ]
+]
+ [ [ 0:{al} "@U.StemType.c@"  "@U.PfSfx.al@"  | 0:{ar} "@U.StemType.c@"  "@U.PfSfx.ar@" ]
+ | 0:{o} "@U.StemType.v@"  "@U.PfSfx.o@" ]
+ ]]
+ ] ;
+
+define AbsolutePassivePerfectVerb [ [ 0:{v} "@U.Subj-Pers.1@"  | [  "@U.Subj-Pers.2@"  |  "@U.Subj-Pers.3@" ]
+]
+  PastParticipleStem   "@U.MorphType.passive@"  "@U.Obj-Num.sg@"  "@U.Obj-Pers.3@"  "@U.Relation.absolute@"  [ [ [ 0:{var} "@U.Tense.perfect@"  "@U.Subj-Pers.1@"  "@U.PersSfx.var@"  | 0:{Har} "@U.Tense.perfect@"  "@U.Subj-Pers.2@"  "@U.PersSfx.Har@"  | 0:{iqavi} "@U.Tense.pluperfect@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.iqavi@"  | 0:{iqo} "@U.Tense.conj-perfect@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.iqo@" ]
+  SubjPlTQ  ] | 0:{a} "@U.Tense.perfect@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.a@"  | 0:{an} "@U.Tense.perfect@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.an@"  | 0:{iqo} "@U.Tense.pluperfect@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.iqo@"  | 0:{iqvnen} "@U.Tense.pluperfect@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.iqvnen@"  | 0:{iqos} "@U.Tense.conj-perfect@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  "@U.PersSfx.iqos@"  | 0:{iqon} "@U.Tense.conj-perfect@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.iqon@"  | 0:{iqav} "@U.Tense.pluperfect@"  "@U.Style.subnorm@"  "@U.Subj-Num.sg@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.iqavi@"  | 0:{iqvnen} "@U.Style.old@"  "@U.Tense.conj-perfect@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  "@U.PersSfx.iqvnen@"  | 0:{iqveniT} "@U.Style.old@"  "@U.Tense.pluperfect@"  "@U.Subj-Num.pl@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.iqveni@"  | 0:{iqvneT} "@U.Style.old@"  "@U.Tense.conj-perfect@"  "@U.Subj-Num.pl@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+ "@U.PersSfx.iqvne@" ]
+ ] ;
+
+define PresentSeriesSvlaSuffixGroup [ [ [ [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Root.val@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+  SubjPlTQ  ] | 0:{s} "@U.Tense.present@"  "@U.Root.val@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | [  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Root.va@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  | 0:{en}[  "@U.Tense.present@"  |  "@U.Tense.future@" ]
+ "@U.Root.vl@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@" ]
+  "@U.MorphType.passive@"  ] ;
+
+define AoristSeriesConditionalSvlaSuffixGroup [ [ [ 0:{i} "@U.Tense.aorist@"  "@U.Root.ved@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+  SubjPlTQ  ] | [ 0:{e} "@U.Tense.optative@"  "@U.Root.vid@" [  "@U.Subj-Pers.1@"  |  "@U.Subj-Pers.2@" ]
+  SubjPlTQ  ] | 0:{a} "@U.Tense.aorist@"  "@U.Root.vid@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  | 0:{es} "@U.Tense.optative@"  "@U.Root.vid@"  "@U.Subj-Num.sg@"  "@U.Subj-Pers.3@"  | 0:{nen}[  "@U.Tense.aorist@"  |  "@U.Tense.optative@" ]
+ "@U.Root.vid@"  "@U.Subj-Num.pl@"  "@U.Subj-Pers.3@"  | [ 0:{od}[  "@U.Tense.conditional@"  |  "@U.Tense.conj-future@" ]
+ "@U.PrStExt.od@"  "@U.Root.vid@"   PsDPersSfx  ]]
+  "@U.MorphType.passive@"  ] ;
+
+define Masdar [  MasdarRoot  [ [ [  "@U.Sf.-@"  | [ 0:{en} "@U.Sf.en@"  | 0:{ev} "@U.Sf.ev@"  | 0:{av} "@U.Sf.av@"  | 0:{eb} "@U.Sf.eb@"  | 0:{ob} "@U.Sf.ob@" ]
+ | 0:{v} "@U.Sf.av@"  | 0:{m} "@U.Sf.am@" ]
+ 0:{a} "@U.StemType.v@"  ] |  "@U.StemType.c@" ]
+ ] ;
+
+define FiniteVerb [ [  PreverbGroup   "@U.Finite.+@"  [ [  PrefixGroup  [ [  Root  [  "@D.Root.ved@"   "@D.Root.vid@"   "@D.Root.va@" ]
+ [  PresentSeriesActiveSuffixGroup  |  PresentSeriesCausativeSuffixGroup  |  PresentSeriesPassiveSuffixGroup  |  AoristSeriesSuffixGroup  |  PerfectSuffixGroup  |  PluperfectSuffixGroup  |  RelativePassivePerfectSuffixGroup  |  StativePassivePresentSuffixGroup ]
+ ] | [ [ [ 0:{al} "@U.Subj-Pers.1@"  "@U.Root.val@" ]
+ | [ 0:{Hval} "@U.Subj-Pers.2@"  "@U.Root.val@" ]
+ | 0:{va} "@U.Root.va@"  | 0:{vl} "@U.Root.vl@" ]
+  SvlaRoot   PresentSeriesSvlaSuffixGroup  ] | [ [ 0:{ed} "@U.Subj-Pers.1@"  "@U.Root.ved@"  | 0:{id} "@U.Subj-Pers.1@"  "@U.Root.vid@"  | 0:{Hved} "@U.Subj-Pers.2@"  "@U.Root.ved@"  | 0:{Hvid} "@U.Subj-Pers.2@"  "@U.Root.vid@"  | 0:{vid} "@U.Subj-Pers.3@"  "@U.Root.vid@"  | 0:{ved} "@U.Subj-Pers.3@"  "@U.Root.ved@" ]
+  SvlaRoot   AoristSeriesConditionalSvlaSuffixGroup  ]]
+ ] |  AbsolutePassivePerfectVerb ]
+  "@U.Cat.v@"  ]]
+ ;
+
+define Participle [ [  PreverbGroup  [ [  "@U.Subcat.past-part@"  "@U.CaseType.full@"  "@U.Tense.past-part@"  "@U.StemType.c@"  "@U.Finite.-@"   PastParticipleStem1  ] | [  "@U.Subcat.future-part@"  "@U.CaseType.full@"  "@U.Tense.future-part@"  "@U.Finite.-@"   FutureParticipleStem  ] | [  "@U.Subcat.masdar@"  "@U.CaseType.full@"  "@U.Tense.masdar@"  "@U.Finite.-@"   Masdar  ]]
+ [ 0:{i} "@U.Parsing.-@"  "@U.StemType.c@"  "@U.Cat.v@"  |  "@U.Parsing.-@" [  "@U.Tense.future-part@"  |  "@U.Tense.masdar@" ]
+ "@U.StemType.v@"  "@U.Cat.v@"  | [  "@U.Parsing.+@"  [  NomGroup  |  ErgGroup  | [  "@U.CaseType.full@"  [  DatGroup  |  GenGroup  |  InstGroup  |  AdvGroup  |  OldPlural ]
+ ]]
+ ]]
+ ]]
+ ;
+
+# <<<<<<<<<< automatically generated end
+
+# bug?? define FilterCER  x:?* {cer} y:?* Q ?* .o. $["+MorphType" ".active"] .o. $["+Tense" ".present"];
+
+# set flag-is-epsilon ON
+
+define GenEncliticAux {qoPna-2794-1}:{_a} 0:["+V" "+Unerg" "+Pres" "+FSubj3Sg" "+FObj3Sg" "+Encl"] ;
+
+define Verb [ FiniteVerb GenResolveVerbFlagDiacritics | GenEncliticAux | Participle "+VPart":0 GenResolveParticipleFlagDiacritics ]  ;
+
+define KartuliMorph Verb;
+
+# invert the net
+read regex KartuliMorph.i ;
+
+# twosided flag-diacritics
+
+#echo > eliminate flag IndirectSpeech
+# eliminate flag IndirectSpeech
+echo > eliminate flag MorphType
+eliminate flag MorphType
+echo > eliminate flag Tense
+eliminate flag Tense
+#echo > eliminate flag Gv
+#eliminate flag Gv
+echo > eliminate flag Cat
+eliminate flag Cat
+
+# Noun flags
+
+echo > eliminate flag Form
+eliminate flag Form
+echo > eliminate flag SubCat
+eliminate flag SubCat
+#echo > eliminate flag Morph
+#eliminate flag Morph
+echo > eliminate flag Pers
+eliminate flag Pers
+#echo > eliminate flag Comp-Pp
+#eliminate flag Comp-Pp
+#echo > eliminate flag Lex
+#eliminate flag Lex
+#echo > eliminate flag Comp-Case
+#eliminate flag Comp-Case
+echo > eliminate flag RigidStem
+eliminate flag RigidStem
+echo > eliminate flag Pp
+eliminate flag Pp
+echo > eliminate flag Case
+eliminate flag Case
+echo > eliminate flag DCase
+eliminate flag DCase
+echo > eliminate flag CaseType
+eliminate flag CaseType
+echo > eliminate flag Num
+eliminate flag Num
+echo > eliminate flag DNum
+eliminate flag DNum
+echo > eliminate flag OldPl
+eliminate flag OldPl
+echo > eliminate flag PlStem
+eliminate flag PlStem
+echo > eliminate flag StemType
+eliminate flag StemType
+echo > eliminate flag SyncStem
+eliminate flag SyncStem
+echo > eliminate flag Artic
+eliminate flag Artic
+echo > eliminate flag RelSfx
+eliminate flag RelSfx
+echo > eliminate flag ModSfx
+eliminate flag ModSfx
+echo > eliminate flag EnclQopna
+eliminate flag EnclQopna
+
+# Verb flags
+
+echo > eliminate flag VClass
+eliminate flag VClass
+# echo > eliminate flag CaseType
+# eliminate flag CaseType
+# echo > eliminate flag Subcat
+# eliminate flag Subcat
+# echo > eliminate flag Cat
+# eliminate flag Cat
+echo > eliminate flag Finite
+eliminate flag Finite
+echo > eliminate flag Style
+eliminate flag Style
+echo > ?? eliminate flag PfSfx
+eliminate flag PfSfx
+# echo > eliminate flag StemType
+# eliminate flag StemType
+echo > eliminate flag PpSfx
+eliminate flag PpSfx
+#echo > eliminate flag PpPfx
+#eliminate flag PpPfx
+echo > eliminate flag PfPfx
+eliminate flag PfPfx
+echo > eliminate flag StExt
+eliminate flag StExt
+echo > eliminate flag IInfix
+eliminate flag IInfix
+echo > eliminate flag NasalInfix
+eliminate flag NasalInfix
+echo > eliminate flag PpfInfix
+eliminate flag PpfInfix
+echo > eliminate flag PpfVv
+eliminate flag PpfVv
+echo > eliminate flag Type-Optative3plEn
+eliminate flag Type-Optative3plEn
+echo > eliminate flag ScreeveSign
+eliminate flag ScreeveSign
+echo > eliminate flag Type-Aorist3sg
+eliminate flag Type-Aorist3sg
+echo > eliminate flag Type-Optative
+eliminate flag Type-Optative
+echo > eliminate flag Type-EvSfx
+eliminate flag Type-EvSfx
+echo > eliminate flag Type-Aorist
+eliminate flag Type-Aorist
+echo > eliminate flag PassiveSfx
+eliminate flag PassiveSfx
+echo > eliminate flag Type-RootVowel
+eliminate flag Type-RootVowel
+echo > eliminate flag CausSf
+eliminate flag CausSf
+echo > eliminate flag CSf
+eliminate flag CSf
+echo > eliminate flag Root
+eliminate flag Root
+echo > eliminate flag Sf
+eliminate flag Sf
+echo > eliminate flag Type-Subj3Sfx
+eliminate flag Type-Subj3Sfx
+echo > eliminate flag Type-Subj12Sfx
+eliminate flag Type-Subj12Sfx
+echo > eliminate flag PersSfx
+eliminate flag PersSfx
+echo > eliminate flag Inverted
+eliminate flag Inverted
+echo > eliminate flag PrStExt
+eliminate flag PrStExt
+#echo > eliminate flag Tense
+#eliminate flag Tense
+echo > eliminate flag Type-PrStExt
+eliminate flag Type-PrStExt
+echo > eliminate flag Subj-Num
+eliminate flag Subj-Num
+echo > # eliminate flag RedDirPv
+# eliminate flag RedDirPv
+echo > eliminate flag Parsing
+eliminate flag Parsing
+echo > # eliminate flag Reduplication
+# eliminate flag Reduplication
+echo > eliminate flag Type-Subj2Pfx
+eliminate flag Type-Subj2Pfx
+echo > eliminate flag Type-Root
+eliminate flag Type-Root
+echo > eliminate flag Type-Obj3Pfx
+eliminate flag Type-Obj3Pfx
+echo > eliminate flag Relation
+eliminate flag Relation
+echo > eliminate flag Obj-Pers
+eliminate flag Obj-Pers
+echo > eliminate flag Obj-Num
+eliminate flag Obj-Num
+echo > eliminate flag DirPv
+eliminate flag DirPv
+echo > eliminate flag CRoot
+eliminate flag CRoot
+echo > eliminate flag PpPfx
+eliminate flag PpPfx
+echo > eliminate flag Pv
+eliminate flag Pv
+echo > eliminate flag CPv
+eliminate flag CPv
+echo > eliminate flag Subcat
+eliminate flag Subcat
+echo > eliminate flag Subj-Pers
+eliminate flag Subj-Pers
+echo > eliminate flag Vv
+eliminate flag Vv
+#echo > eliminate flag Digvalue
+#eliminate flag Digvalue
+#echo > eliminate flag ConjNum
+#eliminate flag ConjNum
+
+echo optimize
+optimize
+
+# echo compact net
+# compact net
+
+echo save stack verb-gen.fst
+save stack verb-gen.fst
+
+# compile : fst -f verb.regex
+# load : fst -s verb.fst
+# test : up "davcer"
+

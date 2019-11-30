@@ -1,0 +1,185 @@
+
+# missing: ოცწლიანი etc., ორსაუკუნოვანი
+
+# set quit-on-fail OFF
+
+load stack noun-list0.fst
+define CompStem0
+load stack noun-list1.fst
+define CompStem1
+load stack noun-list2.fst
+define CompStem2
+load stack noun-list3.fst
+define CompStem3
+load stack noun-list4.fst
+define CompStem4
+load stack noun-list5.fst
+define CompStem5
+load stack noun-list6.fst
+define CompStem6
+load stack noun-list7.fst
+define CompStem7
+load stack masdar-list.fst
+define MasdarStem
+load stack past-part-list.fst
+define PastPartStem
+
+# obs: CompStem does not contain +Prop or +Top but flags
+define CompStem [ CompStem0 | CompStem1 | CompStem2 | CompStem3 | CompStem4 | CompStem5 | CompStem6 | CompStem7 ] ;
+
+define georgianChar [ა|ბ|გ|დ|ე|ვ|ზ|თ|ი|კ|ლ|მ|ნ|ო|პ|ჟ|რ|ს|ტ|უ|ფ|ქ|ღ|ყ|შ|ჩ|ც|ძ|წ|ჭ|ხ|ჯ|ჰ|ჱ|ჲ|ჳ|ჴ|ჵ] ;
+
+# min. length 5 chars
+define CompStem5 CompStem .o. [ [georgianChar|"-"]^5 ?* ] ;
+# define CompStem CompStem .o. [ ? ? ? ? ? ?* ] ;
+
+define Plural   [  "@U.SyncStem.+@" 
+       	      	   [ "@U.StemType.c@" | "@U.StemType.v@" | "@U.StemType.propv@" | "@U.StemType.ა@" | "@U.StemType.ი@" ]
+ 		|  "@U.PlStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.ე@" ] ] ;
+
+define CompStemPl CompStem5 Plural ;
+
+define CompStemSg CompStem5 "@U.SyncStem.-@" ;
+
+define MasdarStem MasdarStem "@U.SyncStem.-@" ;
+define PastPartStem PastPartStem "@U.SyncStem.-@" ;
+
+read regex CompStemSg ;
+
+eliminate flag StemType
+eliminate flag SyncStem
+eliminate flag RigidStem
+eliminate flag Cat
+eliminate flag SubCat
+eliminate flag Case
+eliminate flag Num
+eliminate flag Style
+# eliminate flag CaseType
+# eliminate flag DDL
+# eliminate flag Lang
+
+define CompStemSg
+
+define CompStemSg CompStemSg .o. [ ჴ -> ხ, ჱ -> ე ] .o. [ ? ? ? ? ? ?* ] ;
+
+read regex CompStemPl ;
+
+eliminate flag StemType
+eliminate flag SyncStem
+eliminate flag Cat
+eliminate flag SubCat
+eliminate flag Style
+# eliminate flag CaseType
+# eliminate flag DDL
+# eliminate flag Lang
+
+define CompStemPl
+
+define CompStemPl CompStemPl .o. [ ჴ -> ხ, ჱ -> ე ] .o. [ ? ? ? ? ? ?* ] ;
+
+#sigma
+
+load stack georgian-morph-ng.fst
+
+define Morph
+
+# min. length 5 chars
+
+define Morph5 [ georgianChar^5 ?* ] .o. Morph .o. [ ["-"|"–"] -> 0 ] ;
+
+
+define Noun [ "+N" "+Comp" <- "+N" ] .o. [ ?* "+N" \"+Prop" ?*] .o. Morph5 ;
+define Adj  [ "+A" "+Comp" <- "+A" ] .o. [ ?* "+A" ?*] .o. Morph5 ;
+
+define PropStemSg CompStem "@U.Cat.prop@" "@U.SyncStem.-@" ;
+define Prop [ "+Prop" "+Coord" <- "+Prop" ] .o. [ ?* "+Prop" ?*] .o. Morph ;
+
+define MasdarStem [ MasdarStem .o. [ ჴ -> ხ, ჱ -> ე, u -> ვ, "#" -> 0, e -> ე ] ].l ;
+define PastPartStem [ PastPartStem .o. [ ჴ -> ხ, ჱ -> ე, u -> ვ, "#" -> 0, e -> ე ] ].l ;
+
+define Part     [ "+A" "+Comp" <- "+Part",
+       		  0 <- "+PastPart",
+       		  0 <- "+PresPart",
+       		  0 <- "+FutPart",
+       		  0 <- "+NegPart" ]
+       	    .o. [ ?* "+Part" ?*]
+	    .o. Morph ;
+
+define PastPart  [ "+A" "+Comp" <- "+Part",
+       		  0 <- "+PastPart" ]
+       	    .o. [ ?* "+PastPart" ?*]
+	    .o. Morph ;
+
+define FutPart  [ "+A" "+Comp" <- "+Part",
+       		  0 <- "+FutPart" ]
+       	    .o. [ ?* "+FutPart" ?*]
+	    .o. Morph ;
+
+# perhaps: keep +FutPart etc.
+
+define Masdar [ "+N" "+Comp" <- "+VN"] .o. [ ?* "+VN" ?*] .o. Morph ;
+
+define removeSlash [ 0 <- "/" ] .o. [ 0 <- "-" || _ ?* {-ი} ] ;
+
+# without root
+define Masdar removeSlash .o. [ 0 <-@ ?* || "/" _ "+N" ] .o. Masdar ;
+define FutPart removeSlash .o. [ 0 <-@ ?* || "/" _ "+A" ] .o. FutPart ;
+define PastPart removeSlash .o. [ 0 <-@ ?* || "/" _ "+A" ] .o. PastPart ;
+define Part removeSlash .o. [ 0 <-@ ?* || "/" _ "+A" ] .o. Part ;
+
+define arFutPartMasdar	     [{არ}|{ვერ}|{აღარ}|{ვეღარ}] ["+":0 | "+":"-"] [ FutPart | Masdar ] ;
+
+define amkveqnis {ის}:{ამ} "+":0 [ [ {ქვეყ[ა]ნ[ა]} "+N" "+Comp" "+Gen" ?* ] .o. Noun ] ;
+
+define CompNoun [ [ CompStemSg.l
+       		  | CompStemPl.l [ {-ებ}:{ებ} ]
+		  | {ანტი} | {ფსევდო} | {ნეო} | {ნანო} | {ტრანს}
+		  | {მაღალ} | {დაბალ} | {მრავალ} | {მულტი}
+		  | {სუპერ} | {ჰიპერ} | {მინი} | {აუდიო} | {ვიდეო}
+		  ]
+       		  [ "+":0 | "+":"-" | "+":"–" ]
+		  [ Noun | Adj | Part | Masdar ]
+		| [georgianChar|"-":["-"|"–"]]+ "+":["-"|"–"] Noun
+		| [ PropStemSg.l
+		    [ "@R.StemType.c@" {-ი}:[{ი}|0] | "@D.StemType.c@" ]
+		    [ "+":"-" | "+":"–"]
+		  ]^{1,3}
+		  Prop
+		| arFutPartMasdar
+		| MasdarStem [ "+":"-" | "+":"–"] Masdar
+		| PastPartStem [ "+":"-" | "+":"–"] PastPart
+		| amkveqnis ] ;
+
+# orig:
+# define CompNoun CompStem Noun ;
+
+# 333M Jul 29 22:13 georgian-comp-ng.fst
+
+read regex 	CompNoun ;
+
+echo Lang
+eliminate flag Lang
+echo Cat
+eliminate flag Cat
+echo SubCat
+eliminate flag SubCat
+echo RigidStem
+eliminate flag RigidStem
+echo SyncStem
+eliminate flag SyncStem
+echo StemType
+eliminate flag StemType
+echo Case
+eliminate flag Case
+echo Num
+eliminate flag Num
+echo Style
+eliminate flag Style
+echo Pv
+eliminate flag Pv
+echo PlStem
+eliminate flag PlStem
+echo NaPastPart
+eliminate flag NaPastPart
+
+save stack georgian-comp-ng.fst

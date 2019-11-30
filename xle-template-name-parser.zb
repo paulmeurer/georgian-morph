@@ -1,0 +1,79 @@
+;;;   -*- Mode: LISP; Package: LXML; BASE: 10; Syntax: ANSI-Common-Lisp; -*-
+;;
+;; Copyright (C) Paul Meurer 2006. All rights reserved.
+;; paul.meurer@aksis.uib.no
+;; AKSIS, University of Bergen
+;;
+
+(
+ :name "xle-template-name-parser"
+ :grammar "null-grammar"
+ :white-space (#\Space #\Newline #\Return #\Tab)
+ :case-sensitive t
+ ;;:comment-brackets zb::*comment-brackets*
+ :identifier-start-chars "_%$-*?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ :lex-cats ((SP "[ \\n]+" #+test(:charset-fn lxml::xml-space-p :min-length 1))
+	    (word "[^@$<>'`\"(){|}; \\t]+")
+	    (lword "[^@$<>`\"{|}; \\t]+")
+	    (lq "`\"")
+	    (lqq "`\"`\"`\"")
+	    (qword "[^@$<>`\"(){|};. \\t]+")
+	    (cat "[^@$\"(){|};. \\t]+")
+	    (etc "[^@\". \\t]+")
+	    (morphtype "[XLE\*]+")
+	    (comm "[^\"`]+")
+	    (grammar-subname "[a-zA-Z]+")
+	    (grammar-name "[a-zA-Z]+")
+	    (name "[^=@$(){|}\";.\\n \\t]+")
+	    (value "[^=@$(){|}\";.\\n \\t]+")
+	    (lvalue "[^=@$(){|}\";.\\n \\t]+")
+	    (att "[^=@$(){|};\". \\t]+")
+	    (arg "[_a-zA-Z]+")
+	    (body "[^.\"]+")))
+
+;; Productions
+
+;; top production comes first; rule order is significant.
+
+(defrule template-file
+    := (header templates "----" #|S?|#) 
+    := (templates "----" #|S?|#))
+
+(defrule header
+    := (grammar-subname grammar-name "TEMPLATES" "(1.0)"))
+
+(defrule templates
+    := (#|S?|# template templates)
+    ;;:build (print template)
+    := (#|S?|# template #|S?|#)
+    ;;:build (print template)
+    )
+
+(defrule S
+    := comment
+    := (comment S))
+
+;; comments disabled; doesn't work
+(defrule S?
+    ;; := S
+    := ())
+
+(defrule comment
+    := ("\"" comment-tokens "\""))
+
+(defrule comment-tokens
+    := (comm comment-tokens)
+    := comm)
+
+(defrule template
+    := (name "(" arglist ")" "=" body ".")
+    :build (when (xle::verb-template-p name) (add-token name))
+    := (name "=" body ".")
+    :build (when (xle::verb-template-p name) (add-token name))
+    )
+
+(defrule arglist
+    := (arg arglist)
+    := arg)
+
+;; :eof

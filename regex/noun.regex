@@ -1,0 +1,1609 @@
+set recursive-define ON
+set quit-on-fail OFF
+
+load defined numbers.vars
+
+echo numbers loaded
+
+ load stack noun-list0.fst
+ define stem0 ;
+ load stack noun-list1.fst
+ define stem1 ;
+ load stack noun-list2.fst
+ define stem2 ;
+ load stack noun-list3.fst
+ define stem3 ;
+ load stack noun-list4.fst
+ define stem4 ;
+ load stack noun-list5.fst
+ define stem5 ;
+ load stack noun-list6.fst
+ define stem6 ;
+ load stack noun-list7.fst
+ define stem7 ;
+# load stack noun-productive.fst
+# define stemProd ;
+ load stack masdar-list.fst
+ define masdarStem ;
+ load stack past-part-list.fst
+ define pastPartStem ;
+ load stack present-part-list.fst
+ define presentPartStem ;
+ load stack future-part-list.fst
+ define futurePartStem ;
+ load stack negative-part-list.fst
+ define negativePartStem ;
+ load stack geonames-list.fst
+ define geonamesStem ;
+# include vich.txt, izacia.txt, acia.txt, ireba.txt
+ load stack extracted-noun-adj.fst
+ define extracted ;
+ read regex   stem0 | stem1 | stem2 | stem3 | stem4 | stem5 | stem6 | stem7 # | stemProd
+      	    | geonamesStem | extracted
+      	    | masdarStem | pastPartStem | presentPartStem | futurePartStem | negativePartStem ;
+
+define NounStem ;
+
+# irregular forms that cannot easily be covered by rules
+define NounStemIrr	{ამბ[ავ]·ი}:{ამბვ}  "@U.Cat.n@"  "@U.StemType.c@"  "@U.SyncStem.+@"  "@U.Style.subnorm@" ;
+
+## not used? but see noun-transducer.lisp
+#define DerivStem	[ NounStem .o. ["#" -> 0] ].l
+#       			| ["0"|1|2|3|4|5|6|7|8|9]+ "-" ;
+
+# Derivational affixes:
+
+# -ული
+# -ელი
+# -ისმაგვარი
+# -ისებრი
+# -ისეული
+# -ისფერი
+# -ისნაირი
+# -ობრივი, -ებრივი;  extracted form GRC, but only Nom forms
+# -ამდელი; still missing
+
+source obriv.regex
+
+define NounGenStem NounStem
+       		   "@U.Cat.n@"
+       		   "@C.SubCat@" 
+       		   [ "ი"
+		     [ "@U.SyncStem.+@" "@U.RigidStem.-@"
+		       [ "@U.StemType.c@" | "@U.StemType.ა@" | "@U.StemType.ე@" | "@U.StemType.ო@" ] ]
+       		   | [ "@U.SyncStem.-@" "@U.RigidStem.+@"
+		       [ "@U.StemType.v@" | "@U.StemType.ა@" ] ] ] 
+		   ;
+
+read regex NounGenStem ;
+
+eliminate flag Cat
+# eliminate flag StemType
+eliminate flag RigidStem
+eliminate flag SyncStem
+eliminate flag StemType
+
+define NounGenStemBare ;
+
+define NounGenDerStem   [ NounGenStemBare ].l
+              		[ {სმაგვარ·ი}:{სმაგვარ} "@U.Deriv.მაგვარ@"
+              		| {სებრ·ი}:{სებრ} "@U.Deriv.ებრ@"
+              		| {სეულ·ი}:{სეულ} "@U.Deriv.ეულ@"
+              		| {სფ[ე]რ·ი}:{სფერ} "@U.Deriv.ფერ@" #k "@U.SyncStem.-@"
+			| {სფ[ე]რ·ი}:{სფრ} "@U.Deriv.ფერ@" "@U.SyncStem.+@"
+			| {სნაირ·ი}:{სნაირ} "@U.Deriv.ნაირ@" ]
+		   	[ "@U.Cat.a@" ]
+		   	"@U.StemType.c@" ;
+
+define NounDerAdv	NounGenStemBare.l {საებრ} "@U.Cat.adv@" "@U.AdvType.mann@" "@U.Deriv.ებრ@" ;
+
+
+# at least 3 chars
+define NounUlStem	[ NounStem .o. [ ? ? ? ?* ] ]
+       			"@U.Cat.n@" "@D.SubCat@" "@U.SyncStem.+@" ;
+
+read regex NounUlStem ;
+
+eliminate flag Cat
+# eliminate flag StemType
+eliminate flag RigidStem
+eliminate flag SyncStem
+eliminate flag StemType
+
+define NounUlStemBare ;
+
+# but: ლაბირინთული! fixme! or allow both
+define NounUlStem  [ [ NounUlStemBare .o. [\რ]* ].l {ურ·ი}:{ურ}
+       		   | [ NounUlStemBare .o. [?* რ ?*] ].l {ულ·ი}:{ულ} ]
+		   "@U.Cat.a@" "@U.StemType.c@" "@U.Deriv.ურ@" ;
+
+# -ელი
+
+define NounElStem	[ NounStem .o. [ ? ? ? ?* ] ]
+       			 "@U.Cat.prop@" [ "@U.SubCat.geo+area@" | "@U.SubCat.geo+city@" ] "@U.SyncStem.+@" ;
+
+read regex NounElStem ;
+
+eliminate flag Cat
+eliminate flag SubCat
+eliminate flag RigidStem
+eliminate flag SyncStem
+eliminate flag StemType
+
+define NounElStemBare ;
+
+define NounElStem  [ ~[?* {ეთ·ი} ?*] .o. NounElStemBare .o. [ {ა} -> 0 || _ .#.]].l {ელ·ი}:{ელ}
+		   [ "@U.Cat.a@" "@U.SubCat.anim@" | "@U.Cat.n@" "@U.SubCat.anim+qual@" ]
+		   "@U.StemType.c@" "@U.Deriv.ელ@" ;
+
+# -ისმაგვარი
+# -ისებრი
+# -ისეული
+# -ისფერი
+# -ისნაირი
+
+define NounDerStemBare [ NounGenStemBare .o. [ {ი} -> 0 || _ .#.] ].l ;
+
+define AdjIan NounDerStemBare
+	      {იან}
+	      {·ი}:0
+ 	      "@U.Cat.a@"
+ 	      "@U.StemType.c@"
+	      "@U.Deriv.იან@" ;
+
+define AdjSaO {სა} [ NounDerStemBare .o. ~[ {სა} ?+ {ო} ] ] {ო} {·ჲ}:0
+ 	      "@U.Cat.a@"
+ 	      "@U.StemType.v@"
+	      "@U.Deriv.სა-ო@" ;
+
+define AdjUO  {უ} [ NounDerStemBare .o. ~[ {უ} ?+ {ო} ] ] {ო} {·ჲ}:0
+ 	      "@U.Cat.a@"
+ 	      "@U.StemType.v@"
+	      "@U.Deriv.უ-ო@" ;
+
+# expand!
+define NumAdj [ ["0"|1|2|3|4|5|6|7|8|9]+
+       	      	( [","|"-" ] ["0"|1|2|3|4|5|6|7|8|9]+ )
+       	        "-"
+       	      	| card001x999alph ( "-" card001x999alph ) ("-") ] # removed "@U.SubCat.range@"
+       	      [ [ ( NounDerStemBare | "%" ) {იან}
+		| {მხრივ} ]
+	       	{·ი}:0
+ 	       	"@U.Cat.a@"
+ 	       	"@U.StemType.c@"
+	      | [{კაცა}|{ფეხა}|{ნიშნა}] # add more!
+	       	"@U.Cat.a@"
+ 	       	"@U.StemType.ა@"
+	      ] ;
+
+define OrdinalDigitsStem  (0:{მე-})
+       			  ["0"|1|2|3|4|5|6|7|8|9]+
+			  [ "-" [1|2|3|4|5|6|7|8|9] ["0"|1|2|3|4|5|6|7|8|9]* "@U.SubCat.range@"]*
+       			  [ 0:"-" "@U.StemType.ე@"   "@U.SyncStem.+@"
+			  | 0:{-ე} "@U.StemType.ე@"   "@U.SyncStem.-@" ]
+			  "@U.Cat.num@" # is not converted to +Num, used to exclude N, Pron etc.,
+		          "+Num":0 "+Ord":0 "+Digits":0 ;
+
+# used in *noun-fst*
+define Stem [ [ [ NounStem
+       	      	| NounUlStem
+	      	| NounElStem
+	      	| NounGenDerStem
+	      	| NounDerAdv
+	      	| NGObriv
+	      	| AdjIan
+		| AdjSaO
+		| AdjUO
+	      	| NounStemIrr ]
+		.o. [ "-" (->) 0 ] ] # allow hyphenless variant of hyphenated words, but not for Range
+	      	| NumAdj
+	      | OrdinalDigitsStem
+	      | [ Cardinal | Ordinal | Fraction | Range | Distr ] "@U.Cat.num@" ] ;
+
+# still missing: '-Taganze' etc. ('XvenTaganze')
+
+define AugmentFlagDiacritics [
+  "@D.DDCase@"
+  [ "@R.DCat.n@" "@U.DDCat.n@" | "@D.DCat.n@" ]
+  [ "@R.DCat.a@" "@U.DDCat.a@" | "@D.DCat.a@" ]
+  [ "@R.DCat.num@" "@U.DDCat.num@" | "@D.DCat.num@" ]
+  [ "@R.DCat.v-part@" "@U.DDCat.v-part@" | "@D.DCat.v-part@" ]
+  [ "@R.DCat.masdar@" "@U.DDCat.masdar@" | "@D.DCat.masdar@" ]
+  [ "@R.DCat.pron@" "@U.DDCat.pron@" | "@D.DCat.pron@" ]
+  [ "@R.DCat.prop@" "@U.DDCat.prop@" | "@D.DCat.prop@" ]
+  [ "@R.DCat.allq@" "@U.DDCat.allq@" | "@D.DCat.allq@" ]
+   #  [ "@R.DSubCat.anim@" "@U.DDSubCat.prop@" | "@D.DCat.prop@" ] # ??
+
+  [ "@R.DSubCat.anim+coll@" "@U.DDSubCat.anim+coll@" | "@D.DSubCat.anim+coll@" ]
+  [ "@R.DSubCat.sup@" "@U.DDSubCat.sup@" | "@D.DSubCat.sup@" ]
+  [ "@R.DSubCat.prop@" "@U.DDSubCat.prop@" | "@D.DSubCat.prop@" ]
+  [ "@R.DSubCat.int@" "@U.DDSubCat.int@" | "@D.DSubCat.int@" ]
+  [ "@R.DSubCat.rel@" "@U.DDSubCat.rel@" | "@D.DSubCat.rel@" ]
+  [ "@R.DSubCat.poss@" "@U.DDSubCat.poss@" | "@D.DSubCat.poss@" ]
+  [ "@R.DSubCat.name+firstname@" "@U.DDSubCat.name+firstname@" | "@D.DSubCat.name+firstname@" ]
+  [ "@R.DSubCat.name+lastname@" "@U.DDSubCat.name+lastname@" | "@D.DSubCat.name+lastname@" ]
+  [ "@R.DSubCat.name@" "@U.DDSubCat.name@" | "@D.DSubCat.name@" ]
+  [ "@R.DSubCat.title@" "@U.DDSubCat.title@" | "@D.DSubCat.title@" ]
+  [ "@R.DSubCat.org@" "@U.DDSubCat.org@" | "@D.DSubCat.org@" ]
+  [ "@R.DSubCat.geo+area@" "@U.DDSubCat.geo+area@" | "@D.DSubCat.geo+area@" ]
+  [ "@R.DSubCat.geo+city@" "@U.DDSubCat.geo+city@" | "@D.DSubCat.geo+city@" ]
+  [ "@R.DSubCat.geo+river@" "@U.DDSubCat.geo+river@" | "@D.DSubCat.geo+river@" ]
+  [ "@R.DSubCat.geo+sea@" "@U.DDSubCat.geo+sea@" | "@D.DSubCat.geo+sea@" ]
+  [ "@R.DSubCat.masdar@" "@U.DDSubCat.masdar@" | "@D.DSubCat.masdar@" ]
+  [ "@R.DSubCat.past-part@" "@U.DDSubCat.past-part@" | "@D.DSubCat.past-part@" ]
+  [ "@R.DSubCat.present-part@" "@U.DDSubCat.present-part@" | "@D.DSubCat.present-part@" ]
+  [ "@R.DSubCat.future-part@" "@U.DDSubCat.future-part@" | "@D.DSubCat.future-part@" ]
+  [ "@R.DSubCat.negative-part@" "@U.DDSubCat.negative-part@" | "@D.DSubCat.negative-part@" ]
+  [ "@R.DSubCat.mass@" "@U.DDSubCat.mass@" | "@D.DSubCat.mass@" ]
+  [ "@R.DSubCat.animal@" "@U.DDSubCat.animal@" | "@D.DSubCat.animal@" ]
+  [ "@R.DSubCat.temp@" "@U.DDSubCat.temp@" | "@D.DSubCat.temp@" ]
+  [ "@R.DSubCat.anim@" "@U.DDSubCat.anim@" | "@D.DSubCat.anim@" ]
+  [ "@R.DSubCat.anim+qual@" "@U.DDSubCat.anim+qual@" | "@D.DSubCat.anim+qual@" ]
+
+  [ "@R.DCase.gen@" "@U.DDCase.gen@" | "@D.DCase.gen@" ]
+  [ "@R.DCase.nom@" "@U.DDCase.nom@" | "@D.DCase.nom@" ]
+  [ "@R.DLong.+@" "@U.DDL.+@" | "@D.DLong.+@" ]
+  [ "@R.DNum.sg@" "@U.DDNum.sg@" | "@D.DNum.sg@" ]
+  [ "@R.DNum.pl@" "@U.DDNum.pl@" | "@D.DNum.pl@" ]
+  [ "@R.DOldPl.+@" "@U.DDOldPl.+@" | "@D.DOldPl.+@" ]
+
+  "@C.DCat@" "@C.DSubCat@" "@C.DNum@" "@C.DOldPl@" "@C.DCase@"
+
+  [ "@R.Cat.n@" "@U.DCat.n@" | "@D.Cat.n@" ]
+  [ "@R.Cat.a@" "@U.DCat.a@" | "@D.Cat.a@" ]
+  [ "@R.Cat.num@" "@U.DCat.num@" | "@D.Cat.num@" ]
+  [ "@R.Cat.v-part@" "@U.DCat.v-part@" | "@D.Cat.v-part@" ]
+  [ "@R.Cat.masdar@" "@U.DCat.masdar@" | "@D.Cat.masdar@" ]
+  [ "@R.Cat.pron@" "@U.DCat.pron@" | "@D.Cat.pron@" ]
+  [ "@R.Cat.prop@" "@U.DCat.prop@" | "@D.Cat.prop@" ]
+  [ "@R.Cat.allq@" "@U.DCat.allq@" | "@D.Cat.allq@" ]
+  
+  [ "@R.SubCat.anim+coll@" "@U.DSubCat.anim+coll@" | "@D.SubCat.anim+coll@" ]
+  [ "@R.SubCat.prop@" "@U.DSubCat.prop@" | "@D.SubCat.prop@" ]
+  [ "@R.SubCat.sup@" "@U.DSubCat.sup@" | "@D.SubCat.sup@" ]
+  [ "@R.SubCat.int@" "@U.DSubCat.int@" | "@D.SubCat.int@" ]
+  [ "@R.SubCat.rel@" "@U.DSubCat.rel@" | "@D.SubCat.rel@" ]
+  [ "@R.SubCat.poss@" "@U.DSubCat.poss@" | "@D.SubCat.poss@" ]
+  [ "@R.SubCat.name+firstname@" "@U.DSubCat.name+firstname@" | "@D.SubCat.name+firstname@" ]
+  [ "@R.SubCat.name+lastname@" "@U.DSubCat.name+lastname@" | "@D.SubCat.name+lastname@" ]
+  [ "@R.SubCat.name@" "@U.DSubCat.name@" | "@D.SubCat.name@" ]
+  [ "@R.SubCat.title@" "@U.DSubCat.title@" | "@D.SubCat.title@" ]
+  [ "@R.SubCat.org@" "@U.DSubCat.org@" | "@D.SubCat.org@" ]
+  [ "@R.SubCat.geo+area@" "@U.DSubCat.geo+area@" | "@D.SubCat.geo+area@" ]
+  [ "@R.SubCat.geo+city@" "@U.DSubCat.geo+city@" | "@D.SubCat.geo+city@" ]
+  [ "@R.SubCat.geo+river@" "@U.DSubCat.geo+river@" | "@D.SubCat.geo+river@" ]
+  [ "@R.SubCat.geo+sea@" "@U.DSubCat.geo+sea@" | "@D.SubCat.geo+sea@" ]
+  [ "@R.SubCat.masdar@" "@U.DSubCat.masdar@" | "@D.SubCat.masdar@" ]
+  [ "@R.SubCat.past-part@" "@U.DSubCat.past-part@" | "@D.SubCat.past-part@" ]
+  [ "@R.SubCat.present-part@" "@U.DSubCat.present-part@" | "@D.SubCat.present-part@" ]
+  [ "@R.SubCat.future-part@" "@U.DSubCat.future-part@" | "@D.SubCat.future-part@" ]
+  [ "@R.SubCat.negative-part@" "@U.DSubCat.negative-part@" | "@D.SubCat.negative-part@" ]
+  [ "@R.SubCat.mass@" "@U.DSubCat.mass@" | "@D.SubCat.mass@" ]
+  [ "@R.SubCat.animal@" "@U.DSubCat.animal@" | "@D.SubCat.animal@" ]
+  [ "@R.SubCat.temp@" "@U.DSubCat.temp@" | "@D.SubCat.temp@" ]
+  [ "@R.SubCat.anim@" "@U.DSubCat.anim@" | "@D.SubCat.anim@" ]
+  [ "@R.SubCat.anim+qual@" "@U.DSubCat.anim+qual@" | "@D.SubCat.anim+qual@" ]
+
+  [ "@R.Case.gen@" "@U.DCase.gen@" | "@D.Case.gen@" ]
+  [ "@R.Long.+@" "@U.DLong.+@" | "@D.Long.+@" ]
+  [ "@R.Num.sg@" "@U.DNum.sg@" | "@D.Num.sg@" ]
+  [ "@R.Num.pl@" "@U.DNum.pl@" | "@D.Num.pl@" ]
+  [ "@R.OldPl.+@" "@U.DOldPl.+@" | "@D.OldPl.+@" ]
+
+  # Reset flag diacritics
+ "@C.PlStem@" "@C.SyncStem@" "@C.Num@" "@C.OldPl@" "@C.CaseType@" "@C.StemType@" "@C.RigidStem@"
+ "@C.Case@" "@C.Pers@" "@C.Form@" "@C.Cat@" "@C.SubCat@" # "@U.Cat.n@"
+ "@C.Long@" # "@C.Lex@"
+  ]
+ ;
+
+define ResolveCatFlagDiacritics  [
+  [ "@R.DDCase@" #"@U.Lang.og@" # "@R.DDCase.gen@" "@R.Pp.გან@" "@R.DDOldPl.+@"
+  [ [ "@R.DDCat.n@" "+N":0 | "@D.DDCat.n@" ]
+    [ "@R.DDCat.a@" "+A":0 | "@D.DDCat.a@" ]
+    [ "@R.DDCat.quant@" ["+A" "+Quant"]:0 | "@D.DDCat.quant@" ]
+    [ "@R.DDCat.v-part@" "+VPart":0 | "@D.DDCat.v-part@" ]
+    [ "@R.DDCat.masdar@" "+VN":0 | "@D.DDCat.masdar@" ]
+    [ "@R.DDCat.prop@" "+N":0 "+Prop":0 | "@D.DDCat.prop@" ]
+    [ "@R.DDCat.allq@" ["+A" "+Quant"]:0 | "@D.DDCat.allq@" ]
+  
+    [ "@R.DDSubCat.anim+coll@" ["+Hum""+Coll"]:0 | "@D.DDSubCat.anim+coll@" ]
+    [ "@R.DDSubCat.prop@" "+N":0 "+Prop":0 | "@D.DDSubCat.prop@" ]
+    [ "@R.DDSubCat.elat@" "+Elat":0 | "@D.DDSubCat.elat@" ]
+    [ "@R.DDSubCat.int@" "+Int":0 | "@D.DDSubCat.int@" ]
+    [ "@R.DDSubCat.rel@" "+Rel":0 | "@D.DDSubCat.rel@" ]
+    [ "@R.DDSubCat.poss@" "+Poss":0 | "@D.DDSubCat.poss@" ]
+    [ "@R.DDSubCat.name+firstname@" ["+Anthr" "+FirstName"]:0 | "@D.DDSubCat.name+firstname@" ]
+    [ "@R.DDSubCat.name+lastname@" ["+Anthr" "+LastName"]:0 | "@D.DDSubCat.name+lastname@" ]
+    [ "@R.DDSubCat.name@" "+Anthr":0 | "@D.DDSubCat.name@" ]
+    [ "@R.DDSubCat.name+person@" "+Anthr":0 | "@D.DDSubCat.name+person@" ]
+    [ "@R.DDSubCat.name+zoon@" "+Zoon":0 | "@D.DDSubCat.name+zoon@" ]
+    [ "@R.DDSubCat.title@" "+Title":0 | "@D.DDSubCat.title@" ]
+    [ "@R.DDSubCat.org@" ["+Org"]:0 | "@D.DDSubCat.org@" ]
+    [ "@R.DDSubCat.geo+area@" ["+Top" "+Area"]:0 | "@D.DDSubCat.geo+area@" ]
+    [ "@R.DDSubCat.geo+city@" ["+Top" "+Place"]:0 | "@D.DDSubCat.geo+city@" ]
+    [ "@R.DDSubCat.geo+river@" ["+Top" "+Hydr"]:0 | "@D.DDSubCat.geo+river@" ]
+    [ "@R.DDSubCat.geo+sea@" ["+Top" "+Hydr"]:0 | "@D.DDSubCat.geo+sea@" ]
+    [ "@R.DDSubCat.geo+mount@" ["+Top" "+Area"]:0 | "@D.DDSubCat.geo+mount@" ]
+    #[ "@R.DDSubCat.masdar@" ["+VN"]:0 | "@D.DDSubCat.masdar@" ]
+    [ "@R.DDSubCat.past-part@" ["+Part" "+PastPart"]:0 | "@D.DDSubCat.past-part@" ]
+    [ "@R.DDSubCat.present-part@" ["+Part" "+PresPart"]:0 | "@D.DDSubCat.present-part@" ]
+    [ "@R.DDSubCat.future-part@" ["+Part" "+FutPart"]:0 | "@D.DDSubCat.future-part@" ]
+    [ "@R.DDSubCat.negative-part@" ["+Part" "+NegPart"]:0 | "@D.DDSubCat.negative-part@" ]
+    [ "@R.DDSubCat.mass@" ["+Mass"]:0 | "@D.DDSubCat.mass@" ]
+    [ "@R.DDSubCat.animal@" ["+Anim"]:0 | "@D.DDSubCat.animal@" ]
+    [ "@R.DDSubCat.temp@" ["+Temp"]:0 | "@D.DDSubCat.temp@" ]
+    [ "@R.DDSubCat.anim@" ["+Hum"]:0 | "@D.DDSubCat.anim@" ]
+    [ "@R.DDSubCat.anim+qual@" ["+Hum"]:0 | "@D.DDSubCat.anim+qual@" ]
+ 
+    ]
+
+  | "@D.DDCase@" "@R.DCase@"
+  [ [ "@R.DCat.n@" "+N":0 | "@D.DCat.n@" ]
+    [ "@R.DCat.a@" "+A":0 | "@D.DCat.a@" ]
+    [ "@R.DCat.quant@" ["+A" "+Quant"]:0 | "@D.DCat.quant@" ]
+    [ "@R.DCat.v-part@" "+VPart":0 | "@D.DCat.v-part@" ]
+    [ "@R.DCat.masdar@" "+VN":0 | "@D.DCat.masdar@" ]
+    [ "@R.DCat.prop@" "+N":0 "+Prop":0 | "@D.DCat.prop@" ]
+    [ "@R.DCat.pron@" "+Pron":0 | "@D.DCat.pron@" ]
+    [ "@R.DCat.allq@" ["+A" "+Quant"]:0 | "@D.DCat.allq@" ]
+  
+    [ "@R.DSubCat.anim+coll@" ["+Hum""+Coll"]:0 | "@D.DSubCat.anim+coll@" ]
+    [ "@R.DSubCat.prop@" "+N":0 "+Prop":0 | "@D.DSubCat.prop@" ]
+    [ "@R.DSubCat.elat@" "+Elat":0 | "@D.DSubCat.elat@" ]
+    [ "@R.DSubCat.int@" "+Int":0 | "@D.DSubCat.int@" ]
+    [ "@R.DSubCat.rel@" "+Rel":0 | "@D.DSubCat.rel@" ]
+    [ "@R.DSubCat.poss@" "+Poss":0 | "@D.DSubCat.poss@" ]
+    [ "@R.DSubCat.name+firstname@" ["+Anthr" "+FirstName"]:0 | "@D.DSubCat.name+firstname@" ]
+    [ "@R.DSubCat.name+lastname@" ["+Anthr" "+LastName"]:0 | "@D.DSubCat.name+lastname@" ]
+    [ "@R.DSubCat.name@" "+Anthr":0 | "@D.DSubCat.name@" ]
+    [ "@R.DSubCat.name+person@" "+Anthr":0 | "@D.DSubCat.name+person@" ]
+    [ "@R.DSubCat.title@" "+Title":0 | "@D.DSubCat.title@" ]
+    [ "@R.DSubCat.orig@" ["+Org"]:0 | "@D.DSubCat.org@" ]
+    [ "@R.DSubCat.geo+area@" ["+Top" "+Area"]:0 | "@D.DSubCat.geo+area@" ]
+    [ "@R.DSubCat.geo+city@" ["+Top" "+Place"]:0 | "@D.DSubCat.geo+city@" ]
+    [ "@R.DSubCat.geo+river@" ["+Top" "+Hydr"]:0 | "@D.DSubCat.geo+river@" ]
+    [ "@R.DSubCat.geo+sea@" ["+Top" "+Hydr"]:0 | "@D.DSubCat.geo+sea@" ]
+    [ "@R.DSubCat.geo+mount@" ["+Top" "+Area"]:0 | "@D.DSubCat.geo+mount@" ]
+    #[ "@R.DSubCat.masdar@" ["+VN"]:0 | "@D.DSubCat.masdar@" ]
+    [ "@R.DSubCat.past-part@" ["+Part" "+PastPart"]:0 | "@D.DSubCat.past-part@" ]
+    [ "@R.DSubCat.present-part@" ["+Part" "+PresPart"]:0 | "@D.DSubCat.present-part@" ]
+    [ "@R.DSubCat.future-part@" ["+Part" "+FutPart"]:0 | "@D.DSubCat.future-part@" ]
+    [ "@R.DSubCat.negative-part@" ["+Part" "+NegPart"]:0 | "@D.DSubCat.negative-part@" ]
+    [ "@R.DSubCat.mass@" ["+Mass"]:0 | "@D.DSubCat.mass@" ]
+    [ "@R.DSubCat.animal@" ["+Anim"]:0 | "@D.DSubCat.animal@" ]
+    [ "@R.DSubCat.temp@" ["+Temp"]:0 | "@D.DSubCat.temp@" ]
+    [ "@R.DSubCat.anim@" ["+Hum"]:0 | "@D.DSubCat.anim@" ]
+    [ "@R.DSubCat.anim+qual@" ["+Hum"]:0 | "@D.DSubCat.anim+qual@" ]
+ 
+    ]
+
+  | "@D.DDCase@" "@D.DCase@"
+  [ [ "@R.Cat.n@" "+N":0 | "@D.Cat.n@" ]
+    [ "@R.Cat.quant@" ["+A" "+Quant"]:0 | "@D.Cat.quant@" ]
+    [ "@R.Cat.prop@" "+N":0 "+Prop":0 | "@D.Cat.prop@" ]
+    [ "@R.Cat.v-part@" "+VPart":0 | "@D.Cat.v-part@" ]
+    [ "@R.Cat.masdar@" "+VN":0 | "@D.Cat.masdar@" ]
+    # [ "@R.Cat.num@" "+Num":0 | "@D.Cat.num@" ]
+    [ "@R.Cat.a@" "@D.SubCat.int@" "+A":0 | "@R.Cat.a@" "@R.SubCat.int@" | "@D.Cat.a@" ]
+    ]]
+
+  [ "@R.Cat.pron@" "+Pron":0 | "@D.Cat.pron@" ]
+  [ "@R.Cat.det@" "+Det":0 | "@D.Cat.det@" ]
+  [ "@R.Cat.dem@" "+Pron":0 "+Dem":0 | "@D.Cat.dem@" ]
+  [ "@R.Cat.pron+anim@" ["+Pron""+Hum"]:0 | "@D.Cat.pron+anim@" ]
+  [ "@R.Cat.pron+inanim@" ["+Pron""+Nonhum"]:0 | "@D.Cat.pron+inanim@" ]
+  [ "@R.Cat.pron+indef+anim@" ["+Pron" "+Indef" "+Hum"]:0 | "@D.Cat.pron+indef+anim@" ]
+  [ "@R.Cat.pron+indef+inanim@" ["+Pron" "+Indef" "+Nonhum"]:0 | "@D.Cat.pron+indef+inanim@" ]
+  [ "@R.Cat.pron+indef@" ["+Pron" "+Indef"]:0 | "@D.Cat.pron+indef@" ]
+  [ "@R.Cat.pron+sindef@" ["+Pron" "+SIndef"]:0 | "@D.Cat.pron+sindef@" ]
+  [ "@R.Cat.pron+sindef+anim@" ["+Pron" "+SIndef" "+Hum"]:0 | "@D.Cat.pron+sindef+anim@" ]
+  [ "@R.Cat.pron+sindef+inanim@" ["+Pron" "+SIndef" "+Nonhum"]:0 | "@D.Cat.pron+sindef+inanim@" ]
+  #[ "@R.Cat.det+anim@" ["+Pron" "+Dem" "+Hum"]:0 | "@D.Cat.det+anim@" ]
+  #[ "@R.Cat.det+inanim@" ["+Pron" "+Dem" "+Nonhum"]:0 | "@D.Cat.det+inanim@" ]
+  [ "@R.Cat.pron+interr+anim@" ["+Pron""+Int""+Hum"]:0 | "@D.Cat.pron+interr+anim@" ]
+  [ "@R.Cat.pron+interr+inanim@" ["+Pron""+Int" "+Nonhum"]:0 | "@D.Cat.pron+interr+inanim@" ]
+  [ "@R.Cat.pron+rel+anim@" ["+Pron""+Rel""+Hum"]:0 | "@D.Cat.pron+rel+anim@" ]
+  [ "@R.Cat.pron+rel+inanim@" ["+Pron""+Rel" "+Nonhum"]:0 | "@D.Cat.pron+rel+inanim@" ]
+  [ "@R.Cat.pron+neg+anim@" ["+Pron""+Neg""+Hum"]:0 | "@D.Cat.pron+neg+anim@" ]
+  [ "@R.Cat.pron+neg+inanim@" ["+Pron""+Neg""+Nonhum"]:0 | "@D.Cat.pron+neg+inanim@" ]
+  [ "@R.Cat.poss+interr+anim@" ["+Pron" "+Poss""+Int""+Hum"]:0 | "@D.Cat.poss+interr+anim@" ]
+  [ "@R.Cat.poss+interr+inanim@" ["+Pron" "+Poss""+Int""+Nonhum"]:0 | "@D.Cat.poss+interr+inanim@" ]
+  [ "@R.Cat.poss+neg+anim@" ["+Pron" "+Poss" "+Neg" "+Hum"]:0 | "@D.Cat.poss+neg+anim@" ]
+  #  [ "@R.Cat.aint@" ["+AInt"]:0 | "@D.Cat.aint@" ]
+  [ "@R.Cat.adv@" ["+Adv"]:0 | "@D.Cat.adv@" ]
+  [ "@R.Cat.cj@" ["+Cj"]:0 | "@D.Cat.cj@" ]
+  [ "@R.Cat.cj+sub@" ["+Cj" "+Sub"]:0 | "@D.Cat.cj+sub@" ]
+  [ "@R.Cat.cj+coord@" ["+Cj" "+Coord"]:0 | "@D.Cat.cj+coord@" ]
+  # [ "@R.Cat.dekl@" ["+Decl"]:0 | "@D.Cat.dekl@" ]
+  [ "@R.Cat.int@" ["+Int"]:0 | "@D.Cat.int@" ]
+  [ "@R.Cat.ad@" ["+Ad"]:0 | "@D.Cat.ad@" ]
+  [ "@R.Cat.pf@" ["+Pf"]:0 | "@D.Cat.pf@" ] # ?? what are these again?
+  [ "@R.Cat.pa@" ["+Pa"]:0 | "@D.Cat.pa@" ]
+  [ "@R.Cat.pn@" ["+Pn"]:0 | "@D.Cat.pn@" ]
+  [ "@R.Cat.pp@" ["+Pp"]:0 | "@D.Cat.pp@" ]
+  [ "@R.Cat.ij@" ["+Interj"]:0 | "@D.Cat.ij@" ]
+   # rename int to aint; keep track of those that contain Cat
+  [ "@R.SubCat.int@" ["+Int"]:0 | "@D.SubCat.int@" ]
+  [ "@R.Cat.q@" ["+A" "+Quant"]:0 | "@D.Cat.q@" ]
+  [ "@R.Cat.allq@" ["+A" "+Quant"]:0 | "@D.Cat.allq@" ]
+  [ "@R.Cat.neg@" ["+Adv" "+Neg"]:0 | "@D.Cat.neg@" ]
+  #[ "@R.SubCat.masdar@" ["+VN"]:0 | "@D.SubCat.masdar@" ]
+  [ "@R.SubCat.past-part@" ["+Part" "+PastPart"]:0 | "@D.SubCat.past-part@" ]
+  [ "@R.SubCat.present-part@" ["+Part" "+PresPart"]:0 | "@D.SubCat.present-part@" ]
+  [ "@R.SubCat.future-part@" ["+Part" "+FutPart"]:0 | "@D.SubCat.future-part@" ]
+  [ "@R.SubCat.negative-part@" ["+Part" "+NegPart"]:0 | "@D.SubCat.negative-part@" ]
+  [ "@R.SubCat.pers@" ["+Pers"]:0 | "@D.SubCat.pers@" ]
+  [ "@R.SubCat.poss@" ["+Poss"]:0 | "@D.SubCat.poss@" ]
+  [ "@R.Refl.+@" ["+Refl"]:0 | "@D.Refl.+@" ]
+  [ "@R.SubCat.anim+prop?@" ["+Anim""+Prop?"]:0 | "@D.SubCat.anim+prop?@" ]
+  [ "@R.SubCat.anim+coll@" ["+Anim""+Coll"]:0 | "@D.SubCat.anim+coll@" ]
+  [ "@R.SubCat.rare@" ["+Rare"]:0 | "@D.SubCat.rare@" ]
+  [ "@R.SubCat.prop@" ["+Prop"]:0 | "@D.SubCat.prop@" ] # where is that used??
+  [ "@R.SubCat.elat@" ["+Elat"]:0 | "@D.SubCat.elat@" ]
+  #[ "@R.SubCat.ord+digits@" ["+Ord" "+Digits"]:0 | "@D.SubCat.ord+digits@" ]
+  [ "@R.SubCat.range@" "+Range":0 | "@D.SubCat.range@" ]
+  [ "@R.SubCat.neg@" ["+Neg"]:0 | "@D.SubCat.neg@" ]
+  [ "@R.SubCat.name+firstname@" ["+Anthr" "+FirstName"]:0 | "@D.SubCat.name+firstname@" ]
+  [ "@R.SubCat.name+lastname@" ["+Anthr" "+LastName"]:0 | "@D.SubCat.name+lastname@" ]
+  [ "@R.SubCat.name@" "+Anthr":0 | "@D.SubCat.name@" ]
+  [ "@R.SubCat.name+person@" "+Anthr":0 | "@D.SubCat.name+person@" ]
+  [ "@R.SubCat.title@" "+Title":0 | "@D.SubCat.title@" ]
+  [ "@R.SubCat.org@" ["+Org"]:0 | "@D.SubCat.org@" ]
+  [ "@R.SubCat.geo+area@" ["+Top" "+Area"]:0 | "@D.SubCat.geo+area@" ]
+  [ "@R.SubCat.geo+city@" ["+Top" "+Place"]:0 | "@D.SubCat.geo+city@" ]
+  [ "@R.SubCat.geo+river@" ["+Top" "+Hydr"]:0 | "@D.SubCat.geo+river@" ]
+  [ "@R.SubCat.geo+sea@" ["+Top" "+Hydr"]:0 | "@D.SubCat.geo+sea@" ]
+  [ "@R.SubCat.geo+mount@" ["+Top" "+Area"]:0 | "@D.SubCat.geo+mount@" ]
+  [ "@R.SubCat.recip@" ["+Recip"]:0 | "@D.SubCat.recip@" ]
+  [ "@R.SubCat.interr@" ["+Int"]:0 | "@D.SubCat.interr@" ]
+  [ "@R.SubCat.rel@" ["+Rel"]:0 | "@D.SubCat.rel@" ]
+  [ "@R.SubCat.indet@" ["+Indef"]:0 | "@D.SubCat.indet@" ]
+  [ "@R.SubCat.indef-spec@" ["+SIndef"]:0 | "@D.SubCat.indef-spec@" ]
+  [ "@R.SubCat.art@" ["+Art"]:0 | "@D.SubCat.art@" ]
+  [ "@R.SubCat.num@" ["+Num"]:0 | "@D.SubCat.num@" ]
+  [ "@R.SubCat.mass@" ["+Mass"]:0 | "@D.SubCat.mass@" ]
+  # [ "@R.SubCat.meas@" ["+Meas"]:0 | "@D.SubCat.meas@" ]
+
+  [ "@R.SubCat.meas@" "@D.CaseType.full@" "+Meas":0 | "@R.SubCat.meas@" "@R.CaseType.full@" | "@D.SubCat.meas@" ]
+
+  [ "@R.SubCat.animal@" ["+Anim"]:0 | "@D.SubCat.animal@" ]
+  [ "@R.SubCat.temp@" ["+Temp"]:0 | "@D.SubCat.temp@" ]
+  [ "@R.SubCat.anim@" ["+Hum"]:0 | "@D.SubCat.anim@" ]
+  [ "@R.SubCat.anim?@" ["+Hum"]:0 | "@D.SubCat.anim?@" ]
+
+  [ "@R.SubCat.qual@" "@D.CaseType.full@" ["+Qual"]:0
+  | "@R.SubCat.qual@" "@R.CaseType.full@"
+  | "@D.SubCat.qual@" ]
+
+  [ "@R.SubCat.anim+qual@" "@D.CaseType.full@" ["+Hum" "+Qual"]:0
+  # e.g., ვარსკენ პიტიახში+Hum+Qual+Nom+Sg
+  | "@R.SubCat.anim+qual@" "@R.CaseType.full@" ["+Hum":0 | ["+Hum" "+Qual" "+OG"]:0 ]
+  | "@D.SubCat.anim+qual@" ]
+
+  [ "@R.SubCat.anim?+qual@" "@D.CaseType.full@" ["+Hum" "+Qual"]:0
+  | "@R.SubCat.anim?+qual@" "@R.CaseType.full@" ["+Hum":0 | ["+Hum" "+Qual" "+OG"]:0 ] | "@D.SubCat.anim?+qual@" ]
+
+  [ "@R.SubCat.masd@" "+Masd":0 | "@D.SubCat.masd@" ]
+ ]
+ ;
+
+# @R..@ : Require, @D..@ : Disallow, @U..@ : Unification test, @C.@ : Clear feature
+# @P..@ : Positive (Re)Setting
+define ResolveNounFlagDiacritics [
+
+  [ "@R.DDCase@" #"@U.Lang.og@" # NG has no triple declension
+  [
+    [ "@R.DDCase.gen@" "+Gen":0 | "@D.DDCase.gen@" ] # only one disjunct is possible
+    [ "@R.DDNum.sg@" [ "@D.DDCat.prop@" "+Sg":0 | "@R.DDCat.prop@" ] | "@D.DDNum.sg@" ]
+    [ "@R.DDNum.pl@" "+Pl":0 | "@D.DDNum.pl@" ]
+    [ "@R.DDOldPl.+@" "+OldPl":0 | "@D.DDOldPl.+@" "@R.DDNum.pl@" "+NewPl":0 | "@D.DDOldPl.+@" "@D.DDNum.pl@" ]
+    # [ "@R.DDOldPl.+@" "+OldPl":0 | "@D.DDOldPl.+@" ] # only one disjunct is possible
+    [ "@R.DDLong.+@" "+L":0 | "@D.DDLong.+@" ]
+    
+    [ "@R.DCase.gen@" "+DGen":0 ] #### | "@D.DCase.gen@" ]
+    [ "@R.DNum.sg@" "+DSg":0 | "@D.DNum.sg@" ]
+    [ "@R.DNum.pl@" "+DPl":0 | "@D.DNum.pl@" ]
+  # [ "@R.DOldPl.+@" "+DOldPl":0 | "@D.DOldPl.+@" ]
+    [ "@R.DOldPl.+@" "+DOldPl":0 | "@D.DOldPl.+@" "@R.DNum.pl@" "+DNewPl":0 | "@D.DOldPl.+@" "@D.DNum.pl@" ]
+    [ "@R.DLong.+@" "+DL":0 | "@D.DLong.+@" ]
+
+    [ "@R.Case.voc@" "+DDVoc":0 | "@D.Case.voc@" ]
+    [ "@R.Case.adv@" "+DDAdvb":0 | "@D.Case.adv@" ]
+    [ "@R.Case.adv-tr@" "+DDAdvb":0 "+DDTrunc":0 | "@D.Case.adv-tr@" ]
+    [ "@R.Case.dat@" "+DDDat":0 | "@D.Case.dat@" ]
+    [ "@R.Case.erg@" "+DDErg":0 | "@D.Case.erg@" ]
+    [ "@R.Case.inst@" "+DDInst":0 | "@D.Case.inst@" ]
+    # "@D.Case.gen@" "@D.Case.dir@" "@D.Case.ben@" # what about OG??
+    [ "@R.Case.gen@" "+DDGen":0 | "@D.Case.gen@" ] # does DDGen exist?
+    [ "@R.Case.dir@" "+DDDir":0 | "@D.Case.dir@" ]
+    [ "@R.Case.ben@" "+DDBen":0 | "@D.Case.ben@" ]
+    [ "@R.Case.nom@" "+DDNom":0 | "@D.Case.nom@" ]
+    [ "@R.Num.sg@" "+DDSg":0 | "@D.Num.sg@" ]
+    [ "@R.Num.pl@" "+DDPl":0 | "@D.Num.pl@" ]
+  # [ "@R.OldPl.+@" "+DDOldPl":0 | "@D.OldPl.+@" ]
+    [ "@R.OldPl.+@" "+DDOldPl":0 | "@D.OldPl.+@" "@R.Num.pl@" "+DDNewPl":0 | "@D.OldPl.+@" "@D.Num.pl@" ]
+    [ "@R.Long.+@" "+DDL":0 | "@D.Long.+@" ]
+    [ "@R.Style.dialect@" "+Dialect":0 | "@D.Style.dialect@" ]
+    [ "@R.Style.old@" "+Old":0 | "@D.Style.old@" ]
+    [ "@R.Style.nonstandard@" "+NonStand":0 | "@D.Style.nonstandard@" ]
+
+    ]
+
+  | "@D.DDCase@" "@R.DCase@"
+  [
+   # not yet [ "@R.DPv.+@" "+Pv":0 | "@D.DPv@" ] # for participles + VN
+    [ "@R.DCase.gen@" "+Gen":0 | "@D.DCase.gen@" ]
+    [ "@R.DNum.sg@" [ "@D.DCat.prop@" "+Sg":0 | "@R.DCat.prop@" ] | "@D.DNum.sg@" ]
+    [ "@R.DNum.pl@" "+Pl":0 | "@D.DNum.pl@" ]
+    [ "@R.DOldPl.+@" "+OldPl":0 | "@D.DOldPl.+@" "@R.DNum.pl@" "+NewPl":0 | "@D.DOldPl.+@" "@D.DNum.pl@" ]
+  # [ "@R.DOldPl.+@" "+OldPl":0 | "@D.DOldPl.+@" ] 
+  # [ "@R.DerType.იანი@" "+Der:იანი":0 | "@D.DerType.იანი@" ]
+
+    [ "@R.Case.voc@" "+DVoc":0 | "@D.Case.voc@" ]
+    [ "@R.Case.adv-tr@" "+DAdvb":0 "+DTrunc":0 | "@D.Case.adv-tr@" ]
+    [ "@R.Case.adv@" "+DAdvb":0  | "@D.Case.adv@" ]
+    [ "@R.Case.dat@" "+DDat":0 | "@D.Case.dat@" ]
+    [ "@R.Case.erg@" "+DErg":0 | "@D.Case.erg@" ]
+    [ "@R.Case.inst@" "+DInst":0 | "@D.Case.inst@" ]
+    # "@D.Case.gen@" "@D.Case.dir@" "@D.Case.ben@" # what about OG??
+    [ "@R.Case.gen@" "+DGen":0 | "@D.Case.gen@" ] # allowed for NG??
+    [ "@R.Case.dir@" "@U.Lang.og@" "+DDir":0 | "@D.Case.dir@" ]
+    [ "@R.Case.ben@" "@U.Lang.og@" "+DBen":0 | "@D.Case.ben@" ]
+    [ "@R.Case.nom@" "+DNom":0 | "@D.Case.nom@" ]
+    [ "@R.Num.sg@" "+DSg":0 | "@D.Num.sg@" ]
+    [ "@R.Num.pl@" "+DPl":0 | "@D.Num.pl@" ]
+  # [ "@R.OldPl.+@" "+DOldPl":0 | "@D.OldPl.+@" ]
+    [ "@R.OldPl.+@" "+DOldPl":0 | "@D.OldPl.+@" "@R.Num.pl@" "+DNewPl":0 | "@D.OldPl.+@" "@D.Num.pl@" ]
+    [ "@R.Long.+@" "+DL":0 | "@D.Long.+@" ]
+    [ "@R.Style.dialect@" "+Dialect":0 | "@D.Style.dialect@" ]
+    [ "@R.Style.old@" "+Old":0 | "@D.Style.old@" ]
+    [ "@R.Style.nonstandard@" "+NonStand":0 | "@D.Style.nonstandard@" ]    
+    ]
+
+  | "@D.DDCase@" "@D.DCase@"
+  [ [ "@R.Pv.+@" "+Pv":0 | "@D.Pv@" ] # for participles + VN
+    [ "@R.NaPastPart.+@" "+PastPart:ნა":0 | "@D.NaPastPart@" ]
+    [ "@R.Pers.3@" "+3":0 | "@D.Pers.3@" ]
+    [ "@R.Pers.2@" "+2":0 | "@D.Pers.2@" ]
+    [ "@R.Pers.1@" "+1":0 | "@D.Pers.1@" ]
+    [ "@R.PossPers.3sg@" "+Poss3Sg":0 | "@D.PossPers.3sg@" ]
+    [ "@R.PossPers.2sg@" "+Poss2Sg":0 | "@D.PossPers.2sg@" ]
+    [ "@R.PossPers.1sg@" "+Poss1Sg":0 | "@D.PossPers.1sg@" ]
+    [ "@R.PossPers.3pl@" "+Poss3Pl":0 | "@D.PossPers.3pl@" ]
+    [ "@R.PossPers.2pl@" "+Poss2Pl":0 | "@D.PossPers.2pl@" ]
+    [ "@R.PossPers.1pl@" "+Poss1Pl":0 | "@D.PossPers.1pl@" ]
+    [ "@R.Deixis.prox@" "+Prox":0 | "@R.Deixis.med@" "+Med":0 | "@R.Deixis.dist@" "+Dist":0 | "@D.Deixis@" ]
+    [ "@R.Case.voc@" "+Voc":0 | "@D.Case.voc@" ]
+    [ "@R.Case.adv@" "+Advb":0 | "@D.Case.adv@" ] # have to use +Advb for the case to avoid confusion with adverbs in CG
+    [ "@R.Case.adv-tr@" "+Advb":0 "+Trunc":0 | "@D.Case.adv-tr@" ] 
+    [ "@R.Case.dat@" "+Dat":0 | "@D.Case.dat@" ]
+    [ "@R.Case.erg@" "+Erg":0 | "@D.Case.erg@" ]
+    [ "@R.Case.inst@" "+Inst":0 | "@D.Case.inst@" ]
+    [ "@R.Case.gen@" "+Gen":0 | "@D.Case.gen@" ]
+    [ "@R.Case.nom@" "+Nom":0 | "@D.Case.nom@" ]
+    [ "@R.Case.abs@" "+Abs":0 | "@D.Case.abs@" ]
+    [ "@R.Case.dir@" "+Dir":0 | "@D.Case.dir@" ]
+    [ "@R.Case.ben@" "+Ben":0 | "@D.Case.ben@" ]
+    # Proper nouns are not marked for Sg
+    [ "@R.Num.sg@" [ "@D.Cat.prop@" "+Sg":0 | "@R.Cat.prop@" ] | "@D.Num.sg@" ]
+    [ "@R.Num.pl@" "+Pl":0 | "@D.Num.pl@" ]
+    # [ "@R.OldPl.+@" "+OldPl":0 | "@D.OldPl.+@" "@R.Num.pl@" "+NewPl":0 | "@D.OldPl.+@" "@D.Num.pl@" ]
+    [ "@R.OldPl.+@" "+OldPl":0 | "@R.OldPl.-@" "+NewPl":0 | "@D.OldPl@" ]
+    [ "@R.DoubleOldPl.+@" "+OldPl":0 | "@D.DoubleOldPl@" ]
+    [ "@R.Long.+@" "+L":0 | "@D.Long.+@" ]
+    [ "@R.Style.dialect@" ["+Dialect"]:0 | "@D.Style.dialect@" ]
+    [ "@R.Style.old@" ["+Old"]:0 | "@D.Style.old@" ]
+    [ "@R.Style.nonstandard@" ["+NonStand"]:0 | "@D.Style.nonstandard@" ]
+    ]]
+
+  # [ "@R.DerType.იანი@" "+Der:იანი":0 | "@D.DerType.იანი@" ]
+
+  [ "@R.Form.bound@" "+Att":0 | "@D.Form.bound@" ]
+  # [ "@R.DetForm.bound@" "+Att":0 | "@D.DetForm.bound@" ]
+  [ "@R.CaseType.reduced@" "+Att":0 | "@D.CaseType.reduced@" ]
+  [ "@R.CaseType.reduced-ext@" "+Att":0 "+Ext":0 | "@D.CaseType.reduced-ext@" ] # extended Inst (-ის)
+  [ "@R.CaseType.reduced-oldpl@" "+Att":0 "+<OldPl>":0 | "@D.CaseType.reduced-oldpl@" ]
+  # [ "@R.CaseType.full@" "+Full":0 | "@D.CaseType.full@" ] # not reduced is full
+  [ "@R.Pp.დმი@" "+PP":0 "+PP:დმი":0 | "@D.Pp.დმი@" ]
+  [ "@R.Pp.დამი@" "+PP":0 "+PP:დამი":0 | "@D.Pp.დამი@" ]
+  [ "@R.Pp.მი@" "+PP":0 "+PP:მი":0 | "@D.Pp.მი@" ] # OG -დამი, -დამო
+  [ "@R.Pp.მო@" "+PP":0 "+PP:მო":0 | "@D.Pp.მო@" ]
+  [ "@R.Pp.და@" "+PP":0 "+PP:და":0 | "@D.Pp.და@" ]
+  [ "@R.Pp.ებრივ@" "+PP":0 "+PP:ებრივ":0 | "@D.Pp.ებრივ@" ]
+  [ "@R.Pp.ებრ@" "+PP":0 "+PP:ებრ":0 | "@D.Pp.ებრ@" ]
+  [ "@R.Pp.მებრ@" "+PP":0 "+PP:მებრ":0 | "@D.Pp.მებრ@" ]
+  [ "@R.Pp.კენ@" "+PP":0 "+PP:კენ":0 | "@D.Pp.კენ@" ]
+  [ "@R.Pp.კე@" "+PP":0 "+PP:კე":0 | "@D.Pp.კე@" ] # რუსთაველი
+  [ "@R.Pp.თვის@" "+PP":0 "+PP:თვის":0 | "@D.Pp.თვის@" ]
+  # [ "@R.Pp.თვინა@" "+PP":0 "+PP:თვის":0  | "@D.Pp.თვინა@" ]
+  [ "@R.Pp.გან@" "+PP":0 "+PP:გან":0 | "@D.Pp.გან@" ]
+  [ "@R.Pp.დან@" "+PP":0 "+PP:დან":0 | "@D.Pp.დან@" ]
+  [ "@R.Pp.დამ@" "+PP":0 "+PP:დამ":0 "+Old":0 | "@D.Pp.დამ@" ]
+  [ "@R.Pp.ურთ@" "+PP":0 "+PP:ურთ":0 | "@D.Pp.ურთ@" ]
+  [ "@R.Pp.მდე@" "+PP":0 "+PP:მდე":0 | "@D.Pp.მდე@" ]
+  [ "@R.Pp.მდის@" "+PP":0 "+PP:მდის":0 | "@D.Pp.მდის@" ]
+  [ "@R.Pp.მდინ@" "+PP":0 "+PP:მდინ":0 "+Old":0 | "@D.Pp.მდინ@" ]
+  [ "@R.Pp.მდი@" "+PP":0 "+PP:მდი":0 "+Old":0 | "@D.Pp.მდი@" ]
+  [ "@R.Pp.ქვეშ@" "+PP":0 "+PP:ქვეშ":0 | "@D.Pp.ქვეშ@" ]
+  [ "@R.Pp.წინ@" "+PP":0 "+PP:წინ":0 | "@D.Pp.წინ@" ]
+  [ "@R.Pp.ზე@" "+PP":0 "+PP:ზე":0 | "@D.Pp.ზე@" ]
+  [ "@R.Pp.ზედ@" "+PP":0 "+PP:ზედ":0 | "@D.Pp.ზედ@" ]
+  [ "@R.Pp.შუა@" "+PP":0 "+PP:შუა":0 | "@D.Pp.შუა@" ]
+  [ "@R.Pp.ში@" "+PP":0 "+PP:ში":0 | "@D.Pp.ში@" ]
+  [ "@R.Pp.თან@" "+PP":0 "+PP:თან":0 | "@D.Pp.თან@" ]
+  [ "@R.Pp.ვით@" "+PP":0 "+PP:ვით":0 | "@D.Pp.ვით@" ]
+  [  "@R.Comp-Case.dat@" "+<Dat>":0 # Complement case
+   | "@R.Comp-Case.gen@" "+<Gen>":0
+   | "@R.Comp-Case.dat-gen@" "+<Dat/Gen>":0
+   | "@R.Comp-Case.inst@" "+<Inst>":0
+   | "@R.Comp-Case.adv@" "+<Advb>":0
+   | "@D.Comp-Case@" ]
+  [   "@R.Comp-Pp.თან@" "+<PP:თან>":0
+   |  "@R.Comp-Pp.გან@" "+<PP:გან>":0
+   |  "@D.Comp-Pp@" ]
+  [ "@R.NegType.pot@" "+Pot":0 | "@D.NegType.pot@" ]
+  [ "@R.NegType.imp@" "+Imp":0 | "@D.NegType.imp@" ]
+  [ "@R.AdvType.loc@" "+Loc":0 | "@D.AdvType.loc@" ]
+  [ "@R.AdvType.temp@" "+Temp":0 | "@D.AdvType.temp@" ]
+  [ "@R.AdvType.mann@" "+Mann":0 | "@D.AdvType.mann@" ]
+  [ "@R.AdvType.causal@" "+Causal":0 | "@D.AdvType.causal@" ]
+  [ "@R.AdvType.final@" "+Final":0 | "@D.AdvType.final@" ]
+  [ "@R.ModSfx.ღა@" "+Encl:ღა":0 "+Foc":0 | "@D.ModSfx.ღა@" ]
+  [ "@R.ModSfx.ვე@" "+Encl:ვე":0 "+Foc":0 | "@D.ModSfx.ვე@" ]
+  [ "@R.ModSfx.მც@" "+Encl:მც":0 "+Foc":0 | "@D.ModSfx.მც@" ]
+  [ "@R.Approx.+@" "+Approx":0 | "@D.Approx.+@" ]
+  [ "@R.Repet.+@" "+Repet":0 | "@D.Repet.+@" ]
+  # Encl/Rel is disambiguated in CG
+  [ "@R.RelSfx.ც@" [ "+Encl:ც":0 "+Foc":0 | "+Rel:ც":0 ] | "@D.RelSfx.ც@" ]
+  [ "@R.RelSfx.ცა@" "+Encl:ც":0 "+Foc":0 | "@D.RelSfx.ცა@" ]
+  [ "@R.RelSfx.ესე@" "+RelProx":0 | "@D.RelSfx.ესე@" ]
+  [ "@R.RelSfx.ეგე@" "+RelMed":0 | "@D.RelSfx.ეგე@" ]
+  [ "@R.RelSfx.იგი@" "+RelDist":0 | "@D.RelSfx.იგი@" ]
+  [ "@R.RelSfx.ცა-ესე@" "+Encl:ც":0 "+RelProx":0 | "@D.RelSfx.ცა-ესე@" ]
+  [ "@R.RelSfx.ცა-ეგე@" "+Encl:ც":0 "+RelMed":0 | "@D.RelSfx.ცა-ეგე@" ]
+  [ "@R.RelSfx.ცა-იგი@" "+Encl:ც":0 "+RelDist":0 | "@D.RelSfx.ცა-იგი@" ]
+  [ "@R.Deriv.ურ@" "+<Der:ურ>":0
+   | "@R.Deriv.ელ@" "+<Der:ელ>":0
+   | "@R.Deriv.მაგვარ@" "+<Der:მაგვარ>":0
+   | "@R.Deriv.ებრ@" "+<Der:ებრ>":0
+   | "@R.Deriv.ეულ@" "+<Der:ეულ>":0
+   | "@R.Deriv.ფერ@" "+<Der:ფერ>":0
+   | "@R.Deriv.ნაირ@" "+<Der:ნაირ>":0
+   | "@R.Deriv.ობრივ@" "+<Der:ობრივ>":0
+   | "@R.Deriv.იან@" "+<Der:იან>":0
+   | "@R.Deriv.სა-ო@" "+<Der:სა-ო>":0
+   | "@R.Deriv.უ-ო@" "+<Der:უ-ო>":0
+   | "@D.Deriv@" ]
+  [ "@R.Lang.ng@" "+NG":0 | "@D.Lang.ng@" ]
+  [ "@R.Lang.mg@" "+MG":0 | "@D.Lang.mg@" ]
+  [ "@R.Lang.og@" "+OG":0 | "@D.Lang.og@" ]
+  #  [ "@R.EnclQopna.+@" "+Encl:Aux":0 | "@D.EnclQopna.+@" ]
+ ] ;
+
+define AugmentCardFlagDiacritics "+Card":0 "@C.StemType@" "@C.Digvalue@" # "@C.Lex@"
+        "@C.ConjNum@";
+define AugmentConjNumFlagDiacritics "+ConjNum":0 "@C.StemType@" "@C.Digvalue@" # "@C.Lex@"
+        "@C.ConjNum@";
+
+# don't change this line:
+
+# ------ automatically inserted start ---->
+
+define EnclAux [ 0:{ა} "@U.Lang.ng@"  "@U.EnclQopna.+@"  ] ;
+
+define VEnclitica [  "@U.Lang.ng@"  [ [ ( [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@"  | 0:{მც} "@U.ModSfx.მც@" ]
+ ) 0:{ც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ 0:{აც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@"  | 0:{მც} "@U.ModSfx.მც@" ]
+ (  EnclAux  ) ] | (  EnclAux  )]
+ ] ;
+
+define CEnclitica ( [  "@U.Lang.ng@"  [ [ ( [ [ 0:{ა} | [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@"  | 0:{მც} "@U.ModSfx.მც@" ]
+]
+ 0:{ც} "@U.RelSfx.ც@"  ] ) ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ [ [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ავე} "@U.ModSfx.ვე@" ]
+ | 0:{ღა} "@U.ModSfx.ღა@" ]
+ (  EnclAux  ) ]]
+ ] ) ;
+
+define VEncliticaGaCA [  "@U.Lang.ng@"  [ [ 0:{ც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ [ 0:{ღა} "@U.ModSfx.ღა@"  | 0:{მც} "@U.ModSfx.მც@" ]
+ (  EnclAux  ) ] | (  EnclAux  )]
+ ] ;
+
+define VEncliticaGaA [  "@U.Lang.ng@"  [ [ [ 0:{ღა} "@U.ModSfx.ღა@"  | 0:{მც} "@U.ModSfx.მც@" ]
+ (  EnclAux  ) ] | (  EnclAux  )]
+ ] ;
+
+define OgRelEnclitica [ ( 0:{-} ) [ 0:{ცა} "@U.Lang.og@"  "@U.RelSfx.ცა@"  | 0:{ესე} "@U.Lang.og@"  "@U.RelSfx.ესე@"  | 0:{ეგე} "@U.Lang.og@"  "@U.RelSfx.ეგე@"  | 0:{იგი} "@U.Lang.og@"  "@U.RelSfx.იგი@"  | 0:{ცა-ესე} "@U.Lang.og@"  "@U.RelSfx.ცა-ესე@"  | 0:{ცა-ეგე} "@U.Lang.og@"  "@U.RelSfx.ცა-ეგე@"  | 0:{ცა-იგი} "@U.Lang.og@"  "@U.RelSfx.ცა-იგი@" ]
+ ] ;
+
+define OgEncliticaOne [ ( 0:{-} ) [ 0:{მე} "@U.QSfx.მე@"  | 0:{ცა} "@U.RelSfx.ცა@"  | 0:{ღა} "@U.ModSfx.ღა@"  | 0:{ვე} "@U.ModSfx1.ვე@"  | 0:{მცა} "@U.ModSfx2.მცა@"  | 0:{რე} "@U.ModSfx1.რე@"  | 0:{ძი} "@U.CjSfx.ძი@" ]
+ ] ;
+
+define OgEnclitica [  "@U.Lang.og@"   OgEncliticaOne  ( [  OgEncliticaOne  ( [  OgEncliticaOne  ( [  OgEncliticaOne  (  OgEncliticaOne  ) ] ) ] ) ] ) ] ;
+
+define CEncliticaGaCA ( [  "@U.Lang.ng@"  [ [ ( [ 0:{ა} [ 0:{ც} "@U.RelSfx.ც@"  | [ 0:{მც} "@U.ModSfx.მც@" ]
+]
+ ] ) ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ 0:{ღა} "@U.ModSfx.ღა@"  (  EnclAux  ) ]]
+ ] ) ;
+
+define CEncliticaCA ( [  "@U.Lang.ng@"  ( [ 0:{ა} 0:{ც} "@U.RelSfx.ც@"  ] ) ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] ) ;
+
+define VEncliticaCA ( [  "@U.Lang.ng@"  ( 0:{ც} "@U.RelSfx.ც@"  ) ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] ) ;
+
+define CEncliticaGaA ( [  "@U.Lang.ng@"  [ [ ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ 0:{ღა} "@U.ModSfx.ღა@"  (  EnclAux  ) ]]
+ ] ) ;
+
+define VModEnclitica ( [  "@U.Lang.ng@"  [ 0:{ც} "@U.RelSfx.ც@"  | [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@"  | 0:{მც} "@U.ModSfx.მც@" ]
+]
+ ] ) ;
+
+define CModEnclitica ( [  "@U.Lang.ng@"  [ 0:{აც} "@U.RelSfx.ც@"  | [ [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@"  | 0:{მც} "@U.ModSfx.მც@" ]
+ ]]
+ ] ) ;
+
+define Plural [ [  "@U.SyncStem.+@" [  "@U.StemType.c@"  |  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.ა@"  |  "@U.StemType.ი@" ]
+ |  "@U.PlStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.ე@"  |  "@U.StemType.prop-ე@" ]
+]
+ 0:{ებ}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.-@"  "@U.Num.pl@"  ] ;
+
+define DerPlural [ [  "@U.SyncStem.+@" [  "@U.StemType.c@"  |  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.ა@"  |  "@U.StemType.ი@" ]
+ |  "@U.PlStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.ე@"  |  "@U.StemType.prop-ე@" ]
+]
+ {ებ}:{ებ}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@" ]
+ "@U.OldPl.-@"  "@U.Num.pl@"  ] ;
+
+define ErgGroup [ [  Plural  [ [ 0:{მა} "@U.Lang.ng@"  "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.masdar@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@" ]
+ "@U.Case.erg@"  (  VEnclitica  ) ] | [ 0:{მან} "@U.Style.old@"  "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.masdar@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@" ]
+ "@U.Case.erg@"  (  CEnclitica  ) ]]
+ ] | [ 0:{მა} "@U.Lang.ng@" [  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.SyncStem.-@"  "@U.CaseType.full@"  "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+neg+inanim@" ]
+ "@U.Case.erg@"   VModEnclitica  ] | [ 0:{მან} "@U.Style.old@" [  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.SyncStem.-@"  "@U.CaseType.full@"  "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+neg+inanim@" ]
+ "@U.Case.erg@"   CModEnclitica  ] | 0:{ი}[  "@U.SubCat.name+firstname@"  |  "@U.SubCat.name@" ]
+ "@U.Lang.og@" [  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.CaseType.full@"  "@U.Num.sg@"  "@U.Cat.prop@"  "@U.Case.erg@"  | 0:{მა} "@U.Lang.ng@"  "@U.StemType.c@"  "@U.CaseType.reduced@"  "@U.SyncStem.-@" [  "@U.Cat.a@"  |  "@U.Cat.pron@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@" ]
+ "@U.Case.erg@"  |  "@U.Lang.og@"  "@U.StemType.bare@"  "@U.CaseType.reduced@"  "@U.SyncStem.-@"  "@U.Cat.prop@"  "@U.Case.erg@"  |  "@U.Lang.og@" [  "@U.SubCat.name+firstname@"  |  "@U.SubCat.name@" ]
+[  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ "@U.Cat.prop@"  "@U.Case.erg@"  | [ [  "@R.SubCat.meas@"  |  "@R.SubCat.qual@"  |  "@R.SubCat.anim+qual@" ]
+ [ 0:{მა} "@U.Lang.ng@"  "@U.StemType.c@"  "@U.CaseType.reduced@"  "@U.SyncStem.-@"  "@U.Cat.n@"  "@U.Case.erg@"  | 0:{მან} "@U.Style.old@"  "@U.StemType.c@"  "@U.CaseType.reduced@"  "@U.SyncStem.-@"  "@U.Cat.n@"  "@U.Case.erg@" ]
+ ] | [ [ [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@"  |  "@U.StemType.ე@"  |  "@U.StemType.ო@"  |  "@U.StemType.ი@" ]
+ | 0:{-} "@U.StemType.abbr@" ]
+ [ [ 0:{მ} "@U.Lang.ng@"  "@U.CaseType.full@"  "@U.Num.sg@"  "@U.SyncStem.-@"  "@U.Case.erg@"  ( 0:{ა} "@U.Long.+@"  ) ] | 0:{მან} "@U.Style.old@"  "@U.CaseType.full@"  "@U.Num.sg@"  "@U.SyncStem.-@"  "@U.Case.erg@"  |  "@U.Lang.og@" [  "@U.SubCat.name+firstname@"  |  "@U.SubCat.name@" ]
+ "@U.Cat.prop@"  "@U.Case.erg@" ]
+  CModEnclitica  ]]
+ ;
+
+define DatGroup [ [ [  Plural  |  "@U.Num.sg@"  "@U.SyncStem.-@" [  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.bare@" ]
+ | 0:{-} "@U.Num.sg@"  "@U.StemType.abbr@"  | 0:{ო} "@U.Num.sg@"  "@U.StemType.ო@"  |  "@U.Num.sg@"  "@U.SyncStem.-@" [  "@U.StemType.ა@"  |  "@U.StemType.ე@" ]
+]
+ [ [ 0:{ს} "@U.Case.dat@"  [  CEnclitica  | 0:{ა} "@U.Lang.og@"  "@U.Long.+@"  | [ [ 0:{ავით} "@U.Pp.ვით@"  | 0:{თან}[  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@"  |  "@U.StemType.ე@"  |  "@U.StemType.ი@"  |  "@U.StemType.ო@"  |  "@U.StemType.abbr@" ]
+ "@U.Num.sg@"  "@U.Pp.თან@" ]
+  CEnclitica  ]]
+ ] | [ [ 0:{ში} "@U.Pp.ში@"  "@U.Case.dat@"  | 0:{ზე} "@U.Pp.ზე@"  "@U.Case.dat@"  | 0:{შუა} "@U.Pp.შუა@"  "@U.Case.dat@" ]
+ (  VEnclitica  ) ] | [ [ 0:{თან}[  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.Pp.თან@"  "@U.Case.dat@"  | 0:{წინ}[  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.Pp.წინ@"  "@U.Case.dat@"  | 0:{ქვეშ}[  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.Pp.ქვეშ@"  "@U.Case.dat@"  | 0:{ზედ}[  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.Pp.ზედ@"  "@U.Case.dat@" ]
+  CEnclitica  ] | [ [ 0:{თან} "@U.Pp.თან@"  "@U.Case.dat@"  | 0:{წინ} "@U.Pp.წინ@"  "@U.Case.dat@"  | 0:{ქვეშ} "@U.Pp.ქვეშ@"  "@U.Case.dat@"  | 0:{ზედ} "@U.Pp.ზედ@"  "@U.Case.dat@" ]
+  CEnclitica  ]]
+ ] | [ [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ [ 0:{ში} "@U.Pp.ში@"  "@U.Case.dat@"  "@U.Num.sg@"  | 0:{ზე} "@U.Pp.ზე@"  "@U.Case.dat@"  "@U.Num.sg@"  | 0:{შუა} "@U.Pp.შუა@"  "@U.Case.dat@"  "@U.Num.sg@" ]
+ (  VEnclitica  ) ] | [ [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ [ 0:{ზედ} "@U.Pp.ზედ@"  "@U.Case.dat@"  "@U.Num.sg@" ]
+ (  CEnclitica  ) ]]
+ ;
+
+define AdvGroup [ [ [  Plural  0:{ა} ] | [ [ 0:{ა} "@U.SyncStem.+@" [  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.bare@" ]
+ | [ 0:{ა} "@U.Num.sg@"  "@U.StemType.ა@"  | 0:{ე} "@U.Num.sg@"  "@U.StemType.ე@"  | 0:{ო} "@U.Num.sg@"  "@U.StemType.ო@" ]
+ | [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ | 0:{-} "@U.StemType.abbr@" ]
+  "@U.Num.sg@"  ]]
+ [ [ [ 0:{დ} "@U.Lang.ng@"  "@U.Case.adv@"  | 0:{d} "@U.Lang.og@"  "@U.Case.adv@"  | 0:{თ} "@U.Style.nonstandard@"  "@U.Lang.ng@"  "@U.Case.adv@" ]
+ [ 0:{ა} "@U.Long.+@"  |  CEnclitica ]
+ ] |  "@U.Lang.og@" [  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.bare@" ]
+ "@U.Case.adv-tr@"  | 0:{d} "@U.Lang.og@" [  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.bare@" ]
+ "@U.Case.adv@"  | [ ( 0:{d} "@U.Lang.og@"  ) [ [ [ 0:{მდის} "@U.Case.adv@"  "@U.Pp.მდის@"  | 0:{მდინ} "@U.Case.adv@"  "@U.Pp.მდინ@" ]
+  CEnclitica  ] | [ [ 0:{მდე} "@U.Case.adv@"  "@U.Pp.მდე@"  | 0:{მდი} "@U.Case.adv@"  "@U.Pp.მდი@" ]
+ (  VEnclitica  ) ]]
+ ]]
+ ] ;
+
+define InstGroup [ [ [ [  Plural  0:{ი}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron@" ]
+ ] | 0:{ი} "@U.Num.sg@"  "@U.SyncStem.+@" [  "@U.StemType.c@"  |  "@U.StemType.ე@"  |  "@U.StemType.ო@" ]
+ | 0:{ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.prop@" ]
+ "@U.RigidStem.-@"  "@U.SyncStem.+@"  "@U.StemType.ა@"  |  "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+ "@U.StemType.ი@"  | 0:{-} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.prop@" ]
+ "@U.StemType.abbr@"  | 0:{ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.prop@" ]
+ "@U.Style.old@"  "@U.Lang.ng@"  "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ | 0:{ჲ} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.prop@" ]
+ "@U.Lang.og@"  "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+]
+ [ [ 0:{თ} "@U.Case.inst@"  [ 0:{ა} "@U.Long.+@"  |  CEnclitica ]
+ ] | [ [ 0:{დან} "@U.Case.inst@"  "@U.Pp.დან@"  | 0:{დამ} "@U.Case.inst@"  "@U.Pp.დამ@" ]
+  CEnclitica  ] | [ 0:{თურთ} "@U.Case.inst@"  "@U.Pp.ურთ@"   CEnclitica  ] | [ 0:{თგან} "@U.Case.inst@"  "@U.Pp.გან@"   CEnclitica  ] | [ 0:{დგან} "@U.Style.nonstandard@"  "@U.Case.inst@"  "@U.Pp.გან@"   CEnclitica  ]]
+ ] | [ [ 0:{თი} "@U.Case.inst@"  "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+[  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.abbr@" ]
+ | 0:{თი} "@U.Case.inst@"  "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@"  "@U.StemType.ა@"  | 0:{ჲთ} "@U.Lang.og@"  "@U.Case.inst@"  "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+[  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.abbr@" ]
+ | 0:{ჲთ} "@U.Lang.og@"  "@U.Case.inst@"  "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@"  "@U.StemType.ა@" ]
+ (  VEnclitica  ) ] | [ [ 0:{დან} "@U.Case.inst@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ "@U.Num.sg@"  "@U.Pp.დან@"  | 0:{დამ} "@U.Case.inst@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ "@U.Num.sg@"  "@U.Pp.დამ@" ]
+  CEnclitica  ] | [ 0:{ე} "@U.Num.sg@"  "@U.SyncStem.+@"  "@U.StemType.ე@"  [ 0:{დან} "@U.Case.inst@"  "@U.Pp.დან@"  | 0:{დამ} "@U.Case.inst@"  "@U.Pp.დამ@" ]
+  CEnclitica  ]]
+ ;
+
+define NomGroup [ [ [ [  Plural  0:{ი} "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ "@U.Case.nom@"  ] | 0:{ი} "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+neg+inanim@"  |  "@U.Cat.pron+indef@" ]
+[  "@U.StemType.c@"  |  "@U.StemType.bare@" ]
+ "@U.SyncStem.-@"  "@U.Num.sg@"  "@U.Case.nom@"  | 0:{ი} "@U.CaseType.full@"  "@U.Cat.prop@" [  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ "@U.SyncStem.-@"  "@U.Num.sg@"  "@U.Case.nom@"  |  "@U.Lang.og@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron@" ]
+ "@U.StemType.bare@"  "@U.Num.sg@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.voc@" ]
+]
+ [ (  VEnclitica  ) | [ 0:{ვით} "@U.Pp.ვით@"   CEnclitica  ]]
+ ] |  "@U.Lang.ng@"  "@U.CaseType.reduced@"  "@U.Cat.prop@" [  "@U.StemType.bare@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ "@U.Num.sg@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ | [  "@U.Lang.ng@" [  "@U.Cat.n@"  |  "@U.Cat.prop@" ]
+ "@U.StemType.abbr@"  "@U.Num.sg@"  "@U.Case.nom@"  [ ( [ 0:{-} [  CEnclitica  |  VEnclitica ]
+ ] ) | [ 0:{-ვით} "@U.Pp.ვით@"   CEnclitica  ]]
+ ] | [ 0:{-ი} "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.prop@" ]
+ "@U.StemType.abbr@"  "@U.Num.sg@"  "@U.Case.nom@"  [ (  VEnclitica  ) | [ 0:{ვით} "@U.Pp.ვით@"   CEnclitica  ]]
+ ] | 0:{ი} "@U.CaseType.reduced@" [  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.quant@" ]
+ "@U.StemType.c@"  "@U.SyncStem.-@" [  "@U.Case.nom@"  |  "@U.Case.gen@"  |  "@U.Case.inst@" ]
+ | 0:{ის} "@U.CaseType.reduced-ext@" [  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@" ]
+ "@U.StemType.c@"  "@U.SyncStem.-@"  "@U.Case.inst@"  | [  Plural   "@U.Lang.og@"  "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@" ]
+ "@U.Case.abs@"  ] | [ [  "@R.SubCat.meas@"  |  "@R.SubCat.qual@"  |  "@R.SubCat.anim+qual@" ]
+ 0:{ი} "@U.CaseType.reduced@"  "@U.Cat.n@"  "@U.StemType.c@"  "@U.SyncStem.-@" [  "@U.Case.nom@"  |  "@U.Case.gen@"  |  "@U.Case.inst@" ]
+ ] | [ [  "@U.StemType.ი@"  |  "@U.Lang.ng@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ |  "@U.Lang.og@"  "@U.StemType.propv@"  | [ 0:{ჲ} "@U.Lang.og@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ ] | [ 0:{ი} "@U.Lang.ng@"  "@U.Style.old@"  "@U.StemType.v@"  ] | [ [  "@U.SyncStem.-@" [  "@U.StemType.ა@"  |  "@U.StemType.ე@" ]
+ | 0:{ო} "@U.StemType.ო@" ]
+ [  "@U.Lang.ng@"  | 0:{ი} "@U.Style.old@"  "@U.Lang.ng@"  | 0:{ჲ} "@U.Lang.og@" ]
+ ]]
+ [ [  "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.Num.sg@"  "@U.Case.nom@"  (  VEnclitica  ) ] |  "@U.Lang.ng@"  "@U.CaseType.reduced@" [  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.pron@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@" ]
+[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ | [ [  "@R.SubCat.meas@"  |  "@R.SubCat.qual@"  |  "@R.SubCat.anim+qual@" ]
+  "@U.CaseType.reduced@"  "@U.Cat.n@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ ]]
+ ] | [  "@U.Lang.og@"  [ [  "@U.StemType.c@"  |  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@"  |  "@U.StemType.bare@" ]
+ |  "@U.SyncStem.-@" [  "@U.StemType.ა@"  |  "@U.StemType.ე@" ]
+ | 0:{ო} "@U.StemType.ო@" ]
+ [ [ [  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.Num.sg@"  "@U.Case.abs@"  ( [ 0:{ებრ} "@U.Pp.ებრ@" ]
+ ) ] | [ [  "@R.SubCat.meas@"  |  "@R.SubCat.qual@"  |  "@R.SubCat.anim+qual@" ]
+  "@U.Cat.n@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ ]]
+ ] |  "@U.CaseType.reduced@" [  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.pron@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.quant@" ]
+ "@U.StemType.c@" [  "@U.Case.dat@"  |  "@U.Case.adv@" ]
+ |  "@U.CaseType.reduced-oldpl@" [  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.pron@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@" ]
+ "@U.StemType.c@"  "@U.Case.gen@"  | [  Plural   "@U.CaseType.reduced@"  "@U.Style.nonstandard@"  "@U.Cat.n@"  "@U.Case.dat@"  ] | [ [ [  "@R.SubCat.qual@"  |  "@R.SubCat.anim+qual@" ]
+  "@U.CaseType.reduced@" [  "@U.SubCat.qual@"  |  "@U.SubCat.anim+qual@" ]
+ "@U.Cat.n@"  "@U.StemType.c@" [  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ ] | [ [  "@R.SubCat.meas@" ]
+  "@U.CaseType.reduced@" [  "@U.SubCat.meas@" ]
+ "@U.Cat.n@"  "@U.StemType.c@" [  "@U.Case.dat@"  |  "@U.Case.adv@" ]
+ ]]
+ | [  Plural  0:{თა} "@U.Lang.ng@" [  "@U.Cat.n@"  |  "@U.Cat.pron@" ]
+ "@U.DoubleOldPl.+@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ ]]
+ ;
+
+define VocGroup [ [ [ [ [  Plural  0:{ო} "@U.CaseType.full@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@" ]
+ "@U.Case.voc@"  ] | 0:{ო} "@U.CaseType.reduced@" [  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@" ]
+ "@U.StemType.c@"  "@U.SyncStem.-@"  "@U.Case.voc@"  | [ 0:{ო}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ "@U.StemType.c@"  "@U.SyncStem.-@"  "@U.Case.voc@"  [ [  "@U.CaseType.reduced@"  [  "@R.SubCat.qual@"  |  "@R.SubCat.anim+qual@" ]
+ ] |  "@U.CaseType.full@"  "@U.Num.sg@" ]
+ ]]
+ ] |  "@U.Cat.prop@"  "@U.StemType.bare@"  "@U.Num.sg@"  "@U.Case.voc@"  | [  "@U.SyncStem.-@" [  "@U.StemType.ა@"  |  "@U.StemType.ე@"  |  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+ [ [ [ 0:{ვ}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.prop@" ]
+ "@U.Case.voc@"  | 0:{ო}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.prop@" ]
+ "@U.Case.voc@" ]
+ [ [  "@U.CaseType.reduced@"  [  "@R.SubCat.qual@"  |  "@R.SubCat.anim+qual@" ]
+ ] |  "@U.CaseType.full@"  "@U.Num.sg@" ]
+ ] |  "@U.CaseType.full@"  "@U.Num.sg@"  "@U.Case.voc@" ]
+ ]]
+ ] ;
+
+define OldPluralD [ [  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.ა@" ]
+ | [ 0:{ე} "@U.StemType.ე@"  | 0:{ო} "@U.StemType.ო@" ]
+]
+ [ [ 0:{ნი}[  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.nom@"  (  VEnclitica  ) ] | 0:{ნო}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.voc@"  | [ 0:{თ}[  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.a@"  |  "@U.Cat.masdar@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ ( 0:{ა} ) ]]
+ ] ;
+
+define GenGroup2 [ [ [ [  Plural  0:{ი}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.masdar@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ ] | 0:{ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+neg+inanim@"  |  "@U.Cat.pron+indef@" ]
+ "@U.RigidStem.-@"  "@U.SyncStem.+@" [  "@U.StemType.c@"  |  "@U.StemType.ა@"  |  "@U.StemType.ე@"  |  "@U.StemType.ო@"  |  "@U.StemType.bare@" ]
+ | 0:{-ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.prop@" ]
+ "@U.StemType.abbr@" ]
+ [ 0:{სა} "@U.Lang.og@"  "@U.Case.dir@"  | 0:{სა} "@U.Lang.og@"  "@U.Case.ben@"  | [ 0:{ს} "@U.Case.gen@"  [ [ [ [ 0:{ა} "@U.Long.+@"  [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{ვით} "@U.Pp.ვით@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{მებრ} "@U.Pp.მებრ@" ]
+ ] | [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{ვით} "@U.Pp.ვით@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  | 0:{თან} "@U.Pp.თან@" ]
+]
+  CEnclitica  ] |  CEnclitica  | [ 0:{ა} [ 0:{დმი} "@U.Pp.დმი@"  | 0:{კე} "@U.Pp.კე@" ]
+ (  VEnclitica  ) ] | 0:{ა} "@U.Long.+@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.pron+indef@" ]
+ "@U.Lang.og@"  | 0:{ა} "@U.Long.+@"  "@U.Lang.ng@" ]
+ ]]
+ ] | [ [ 0:{ჲ} "@U.Lang.og@" [  "@U.Case.gen@"  |  "@U.Case.dir@"  |  "@U.Case.ben@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ |  "@U.Lang.og@" [  "@U.Case.gen@"  |  "@U.Case.dir@"  |  "@U.Case.ben@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ | 0:{ი} "@U.Lang.ng@"  "@U.Style.old@"  "@U.Case.gen@"  "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ |  "@U.Num.sg@"  "@U.Lang.ng@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@"  "@U.StemType.ა@"  |  "@U.Lang.og@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ "@U.Case.dat@"  | [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ "@U.Lang.ng@" ]
+ [ 0:{სა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  | 0:{სა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.ben@"  | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+[  "@U.StemType.v@"  |  "@U.StemType.ა@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ [ [ [ [ 0:{ა} [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  | 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{ვით} "@U.Case.gen@"  "@U.Pp.ვით@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{მებრ} "@U.Case.gen@"  "@U.Pp.მებრ@" ]
+ ] | [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  | 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{ვით} "@U.Case.gen@"  "@U.Pp.ვით@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{ებრ} "@U.Case.gen@"  "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Case.gen@"  "@U.Pp.ებრივ@" ]
+]
+  CEnclitica  ] |  CEnclitica  | [ 0:{ა} "@U.Long.+@"  [ 0:{დმი} "@U.Pp.დმი@"  | 0:{კე} "@U.Pp.კე@" ]
+ (  VEnclitica  ) ] | [ [ 0:{დამი} "@U.Pp.დამი@" ]
+ (  VEnclitica  ) ] | 0:{ა}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@" ]
+ "@U.Long.+@"  "@U.Lang.og@"  | 0:{ა} "@U.Long.+@"  "@U.Lang.ng@"  | [ [ [ 0:{თან} "@U.Case.dat@"  "@U.Pp.თან@"  | 0:{ზედ} "@U.Case.dat@"  "@U.Pp.ზედ@" ]
+ | [ 0:{ავით} "@U.Case.dat@"  "@U.Long.+@"  "@U.Pp.ვით@" ]
+]
+  CEnclitica  ]]
+ ]]
+ ] | [ [  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.ა@"  |  "@U.StemType.bare@" ]
+ | [ 0:{ე} "@U.StemType.ე@"  | 0:{ო} "@U.StemType.ო@" ]
+]
+ 0:{თა}[  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.gen@"  ]]
+ ;
+
+define GenGroup1 [ [ [ [  Plural  0:{ი}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.masdar@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ ] | 0:{ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+neg+inanim@"  |  "@U.Cat.pron+indef@" ]
+ "@U.RigidStem.-@"  "@U.SyncStem.+@" [  "@U.StemType.c@"  |  "@U.StemType.ა@"  |  "@U.StemType.ე@"  |  "@U.StemType.ო@"  |  "@U.StemType.bare@" ]
+ | 0:{-ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.prop@" ]
+ "@U.StemType.abbr@" ]
+ [ 0:{სა} "@U.Lang.og@"  "@U.Case.dir@"  | 0:{სა} "@U.Lang.og@"  "@U.Case.ben@"  | [ 0:{ს} "@U.Case.gen@"  [ [ [ [ 0:{ა} "@U.Long.+@"  [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{ვით} "@U.Pp.ვით@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{მებრ} "@U.Pp.მებრ@" ]
+ ] | [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{ვით} "@U.Pp.ვით@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  | 0:{თან} "@U.Pp.თან@" ]
+]
+  CEnclitica  ] |  CEnclitica  | [ 0:{ა} [ 0:{დმი} "@U.Pp.დმი@"  | 0:{კე} "@U.Pp.კე@" ]
+ (  VEnclitica  ) ] | 0:{ა} "@U.Long.+@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.pron+indef@" ]
+ "@U.Lang.og@"  | 0:{ა} "@U.Long.+@"  "@U.Lang.ng@"  | [ [ [  "@U.Lang.og@"  "@U.StemType.bare@"   AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.ben@"  |  "@U.Case.dir@"  |  "@U.Case.adv@"  |  "@U.Case.adv-tr@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  ] | [ [ [  "@D.StemType.bare@"  ] |  "@U.Lang.ng@"  "@U.StemType.bare@" ]
+ [ 0:{ა} AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.StemType.v@"  | 0:{ა} AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.gen@"  |  "@U.Case.ben@"  |  "@U.Case.dir@"  |  "@U.Case.inst@" ]
+ "@U.Lang.og@"  "@U.Cat.n@"  "@U.StemType.v@"  |  AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.gen@"  |  "@U.Case.inst@" ]
+ "@U.Lang.ng@"  "@U.Cat.n@"  "@U.StemType.c@" ]
+ ]]
+ [  NomGroup  |  ErgGroup  |  DatGroup  |  GenGroup2  |  AdvGroup  | [ [  InstGroup  |  VocGroup ]
+ ] |  OldPluralD ]
+ ] | [  AugmentFlagDiacritics  "@U.CaseType.full@"  "@U.StemType.c@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.ben@"  |  "@U.Case.dir@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.Num.pl@"  [  NomGroup  |  ErgGroup  |  DatGroup  |  GenGroup2  |  InstGroup  |  AdvGroup  |  VocGroup ]
+ ]]
+ ]]
+ ] | [ [ 0:{ჲ} "@U.Lang.og@" [  "@U.Case.gen@"  |  "@U.Case.dir@"  |  "@U.Case.ben@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ |  "@U.Lang.og@" [  "@U.Case.gen@"  |  "@U.Case.dir@"  |  "@U.Case.ben@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ | 0:{ი} "@U.Lang.ng@"  "@U.Style.old@"  "@U.Case.gen@"  "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ |  "@U.Num.sg@"  "@U.Lang.ng@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@"  "@U.StemType.ა@"  |  "@U.Lang.og@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ "@U.Case.dat@"  | [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ "@U.Lang.ng@" ]
+ [ 0:{სა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  | 0:{სა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.ben@"  | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+[  "@U.StemType.v@"  |  "@U.StemType.ა@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ [ [ [ [ 0:{ა} [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  | 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{ვით} "@U.Case.gen@"  "@U.Pp.ვით@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{მებრ} "@U.Case.gen@"  "@U.Pp.მებრ@" ]
+ ] | [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  | 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{ვით} "@U.Case.gen@"  "@U.Pp.ვით@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{ებრ} "@U.Case.gen@"  "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Case.gen@"  "@U.Pp.ებრივ@" ]
+]
+  CEnclitica  ] |  CEnclitica  | [ 0:{ა} "@U.Long.+@"  [ 0:{დმი} "@U.Pp.დმი@"  | 0:{კე} "@U.Pp.კე@" ]
+ (  VEnclitica  ) ] | [ [ 0:{დამი} "@U.Pp.დამი@" ]
+ (  VEnclitica  ) ] | 0:{ა}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@" ]
+ "@U.Long.+@"  "@U.Lang.og@"  | 0:{ა} "@U.Long.+@"  "@U.Lang.ng@"  | [ [ [ 0:{თან} "@U.Case.dat@"  "@U.Pp.თან@"  | 0:{ზედ} "@U.Case.dat@"  "@U.Pp.ზედ@" ]
+ | [ 0:{ავით} "@U.Case.dat@"  "@U.Long.+@"  "@U.Pp.ვით@" ]
+]
+  CEnclitica  ] | [ [  "@U.Case.gen@"   AugmentFlagDiacritics  "@U.Num.sg@"  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  [  NomGroup  |  AdvGroup  |  InstGroup ]
+ ] | [  "@U.Cat.prop@"  "@U.Lang.og@"  "@U.Case.gen@"   AugmentFlagDiacritics  "@U.Num.sg@"  "@U.CaseType.full@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  [  GenGroup2  |  DatGroup  |  ErgGroup ]
+ ] | [  "@U.Case.gen@"  [ [ [  "@U.StemType.v@"  |  "@U.StemType.ი@" ]
+ 0:{ა} AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ "@U.Cat.n@"  "@U.StemType.v@"  ] | [ [  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+  AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  ]]
+ [  NomGroup  |  DatGroup  |  GenGroup2  |  ErgGroup  |  InstGroup  |  AdvGroup  |  VocGroup  |  OldPluralD ]
+ ]]
+ | [  "@U.Case.gen@"   AugmentFlagDiacritics  "@U.CaseType.full@"  "@U.StemType.c@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.OldPl.-@"  "@U.Num.pl@"  [  NomGroup  |  ErgGroup  |  DatGroup  |  GenGroup2  |  InstGroup  |  AdvGroup  |  VocGroup ]
+ ]]
+ ]]
+ ] | [ [  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.ა@"  |  "@U.StemType.bare@" ]
+ | [ 0:{ე} "@U.StemType.ე@"  | 0:{ო} "@U.StemType.ო@" ]
+]
+ 0:{თა}[  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.gen@"  ( [  AugmentFlagDiacritics [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.CaseType.full@"  "@U.Cat.n@"  "@U.StemType.v@"  [ [  NomGroup   "@U.Case.nom@"  "@U.Lang.og@"  ] |  GenGroup2  |  InstGroup  |  AdvGroup  |  ErgGroup  |  OldPluralD ]
+ ] ) ]]
+ ;
+
+define GenGroup [ [ [ [  Plural  0:{ი}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.v-part@"  |  "@U.Cat.masdar@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ ] | 0:{ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+neg+inanim@"  |  "@U.Cat.pron+indef@" ]
+ "@U.RigidStem.-@"  "@U.SyncStem.+@" [  "@U.StemType.c@"  |  "@U.StemType.ა@"  |  "@U.StemType.ე@"  |  "@U.StemType.ო@"  |  "@U.StemType.bare@" ]
+ | 0:{-ი} "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.prop@" ]
+ "@U.StemType.abbr@" ]
+ [ 0:{სა} "@U.Lang.og@"  "@U.Case.dir@"  | 0:{სა} "@U.Lang.og@"  "@U.Case.ben@"  | [ 0:{ს} "@U.Case.gen@"  [ [ [ [ 0:{ა} "@U.Long.+@"  [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{ვით} "@U.Pp.ვით@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{მებრ} "@U.Pp.მებრ@" ]
+ ] | [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{ვით} "@U.Pp.ვით@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  | 0:{თან} "@U.Pp.თან@" ]
+]
+  CEnclitica  ] |  CEnclitica  | [ 0:{ა} [ 0:{დმი} "@U.Pp.დმი@"  | 0:{კე} "@U.Pp.კე@" ]
+ (  VEnclitica  ) ] | 0:{ა} "@U.Long.+@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.pron+indef@" ]
+ "@U.Lang.og@"  | 0:{ა} "@U.Long.+@"  "@U.Lang.ng@"  | [ [ [  "@U.Lang.og@"  "@U.StemType.bare@"   AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.ben@"  |  "@U.Case.dir@"  |  "@U.Case.adv@"  |  "@U.Case.adv-tr@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  ] | [ [ [  "@D.StemType.bare@"  ] |  "@U.Lang.ng@"  "@U.StemType.bare@" ]
+ [ 0:{ა} AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.StemType.v@"  | 0:{ა} AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.gen@"  |  "@U.Case.ben@"  |  "@U.Case.dir@"  |  "@U.Case.inst@" ]
+ "@U.Lang.og@"  "@U.Cat.n@"  "@U.StemType.v@"  |  AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.gen@"  |  "@U.Case.inst@" ]
+ "@U.Lang.ng@"  "@U.Cat.n@"  "@U.StemType.c@" ]
+ ]]
+ [  NomGroup  |  ErgGroup  |  DatGroup  |  GenGroup1  |  AdvGroup  | [ [  InstGroup  |  VocGroup ]
+ ] |  OldPluralD ]
+ ] | [  AugmentFlagDiacritics  "@U.CaseType.full@"  "@U.StemType.c@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.ben@"  |  "@U.Case.dir@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.Num.pl@"  [  NomGroup  |  ErgGroup  |  DatGroup  |  GenGroup1  |  InstGroup  |  AdvGroup  |  VocGroup ]
+ ]]
+ ]]
+ ] | [ [ 0:{ჲ} "@U.Lang.og@" [  "@U.Case.gen@"  |  "@U.Case.dir@"  |  "@U.Case.ben@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ |  "@U.Lang.og@" [  "@U.Case.gen@"  |  "@U.Case.dir@"  |  "@U.Case.ben@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ | 0:{ი} "@U.Lang.ng@"  "@U.Style.old@"  "@U.Case.gen@"  "@U.RigidStem.+@"  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ა@" ]
+ |  "@U.Num.sg@"  "@U.Lang.ng@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.pron+indef@" ]
+ "@U.RigidStem.+@"  "@U.SyncStem.-@"  "@U.StemType.ა@"  |  "@U.Lang.og@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ "@U.Case.dat@"  | [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ "@U.Lang.ng@" ]
+ [ 0:{სა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  | 0:{სა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.ben@"  | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Num.sg@" [  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@" ]
+[  "@U.StemType.v@"  |  "@U.StemType.ა@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.ი@" ]
+ [ [ [ [ 0:{ა} [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  | 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{ვით} "@U.Case.gen@"  "@U.Pp.ვით@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{მებრ} "@U.Case.gen@"  "@U.Pp.მებრ@" ]
+ ] | [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  | 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{ვით} "@U.Case.gen@"  "@U.Pp.ვით@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{ებრ} "@U.Case.gen@"  "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Case.gen@"  "@U.Pp.ებრივ@" ]
+]
+  CEnclitica  ] |  CEnclitica  | [ 0:{ა} "@U.Long.+@"  [ 0:{დმი} "@U.Pp.დმი@"  | 0:{კე} "@U.Pp.კე@" ]
+ (  VEnclitica  ) ] | [ [ 0:{დამი} "@U.Pp.დამი@" ]
+ (  VEnclitica  ) ] | 0:{ა}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@" ]
+ "@U.Long.+@"  "@U.Lang.og@"  | 0:{ა} "@U.Long.+@"  "@U.Lang.ng@"  | [ [ [ 0:{თან} "@U.Case.dat@"  "@U.Pp.თან@"  | 0:{ზედ} "@U.Case.dat@"  "@U.Pp.ზედ@" ]
+ | [ 0:{ავით} "@U.Case.dat@"  "@U.Long.+@"  "@U.Pp.ვით@" ]
+]
+  CEnclitica  ] | [ [  "@U.Case.gen@"   AugmentFlagDiacritics  "@U.Num.sg@"  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  [  NomGroup  |  AdvGroup  |  InstGroup ]
+ ] | [  "@U.Cat.prop@"  "@U.Lang.og@"  "@U.Case.gen@"   AugmentFlagDiacritics  "@U.Num.sg@"  "@U.CaseType.full@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  [  GenGroup1  |  DatGroup  |  ErgGroup ]
+ ] | [  "@U.Case.gen@"  [ [ [  "@U.StemType.v@"  |  "@U.StemType.ი@" ]
+ 0:{ა} AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ "@U.Cat.n@"  "@U.StemType.v@"  ] | [ [  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@" ]
+  AugmentFlagDiacritics  "@U.CaseType.full@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ "@U.Cat.n@"  "@U.StemType.c@"  ]]
+ [  NomGroup  |  DatGroup  |  GenGroup1  |  ErgGroup  |  InstGroup  |  AdvGroup  |  VocGroup  |  OldPluralD ]
+ ]]
+ | [  "@U.Case.gen@"   AugmentFlagDiacritics  "@U.CaseType.full@"  "@U.StemType.c@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.Cat.n@"  "@U.OldPl.-@"  "@U.Num.pl@"  [  NomGroup  |  ErgGroup  |  DatGroup  |  GenGroup1  |  InstGroup  |  AdvGroup  |  VocGroup ]
+ ]]
+ ]]
+ ] | [ [  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.ა@"  |  "@U.StemType.bare@" ]
+ | [ 0:{ე} "@U.StemType.ე@"  | 0:{ო} "@U.StemType.ო@" ]
+]
+ 0:{თა}[  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.gen@"  ( [  AugmentFlagDiacritics [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@"  |  "@U.Case.adv@"  |  "@U.Case.inst@"  |  "@U.Case.voc@" ]
+ "@U.CaseType.full@"  "@U.Cat.n@"  "@U.StemType.v@"  [ [  NomGroup   "@U.Case.nom@"  "@U.Lang.og@"  ] |  GenGroup1  |  InstGroup  |  AdvGroup  |  ErgGroup  |  OldPluralD ]
+ ] ) ]]
+ ;
+
+define OldPlural [ [  "@U.SyncStem.-@" [  "@U.StemType.v@"  |  "@U.StemType.propv@"  |  "@U.StemType.prop-ე@"  |  "@U.StemType.c@"  |  "@U.StemType.ი@"  |  "@U.StemType.ა@" ]
+ | [ 0:{ე} "@U.StemType.ე@"  | 0:{ო} "@U.StemType.ო@" ]
+]
+ [ [ 0:{ნი}[  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.prop@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.nom@"  (  VEnclitica  ) ] | 0:{ნო}[  "@U.Cat.n@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.pron@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.voc@"  | 0:{თა}[  "@U.Cat.n@"  |  "@U.Cat.a@" ]
+ "@U.Lang.og@"  "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.dir@"  | 0:{თა}[  "@U.Cat.n@"  |  "@U.Cat.a@" ]
+ "@U.Lang.og@"  "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Case.ben@"  | [ 0:{თ}[  "@U.Cat.n@"  |  "@U.Cat.pron@"  |  "@U.Cat.a@"  |  "@U.Cat.num@"  |  "@U.Cat.masdar@"  |  "@U.Cat.v-part@"  |  "@U.Cat.q@"  |  "@U.Cat.allq@"  |  "@U.Cat.pron+indef@" ]
+ "@U.OldPl.+@"  "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ ( [ [ ( 0:{ა} ) [ [ [ 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{ვით} "@U.Case.gen@"  "@U.Pp.ვით@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{ებრ} "@U.Case.gen@"  "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Case.gen@"  "@U.Pp.ებრივ@" ]
+  CEnclitica  ] | [ [ 0:{კე} "@U.Case.gen@"  "@U.Pp.კე@" ]
+  VEnclitica  ] | [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  [  CEnclitica  | ( [  "@U.Double.+@"   AugmentFlagDiacritics  "@U.Cat.n@"  "@U.StemType.c@"  [  NomGroup  |  ErgGroup  |  DatGroup  |  GenGroup  |  AdvGroup  |  InstGroup  |  VocGroup  | [  "@U.Double.-@"   OldPluralD  ]]
+ ] )]
+ ]]
+ ] | [ 0:{ა} (  VEnclitica  ) ]]
+ ) ]]
+ ] ;
+
+define Postposition [ [ [ {ქვეშ}:{ქვეშ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {წინ}:{წინ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {უკან}:{უკან} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {შესახებ}:{შესახებ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მიერ}:{მიერ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მიმართ}:{მიმართ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {შემდეგ}:{შემდეგ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {წინააღმდეგ}:{წინააღმდეგ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {ნაცვლად}:{ნაცვლად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მაგიერ}:{მაგიერ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მაგიერად}:{მაგიერად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მაგივრად}:{მაგივრად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {ძირს}:{ძირს} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {გულისთვის}:{გულისთვის} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მიხედვით}:{მიხედვით} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {შედეგად}:{შედეგად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {ირგვლივ}:{ირგვლივ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მიუხედავად}:{მიუხედავად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {თანახმად}:{თანახმად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {ნაცვლად}:{ნაცვლად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მხრივ}:{მხრივ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {ბოლოს}:{ბოლოს} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {ძირას}:{ძირას} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მაგივრად}:{მაგივრად} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {გავლით}:{გავლით} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {გარეთ}:{გარეთ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {გასწვრივ}:{გასწვრივ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {ახლოს}:{ახლოს} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {შემდგომ}:{შემდგომ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {გვერდით}:{გვერდით} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {კვალდაკვალ}:{კვალდაკვალ} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@" ]
+ (  CEnclitica  ) ] | [ [ {წინაშე}:{წინაშე} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {გამო}:{გამო} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {გარშემო}:{გარშემო} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {თაობაზე}:{თაობაზე} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@"  | {მერე}:{მერე} "@U.Comp-Case.gen@"  "@U.Lang.ng@"  "@U.Cat.pp@" ]
+ (  VEnclitica  ) ] | [ {ზედა}:{ზედა} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {თანა}:{თანა} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {შინა}:{შინა} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წინაშე}:{წინაშე} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {კუეშე}:{კუეშე} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უწინარჱს}:{უწინარჱს} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წინ}:{წინ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ზემოჲთ}:{ზემოჲთ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ქუe}:{ქუe} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ქუeშა}:{ქუeშა} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ქუeშe}:{ქუeშe} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {დაშუე}:{დაშუე} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {შიდა}:{შიდა} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მარცხლ}:{მარცხლ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მარჯულ}:{მარჯულ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მარჯუნ}:{მარჯუნ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გარეშენ}:{გარეშენ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გარე}:{გარე} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გარეშe}:{გარეშe} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკანაკერძო}:{უკანაკერძო} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკუანაკერძო}:{უკუანაკერძო} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {პირისპირ}:{პირისპირ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წიაღ}:{წიაღ} "@U.Comp-Case.dat@"  "@U.Lang.og@"  "@U.Cat.pp@" ]
+ | [ {ზე}:{ზე} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {თვინიერ}:{თვინიერ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {თანა}:{თანა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წინაშე}:{წინაშე} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მიერ}:{მიერ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ზედა}:{ზედა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წილ}:{წილ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ქუeშe}:{ქუeშe} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წინა}:{წინა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ზედა}:{ზედა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ზესთა}:{ზესთა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ზეშთა}:{ზეშთა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ჟეჟთა}:{ჟეჟთა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {შუვა}:{შუვა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {შოვა}:{შოვა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკანა}:{უკანა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკუანა}:{უკუანა} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ზემოჲთ}:{ზემოჲთ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მარჯუენით}:{მარჯუენით} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მარჯუნით}:{მარჯუნით} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მარცხენით}:{მარცხენით} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გარემო}:{გარემო} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკუანაგან}:{უკუანაგან} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკუანაჲსკნელ}:{უკუანაჲსკნელ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკანაჲსკნელ}:{უკანაჲსკნელ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკანაჲსკნელს}:{უკანაჲსკნელს} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {უკუანაჲს}:{უკუანაჲს} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {პირველ}:{პირველ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {პირველად}:{პირველად} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ქუეაღ}:{ქუეაღ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ქუემო-კერძო}:{ქუემო-კერძო} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {ქუე-კერძო}:{ქუე-კერძო} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {შინაგან}:{შინაგან} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წინაჲთ}:{წინაჲთ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წინაჲსწარ}:{წინაჲსწარ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გარეგან}:{გარეგან} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გუერდით}:{გუერდით} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {შიგან}:{შიგან} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {შემდგომად}:{შემდგომად} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წიაღ}:{წიაღ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@" ]
+ | [ {მიმართ}:{მიმართ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მომართ}:{მომართ} "@U.Comp-Case.gen@"  "@U.Lang.og@"  "@U.Cat.pp@" ]
+ | [ {გამო}:{გამო} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გარდამო}:{გარდამო} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {კერძო}:{კერძო} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მიერ}:{მიერ} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გამომართ}:{გამომართ} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გამოღმართ}:{გამოღმართ} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {გარდამართ}:{გარდამართ} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მიმართ}:{მიმართ} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {მომართ}:{მომართ} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@"  | {წიაღ}:{წიაღ} "@U.Comp-Case.inst@"  "@U.Lang.og@"  "@U.Cat.pp@" ]
+ | [ {ვიდრე}:{ვიდრე} "@U.Comp-Case.adv@"  "@U.Cat.pp@" ]
+ | [ [ {შუა}:{შუა} "@U.Comp-Case.dat@"  "@U.Cat.pp@" ]
+ (  VEnclitica  ) ] | [ [ {შორის}:{შორის} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {შოვრის}:{შოვრის} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {აქეთ}:{აქეთ} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {იქით}:{იქით} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {ქვეშ}:{ქვეშ} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {მიღმა}:{მიღმა} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {გადაღმა}:{გადაღმა} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {გარეშე}:{გარეშე} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {გარდა}:{გარდა} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {წინათ}:{წინათ} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@"  | {პირად}:{პირად} "@U.Comp-Case.dat-gen@"  "@U.Cat.pp@" ]
+ (  CEnclitica  ) ] | [ [ {ერთად}:{ერთად} "@U.Comp-Pp.თან@"  "@U.Cat.pp@"  | {დაკავშირებით}:{დაკავშირებით} "@U.Comp-Pp.თან@"  "@U.Cat.pp@"  | {შედარებით}:{შედარებით} "@U.Comp-Pp.თან@"  "@U.Cat.pp@"  | {ახლოს}:{ახლოს} "@U.Comp-Pp.თან@"  "@U.Cat.pp@" ]
+ (  CEnclitica  ) ] | [ [ {განსხვავებით}:{განსხვავებით} "@U.Comp-Pp.გან@"  "@U.Cat.pp@" ]
+ (  CEnclitica  ) ]]
+ ;
+
+define EncliticaVeGaC [ [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@" ]
+ | [ 0:{ც} "@U.RelSfx.ც@"  ( 0:{ა} "@U.Long.+@"  ) ]]
+ ;
+
+define EEncliticaVeGaC [ [ [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@" ]
+ (  EnclAux  ) ] | [ [ 0:{ემც} "@U.ModSfx.მც@" ]
+ (  EnclAux  ) ] | [ 0:{ეც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ 0:{ა} "@U.Long.+@"   EnclAux  ]]
+ ;
+
+define IEncliticaVeGaC [ [ [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@" ]
+ (  EnclAux  ) ] | [ [ 0:{იმც} "@U.ModSfx.მც@" ]
+ (  EnclAux  ) ] | [ 0:{იც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ]]
+ ;
+
+define AEncliticaVeGaC [ [ [ 0:{ვე} "@U.ModSfx.ვე@"  | 0:{ღა} "@U.ModSfx.ღა@" ]
+ (  EnclAux  ) ] | [ [ 0:{ამც} "@U.ModSfx.მც@" ]
+ (  EnclAux  ) ] | [ 0:{აც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Lang.ng@"  "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ 0:{ა} "@U.Long.+@"   EnclAux  ]]
+ ;
+
+define VEncliticaC ( [ (  EnclAux  ) | [ [ 0:{მც} "@U.ModSfx.მც@" ]
+ ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ 0:{ც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ]]
+ ) ;
+
+define CEncliticaC ( [ 0:{ა} "@U.Long.+@"  [ (  EnclAux  ) | [ 0:{ც} "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ]]
+ ] ) ;
+
+define PronounPp [ [ [ [ 0:{ში} "@U.Pp.ში@"  "@U.Case.dat@"  | 0:{ზე} "@U.Pp.ზე@"  "@U.Case.dat@"  | 0:{შუა} "@U.Pp.შუა@"  "@U.Case.dat@" ]
+ | 0:{სადმი} "@U.Pp.დმი@"  "@U.Case.gen@"  | 0:{დამი} "@U.Lang.ng@"  "@U.Pp.დამი@"  "@U.Case.gen@"  | 0:{დამი} "@U.Lang.og@"  "@U.Pp.მი@"  "@U.Case.dir@"  | 0:{დამო} "@U.Lang.og@"  "@U.Pp.მო@"  "@U.Case.dir@"  | [ 0:{და} "@U.Lang.ng@"  "@U.Pp.და@"  "@U.Case.gen@"  | 0:{კე} "@U.Lang.ng@"  "@U.Pp.კე@"  "@U.Case.gen@" ]
+ | 0:{და} "@U.Lang.og@"  "@U.Case.dir@"  | 0:{და} "@U.Lang.og@"  "@U.Case.ben@"  | 0:{ამდე} "@U.Pp.მდე@"  "@U.Case.adv@" ]
+ (  VEnclitica  ) ] | [ [ [ 0:{თან} "@U.Pp.თან@"  "@U.Case.dat@"  | 0:{ზედ} "@U.Pp.ზედ@"  "@U.Case.dat@" ]
+ | [ 0:{გან} "@U.Pp.გან@"  "@U.Case.gen@"  | 0:{თვის} "@U.Pp.თვის@"  "@U.Case.gen@"  | 0:{თვინა} "@U.Pp.თვინა@"  "@U.Case.gen@"  | 0:{ებრ} "@U.Pp.ებრ@"  "@U.Case.gen@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  "@U.Case.gen@"  | 0:{კენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{წინ} "@U.Pp.წინ@"  "@U.Case.gen@" ]
+ | [ 0:{თვინა} "@U.Style.nonstandard@"  "@U.Pp.თვის@"  "@U.Case.gen@" ]
+ | 0:{სკენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{სავით} "@U.Pp.ვით@"  "@U.Case.dat@"  | 0:{ამდის} "@U.Pp.მდე@"  "@U.Case.adv@" ]
+ (  CEnclitica  ) ] | [ 0:{სა} "@U.Case.gen@"   AugmentFlagDiacritics  "@U.Num.sg@"  "@U.CaseType.full@"  "@U.Case.dat@"  "@U.Cat.n@"  "@U.StemType.v@"   GenGroup  ] | 0:{სა} "@U.Long.+@"  "@U.Case.dat@"  | [  "@U.Case.dat@"  ( 0:{ს} ) ]]
+ ;
+
+define DetPp [ [ [ 0:{ადმი} "@U.Pp.დმი@"  "@U.Case.gen@" ]
+ (  VEnclitica  ) ] | [ [ [ 0:{თან} "@U.Pp.თან@"  "@U.Case.dat@"  | 0:{ზედ} "@U.Pp.ზედ@"  "@U.Case.dat@" ]
+ | [ ( 0:{ა} ) [ 0:{გან} "@U.Pp.გან@"  "@U.Case.gen@"  | 0:{თვის} "@U.Pp.თვის@"  "@U.Case.gen@"  | 0:{კენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{ებრ} "@U.Pp.ებრ@"  "@U.Case.gen@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  "@U.Case.gen@" ]
+ ] | [ ( 0:{ს} "@U.Num.pl@"  ) 0:{ავით} "@U.Pp.ვით@"  "@U.Case.dat@"  ]]
+ ( [  CEnclitica  | 0:{ა} "@U.Long.+@" ]
+ ) ]]
+ ;
+
+define DetDatPp [ [ [ [ 0:{ში} "@U.Pp.ში@"  "@U.Case.dat@"  | 0:{ზე} "@U.Pp.ზე@"  "@U.Case.dat@" ]
+ | [ 0:{ზედ} "@U.Pp.ზედ@"  "@U.Case.dat@" ]
+]
+ (  VEnclitica  ) ]]
+ ;
+
+define Pronoun [ [  "@U.SubCat.pers@"  "@U.Cat.pron@"  [ [  "@U.Cat.pron@"  [ [ [ {შენ}:{შენ}[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@" ]
+ "@U.Pers.2@"  "@U.Num.sg@"  | {ჩuენ}:{ჩueნ}[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@" ]
+ "@U.Pers.1@"  "@U.Num.pl@"  | {თქuენ}:{თქueნ}[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@" ]
+ "@U.Pers.2@"  "@U.Num.pl@" ]
+ ( [  EncliticaVeGaC  | 0:{ა} "@U.Long.+@" ]
+ ) ] | [ {მე}:{მე}[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@" ]
+ "@U.Pers.1@"  "@U.Num.sg@"  (  EncliticaVeGaC  ) ] | [ [ {მე}:{ჩემ} "@U.Pers.1@"  "@U.Num.sg@"  | {შენ}:{შენ} "@U.Pers.2@"  "@U.Num.sg@"  | {ჩuენ}:{ჩueნ} "@U.Pers.1@"  "@U.Num.pl@"  | {თქuენ}:{თქueნ} "@U.Pers.2@"  "@U.Num.pl@" ]
+  PronounPp  ]]
+ ] | {შენ}:{შე} "@U.Case.voc@"  "@U.Pers.2@"  "@U.Num.sg@"  | {თქვენ}:{თქვე} "@U.Case.voc@"  "@U.Lang.ng@"  "@U.Pers.2@"  "@U.Num.pl@"  | {თქუენ}:{თქuე} "@U.Case.voc@"  "@U.Lang.og@"  "@U.Pers.2@"  "@U.Num.pl@"  | [ [ {იგი}:{იგი} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.sg@"  | [ {ის}:{ისინი} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.pl@"  | {ის}:{ისები} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.pl@" ]
+ | {იგი}:{იგინი} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.pl@"  | [ {ეს}:{ესენი} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.pl@"  | {ეს}:{ესები} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.pl@" ]
+ | [ {ეგ}:{ეგენი} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.pl@"  | {ეგ}:{ეგები} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.pl@" ]
+]
+ (  VEnclitica  ) ] | [ [ {ის}:{ის} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.sg@" ]
+ (  IEncliticaVeGaC  ) ] | [ [ {ეს}:{ეს} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.sg@" ]
+ [ (  EEncliticaVeGaC  ) | 0:{ა} "@U.Long.+@" ]
+ ] | [ [ {ეგ}:{ეგ} "@U.Case.nom@"  "@U.Pers.3@"  "@U.Num.sg@" ]
+ (  EEncliticaVeGaC  ) ] | [ [ {ის}:{იმ} | {ეს}:{ამ} | {ეგ}:{მაგ}]
+  "@U.Pers.3@"  [ [ [ 0:{ან} "@U.Num.sg@"  "@U.Case.erg@"  | 0:{ის} "@U.Num.sg@"  "@U.Case.gen@"  | 0:{ას} "@U.Num.sg@"  "@U.Case.dat@"  | 0:{ად} "@U.Num.sg@"  "@U.Case.adv@"  | 0:{ათ} "@U.Style.nonstandard@"  "@U.Lang.ng@"  "@U.Num.sg@"  "@U.Case.adv@"  | 0:{ით} "@U.Num.sg@"  "@U.Case.inst@"  | 0:{ებს} "@U.Num.pl@"  "@U.Case.dat@"  | 0:{ების} "@U.Num.pl@"  "@U.Case.gen@"  | 0:{ებად} "@U.Num.pl@"  "@U.Case.adv@"  | 0:{ებათ} "@U.Style.nonstandard@"  "@U.Lang.ng@"  "@U.Num.pl@"  "@U.Case.adv@"  | 0:{ებით} "@U.Num.pl@"  "@U.Case.inst@"  | 0:{ათ} "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+]
+ ( [ 0:{ა} "@U.Long.+@"  |  DetPp  |  AEncliticaVeGaC ]
+ ) ] | [ [ 0:{ის} "@U.Num.sg@"  "@U.Case.gen@" ]
+ ( [  DetPp  |  AEncliticaVeGaC ]
+ ) ] | [ 0:{ისა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  | 0:{ისდა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@" ]
+ | [ 0:{ისდა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  ( [ 0:{მო} "@U.Pp.მო@"  | 0:{მი} "@U.Pp.მი@" ]
+ ) ] | [ 0:{ისდა} "@U.Lang.ng@"  "@U.Num.sg@"  "@U.Pp.და@"  "@U.Case.gen@" ]
+ | [ 0:{ათდა} "@U.Lang.ng@"  "@U.Num.pl@"  "@U.Pp.და@"  "@U.Case.gen@" ]
+ | [ [ 0:{ა} "@U.Num.sg@"  "@U.Case.dat@" ]
+  DetDatPp  ] | [ 0:{ებმა} "@U.Num.pl@"  "@U.Case.erg@"  ( [  EncliticaVeGaC ]
+ ) ]]
+ ] | [ {ეს}:{ამა} "@U.Num.pl@"  "@U.Pers.3@"  [ [ [ 0:{ების} "@U.Num.pl@"  "@U.Case.gen@"  | 0:{ებად} "@U.Num.pl@"  "@U.Case.adv@"  | 0:{ებათ} "@U.Style.nonstandard@"  "@U.Lang.ng@"  "@U.Num.pl@"  "@U.Case.adv@"  | 0:{ებით} "@U.Num.pl@"  "@U.Case.inst@" ]
+ ( [ 0:{ა} "@U.Long.+@"  |  DetPp  |  AEncliticaVeGaC ]
+ ) ] | [ 0:{ებმა} "@U.Num.pl@"  "@U.Case.erg@"  ( [  EncliticaVeGaC ]
+ ) ]]
+ ] | [ {ის}:{მ} "@U.Cat.pron@"   "@U.Pers.3@"  [ [ [ 0:{ან} "@U.Num.sg@"  "@U.Case.erg@"  | 0:{ას} "@U.Num.sg@"  "@U.Case.dat@"  | 0:{ის} "@U.Lang.ng@"  "@U.Num.sg@"  "@U.Case.gen@"  | 0:{ად} "@U.Num.sg@"  "@U.Case.adv@"  | 0:{ით} "@U.Num.sg@"  "@U.Case.inst@"  | 0:{ათ} "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+]
+ ( [ 0:{ა} |  DetPp  |  DetDatPp  |  AEncliticaVeGaC ]
+ ) ] | 0:{ასსა} "@U.Long.+@"  "@U.Num.sg@"  "@U.Case.dat@"  | [ [ 0:{ის} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.gen@" ]
+ ( [  DetPp  |  AEncliticaVeGaC ]
+ ) ] | [ 0:{ისა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  | 0:{ისდა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@" ]
+ | [ 0:{ისდა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  ( [ 0:{მო} "@U.Pp.მო@"  | 0:{მი} "@U.Pp.მი@" ]
+ ) ] | [ 0:{ისდა} "@U.Lang.ng@"  "@U.Num.sg@"  "@U.Pp.და@"  "@U.Case.gen@" ]
+ | [ 0:{ათდა} "@U.Lang.ng@"  "@U.Num.pl@"  "@U.Pp.და@"  "@U.Case.gen@" ]
+ | [ 0:{ათა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@"  | 0:{ათდა} "@U.Lang.og@"  "@U.Num.sg@"  "@U.Case.dir@" ]
+ | [ 0:{ათდა} "@U.Lang.og@"  "@U.Num.pl@"  "@U.Case.dir@"  ( [ 0:{მო} "@U.Pp.მო@"  | 0:{მი} "@U.Pp.მი@" ]
+ ) ]]
+ ] | [ [ [ {იგი}:{იგი} "@U.Morph.იგი@"  "@U.Pers.3@"  "@U.Num.sg@"  | {იგი}:{იმა} "@U.Morph.იმა@"  "@U.Pers.3@"  "@U.Num.sg@" ]
+ | [ {ეს}:{ამა} "@U.Morph.ამა@"  "@U.Pers.3@"  "@U.Num.sg@" ]
+]
+ 0:{ვე} "@U.ModSfx.ვე@"  [ [ 0:{მ}[  "@U.Morph.იმა@"  |  "@U.Morph.ამა@" ]
+ "@U.Case.erg@"  ( 0:{აც} "@U.RelSfx.ც@"  ) ] | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+  CEncliticaC  ] | 0:{თი} "@U.Case.inst@"  | [ 0:{დ} "@U.Case.adv@"   CEncliticaC  ] | [ 0:{თ} "@U.Style.nonstandard@"  "@U.Lang.ng@"  "@U.Case.adv@"   CEncliticaC  ] | [ [ 0:{ში} "@U.Pp.ში@"  "@U.Case.dat@"  | 0:{ზე} "@U.Pp.ზე@"  "@U.Case.dat@" ]
+  VEncliticaC  ] | [ [ 0:{ზედ} "@U.Pp.ზედ@"  "@U.Case.dat@" ]
+  CEncliticaC  ]]
+ ] | [ [ {იგი}:{იგი} "@U.Pers.3@" ]
+ 0:{ვე} "@U.ModSfx.ვე@"  0:{ნი} "@U.Num.pl@"  "@U.Case.nom@"  (  EnclAux  ) ]]
+ ] | [ [ {ერთმანეთ·ი}:{ერთმანეთ} "@U.SubCat.recip@"  "@U.Cat.pron@"  "@U.StemType.c@"  "@U.Pers.3@"  "@U.Num.sg@"  | {ერთმანერთ·ი}:{ერთმანერთ} "@U.Lang.og@"  "@U.SubCat.recip@"  "@U.Cat.pron@"  "@U.StemType.c@"  "@U.Pers.3@"  "@U.Num.sg@"  | {ერთიმეორ[ე]}:{ერთიმეორე} "@U.SubCat.recip@"  "@U.Cat.pron@"  "@U.StemType.c@"  "@U.Pers.3@"  "@U.Num.sg@" ]
+ [  NomGroup  |  ErgGroup  | [  "@U.CaseType.full@"  [  DatGroup  |  GenGroup  |  InstGroup  |  AdvGroup ]
+ ]]
+ ] | [ {ურთიერთას}:{ურთიერთას} "@U.Lang.og@"  "@U.SubCat.recip@"  "@U.Cat.pron@"  "@U.Pers.3@"  "@U.Num.sg@"  | {ერთიერთას}:{ერთიერთას} "@U.Lang.og@"  "@U.SubCat.recip@"  "@U.Cat.pron@"  "@U.Pers.3@"  "@U.Num.sg@" ]
+]
+ ;
+
+define PronNegative [ [ [ [ [ {არაvინ}:{ა} "@U.Lang.ng@"  "@U.Cat.pron+neg+anim@"  | {ნურაvინ}:{ნუ} "@U.NegType.imp@"  "@U.Lang.ng@"  "@U.Cat.pron+neg+anim@"  | {ვერაvინ}:{ვე} "@U.NegType.pot@"  "@U.Lang.ng@"  "@U.Cat.pron+neg+anim@"  | {არvინ}:{ა} "@U.Lang.og@"  "@U.Cat.pron+neg+anim@"  | {ნუvინ}:{ნუ} "@U.NegType.imp@"  "@U.Lang.og@"  "@U.Cat.pron+neg+anim@"  | {ვერvინ}:{ვე} "@U.NegType.pot@"  "@U.Lang.og@"  "@U.Cat.pron+neg+anim@"  | {აღარაvინ}:{აღა} "@U.Lang.ng@"  "@U.Cat.pron+neg+anim@"  | {ნუღარაvინ}:{ნუღა} "@U.NegType.imp@"  "@U.Lang.ng@"  "@U.Cat.pron+neg+anim@"  | {ვეღარაvინ}:{ვეღა} "@U.NegType.pot@"  "@U.Lang.ng@"  "@U.Cat.pron+neg+anim@"  | {აღარvინ}:{აღა} "@U.Lang.og@"  "@U.Cat.pron+neg+anim@"  | {ნუღარvინ}:{ნუღა} "@U.NegType.imp@"  "@U.Lang.og@"  "@U.Cat.pron+neg+anim@"  | {ვეღარvინ}:{ვეღა} "@U.NegType.pot@"  "@U.Lang.og@"  "@U.Cat.pron+neg+anim@" ]
+ ] | {აღარაvინ}:{არღა} "@U.Lang.og@"  "@U.Cat.pron+neg+anim@"  | {ვეღარაvინ}:{ვერღა} "@U.Lang.og@"  "@U.NegType.pot@"  "@U.Cat.pron+neg+anim@" ]
+ [ 0:{რავი} | 0:{რვი} "@U.Lang.og@"  | 0:{ვი} "@U.NegType.imp@"  "@U.Lang.og@" ]
+ [ [ 0:{ნ}[  "@U.Case.nom@"  |  "@U.Case.erg@" ]
+  CEnclitica  ] | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ ( [ [ 0:{გან} "@U.Pp.გან@"  "@U.Case.gen@"  | 0:{თან} "@U.Pp.თან@"  "@U.Case.gen@"  | 0:{ზედ} "@U.Pp.ზედ@"  "@U.Case.gen@"  | 0:{თვის} "@U.Pp.თვის@"  "@U.Case.gen@"  | 0:{კენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{ებრ} "@U.Pp.ებრ@"  "@U.Case.gen@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  "@U.Case.gen@" ]
+ (  CEnclitica  ) ] ) ] | 0:{სა} "@U.Case.dir@" ]
+ ] | [ [ {არარ[ა]·ჲ}:{არარ} "@U.Cat.pron+neg+inanim@"  | {ნურარ[ა]·ჲ}:{ნურარ} "@U.NegType.imp@"  "@U.Cat.pron+neg+inanim@"  | {ვერარ[ა]·ჲ}:{ვერარ} "@U.NegType.pot@"  "@U.Cat.pron+neg+inanim@"  | {არღარ[ა]·ჲ}:{არღარ} "@U.Cat.pron+neg+inanim@"  | {ნურღარ[ა]·ჲ}:{ნურღარ} "@U.NegType.imp@"  "@U.Cat.pron+neg+inanim@"  | {ვერღარ[ა]·ჲ}:{ვერღარ} "@U.NegType.pot@"  "@U.Cat.pron+neg+inanim@" ]
+ [ [ 0:{ა} "@U.Lang.ng@"  "@U.Case.nom@"  ] | [ 0:{ა} "@U.Lang.og@"  "@U.Case.abs@"  ] | [ 0:{ამ} "@U.Lang.ng@"  "@U.Case.erg@"  ] | [ 0:{ამან} "@U.Lang.og@"  "@U.Case.erg@"  ] | [ 0:{აჲ} "@U.Lang.og@"  "@U.Case.nom@"  ] | [ 0:{აჲთ} "@U.Lang.og@"  "@U.Case.inst@"  ] | [ 0:{ას} "@U.Case.dat@"  ] | [ 0:{ისა} "@U.Case.dir@"  ] | [ 0:{ის} "@U.Case.gen@"  ( [ [ 0:{გან} "@U.Pp.გან@"  | 0:{თან} "@U.Pp.თან@"  | 0:{ზედ} "@U.Pp.ზედ@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@" ]
+ (  CEnclitica  ) ] ) ] | [ 0:{ის} "@U.Case.gen@"  ( [ [ 0:{კე} "@U.Pp.კე@" ]
+ (  VEnclitica  ) ] ) ]]
+ ]]
+ ;
+
+define InterrogativeRelative [ [ [ {vინ}:{ვი} "@U.Cat.pron+interr+anim@" ]
+ [ [ 0:{ნ}[  "@U.Case.nom@"  |  "@U.Case.erg@" ]
+ ( [  VEncliticaGaCA  |  OgRelEnclitica ]
+ ) ] | 0:{სა} "@U.Case.dir@"  | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ [ ( [ 0:{ა} "@U.Lang.ng@"  (  VEncliticaGaCA  ) ] ) | (  OgRelEnclitica  ) | [ [ 0:{გან} "@U.Pp.გან@"  | 0:{თან} "@U.Pp.თან@"  | 0:{ზედ} "@U.Pp.ზედ@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@" ]
+ (  CEnclitica  ) ]]
+ ] | [ [ 0:{ეთ} "@U.Num.pl@"  "@U.Lang.og@" [  "@U.Case.erg@"  |  "@U.Case.gen@"  |  "@U.Case.dat@" ]
+ | [ 0:{ეთ} "@U.Num.pl@"  "@U.Lang.og@"  "@U.Case.gen@"  [ 0:{გან} "@U.Pp.გან@"  | 0:{თან} "@U.Pp.თან@"  | 0:{ზედ} "@U.Pp.ზედ@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@" ]
+ ] | 0:{ეთა} "@U.Num.pl@"  "@U.Lang.og@"  "@U.Case.dir@" ]
+ (  OgRelEnclitica  ) ]]
+ ] | [ [ {vის·ი}:{ვის} "@U.Cat.poss+interr+anim@"  | {არაvის·ი}:{არავის} "@U.Cat.poss+neg+anim@"  | {ვერაvის·ი}:{ვერავის} "@U.NegType.pot@"  "@U.Cat.poss+neg+anim@"  | {ნურაvის·ი}:{ნურავის} "@U.NegType.imp@"  "@U.Cat.poss+neg+anim@" ]
+ [ [ 0:{ი} "@U.CaseType.full@"  "@U.Case.nom@"  (  VEnclitica  ) ] | [ 0:{მა} "@U.CaseType.full@"  "@U.Case.erg@"  (  VEnclitica  ) ] | [ 0:{ას} "@U.CaseType.full@"  "@U.Case.dat@"  ( [ 0:{ა}  VEnclitica  ] ) ] | [ 0:{ით} "@U.CaseType.full@"  "@U.Case.inst@"  ( [ 0:{ა} (  VEnclitica  ) ] ) ] | [ [ 0:{ად} "@U.CaseType.full@"  "@U.Case.adv@"  | 0:{ათ} "@U.Style.nonstandard@"  "@U.Lang.ng@"  "@U.CaseType.full@"  "@U.Case.adv@" ]
+ ( [ 0:{ა}  VEnclitica  ] ) ] | 0:{ი} "@U.CaseType.reduced@" [  "@U.Case.nom@"  |  "@U.Case.gen@"  |  "@U.Case.inst@" ]
+ | 0:{მა} "@U.CaseType.reduced@"  "@U.Case.erg@"  |  "@U.CaseType.reduced@" [  "@U.Case.dat@"  |  "@U.Case.adv@" ]
+]
+ ] | [ {vიღა}:{ვიღა} "@U.Cat.pron+interr+anim@"  [  "@U.Case.nom@"  | 0:{მ} "@U.Case.erg@"  | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ [ ( [ 0:{ა} "@U.Lang.ng@"  (  EnclAux  ) ] ) | [ [ 0:{გან} "@U.Pp.გან@"  | 0:{თან} "@U.Pp.თან@"  | 0:{ზედ} "@U.Pp.ზედ@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@" ]
+ ( [ 0:{ა} "@U.Lang.ng@"  (  EnclAux  ) ] ) ]]
+ ] | [ 0:{ს} "@U.CaseType.full@"  "@U.Case.dat@"  ( [ 0:{ა} (  EnclAux  ) ] ) ] | [ 0:{თი} "@U.CaseType.full@"  "@U.Case.inst@"  (  EnclAux  ) ] | [ 0:{დ} "@U.CaseType.full@"  "@U.Case.adv@"  ( [ 0:{ა} (  EnclAux  ) ] ) ] | [ 0:{ს} "@U.Case.gen@"  ( [ 0:{ი} (  EnclAux  ) ] ) ]]
+ ] | [ [ {რ[ა]}:{რ} "@U.Lang.ng@"  "@U.Cat.pron+interr+inanim@"  | {რაღ[ა]}:{რაღ} "@U.Lang.ng@"  "@U.Cat.pron+interr+inanim@"  | {რა·ჲ}:{რ} "@U.Lang.og@"  "@U.Cat.pron+interr+inanim@" ]
+ [ [ 0:{ა} "@U.Lang.ng@"  "@U.Case.nom@"  (  VEncliticaCA  ) ] | [ 0:{ანი} "@U.OldPl.+@"  "@U.Num.pl@"  "@U.Lang.ng@"  "@U.Case.nom@"  (  VEncliticaCA  ) ] | [ 0:{აი} "@U.Style.nonstandard@"  "@U.Lang.ng@"  "@U.Case.nom@"  (  VEncliticaCA  ) ] | [ 0:{ა} "@U.Lang.og@" [  "@U.Case.abs@"  |  "@U.Case.nom@"  |  "@U.Case.erg@" ]
+ (  OgRelEnclitica  ) ] | [ 0:{აჲ} "@U.Lang.og@"  "@U.Case.nom@"  (  OgRelEnclitica  ) ] | [ 0:{ამ} "@U.Lang.ng@"  "@U.Case.erg@"  ( [ 0:{ა} (  VEnclitica  ) ] ) ] | [ 0:{ამან} "@U.Lang.og@"  "@U.Case.erg@"  (  OgRelEnclitica  ) ] | [ [ 0:{ას} "@U.Case.dat@"  | 0:{აის} "@U.Style.nonstandard@"  "@U.Case.dat@" ]
+ [ ( [ 0:{ა} (  VEnclitica  ) ] ) | ( [ ( 0:{ა} )  OgRelEnclitica  ] ) | [ [ 0:{თან} "@U.Pp.თან@" ]
+ (  CEnclitica  ) ]]
+ ] | [ [ 0:{ად} "@U.Case.adv@"  | 0:{ათ} "@U.Style.nonstandard@"  "@U.Case.adv@" ]
+ ( [ [ 0:{ა} (  VEnclitica  ) ] |  OgRelEnclitica ]
+ ) ] | [ 0:{ით} "@U.Lang.ng@"  "@U.Case.inst@"  ( [ [ 0:{ა} (  VEnclitica  ) ] | [ 0:{ი} (  VEnclitica  ) ]]
+ ) ] | [ 0:{აჲთ} "@U.Lang.og@"  "@U.Case.inst@"  ( [  OgRelEnclitica  | [ 0:{ა} (  VEnclitica  ) ] | [ 0:{ი} (  VEnclitica  ) ]]
+ ) ] | [ 0:{ის} "@U.Lang.ng@"  "@U.Case.gen@"  [ ( [ 0:{ა} (  VEnclitica  ) ] ) | [ [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@" ]
+ (  CEnclitica  ) ]]
+ ] | [ 0:{ა} "@U.Lang.ng@"  "@U.Case.dat@"  [ [ [ 0:{ზედ} "@U.Pp.ზედ@" ]
+ (  CEnclitica  ) ] | [ [ 0:{ზე} "@U.Pp.ზე@"  | 0:{ში} "@U.Pp.ში@" ]
+ (  VEnclitica  ) ]]
+ ] | [ 0:{აჲს} "@U.Lang.og@"  "@U.Case.gen@"  [ ( [ 0:{ა} (  VEnclitica  ) ] ) | (  OgRelEnclitica  ) | [ [ 0:{გან} "@U.Pp.გან@"  | 0:{თვის} "@U.Pp.თვის@"  | 0:{კენ} "@U.Pp.კენ@"  | 0:{ებრ} "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Pp.ებრივ@" ]
+ (  CEnclitica  ) ]]
+ ]]
+ ] | {რ[ა]}:{რა} "@U.CaseType.reduced@" [  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.adv@"  |  "@U.Case.inst@" ]
+ "@U.Lang.ng@"  "@U.Cat.pron+interr+inanim@"  | [ {რის·ი}:{რის} "@U.Cat.poss+interr+inanim@"  [ [ 0:{ი} "@U.CaseType.full@"  "@U.Case.nom@"  (  VEnclitica  ) ] | [ 0:{მა} "@U.CaseType.full@"  "@U.Case.erg@"  (  VEnclitica  ) ] | [ 0:{ას} "@U.CaseType.full@"  "@U.Case.dat@"  ( [ 0:{ა}  VEnclitica  ] ) ] | [ 0:{ით} "@U.CaseType.full@"  "@U.Case.inst@"  ( [ 0:{ა} (  VEnclitica  ) ] ) ] | [ [ 0:{ად} "@U.CaseType.full@"  "@U.Case.adv@"  | 0:{ათ} "@U.Style.nonstandard@"  "@U.CaseType.full@"  "@U.Case.adv@" ]
+ ( [ 0:{ა}  VEnclitica  ] ) ] | 0:{ი} "@U.CaseType.reduced@" [  "@U.Case.nom@"  |  "@U.Case.gen@"  |  "@U.Case.inst@" ]
+ | 0:{მა} "@U.CaseType.reduced@"  "@U.Case.erg@"  |  "@U.CaseType.reduced@" [  "@U.Case.dat@"  |  "@U.Case.adv@" ]
+]
+ ]]
+ ;
+
+define Indefinite [ [ [ {რამ}:{რამ} "@U.Case.nom@"  "@U.Cat.pron+sindef+inanim@"  (  CEncliticaC  ) ] | {რა}:{რა} "@U.Case.nom@"  "@U.Cat.pron+sindef+inanim@"  | [ [ {vინმე}:{ვინმე} "@U.Cat.pron+sindef+anim@"  | {რამ[ე]}:{რამე}[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Cat.pron+sindef+inanim@"  | {რაიმე}:{რაიმე}[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Cat.pron+sindef+inanim@"  | {რაჲმ[ე]}:{რაჲმე} "@U.Lang.og@"  "@U.Cat.pron+sindef+inanim@"  | {რომელიმე}:{რომელიმე} "@U.Cat.pron+sindef@" ]
+ [ [  "@U.Case.nom@"  (  VEncliticaC  ) ] | [ 0:{მ} "@U.Case.erg@"  (  CEncliticaC  ) ] | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ [ ( [ 0:{ა} (  VEnclitica  ) ] ) | [ ( 0:{ა} ) [ 0:{გან} "@U.Pp.გან@"  "@U.Case.gen@"  | 0:{თვის} "@U.Pp.თვის@"  "@U.Case.gen@"  | 0:{კენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{ებრ} "@U.Pp.ებრ@"  "@U.Case.gen@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  "@U.Case.gen@" ]
+ (  CEncliticaC  ) ] | [ [ 0:{თან} "@U.Pp.თან@"  "@U.Case.dat@" ]
+ (  CEncliticaC  ) ]]
+ ] | [ [ [ 0:{ზე} "@U.Pp.ზე@"  "@U.Case.dat@" ]
+ (  CEncliticaC  ) ] ]]
+ ] | [ [ {რამე}:{რამეს} "@U.Cat.pron+sindef+inanim@"  | {რაჲმე}:{რაჲმეს} "@U.Lang.og@"  "@U.Cat.pron+sindef+inanim@" ]
+ [ [ ( 0:{ა} ) [ 0:{გან} "@U.Pp.გან@"  "@U.Case.gen@"  | 0:{თვის} "@U.Pp.თვის@"  "@U.Case.gen@"  | 0:{კენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{ებრ} "@U.Pp.ებრ@"  "@U.Case.gen@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  "@U.Case.gen@" ]
+ (  CEncliticaC  ) ]]
+ ] | [ [ {რამ[ე]}:{რამის} "@U.Case.gen@"  "@U.Cat.pron+sindef+inanim@"  | {რაჲმ[ე]}:{რაჲმის} "@U.Lang.og@"  "@U.Case.gen@"  "@U.Cat.pron+sindef+inanim@" ]
+ [ [ ( [ 0:{ა} (  VEnclitica  ) ] ) | [ [ 0:{გან} "@U.Pp.გან@"  "@U.Case.gen@"  | 0:{თვის} "@U.Pp.თვის@"  "@U.Case.gen@"  | 0:{კენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{ებრ} "@U.Pp.ებრ@"  "@U.Case.gen@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  "@U.Case.gen@" ]
+ (  CEncliticaC  ) ]]
+ ] ] | [ [ {vინ:მე}:{ვისმე} "@U.Case.dat@"  "@U.Cat.pron+sindef+anim@"  | {რა:მე}:{რასმე} "@U.Case.dat@"  "@U.Lang.ng@"  "@U.Cat.pron+sindef+inanim@" ]
+ ( [ 0:{ს} [ (  CEnclitica  ) | [ [ 0:{გან} "@U.Pp.გან@"  "@U.Case.gen@"  | 0:{თვის} "@U.Pp.თვის@"  "@U.Case.gen@"  | 0:{კენ} "@U.Pp.კენ@"  "@U.Case.gen@"  | 0:{ებრ} "@U.Pp.ებრ@"  "@U.Case.gen@"  | 0:{ებრივ} "@U.Pp.ებრივ@"  "@U.Case.gen@" ]
+ (  CEncliticaC  ) ]]
+ ] ) ] | [ [ 0:{რამესი} "@U.Case.gen@"  | 0:{რამეთი} "@U.Case.inst@"  | 0:{რამედ} "@U.Case.adv@" ]
+ {რამე}:0 "@U.Lang.ng@"  "@U.Num.sg@"  "@U.Cat.pron+sindef+inanim@"  ] | [ [ 0:{რითმე} "@U.Case.inst@"  | 0:{რითიმე} "@U.Case.inst@"  | 0:{რადმე} "@U.Case.adv@" ]
+ {რა:მე}:0 "@U.Lang.ng@"  "@U.Num.sg@"  "@U.Cat.pron+sindef+inanim@"  ] | [ [ {vინ:მე}:{ვის}[  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ "@U.Cat.pron+sindef+anim@"  | {რა:მე}:{რას} "@U.Lang.ng@"  "@U.Case.dat@"  "@U.Cat.pron+sindef+inanim@"  | {რა:მე}:{რის} "@U.Lang.ng@"  "@U.Case.gen@"  "@U.Cat.pron+sindef+inanim@"  | {რომ[ე]ლ·ი:მე}:{რომლის} "@U.Case.gen@"  "@U.Cat.pron+sindef@"  | {რომ[ე]ლ·ი:მე}:{რომელს} "@U.Case.dat@"  "@U.Cat.pron+sindef@" ]
+ [ [ ( 0:{ა} ) 0:{მე} ] | [ [ 0:{გან} "@U.Case.gen@"  "@U.Pp.გან@"  | 0:{თვის} "@U.Case.gen@"  "@U.Pp.თვის@"  | 0:{კენ} "@U.Case.gen@"  "@U.Pp.კენ@"  | 0:{ებრ} "@U.Case.gen@"  "@U.Pp.ებრ@"  | 0:{ებრივ} "@U.Case.gen@"  "@U.Pp.ებრივ@" ]
+ 0:{მე} (  CEncliticaC  ) ]]
+ ]]
+ | [ [ {როგორმე}:{როგორმე} "@U.Cat.adv@"  | [ {როდისმე}:{როდისმე} "@U.AdvType.temp@"  "@U.Cat.adv@"  | {როდესმე}:{როდესმე} "@U.AdvType.temp@"  "@U.Cat.adv@"  | {ოდესმე}:{ოდესმე} "@U.AdvType.temp@"  "@U.Cat.adv@" ]
+ | [ {სადმე}:{სადმე} "@U.AdvType.loc@"  "@U.Cat.adv@"  | {საიდანმე}:{საიდანმე} "@U.AdvType.loc@"  "@U.Cat.adv@"  | {საიდამმე}:{საიდამმე} "@U.AdvType.loc@"  "@U.Cat.adv@"  | {საიდგანმე}:{საიდგანმე} "@U.AdvType.loc@"  "@U.Cat.adv@"  | {საითკენმე}:{საითკენმე} "@U.AdvType.loc@"  "@U.Cat.adv@"  | {საითმე}:{საითმე} "@U.AdvType.loc@"  "@U.Cat.adv@" ]
+]
+  "@U.SubCat.indef-spec@"  ] | [ [ {vიღაც}:{ვიღაც} "@U.Cat.pron+indef+anim@"  | {რაღაც}:{რაღაც} "@U.Cat.pron+indef+inanim@"  | {vიღაც-vიღაც}:{ვიღაც-ვიღაც} "@U.Cat.pron+indef+anim@"  | {რაღაც-რაღაც}:{რაღაც-რაღაც} "@U.Cat.pron+indef+inanim@"  | {რომელიღაც}:{რომელიღაც} "@U.Cat.pron+indef+inanim@" ]
+  "@U.Form.bound@"  ( 0:{ა} ) ] | [ [ {vიღაც}:{ვიღაც} "@U.Cat.pron+indef+anim@"  | {რაღაც}:{რაღაც} "@U.Cat.pron+indef+inanim@"  | {vიღაც-vიღაც}:{ვიღაც-ვიღაც} "@U.Cat.pron+indef+anim@"  | {რაღაც-რაღაც}:{რაღაც-რაღაც} "@U.Cat.pron+indef+inanim@" ]
+  "@U.Num.sg@"  "@U.Case.nom@"  "@U.Form.free@"  ]]
+ ;
+
+define RomelStem [ [ {რომ[ე]ლ·ი}:{რომელ} "@U.SyncStem.-@"  "@U.StemType.c@"  | {რომ[ე]ლ·ი}:{რომლ} "@U.SyncStem.+@"  "@U.StemType.c@"  | {რაოდენ·ი}:{რაოდენ} "@U.StemType.c@" ]
+ [  "@U.SubCat.int@"  "@U.Cat.pron@"  |  "@U.Lang.og@"  "@U.SubCat.rel@"  "@U.Cat.pron@" ]
+ ] ;
+
+define IndetStem [ [ {vიღაც}:{ვიღაც} "@U.CaseType.full@"  "@U.Form.free@"  "@U.SubCat.anim@"  "@U.Cat.pron+indef@"  | {რაღაც}:{რაღაც} "@U.CaseType.full@"  "@U.Form.free@"  "@U.SubCat.inanim@"  "@U.Cat.pron+indef@"  | {vიღაც-vიღაც}:{ვიღაც-ვიღაც} "@U.CaseType.full@"  "@U.Form.free@"  "@U.SubCat.anim@"  "@U.Cat.pron+indef@"  | {რაღაც-რაღაც}:{რაღაც-რაღაც} "@U.CaseType.full@"  "@U.Form.free@"  "@U.SubCat.inanim@"  "@U.Cat.pron+indef@"  | {რომელიღაც}:{რომელიღაც} "@U.CaseType.full@"  "@U.Form.free@"  "@U.Cat.pron+indef@" ]
+ [  "@U.SyncStem.+@"  "@U.StemType.c@"  | 0:{ა} "@U.Num.sg@"  "@U.RigidStem.+@"  "@U.SyncStem.-@"  "@U.StemType.ა@"  | 0:{ე} "@U.OldPl.-@"  "@U.Num.pl@"  "@U.SyncStem.-@"  "@U.StemType.ე@" ]
+ ] ;
+
+define DeterminerNg [ [ [ [ {ის}:{ის} "@U.Case.nom@"  | {ეს}:{ეს} "@U.Case.nom@"  | {ეგ}:{ეგ} "@U.Case.nom@"  | {ისა და ის}:{ისა და ის} "@U.Case.nom@"  | {ესა და ეს}:{ესა და ეს} "@U.Case.nom@" ]
+ ( 0:{ა} "@U.Long.+@"  ) ] | [ [ {ის}:{იმ} | {ეს}:{ამ} | {ეგ}:{მაგ} | {ისა და ის}:{იმა და იმ} | {ისა და ის}:{იმადაიმ} | {ესა და ეს}:{ამა და ამ} | {ესა და ეს}:{ამადაამ} | {ეგ}:{მაგ}]
+ ( 0:{ა} "@U.Long.+@"  ) [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ ] | {იგი}:{იგივე} "@U.Case.nom@"  "@U.ModSfx.ვე@"  | {ეგ}:{ეგევე} "@U.Case.nom@"  "@U.ModSfx.ვე@"  | {იგი}:{იმავე}[  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ "@U.ModSfx.ვე@"  | {ეს}:{ამავე}[  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ "@U.ModSfx.ვე@"  | {იგი}:{იმავ}[  "@U.Case.nom@"  |  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@"  |  "@U.Case.inst@"  |  "@U.Case.adv@" ]
+ "@U.ModSfx.ვე@" ]
+  "@U.Lang.ng@"  "@U.Cat.dem@"  ] ;
+
+define DeterminerOg [ [ [ {ისი}:{ისი} "@U.Num.sg@"  "@U.Case.nom@"  | {ესე}:{ესე} "@U.Num.sg@"  "@U.Case.nom@"  | {ეგე}:{ეგე} "@U.Num.sg@"  "@U.Case.nom@"  | {იგი}:{იგი} "@U.Num.sg@"  "@U.Case.nom@" ]
+ | [ [ {იგი}:{მ} "@U.Num.sg@"  | {ესე}:{ამ} "@U.Num.sg@"  | {ეგე}:{მაგ} "@U.Num.sg@"  | {ისი}:{იმ} "@U.Num.sg@" ]
+ [ 0:{ან} "@U.Case.erg@"  | 0:{ას} "@U.Case.dat@"  | 0:{ის} "@U.Case.gen@"  | 0:{ისა} "@U.Case.dir@"  | 0:{ით} "@U.Case.inst@"  | 0:{ად} "@U.Case.adv@" ]
+ ] | {ესე}:{ესენი} "@U.Num.pl@"  "@U.Case.nom@"  | {ეგე}:{ეგენი} "@U.Num.pl@"  "@U.Case.nom@"  | {იგი}:{ისინი} "@U.Num.pl@"  "@U.Case.nom@"  | {ესე}:{ამათ} "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ | {ეგე}:{მაგათ} "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ | {იგი}:{მათ} "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ | {ისი}:{იმათ} "@U.Num.pl@" [  "@U.Case.erg@"  |  "@U.Case.dat@"  |  "@U.Case.gen@" ]
+ | {ესე}:{ამათა} "@U.Num.pl@"  "@U.Case.dir@"  | {ეგე}:{მაგათა} "@U.Num.pl@"  "@U.Case.gen@"  | {ისი}:{იმათა} "@U.Num.pl@"  "@U.Case.dir@" ]
+ ( 0:{ვე} "@U.ModSfx.ვე@"  )  "@U.Lang.og@"  "@U.Cat.dem@"  ] ;
+
+define Conjunction [ [ {და}:{და} "@U.Cat.cj+coord@"  | {თუ}:{თუ} "@U.Cat.cj+coord@"  | {ან}:{ან} "@U.Cat.cj+coord@"  | {ანუ}:{ანუ} "@U.Cat.cj+coord@"  | {ანდა}:{ანდა} "@U.Cat.cj+coord@"  | {არამედ}:{არამედ} "@U.Cat.cj+coord@"  | {თორემ}:{თორემ} "@U.Cat.cj+coord@"  | {თორემა}:{თორემა} "@U.Cat.cj+coord@"  | {თვარემ}:{თვარემ} "@U.Cat.cj+coord@"  | {თორე}:{თორე} "@U.Cat.cj+coord@"  | {დიახაც}:{დიახაც} "@U.Cat.cj+coord@"  | {არადა}:{არადა} "@U.Cat.cj+coord@"  | {თვარა}:{თვარა} "@U.Cat.cj+coord@"  | {ჰე}:{ჰე} "@U.Cat.cj+coord@" ]
+ | [ [ {რომ}:{რომ} "@U.Cat.cj+sub@"  | {რომც}:{რომც} "@U.Cat.cj+sub@"  | {რო}:{რო} "@U.Cat.cj+sub@"  | {რომე}:{რომე} "@U.Cat.cj+sub@"  | {სანამ}:{სანამ} "@U.Cat.cj+sub@"  | {სანამდი}:{სანამდი} "@U.Cat.cj+sub@"  | {სანამდის}:{სანამდის} "@U.Cat.cj+sub@"  | {სანამდისინ}:{სანამდისინ} "@U.Cat.cj+sub@"  | {როდესაც}:{როდესაც} "@U.Cat.cj+sub@"  | {როგორც}:{როგორც} "@U.Cat.cj+sub@"  | {რამწამ}:{რამწამ} "@U.Cat.cj+sub@"  | {რაწამს}:{რაწამს} "@U.Cat.cj+sub@"  | {vითომ}:{vითომ} "@U.Cat.cj+sub@"  | {vითომაც}:{vითომაც} "@U.Cat.cj+sub@"  | {vითომც}:{vითომც} "@U.Cat.cj+sub@"  | {vითომდაც}:{vითომდაც} "@U.Cat.cj+sub@"  | {vითამ}:{vითამ} "@U.Cat.cj+sub@"  | {vითამც}:{vითამც} "@U.Cat.cj+sub@"  | {მითამ}:{მითამ} "@U.Cat.cj+sub@" ]
+ ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ [ {თუ}:{თუ} "@U.Cat.cj+sub@"  | {ნუთუ}:{ნუთუ} "@U.Cat.cj+sub@"  | {ვაითუ}:{ვაითუ} "@U.Cat.cj+sub@"  | {ნეტამც}:{ნეტამც} "@U.Cat.cj+sub@"  | {ნეტავი}:{ნეტავი} "@U.Cat.cj+sub@"  | {თუკი}:{თუკი} "@U.Cat.cj+sub@"  | {რათა}:{რათა} "@U.Cat.cj+sub@"  | {ვიდრე}:{ვიდრე} "@U.Cat.cj+sub@"  | {როცა}:{როცა} "@U.Cat.cj+sub@"  | {თუგინდ}:{თუგინდ} "@U.Cat.cj+sub@"  | {გინათუ}:{გინათუ} "@U.Cat.cj+sub@"  | {vიდრემდე}:{vიდრემდე} "@U.Cat.cj+sub@"  | {vიდრემდის}:{vიდრემდის} "@U.Cat.cj+sub@"  | {vიდრემდენ}:{vიდრემდენ} "@U.Cat.cj+sub@"  | {ვაჲთუ}:{ვაჲთუ} "@U.Cat.cj+sub@"  | {vითომცდა}:{vითომცდა} "@U.Cat.cj+sub@"  | {vითომდა}:{vითომდა} "@U.Cat.cj+sub@"  | {vითამდა}:{vითამდა} "@U.Cat.cj+sub@"  | {vითამცდა}:{vითამცდა} "@U.Cat.cj+sub@"  | {მითამდა}:{მითამდა} "@U.Cat.cj+sub@" ]
+ (  EnclAux  ) ] | [ {vინაიდან}:{vინაიდან} "@U.Cat.cj+sub@"  | {რადგან}:{რადგან} "@U.Cat.cj+sub@"  | {ვინათგან}:{ვინათგან} "@U.Cat.cj+sub@"  | {რაკი}:{რაკი} "@U.Cat.cj+sub@"  | {vითარცა}:{vითარცა} "@U.Cat.cj+sub@"  | {რადგანაც}:{რადგანაც} "@U.Cat.cj+sub@"  | {რახან}:{რახან} "@U.Cat.cj+sub@" ]
+ | [ {vითარცა}:{vითარცა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარ-იგი}:{vითარ-იგი} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარ-ესე}:{vითარ-ესე} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარ-ეგე}:{vითარ-ეგე} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარცა-იგი}:{vითარცა-იგი} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარცა-ესე}:{vითარცა-ესე} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარცა-ეგე}:{vითარცა-ეგე} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარმცა}:{vითარმცა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vინაჲცა}:{vინაჲცა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vინაჲთცა}:{vინაჲთცა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vინაჲთგან}:{vინაჲთგან} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {ოდეს-იგი}:{ოდეს-იგი} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {დაღაცათუ}:{დაღაცათუ} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {დაღათუმცა}:{დაღათუმცა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {vითარმედ}:{vითარმედ} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაჲთა}:{რაჲთა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {უკუთუ}:{უკუთუ} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {უკუeთუ}:{უკუeთუ} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {უკუeთუმცა}:{უკუeთუმცა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {უკეთუ}:{უკეთუ} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაჟამს}:{რაჟამს} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რასჟამს}:{რასჟამს} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაბამად}:{რაბამად} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {გარნა}:{გარნა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {ნუუკუe}:{ნუუკუe} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {გინა}:{გინა} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაჲ}:{რაჲ} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {ღათუ}:{ღათუ} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაჟამს-იგი}:{რაჟამს-იგი} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაჟამს-ესე}:{რაჟამს-ესე} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაჟამს-ეგე}:{რაჟამს-ეგე} "@U.Lang.og@"  "@U.Cat.cj+sub@"  | {რაჟამსღა}:{რაჟამსღა} "@U.Lang.og@"  "@U.Cat.cj+sub@" ]
+]
+ ;
+
+define Adverb [ [ [ {არსად}:{არსად} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არსაიდან}:{არსაიდან} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არსიდან}:{არსიდან} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არსაიდამ}:{არსაიდამ} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არსაიდგან}:{არსაიდგან} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არსაითკენ}:{არსაითკენ} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არსაით}:{არსაით} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ვერსად}:{ვერსად} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერსაიდან}:{ვერსაიდან} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერსიდან}:{ვერსიდან} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერსაიდამ}:{ვერსაიდამ} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერსაიდგან}:{ვერსაიდგან} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერსაითკენ}:{ვერსაითკენ} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერსაით}:{ვერსაით} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ნურსად}:{ნურსად} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურსაიდან}:{ნურსაიდან} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურსიდან}:{ნურსიდან} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურსაიდამ}:{ნურსაიდამ} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურსაიდგან}:{ნურსაიდგან} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურსაითკენ}:{ნურსაითკენ} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურსაით}:{ნურსაით} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {აღარსად}:{აღარსად} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღარსაიდან}:{აღარსაიდან} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღარსაიდამ}:{აღარსაიდამ} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღარსაიდგან}:{აღარსაიდგან} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღარსაითკენ}:{აღარსაითკენ} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღარსაით}:{აღარსაით} "@U.AdvType.loc@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ვეღარსად}:{ვეღარსად} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვეღარსაიდან}:{ვეღარსაიდან} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვეღარსაიდამ}:{ვეღარსაიდამ} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვეღარსაიდგან}:{ვეღარსაიდგან} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვეღარსაითკენ}:{ვეღარსაითკენ} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვეღარსაით}:{ვეღარსაით} "@U.AdvType.loc@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ნუღარსად}:{ნუღარსად} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნუღარსაიდან}:{ნუღარსაიდან} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნუღარსაიდამ}:{ნუღარსაიდამ} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნუღარსაიდგან}:{ნუღარსაიდგან} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნუღარსაითკენ}:{ნუღარსაითკენ} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნუღარსაით}:{ნუღარსაით} "@U.AdvType.loc@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {არასოდეს}:{არასოდეს} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არასდროს}:{არასდროს} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არაოდეს}:{არაოდეს} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {არაოდის}:{არაოდის} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ვერასოდეს}:{ვერასოდეს} "@U.AdvType.temp@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერასდროს}:{ვერასდროს} "@U.AdvType.temp@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვერაოდეს}:{ვერაოდეს} "@U.AdvType.temp@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ნურასსდროს}:{ნურასსდროს} "@U.AdvType.temp@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურასოდეს}:{ნურასოდეს} "@U.AdvType.temp@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნურაოდეს}:{ნურაოდეს} "@U.AdvType.temp@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {აღარასოდეს}:{აღარასოდეს} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღარსოდეს}:{აღარსოდეს} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღარასდროს}:{აღარასდროს} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {აღაროდეს}:{აღაროდეს} "@U.AdvType.temp@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ვეღარასოდეს}:{ვეღარასოდეს} "@U.AdvType.temp@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვეღარასდროს}:{ვეღარასდროს} "@U.AdvType.temp@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ვეღარაოდეს}:{ვეღარაოდეს} "@U.AdvType.temp@"  "@U.NegType.pot@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ {ნუღარასოდეს}:{ნუღარასოდეს} "@U.AdvType.temp@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნუღარასდროს}:{ნუღარასდროს} "@U.AdvType.temp@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@"  | {ნუღარაოდეს}:{ნუღარაოდეს} "@U.AdvType.temp@"  "@U.NegType.imp@"  "@U.SubCat.neg@"  "@U.Cat.adv@" ]
+  CEncliticaCA  ] | [ [ [ {როდის}:{როდის} "@U.AdvType.temp@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {როდეს}:{როდეს} "@U.AdvType.temp@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {ოდეს}:{ოდეს} "@U.AdvType.temp@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {როდემდე}:{როდემდე} "@U.AdvType.temp@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {როდემდის}:{როდემდის} "@U.AdvType.temp@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {როდემდინ}:{როდემდინ} "@U.AdvType.temp@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+ | [ {სად}:{სად} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {საიდან}:{საიდან} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {სიდან}:{სიდან} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {საიდამ}:{საიდამ} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {საიდგან}:{საიდგან} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {საითკენ}:{საითკენ} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {საით}:{საით} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {სადამდე}:{სადამდე} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {სადამდის}:{სადამდის} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {სადამდინ}:{სადამდინ} "@U.AdvType.loc@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+ | [ {რატომ}:{რატომ} "@U.AdvType.causal@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+ | [ {როგორ}:{როგორ} "@U.AdvType.mann@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+]
+  CEncliticaGaCA  ] | [ [ [ {რავა}:{რავა} "@U.AdvType.mann@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+ | [ {რათა}:{რათა} "@U.AdvType.final@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+]
+  VEncliticaGaCA  ] | [ {რათ}:{რათ} "@U.AdvType.final@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+ | [ [ [ {როდისღაც}:{როდისღაც} "@U.AdvType.temp@"  "@U.SubCat.indet@"  "@U.Cat.adv@"  | {როდესღაც}:{როდესღაც} "@U.AdvType.temp@"  "@U.SubCat.indet@"  "@U.Cat.adv@"  | {ოდესღაც}:{ოდესღაც} "@U.AdvType.temp@"  "@U.SubCat.indet@"  "@U.Cat.adv@" ]
+ | [ {სადღაც}:{სადღაც} "@U.AdvType.loc@"  "@U.SubCat.indet@"  "@U.Cat.adv@"  | {საიდანღაც}:{საიდანღაც} "@U.AdvType.loc@"  "@U.SubCat.indet@"  "@U.Cat.adv@"  | {საიდამღაც}:{საიდამღაც} "@U.AdvType.loc@"  "@U.SubCat.indet@"  "@U.Cat.adv@"  | {საიდგანღაც}:{საიდგანღაც} "@U.AdvType.loc@"  "@U.SubCat.indet@"  "@U.Cat.adv@"  | {საითკენღაც}:{საითკენღაც} "@U.AdvType.loc@"  "@U.SubCat.indet@"  "@U.Cat.adv@"  | {საითღაც}:{საითღაც} "@U.AdvType.loc@"  "@U.SubCat.indet@"  "@U.Cat.adv@" ]
+ | [ {რატომღაც}:{რატომღაც} "@U.AdvType.causal@"  "@U.SubCat.indet@"  "@U.Cat.adv@" ]
+ | [ {როგორღაც}:{როგორღაც} "@U.AdvType.mann@"  "@U.SubCat.indet@"  "@U.Cat.adv@" ]
+]
+ ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ [ {vითარ}:{vითარ} "@U.Lang.og@"  "@U.SubCat.int@"  "@U.Cat.adv@"  | {რაჲსაგან}:{რაჲსაგან} "@U.Lang.og@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+  OgRelEnclitica  ] | [ [ {პირისპირ}:{პირისპირ} "@U.Cat.adv@" ]
+  CEncliticaGaCA  ] | [ [ {სად}:{საცა} "@U.RelSfx.ც@"  "@U.SubCat.int@"  "@U.Cat.adv@" ]
+ (  EnclAux  ) ] | [ [ {თან}:{თან} "@U.Cat.adv@"  | {სწორად}:{სწორად} "@U.Cat.adv@"  | {თუნდ}:{თუნდ} "@U.Cat.adv@"  | {ათობით}:{ათობით} "@U.Cat.adv@"  | {ასობით}:{ასობით} "@U.Cat.adv@"  | {ათასობით}:{ათასობით} "@U.Cat.adv@"  | {მილიონობით}:{მილიონობით} "@U.Cat.adv@"  | {ორშაბათობით}:{ორშაბათობით} "@U.Cat.adv@"  | {ჯერჯერობით}:{ჯერჯერობით} "@U.Cat.adv@"  | {თანდათან}:{თანდათან} "@U.Cat.adv@"  | {თანდათანობით}:{თანდათანობით} "@U.Cat.adv@"  | {ზოგან}:{ზოგან} "@U.Cat.adv@"  | {ზოგან-ზოგან}:{ზოგან-ზოგან} "@U.Cat.adv@" ]
+  CEncliticaC  ] | [ [ {კიდეც}:{კიდეც} "@U.Cat.adv@"  | {უკეთ}:{უკეთ} "@U.Cat.adv@"  | {უკეთესად}:{უკეთესად} "@U.Cat.adv@"  | {მარტოოდენ}:{მარტოოდენ} "@U.Cat.adv@"  | {ბოლოცდაბოლოც}:{ბოლოცდაბოლოც} "@U.Cat.adv@"  | {განდაგან}:{განდაგან} "@U.Cat.adv@"  | {გორდაგორ}:{გორდაგორ} "@U.Cat.adv@"  | {გულდაგულ}:{გულდაგულ} "@U.Cat.adv@"  | {დღედადღე}:{დღედადღე} "@U.Cat.adv@"  | {ველდაველ}:{ველდაველ} "@U.Cat.adv@"  | {ზედაზე}:{ზედაზე} "@U.Cat.adv@"  | {ზოლდაზოლ}:{ზოლდაზოლ} "@U.Cat.adv@"  | {ზღვადაზღვა}:{ზღვადაზღვა} "@U.Cat.adv@"  | {თავდათავ}:{თავდათავ} "@U.Cat.adv@"  | {თანდათან}:{თანდათან} "@U.Cat.adv@"  | {თვალდათვალ}:{თვალდათვალ} "@U.Cat.adv@"  | {ისევდაისევ}:{ისევდაისევ} "@U.Cat.adv@"  | {კანდაკან}:{კანდაკან} "@U.Cat.adv@"  | {კარდაკარ}:{კარდაკარ} "@U.Cat.adv@"  | {კვალდაკვალ}:{კვალდაკვალ} "@U.Cat.adv@"  | {კვლავდაკვლავ}:{კვლავდაკვლავ} "@U.Cat.adv@"  | {კიდევდაკიდევ}:{კიდევდაკიდევ} "@U.Cat.adv@"  | {მერედამერე}:{მერედამერე} "@U.Cat.adv@"  | {მთადამთა}:{მთადამთა} "@U.Cat.adv@"  | {მხარდამხარ}:{მხარდამხარ} "@U.Cat.adv@"  | {მხოლოდდამხოლოდ}:{მხოლოდდამხოლოდ} "@U.Cat.adv@"  | {პირდაპირ}:{პირდაპირ} "@U.Cat.adv@"  | {ჟამდაჟამ}:{ჟამდაჟამ} "@U.Cat.adv@"  | {რიგდარიგ}:{რიგდარიგ} "@U.Cat.adv@"  | {ტანდატან}:{ტანდატან} "@U.Cat.adv@"  | {ქარდაქარ}:{ქარდაქარ} "@U.Cat.adv@"  | {შიგდაშიგ}:{შიგდაშიგ} "@U.Cat.adv@"  | {შუქდაშუქ}:{შუქდაშუქ} "@U.Cat.adv@"  | {ცხენდაცხენ}:{ცხენდაცხენ} "@U.Cat.adv@"  | {ძალდაძალ}:{ძალდაძალ} "@U.Cat.adv@"  | {წამდაწამ}:{წამდაწამ} "@U.Cat.adv@"  | {წინდაწინ}:{წინდაწინ} "@U.Cat.adv@"  | {წყალდაწყალ}:{წყალდაწყალ} "@U.Cat.adv@"  | {ხაზდახაზ}:{ხაზდახაზ} "@U.Cat.adv@"  | {ხევდახევ}:{ხევდახევ} "@U.Cat.adv@"  | {ხელდახელ}:{ხელდახელ} "@U.Cat.adv@"  | {ხმალდახმალ}:{ხმალდახმალ} "@U.Cat.adv@"  | {ჩუმჩუმად}:{ჩუმჩუმად} "@U.Cat.adv@"  | {თლათ}:{თლათ} "@U.Cat.adv@" ]
+ ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | [ [ {იმწამსვე}:{იმწამსვე} "@U.Cat.adv@"  | {უფროდაუფრო}:{უფროდაუფრო} "@U.Cat.adv@"  | {აკი}:{აკი} "@U.Cat.adv@"  | {შიგადაშიგა}:{შიგადაშიგა} "@U.Cat.adv@"  | {მაშასადამე}:{მაშასადამე} "@U.Cat.adv@"  | {ტყედატყე}:{ტყედატყე} "@U.Cat.adv@"  | {პირქვე}:{პირქვე} "@U.Cat.adv@"  | {ნუუკვე}:{ნუუკვე} "@U.Cat.adv@"  | {სხუადასხუა}:{სხუადასხუა} "@U.Cat.adv@"  | {ესე იგი}:{ესე იგი} "@U.Cat.adv@"  | {ე. ი.}:{ე. ი.} "@U.Cat.adv@" ]
+ (  EnclAux  ) ] | [ {ამასთანავე}:{ამასთანავე} "@U.Cat.adv@"  | {vინიცობა}:{vინიცობა} "@U.Cat.adv@"  | {vინიცობაა}:{vინიცობაა} "@U.Cat.adv@"  | {სადამე}:{სადამე} "@U.Cat.adv@"  | {მოაქაჟამადმდე}:{მოაქაჟამადმდე} "@U.Cat.adv@"  | {კნინღა}:{კნინღა} "@U.Cat.adv@"  | {კნინღადა}:{კნინღადა} "@U.Cat.adv@"  | {უწინარჱს}:{უწინარჱს} "@U.Cat.adv@"  | {ოდენ}:{ოდენ} "@U.Cat.adv@" ]
+]
+ ;
+
+define Locative [ [ {ადგილი}:{ადგილას} | {ალაგი}:{ალაგას} | {პირი}:{პირას}]
+  "@U.Form.bound@"  "@U.Num.sg@"  "@U.Case.dat@"  "@U.Cat.n@"  [  CEnclitica  | 0:{ა} | [ [ 0:{ავით} "@U.Pp.ვით@"  | 0:{თან} "@U.Pp.თან@" ]
+  CEnclitica  ]]
+ ] ;
+
+define Interjection [ {აღუ}:{აღუ} "@U.Cat.ij@"  | {ამპა}:{ამპა} "@U.Cat.ij@"  | {არიქა}:{არიქა} "@U.Cat.ij@"  | {გუგუ}:{გუგუ} "@U.Cat.ij@"  | {ნწუ}:{ნწუ} "@U.Cat.ij@"  | {ტფუ}:{ტფუ} "@U.Cat.ij@"  | {რა}:{რა} "@U.Cat.ij@"  | {რაღა}:{რაღა} "@U.Cat.ij@"  | {ვიშ}:{ვიშ} "@U.Cat.ij@"  | {გამარჯობა}:{გამარჯობა} "@U.Cat.ij@"  | {გამარჯობათ}:{გამარჯობათ} "@U.Cat.ij@"  | {ღმერთმანი}:{ღმერთმანი} "@U.Cat.ij@"  | {გეთაყვა}:{გეთაყვა} "@U.Cat.ij@"  | {გეთაყვანე}:{გეთაყვანე} "@U.Cat.ij@"  | {გენაცვალე}:{გენაცვალე} "@U.Cat.ij@"  | {ვენაცვალე}:{ვენაცვალე} "@U.Cat.ij@"  | {ამჱნ}:{ამჱნ} "@U.Cat.ij@"  | {აჰა}:{აჰა} "@U.Cat.ij@"  | {დეე}:{დეე} "@U.Cat.ij@"  | {დაე}:{დაე} "@U.Cat.ij@"  | {ოჰ}:{ოჰ} "@U.Cat.ij@"  | {უჰ}:{უჰ} "@U.Cat.ij@"  | {ჰა}:{ჰა} "@U.Cat.ij@"  | {ჵ}:{ჵ} "@U.Cat.ij@"  | {ო}:{ო} "@U.Cat.ij@"  | {ოჲ}:{ოჲ} "@U.Cat.ij@"  | {ვაჲ}:{ვაჲ} "@U.Cat.ij@"  | {ჰაბა}:{ჰაბა} "@U.Cat.ij@"  | {ვაშა}:{ვაშა} "@U.Cat.ij@"  | {ეჰა}:{ეჰა} "@U.Cat.ij@"  | {უიმე}:{უიმე} "@U.Cat.ij@"  | {ვაიმე}:{ვაიმე} "@U.Cat.ij@"  | {ვუი}:{ვუი} "@U.Cat.ij@"  | {ვუიმე}:{ვუიმე} "@U.Cat.ij@"  | {ჰაი}:{ჰაი} "@U.Cat.ij@"  | {ჰაპაპაპა}:{ჰაპაპაპა} "@U.Cat.ij@"  | {აკი}:{აკი} "@U.Cat.ij@"  | {დია}:{დია} "@U.Cat.ij@"  | {ურაა}:{ურაა} "@U.Cat.ij@"  | {დროებით}:{დროებით} "@U.Cat.ij@"  | {ე}:{ე} "@U.Cat.ij@"  | {ერთი}:{ერთი} "@U.Cat.ij@"  | {კარგი}:{კარგი} "@U.Cat.ij@"  | {მაგრა}:{მაგრა} "@U.Cat.ij@"  | {მაგრად}:{მაგრად} "@U.Cat.ij@"  | {მართლა}:{მართლა} "@U.Cat.ij@"  | {მშვიდობით}:{მშვიდობით} "@U.Cat.ij@"  | {როგორ}:{როგორ} "@U.Cat.ij@"  | {როგორა}:{როგორა} "@U.Cat.ij@"  | {საქაფროთ}:{საქაფროთ} "@U.Cat.ij@"  | {სიცოცხლე}:{სიცოცხლე} "@U.Cat.ij@"  | {სუ}:{სუ} "@U.Cat.ij@"  | {ფრთხილად}:{ფრთხილად} "@U.Cat.ij@"  | {ქვე}:{ქვე} "@U.Cat.ij@"  | {ძლივს}:{ძლივს} "@U.Cat.ij@"  | {წესიერად}:{წესიერად} "@U.Cat.ij@"  | {წინ}:{წინ} "@U.Cat.ij@"  | {წიო-წიო}:{წიო-წიო} "@U.Cat.ij@"  | {ხევ-ხევ}:{ხევ-ხევ} "@U.Cat.ij@"  | {ჯერჯერობით}:{ჯერჯერობით} "@U.Cat.ij@"  | {ჰო}:{ჰო} "@U.Cat.ij@"  | {ჰე}:{ჰე} "@U.Cat.ij@"  | {ფუჰ}:{ფუჰ} "@U.Cat.ij@"  | {ეჰ}:{ეჰ} "@U.Cat.ij@"  | {ვაი}:{ვაი} "@U.Cat.ij@"  | {ვააი}:{ვააი} "@U.Cat.ij@"  | {ვაააო}:{ვაააო} "@U.Cat.ij@"  | {ნეტაი}:{ნეტაი} "@U.Cat.ij@"  | {ატატა-ბატატა}:{ატატა-ბატატა} "@U.Cat.ij@"  | {ლარსე}:{ლარსე} "@U.Cat.ij@"  | {ლურსე}:{ლურსე} "@U.Cat.ij@"  | {ცრუტ}:{ცრუტ} "@U.Cat.ij@"  | {ჭირიმე}:{ჭირიმე} "@U.Cat.ij@"  | {ჭირიმეთ}:{ჭირიმეთ} "@U.Cat.ij@"  | {კვნესამე}:{კვნესამე} "@U.Cat.ij@"  | {ქა}:{ქა} "@U.Cat.ij@"  | {ჰმ}:{ჰმ} "@U.Cat.ij@"  | {ჰოი}:{ჰოი} "@U.Cat.ij@"  | {ჰი}:{ჰი} "@U.Cat.ij@"  | {ჰა}:{ჰა} "@U.Cat.ij@"  | {ჰაა}:{ჰაა} "@U.Cat.ij@"  | {ჰააა}:{ჰააა} "@U.Cat.ij@"  | {ჰაი-ჰუუუი}:{ჰაი-ჰუუუი} "@U.Cat.ij@"  | {ჰუუი}:{ჰუუი} "@U.Cat.ij@"  | {ხი-ხი-ხი}:{ხი-ხი-ხი} "@U.Cat.ij@"  | {იჰ}:{იჰ} "@U.Cat.ij@"  | {ოჰ}:{ოჰ} "@U.Cat.ij@"  | {ოოჰ}:{ოოჰ} "@U.Cat.ij@"  | {აჰ}:{აჰ} "@U.Cat.ij@"  | {ააჰ}:{ააჰ} "@U.Cat.ij@"  | {ეფფათა}:{ეფფათა} "@U.Cat.ij@"  | {ბიჭოს}:{ბიჭოს} "@U.Cat.ij@"  | {ძამია}:{ძამია} "@U.Cat.ij@"  | {ქაა}:{ქაა} "@U.Cat.ij@"  | {აბა}:{აბა} "@U.Cat.ij@"  | {ფუი}:{ფუი} "@U.Cat.ij@"  | {ჰოპლა}:{ჰოპლა} "@U.Cat.ij@"  | {ჰოოპლა}:{ჰოოპლა} "@U.Cat.ij@"  | {შენი ჭირიმე}:{შენი ჭირიმე} "@U.Cat.ij@"  | {ტო}:{ტო} "@U.Cat.ij@" ]
+ ;
+
+define PossessedNounStem [ [ {მამა}:{მამა} | {მამი}:{მამი} | {დედა}:{დედა} | {დედი}:{დედი} | {ბებია}:{ბებია} | {ბიძა}:{ბიძა} | {ბაბუა}:{ბაბუა} | {პაპა}:{პაპა} | {დეიდა}:{დეიდა} | {მამიდა}:{მამიდა} | {ბიცოლა}:{ბიცოლა} | {დიდედა}:{დიდედა} | {ბებო}:{ბებო} | {პაპიდა}:{პაპიდა} | {ნათლია}:{ნათლია} | {ბაბუ}:{ბაბუ} | {ბატონი}:{ბატონი} | {გადია}:{გადია}]
+ [ {ჩემ·ი}:{ჩემ} "@U.PossPers.1sg@"  | {შენ·ი}:{შენ} "@U.PossPers.2sg@"  | {ჩვენ·ი}:{ჩვენ} "@U.PossPers.1pl@"  | {თქვენ·ი}:{თქვენ} "@U.PossPers.2pl@"  | {მის·ი}:{მის} "@U.PossPers.3sg@"  | {მათ·ი}:{მათ} "@U.PossPers.3pl@" ]
+  "@U.StemType.c@"  "@U.SubCat.anim@"  "@U.Cat.n@"  ] ;
+
+define PronPoss12Stem [ [ {ჩემ·ი}:{ჩემ} "@U.PossPers.1sg@"  | {შენ·ი}:{შენ} "@U.PossPers.2sg@"  | {ჩვენ·ი}:{ჩვენ} "@U.PossPers.1pl@"  "@U.Lang.ng@"  | {თქვენ·ი}:{თქვენ} "@U.PossPers.2pl@"  "@U.Lang.ng@"  | {ჩუენ·ი}:{ჩუeნ} "@U.PossPers.1pl@"  "@U.Lang.og@"  | {თქუენ·ი}:{თქუeნ} "@U.PossPers.2pl@"  "@U.Lang.og@" ]
+  "@U.StemType.c@"  "@U.SubCat.poss@"  "@U.Cat.pron@"  ] ;
+
+define PronPoss3Stem [ [ {მის·ი}:{მის} "@U.PossPers.3sg@"  | {ამის·ი}:{ამის} "@U.Deixis.prox@"  "@U.PossPers.3sg@"  | {იმის·ი}:{იმის} "@U.Deixis.dist@"  "@U.PossPers.3sg@"  | {მაგის·ი}:{მაგის} "@U.Deixis.med@"  "@U.PossPers.3sg@"  | {თავის·ი}:{თავის} "@U.Refl.+@"  "@U.PossPers.3sg@"  | {თვის·ი}:{თვის} "@U.Lang.og@"  "@U.Refl.+@"  "@U.PossPers.3sg@"  | {მათ·ი}:{მათ} "@U.PossPers.3pl@"  | {ამათ·ი}:{ამათ} "@U.Deixis.prox@"  "@U.PossPers.3pl@"  | {იმათ·ი}:{იმათ} "@U.Deixis.dist@"  "@U.PossPers.3pl@"  | {მაგათ·ი}:{მაგათ} "@U.Deixis.med@"  "@U.PossPers.3pl@"  | {თავიანთ·ი}:{თავიანთ} "@U.Refl.+@"  "@U.PossPers.3pl@" ]
+  "@U.StemType.c@"  "@U.SubCat.poss@"  "@U.Cat.pron@"  ] ;
+
+define PronPoss3StemDat [ [ {მის·ი}:{მის} "@U.PossPers.3sg@"  | {ამის·ი}:{ამის} "@U.Deixis.prox@"  "@U.PossPers.3sg@"  | {იმის·ი}:{იმის} "@U.Deixis.dist@"  "@U.PossPers.3sg@"  | {მაგის·ი}:{მაგის} "@U.Deixis.med@"  "@U.PossPers.3sg@"  | {თავის·ი}:{თავის} "@U.Refl.+@"  "@U.PossPers.3sg@"  | {თვის·ი}:{თვის} "@U.Lang.og@"  "@U.Refl.+@"  "@U.PossPers.3sg@"  | {მათ·ი}:{მათს} "@U.PossPers.3pl@"  | {ამათ·ი}:{ამათს} "@U.Deixis.prox@"  "@U.PossPers.3pl@"  | {იმათ·ი}:{იმათს} "@U.Deixis.dist@"  "@U.PossPers.3pl@"  | {მაგათ·ი}:{მაგათს} "@U.Deixis.med@"  "@U.PossPers.3pl@"  | {თავიანთ·ი}:{თავიანთს} "@U.Refl.+@"  "@U.PossPers.3pl@" ]
+  "@U.StemType.c@"  "@U.SubCat.poss@"  "@U.Cat.pron@"  ] ;
+
+define PronReflStem [ {თავ·ი}:{თავ} "@U.Lang.ng@"  "@U.StemType.c@"  "@U.Refl.+@"  "@U.Num.sg@"  "@U.Cat.pron@"  | {თ[ა]ვ·ი}:{თავ} "@U.Lang.og@"  "@U.StemType.c@"  "@U.SyncStem.-@"  "@U.Refl.+@"  "@U.Num.sg@"  "@U.Cat.pron@"  | {თ[ა]ვ·ი}:{თვ} "@U.Lang.og@"  "@U.StemType.c@"  "@U.SyncStem.+@"  "@U.Refl.+@"  "@U.Num.sg@"  "@U.Cat.pron@"  | {თავის-თავ·ი}:{თავის-თავ} "@U.StemType.c@"  "@U.Refl.+@"  "@U.Num.sg@"  "@U.Cat.pron@" ]
+ ;
+
+define PronNegStem [ [ [ {არაფ[ე]რ·ი}:{არაფერ} "@U.SyncStem.-@"  | {ვერაფ[ე]რ·ი}:{ვერაფერ} "@U.NegType.pot@"  "@U.SyncStem.-@"  | {ნურაფ[ე]რ·ი}:{ნურაფერ} "@U.NegType.imp@"  "@U.SyncStem.-@"  | {აღარაფ[ე]რ·ი}:{აღარაფერ} "@U.SyncStem.-@"  | {ვეღარაფ[ე]რ·ი}:{ვეღარაფერ} "@U.NegType.pot@"  "@U.SyncStem.-@"  | {ნუღარაფ[ე]რ·ი}:{ნუღარაფერ} "@U.NegType.imp@"  "@U.SyncStem.-@"  | {არაფ[ე]რ·ი}:{არაფრ} "@U.SyncStem.+@"  | {ვერაფ[ე]რ·ი}:{ვერაფრ} "@U.NegType.pot@"  "@U.SyncStem.+@"  | {ნურაფ[ე]რ·ი}:{ნურაფრ} "@U.NegType.imp@"  "@U.SyncStem.+@"  | {აღარაფ[ე]რ·ი}:{აღარაფრ} "@U.SyncStem.+@"  | {ვეღარაფ[ე]რ·ი}:{ვეღარაფრ} "@U.NegType.pot@"  "@U.SyncStem.+@"  | {ნუღარაფ[ე]რ·ი}:{ნუღარაფრ} "@U.NegType.imp@"  "@U.SyncStem.+@" ]
+  "@U.StemType.c@" [  "@U.Cat.quant@"  |  "@U.Cat.pron+neg+inanim@" ]
+ ] | [ [ {არა}:{არა} | {ვერა}:{ვერა} "@U.NegType.pot@"  | {ნურა}:{ნურა} "@U.NegType.imp@"  | {აღარა}:{აღარა} | {ვეღარა}:{ვეღარა} "@U.NegType.pot@"  | {ნუღარა}:{ნუღარა} "@U.NegType.imp@" ]
+  "@U.SyncStem.-@"  "@U.RigidStem.+@"  "@U.StemType.ა@"  "@U.Cat.pron+neg+inanim@"  ]]
+ ;
+
+define Negation [ [ [ [ {არ}:{არ} | {როდი}:{როდი} | {ვერ}:{ვერ} "@U.NegType.pot@"  | {აღარ}:{აღარ} | {არღარ}:{არღარ} "@U.Lang.og@"  | {ვეღარ}:{ვეღარ} "@U.NegType.pot@"  | {ვერღარ}:{ვერღარ} "@U.Lang.og@"  "@U.NegType.pot@" ]
+ ( [ 0:{ა} "@U.Long.+@"  | [ 0:{ა} "@U.Lang.ng@"  "@U.Long.+@"   EnclAux  ] | [ 0:{ც} "@U.Lang.ng@"  "@U.RelSfx.ც@"  ( [ 0:{ა} "@U.Long.+@"  (  EnclAux  ) ] ) ] | 0:{ცა} "@U.Lang.og@"  "@U.RelSfx.ცა@" ]
+ ) ] | {ნუ}:{ნუ} "@U.NegType.imp@"  | [ [ {ნუღარ}:{ნუღარ} "@U.NegType.imp@"  | {ნუ}:{ნურც} "@U.RelSfx.ც@"  "@U.NegType.imp@"  | {ნუღარ}:{ნუღარც} "@U.RelSfx.ც@"  "@U.NegType.imp@" ]
+ ( 0:{ა} "@U.Long.+@"  ) ]]
+  "@U.Cat.neg@"  ] ;
+
+define Noun [ [ [  Stem  |  PossessedNounStem  |  PronReflStem  |  PronNegStem  |  IndetStem ]
+ [  NomGroup  |  ErgGroup  |  VocGroup  | [  "@U.CaseType.full@"  [  DatGroup  |  GenGroup  |  InstGroup  |  AdvGroup  |  OldPlural ]
+ ]]
+ ] | [  RomelStem  [  NomGroup  |  ErgGroup  | [  "@U.CaseType.full@"  [  DatGroup  |  GenGroup  |  InstGroup  |  AdvGroup  |  OldPlural ]
+ ]]
+ (  OgRelEnclitica  ) ] | [ [  PronPoss3Stem  |  PronPoss12Stem ]
+ [  NomGroup  |  ErgGroup  |  VocGroup  | [ 0:{ს}[  "@U.Case.dat@"  |  "@U.Case.adv@" ]
+ "@U.CaseType.reduced@"  ] | [ 0:{ის} "@U.Case.gen@"  "@U.CaseType.reduced@"  ] | [  "@U.CaseType.full@"  [  InstGroup  |  AdvGroup  |  OldPlural ]
+ ]]
+ ] | [ [  PronPoss3StemDat  | [  PronPoss12Stem  0:{ს} ]]
+ [ 0:{ას} "@U.Case.dat@"  "@U.CaseType.full@"  ] ] |  Locative  |  Pronoun  |  DeterminerNg  |  DeterminerOg  |  Postposition  |  Interjection  |  Adverb  |  InterrogativeRelative  |  Indefinite  |  PronNegative  |  Conjunction  |  Negation ]
+ ;
+
+
+# <----- automatically inserted end   -----
+
+
+save defined noun.vars
+
+define RFDNoun Noun
+       	       ResolveCatFlagDiacritics ResolveNounFlagDiacritics
+               [ "@R.EnclQopna.+@" "+Encl:Aux":0 | "@D.EnclQopna.+@" ];
+
+read regex [ 0 <- "+Sg" || "+Refl" ?* _ ] .o. RFDNoun ;
+
+echo > eliminate flag Cat
+eliminate flag Cat
+echo > eliminate flag SubCat
+eliminate flag SubCat
+echo > eliminate flag Pv
+eliminate flag Pv
+echo > eliminate flag NaPastPart
+eliminate flag NaPastPart
+
+  echo > eliminate flag DCat
+  eliminate flag DCat
+  echo > eliminate flag DDCat
+  eliminate flag DDCat
+  echo > eliminate flag DCase
+  eliminate flag DCase
+  echo > eliminate flag StemType
+  eliminate flag StemType
+echo > eliminate flag Refl
+eliminate flag Refl
+
+
+  echo > eliminate flag Form
+  eliminate flag Form
+#  echo > eliminate flag DetForm
+#  eliminate flag DetForm
+  echo > eliminate flag Lang
+  eliminate flag Lang
+
+
+ echo > eliminate flag Morph
+ eliminate flag Morph
+ echo > eliminate flag Comp-Pp
+ eliminate flag Comp-Pp
+# echo > eliminate flag Lex
+# eliminate flag Lex
+ echo > eliminate flag Comp-Case
+ eliminate flag Comp-Case
+
+  echo > eliminate flag Pers
+  eliminate flag Pers
+  echo > eliminate flag PossPers
+  eliminate flag PossPers
+  echo > eliminate flag RigidStem
+  eliminate flag RigidStem
+ # echo > eliminate flag Pp
+ # eliminate flag Pp
+  echo > eliminate flag Case
+  eliminate flag Case
+  echo > eliminate flag CaseType
+  eliminate flag CaseType
+  echo > eliminate flag Num
+  eliminate flag Num
+  echo > eliminate flag DNum
+  eliminate flag DNum
+  echo > eliminate flag DDNum
+  eliminate flag DDNum
+  echo > eliminate flag Double
+  eliminate flag Double
+  echo > eliminate flag OldPl
+  eliminate flag OldPl
+  echo > eliminate flag DOldPl
+  eliminate flag DOldPl
+  echo > eliminate flag DDOldPl
+  eliminate flag DDOldPl
+  echo > eliminate flag DoubleOldPl
+  eliminate flag DoubleOldPl
+  echo > eliminate flag DerType
+  eliminate flag DerType
+  echo > eliminate flag PlStem
+  eliminate flag PlStem
+  echo > eliminate flag SyncStem
+  eliminate flag SyncStem
+echo > eliminate flag DDCase
+eliminate flag DDCase
+  echo > eliminate flag Long
+  eliminate flag Long
+  echo > eliminate flag DLong
+  eliminate flag DLong
+  echo > eliminate flag DDLong
+  eliminate flag DDLong
+echo > eliminate flag DSubCat
+eliminate flag DSubCat
+echo > eliminate flag DDSubCat
+eliminate flag DDSubCat
+  echo > eliminate flag RelSfx
+  eliminate flag RelSfx
+  echo > eliminate flag ModSfx
+  eliminate flag ModSfx
+  echo > eliminate flag Approx
+  eliminate flag Approx
+  echo > eliminate flag Repet
+  eliminate flag Repet
+  echo > eliminate flag Deixis
+  eliminate flag Deixis
+#  echo > eliminate flag DDL
+#  eliminate flag DDL
+
+# endif
+
+echo > eliminate flag EnclQopna
+eliminate flag EnclQopna
+
+echo > eliminate flag NegType
+eliminate flag NegType
+
+echo > eliminate flag AdvType
+eliminate flag AdvType
+
+echo > eliminate flag Style
+eliminate flag Style
+echo > eliminate flag Deriv
+eliminate flag Deriv
+
+
+define Noun ;
+
+#define Card [?* "+Num" "+Card" ?* ] .o. Noun ;
+
+#define CardNom [?* [ "+Nom" | "+Gen" | "+Inst"] ?* ] .o. Card ;
+#define CardDat [?* [ "+Dat" | "+Advb" ] ?* ] .o. Card ;
+#define CardErg [?* "+Erg" ?* ] .o. Card ;
+
+#define CardRedNom [ [?* "+Num" "+Card" "+Alpha" "+Nom" "+Att" ?* ] .o. CardNom .o. ["-" -> 0, "–" -> 0 ]].l ;
+
+#define CardRedDat [ CardRedNom .o. [ ი -> 0 || _ .#. ] ] ;
+#define CardRedErg [ CardRedNom .o. [ ი -> {მა} || _ .#. ] ] ;
+
+# is empty!
+#define Range [ CardRedNom "-" CardNom
+#       	     | CardRedDat "-" CardDat
+#       	     | CardRedErg "-" CardErg
+#	     ] ;
+
+read regex      Noun # [ Noun | Range ]
+     	    .o. [ {აd} (->) დ || [ლ|მ|ნ|რ] _ ] #  იერუსალჱმდ
+	    .o. [ {ილაd} (->) {იდ} ] # სიკუდიდ(მდე)
+	    .o. [ d -> დ ]
+	    .o. [ V -> ვ ]
+	    ;
+
+echo save stack noun.fst
+save stack noun.fst
+
+# EOF

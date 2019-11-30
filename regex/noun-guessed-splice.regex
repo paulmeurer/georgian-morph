@@ -1,0 +1,224 @@
+set recursive-define ON
+
+define Stem [ [ a | e | o | u | i | b|g|d|v|z|T|k|l|m|n|p|Z|r|s|t|P|K|G|q|S|X|C|j|c|x|H|J|h ]+
+       	      [ [ a | e | o | u ] "@U.StemType.v@"
+       	      | [ b|g|d|v|z|T|k|l|m|n|p|Z|r|s|t|P|K|G|q|S|X|C|j|c|x|H|J|h ] i:0 "@U.StemType.c@" ]
+       	      "@U.Cat.prop@" "@U.Style.guessed@" ] ;
+
+# still missing: '-Taganze' etc. ('XvenTaganze')
+define AugmentFlagDiacritics [
+  "@D.DDCase@"
+  [ "@R.DCat.prop@" "@U.DDCat.prop@" | "@D.DCat.prop@" ]
+  [ "@R.DCase.gen@" "@U.DDCase.gen@" | "@D.DCase.gen@" ]
+  [ "@R.DCase.nom@" "@U.DDCase.nom@" | "@D.DCase.nom@" ]
+  [ "@R.DNum.sg@" "@U.DDNum.sg@" | "@D.DNum.sg@" ]
+  [ "@R.DNum.pl@" "@U.DDNum.pl@" | "@D.DNum.pl@" ]
+  [ "@R.DOldPl.+@" "@U.DDOldPl.+@" | "@D.DOldPl.+@" ]
+  [ "@R.DLong.+@" "@U.DDLong.+@" | "@D.DLong.+@" ]
+
+  "@C.DCat@" "@C.DNum@" "@C.DOldPl@" "@C.DCase@"
+
+  [ "@R.Cat.prop@" "@U.DCat.prop@" | "@D.Cat.prop@" ]
+  [ "@R.Case.nom@" "@U.DCase.nom@" | "@D.Case.nom@" ]
+  [ "@R.Case.gen@" "@U.DCase.gen@" | "@D.Case.gen@" ]
+  [ "@R.Num.sg@" "@U.DNum.sg@" | "@D.Num.sg@" ]
+  [ "@R.Num.pl@" "@U.DNum.pl@" | "@D.Num.pl@" ]
+  [ "@R.OldPl.+@" "@U.DOldPl.+@" | "@D.OldPl.+@" ]
+  [ "@R.Long.+@" "@U.DLong.+@" | "@D.Long.+@" ]
+
+ "@C.PlStem@" "@C.SyncStem@" "@C.Num@" "@C.OldPl@" "@C.CaseType@" "@C.StemType@" "@C.RigidStem@"
+ "@C.Case@" "@C.Pers@" "@C.Form@" "@C.Cat@" # "@U.Cat.prop@"
+ "@C.Long@" ] ;
+
+define ResolveCatFlagDiacritics  [
+  [ "@R.DDCase@" "@R.DDCase.gen@" "@R.Pp.gan@" "@R.DDOldPl.+@"
+  [ [ "@R.Cat.n@" "+DDN":0 | "@D.Cat.n@" ]
+    [ "@R.DCat.n@" "+DN":0 | "@D.DCat.n@" ]
+    [ "@R.DDCat.prop@" "+Prop":0 | "@D.DDCat.prop@" ]
+    
+    ]
+
+  | "@D.DDCase@" "@R.DCase@"
+  [ [ "@R.Cat.n@" "+DN":0 | "@D.Cat.n@" ]
+    [ "@R.DCat.prop@" "+Prop":0 | "@D.DCat.prop@" ]
+    
+    ]
+
+  | "@D.DDCase@" "@D.DCase@"
+  [ [ "@R.Cat.prop@" "+Prop":0 | "@D.Cat.prop@" ]
+    ]]
+ ]
+ ;
+
+# @R..@ : Require, @D..@ : Disallow, @U..@ : Unification test, @C..@ : Clear feature
+define ResolveNounFlagDiacritics [
+
+  [ "@R.DDCase@" "@R.DDCase.gen@" "@R.Pp.gan@" "@R.DDOldPl.+@"
+  [ [ "@R.Case.voc@" "+DDVoc":0 | "@D.Case.voc@" ]
+    [ "@R.Case.adv@" "+DDAdv":0 | "@D.Case.adv@" ]
+    [ "@R.Case.dat@" "+DDDat":0 | "@D.Case.dat@" ]
+    [ "@R.Case.erg@" "+DDErg":0 | "@D.Case.erg@" ]
+    [ "@R.Case.inst@" "+DDInst":0 | "@D.Case.inst@" ]
+    [ "@R.Case.gen@" "+DDGen":0 | "@D.Case.gen@" ]
+    [ "@R.Case.nom@" "+DDNom":0 | "@D.Case.nom@" ]
+    [ "@R.Num.sg@" "+DDSg":0 | "@D.Num.sg@" ]
+    [ "@R.Num.pl@" "+DDPl":0 | "@D.Num.pl@" ]
+    [ "@R.OldPl.+@" "+DDOldPl":0 | "@D.OldPl.+@" ]
+    [ "@R.Long.+@" "+DDLong":0 | "@D.Long.+@" ]
+    [ "@R.Style.guessed@" ["+Guessed"]:0 | "@D.Style.guessed@" ]
+
+
+    [ "@R.DCase.gen@" "+DGen":0 | "@D.DCase.gen@" ]
+    [ "@R.DNum.sg@" "+DSg":0 | "@D.DNum.sg@" ]
+    [ "@R.DNum.pl@" "+DPl":0 | "@D.DNum.pl@" ]
+    [ "@R.DOldPl.+@" "+DOldPl":0 | "@D.DOldPl.+@" ]
+    [ "@R.DLong.+@" "+DLong":0 | "@D.DLong.+@" ]
+
+    [ "@R.DDCase.gen@" "+Gen":0 | "@D.DDCase.gen@" ] # only one disjunct is possible
+    [ "@R.DDNum.sg@" "+Sg":0 | "@D.DDNum.sg@" ]
+    [ "@R.DDNum.pl@" "+Pl":0 | "@D.DDNum.pl@" ]
+    [ "@R.DDOldPl.+@" "+OldPl":0 | "@D.DDOldPl.+@" ] # only one disjunct is possible
+    [ "@R.DDLong.+@" "+Long":0 | "@D.DDLong.+@" ]
+    
+    ]
+
+  | "@D.DDCase@" "@R.DCase@"
+  [ [ "@R.Case.voc@" "+DVoc":0 | "@D.Case.voc@" ]
+    [ "@R.Case.adv@" "+DAdv":0 | "@D.Case.adv@" ]
+    [ "@R.Case.dat@" "+DDat":0 | "@D.Case.dat@" ]
+    [ "@R.Case.erg@" "+DErg":0 | "@D.Case.erg@" ]
+    [ "@R.Case.inst@" "+DInst":0 | "@D.Case.inst@" ]
+    [ "@R.Case.gen@" "+DGen":0 | "@D.Case.gen@" ]
+    [ "@R.Case.nom@" "+DNom":0 | "@D.Case.nom@" ]
+    [ "@R.Num.sg@" "+DSg":0 | "@D.Num.sg@" ]
+    [ "@R.Num.pl@" "+DPl":0 | "@D.Num.pl@" ]
+    [ "@R.OldPl.+@" "+DOldPl":0 | "@D.OldPl.+@" ]
+    [ "@R.Long.+@" "+DLong":0 | "@D.Long.+@" ]
+    [ "@R.Style.guessed@" ["+Guessed"]:0 | "@D.Style.guessed@" ]
+    
+    [ "@R.DCase.gen@" "+Gen":0 | "@D.DCase.gen@" ]
+    [ "@R.DNum.sg@" "+Sg":0 | "@D.DNum.sg@" ]
+    [ "@R.DNum.pl@" "+Pl":0 | "@D.DNum.pl@" ]
+    [ "@R.DOldPl.+@" "+OldPl":0 | "@D.DOldPl.+@" ]
+    [ "@R.DLong.+@" "+Long":0 | "@D.DLong.+@" ] 
+    [ "@R.DerType.iani@" "+Iani":0 | "@D.DerType.iani@" ]
+    ]
+
+  | "@D.DDCase@" "@D.DCase@"
+  [ [ "@R.Case.voc@" "+Voc":0 | "@D.Case.voc@" ]
+    [ "@R.Case.adv@" "+Adv":0 | "@D.Case.adv@" ]
+    [ "@R.Case.dat@" "+Dat":0 | "@D.Case.dat@" ]
+    [ "@R.Case.erg@" "+Erg":0 | "@D.Case.erg@" ]
+    [ "@R.Case.inst@" "+Inst":0 | "@D.Case.inst@" ]
+    [ "@R.Case.gen@" "+Gen":0 | "@D.Case.gen@" ]
+    [ "@R.Case.nom@" "+Nom":0 | "@D.Case.nom@" ]
+    [ "@R.Pers.3@" "+3":0 | "@D.Pers.3@" ]
+    [ "@R.Num.sg@" "+Sg":0 | "@D.Num.sg@" ]
+    [ "@R.Num.pl@" "+Pl":0 | "@D.Num.pl@" ]
+    [ "@R.OldPl.+@" "+OldPl":0 | "@D.OldPl.+@" ]
+    [ "@R.Long.+@" "+Long":0 | "@D.Long.+@" ]
+    [ "@R.Style.guessed@" ["+Guessed"]:0 | "@D.Style.guessed@" ]
+    ]]
+
+  [ "@R.CaseType.reduced@" "+Reduced":0 | "@D.CaseType.reduced@" ]
+  [ "@R.CaseType.full@" "+Full":0 | "@D.CaseType.full@" ]
+  [ "@R.Pp.dmi@" "+Dmi":0 | "@D.Pp.dmi@" ]
+  [ "@R.Pp.ebriv@" "+Ebriv":0 | "@D.Pp.ebriv@" ]
+  [ "@R.Pp.ebr@" "+Ebr":0 | "@D.Pp.ebr@" ]
+  [ "@R.Pp.mebr@" "+Mebr":0 | "@D.Pp.mebr@" ]
+  [ "@R.Pp.ken@" "+Ken":0 | "@D.Pp.ken@" ]
+  [ "@R.Pp.Tvis@" "+Tvis":0 | "@D.Pp.Tvis@" ]
+  [ "@R.Pp.gan@" "+Gan":0 | "@D.Pp.gan@" ]
+  [ "@R.Pp.dan@" "+Dan":0 | "@D.Pp.dan@" ]
+  [ "@R.Pp.mde@" "+Mde":0 | "@D.Pp.mde@" ]
+  [ "@R.Pp.mdis@" "+Mdis":0 | "@D.Pp.mdis@" ]
+  [ "@R.Pp.kveS@" "+Kves":0 | "@D.Pp.kveS@" ]
+  [ "@R.Pp.cin@" "+Cin":0 | "@D.Pp.cin@" ]
+  [ "@R.Pp.ze@" "+Ze":0 | "@D.Pp.ze@" ]
+  [ "@R.Pp.Si@" "+Si":0 | "@D.Pp.Si@" ]
+  [ "@R.Pp.Tan@" "+Tan":0 | "@D.Pp.Tan@" ]
+  [ "@R.Pp.viT@" "+Vit":0 | "@D.Pp.viT@" ]
+  [ "@R.NegType.pot@" "+Pot":0 | "@D.NegType.pot@" ]
+  [ "@R.NegType.imp@" "+Imp":0 | "@D.NegType.imp@" ]
+  [ "@R.ModSfx.Ga@" "+Ga":0 | "@D.ModSfx.Ga@" ]
+  [ "@R.ModSfx.ve@" "+Ve":0 | "@D.ModSfx.ve@" ]
+  [ "@R.Approx.+@" "+Approx":0 | "@D.Approx.+@" ]
+  [ "@R.Repet.+@" "+Repet":0 | "@D.Repet.+@" ]
+  [ "@R.RelSfx.C@" "+C":0 | "@D.RelSfx.C@" ]
+  [ "@R.EnclQopna.+@" "+Aux":0 | "@D.EnclQopna.+@" ]
+ ] ;
+
+
+# don't change this line:
+# <--- automatically generated code will be inserted here --->
+
+define RFDNoun Noun ResolveCatFlagDiacritics ResolveNounFlagDiacritics ;
+
+read regex RFDNoun ;
+
+eliminate flag StemType
+eliminate flag SyncStem
+eliminate flag RigidStem
+eliminate flag Cat
+eliminate flag SubCat
+eliminate flag Case
+eliminate flag Num
+eliminate flag Style
+eliminate flag Lex
+eliminate flag EnclQopna
+eliminate flag OldPl
+eliminate flag Pp
+eliminate flag Pers
+eliminate flag DerType
+eliminate flag Comp-Case
+eliminate flag Comp-Pp
+eliminate flag Morph
+eliminate flag Form
+eliminate flag PossPers
+eliminate flag NegType
+eliminate flag DCat
+eliminate flag DCase
+eliminate flag DNum
+eliminate flag DOldPl
+eliminate flag DLong
+eliminate flag DDCat
+eliminate flag DDCase
+eliminate flag DDNum
+eliminate flag DDOldPl
+eliminate flag DDLong
+eliminate flag Long
+eliminate flag Repet
+eliminate flag Double
+eliminate flag CaseType
+eliminate flag Refl
+eliminate flag PlStem
+eliminate flag ModSfx
+eliminate flag Approx
+eliminate flag RelSfx
+
+
+define RFDNoun
+
+read regex RFDNoun ;
+
+# save defined noun-guessed.vars
+echo save stack noun-guessed.fst
+save stack noun-guessed.fst
+
+pop stack
+
+define toMxedruli	  [ ა <- a ] .o. [ ბ <- b ] .o. [ გ <- g ] .o. [ დ <- d ] .o. [ ე <- e ] .o. [ ვ <- v ] .o. [ ზ <- z ]
+       			.o. [ თ <- T ] .o. [ ი <- i ] .o. [ კ <- k ] .o. [ ლ <- l ] .o. [ მ <- m ] .o. [ ნ <- n ] .o. [ ო <- o ]
+			.o. [ პ <- p ] .o. [ ჟ <- Z ] .o. [ რ <- r ] .o. [ ს <- s ] .o. [ ტ <- t ] .o. [ უ <- u ] .o. [ ფ <- P ]
+			.o. [ ქ <- K ] .o. [ ღ <- G ] .o. [ ყ <- q ] .o. [ შ <- S ] .o. [ ჩ <- X ] .o. [ ც <- C ] .o. [ ძ <- j ]
+			.o. [ წ <- c ] .o. [ ჭ <- x ] .o. [ ხ <- H ] .o. [ ჯ <- J ] .o. [ ჰ <- h ];
+
+read regex 	toMxedruli .o. RFDNoun .o. toMxedruli.i ;
+
+save stack georgian-noun-guessed.fst
+
+
+# compile : fst -f noun-guessed.regex
+# load : fst -s noun-guessed.fst
+
+# eliminate flag Pv

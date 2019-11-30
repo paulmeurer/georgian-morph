@@ -1,0 +1,44 @@
+# A transducer for Georgian last names etc.
+
+
+define lastName [ ?+ {Svil} "@U.StemType.c@"
+       		| ?+ [ i | a ] {Je}  "@U.StemType.e@" ]
+
+
+define Ordinal [
+         ~[{0} ?+]
+       	 .o.
+     	 dropzeros
+     	 .o.
+     	 ord000001x999999
+       | {1}:{pirvel} "@C.StemType@" "@C.SyncStem@" "@U.StemType.c@" ]
+       ( stemVe )
+       "+Ord":0 "+Alphabetic":0;
+
+# define CardinalDigits [ [0|1|2|3|4|5|6|7|8|9]+ ] "+Card":0 "+Digits":0;
+# define CardinalDigits [ (["0"|1|2|3|4|5|6|7|8|9]+ ",") ["0"|1|2|3|4|5|6|7|8|9]+ ] "+Card":0 "+Digits":0;
+
+# OBS: NumberStem is not used in the full morphology, but rather Cardinal/Ordinal
+# See 
+define NumberStem [ 
+       	   [ Cardinal | Ordinal ]
+     	   [ "@R.StemType.c@" "+Cons":0 | "@R.StemType.a@" "+A":0 | "@R.StemType.e@" "+E":0 ]
+	   [ "@R.SyncStem.-@" "-Sync":0 | "@R.SyncStem.+@" "+Sync":0 | "@D.SyncStem@" ]
+	   [ "@R.Approx.+@" "+Approx":0 | "@D.Approx.+@" ]
+  	   [ "@R.Repet.+@" "+Repet":0 | "@D.Repet.+@" ]
+	   ] ;
+
+# read regex Cardinal ;
+
+read regex NumberStem ;
+
+# read regex CardinalDigits ;
+
+#echo eliminate flag StemType
+#eliminate flag StemType
+
+#read regex card01x99;
+
+echo save stack numbers.fst
+save defined numbers.vars
+save stack numbers.fst

@@ -1,0 +1,52 @@
+cat v
+subcat aux
+relation absolute relative
+tense present imperfect conj-present future conditional conj-future aorist optative perfect pluperfect conj-perfect optative-future
+voice active causative medium passive causative-passive stative-passive
+morph-type pr-active pr-causative pr-passive aorist perf-active perf-abs-passive perf-rel-passive pr-stat-passive plpf-active
+subj num sg pl
+subj pers 3 2 1
+obj num pl sg
+obj pers 3 1 2
+
+type root h-root s-root x-root
+type root-vowel -
+type pr-st-ext "к" "фк"
+type aorist weak strong
+type aorist-3sg "ф" "з"
+screeve-sign "улу" "фу" "лу" "зу" "ф" "фш" "п" "л" "лш" "з" "зш"
+type subj12-sfx "мзч/ѕзч" -
+type subj3-sfx "ш" "пш" "з"
+type obj-3-pfx - +
+
+pv "ѕлс" "ѓзчтф" "ѓзтф" "ёѕзк" "№зтф" "яозтф" "ялъчзёѕ" "ялтф" "эзэзк" "ъ№пузч" "ърмкзм" "ънчъумлс" "ъйъслилс" "шчъс" "узолс" "пђъслиъс" "пзмзч" "кзтф" "йзчктф" "йзктф" "йзтф" "зэтф" "зтф" "ѓпуз" "ѓзч" "ђзс" "яоз" "ъръ" "ъзч" "тптф" "озуз" "йзчкз" "йзкз" "йзу" "йзк" "ѓз" "№з" "ял" "тф" "тп" "кз" "йз" "зэ" - "з" "Т" "-"
+c-pv "ѕлс" "ёѕзк" "ялъчзёѕ" "эзэзк" "ъ№пузч" "ърмкзм" "ънчъумлс" "ъйъслилс" "шчъс" "узолс" "пђъслиъс" "пзмзч" "ѓпуз" "ѓзч" "ђзс" "яоз" "ъръ" "ъзч" "тптф" "озуз" "йзчкз" "йзу" "йзкз" "ѓз" "№з" "ял" "тф" "тп" "кз" "йз" "зэ" - "з" "Т" "-"
+dir-pv "тф" -
+red-pv "кз"
+red-dir-pv "тф" -
+
+vv nil "п" "ъ" "л" "з" -
+c-vv nil
+ppf-vv "ли"
+
+pp-pfx "уз" - "т"
+
+sf "лу" "фы" "фи" nil "лт" "лм" "ли" "л" "зт" "зм" "т" "п" "м" -
+c-sf nil - "лу" "фи" nil "лт" "ли" "п" "зт" "зм" "лм"
+caus-sf "лм" "пу" "ли"
+
+st-ext "фк"
+pr-st-ext "к" "фк"
+
+i-infix "п"
+ppf-infix "пу"
+nasal-infix "у"
+
+passive-sfx "фы" "фи" "лт" "ли" - "т" "п" "м" "лм" "к+ли"
+pp-sfx "зч" "зс" "пс" "ъс"
+
+pers-sfx "пюмулу" "пюзмп" "пюфш" "пюфу" "пюф" "зу" "ѕзч" "мзч" "ш" "улу" "лш" "п" "л" "з"
+
+root "ђли" "мс" "мз" "мзс" nil
+c-root "юфыБ" "юфыуБ"
+reduplication - +

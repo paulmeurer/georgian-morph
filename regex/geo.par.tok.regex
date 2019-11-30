@@ -1,0 +1,53 @@
+#;;; -*- Encoding: utf-8 -*-
+
+set char-encoding UTF-8
+
+clear stack
+
+define Vowel [a|e|i|o|u] ;
+
+read regex  [[TB {_a} TB] (<-) [a TB] || Vowel _ ]	# optionally split off word-final `a' as copula clitic `_a' plus optional direct speech
+     	    .o.
+	    [[TB {_ao} TB] (<-) [{ao} TB] || Vowel _ ]
+     	    .o.
+	    [[TB {_a-meTKi} TB] (<-) [{a-meTKi} TB] || Vowel _ ]
+     	    .o.
+	    [[TB {_a-TKo} TB] (<-) [{a-TKo} TB] || Vowel _ ]
+     	    .o.
+	    [ { } (<-) TB || {sul} _ {Cota},
+	      	       	     {sul} _ {mCire},
+			     {ese} _ {igi},
+			     {rogorC} _ {ki},
+			     {arC} _ {ki},
+			     {verC} _ {ki},
+			     {nurC} _ {ki}, # how to add `arC Tu ise'?
+			     {samHreT} _,
+			     {XrdiloeT} _,
+			     {dasavleT} _,
+			     {aGmosavleT} _  ]
+	    .o.
+	    [ {...}:"…" | \["…"] ]*
+	    .o.
+	    [ TB:" "					# space -> TB
+      	    | [TB "."]:"."				# insert TB before punctuation 
+     	    | [TB "," TB]:{, }
+	    | [TB "…"]:"…"
+	    | [TB "?"]:"?" 
+     	    | [TB "!"]:"!" 
+     	    | [TB ":"]:":"
+     	    | [TB ";"]:";" 
+     	    | [TB "%"]:"%" 
+	    | [TB "»"]:"»"
+	    | [TB "«"]:"«"
+	    | \[" "|"."|{, }|"…"|"?"|"!"|":"|";"|"%"|"_"|TB]	# do nothing in all other cases
+	    ]*
+	    TB:0					# insert TB at end
+	    .o.
+	    [ "…":{...} | \[{...}] ]*
+	    ;
+
+save stack geo.par.tok.fst
+
+# compile : fst -f geo.par.tok.regex
+# load : fst -s geo.par.tok.fst
+# test: up "es kargia."

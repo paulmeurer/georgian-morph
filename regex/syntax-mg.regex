@@ -1,0 +1,102 @@
+# MG
+define normalizeMGTags      [ 0 <- "+NG" ]
+	    		.o. [ 0 <- "+OG" ]
+	    		.o. [ 0 <- "+Old" ]
+	    		.o. [ 0 <- "+VPart" ] # Lela does not like this
+	    		.o. [ 0 <- "+[Incl]" ]
+	    		.o. [ 0 <- "+[Excl]" ]
+			.o. ["+Impv-I" <- "+ImpvPres"]
+			.o. ["+Impv-II" <- "+ImpvAor"]
+			.o. ["+Conj-I" <- "+Conj"]
+			.o. ["+Conj-II" <- "+Opt"]
+			.o. ["+Conj-III" <- "+ConjPerf"]
+			.o. ["+Iter-II" <- "+IterAor"]
+			.o. ["+IterPerf" <- "+IterPerf1"]
+			.o. ["+Iter-III" <- "+IterPerf"]
+			.o. [ \"+Q"* ] # no question suffix (?)
+	    		# relatives
+			.o. [ "+Rel:ც" <- "+Encl:ც" "+Foc"  || "+Rel" ?* _ ]
+ 			.o. [ "+Rel" <- "+Int"  || ["+Pron" | "+Adv" ] _ # .o. [ {გვ}  (->) {გუ} || _ "$" ?* "OG" ]
+			# .o. [ {ს}   (->) {შ} || _ "$" [ჩ|ჭ] ?* "OG" ]
+			#. o. [ {ს}   (->) [ჰ|{ჰს}] || _ "$" ?* "OG" ]
+			# .o. [ {ჰ}   (->) 0 || _ "$" [ს|ზ|ხ] ?* "OG" ]
+			# .o. [ {ვ}   (->) 0 || _ "$" უ ?* "OG" ]
+			?* "+Encl:ც" "+Foc" ]
+			.o. [ "+Rel" (<-) "+Int"  || "+Pron" _ ?* "+Gen" ]
+	    		 # there is no absolutive case
+			.o. [ \"+Abs"* ]
+			# Dir/Ben do not exist
+			.o. [ \["+Dir"|"+Ben"|"+DDir"|"+DBen"|"+DDDir"|"+DDBen"]* ]
+	    		#.o. [ \"+OG"* ] # remove OG-only forms
+			.o. [ "+Obj1Sg" <- "+Obj1SgSh", # restore
+			      "+Obj1Pl" <- "+Obj1PlSh",
+		  	      "+Obj2Sg" <- "+Obj2SgSh",
+			      "+Obj2Pl" <- "+Obj2PlSh" ]
+			# .o. [ უ <- u ]
+			.o. [ ვ <- u ]
+			.o. [ ვ <- v ]
+			.o. [ ხ <- ჴ ]
+			.o. [ ე <- [ჱ|e] ]
+			.o. [ 0 <- ჲ ]
+			 # vowel alternations
+			.o. [ "{""ი""}" <- {I} ]
+			.o. [ 0	<- {][} ]
+			.o. [ {[ე]} <- {E} ]
+			.o. [ {[ა]} <- {A} ]
+			.o. [ {[ვ]} <- {V} ]
+			# .o. AtoAdv
+			.o. [ 0 <- {·ჲ} || _ [ "+N" | "+A" | "+Pron" | "+Num" | "/" ] ]
+			;
+
+
+define MiddleGeorgian1        [ "+A" "+Part" <- "+Part" ] # todo: move elsewhere
+			  .o. [ "+N" "+VN" <- "+VN" ]
+			  .o. simplifyFrame
+		      	  .o. normalizeMGTags
+			  .o. [ OGCommon | NGAdv OGNounEnclitics ] # prelim?
+			  .o. MiddleG
+			  ;
+
+#   read regex MiddleGeorgian1 ;
+#   echo > eliminate flag Frame
+#   eliminate flag Frame
+#   save stack georgian-morph-mg-debug.fst
+#   pop stack
+
+
+define middleGeoOrth	    [ {ეჲ} -> ე ]
+       			.o. [ ჴ -> ხ ]
+			.o. [ ჲ (->) ი || ო _ ] # უდაბნოი
+			.o. [ ჲ -> 0 ]
+			.o. [ ჱ -> ე ]
+			#.o. [ {აd} (->) დ || [ლ|მ|ნ|რ] _ ] #  იერუსალჱმდ, see noun.regex
+			#.o. [ d -> დ ]
+			.o. [ V -> ვ ]
+			.o. [ {უა} (->) {უვა} ]
+			.o. [ {ოო} (->) {ოვო} ]
+			.o. [ {იე} (->) {ივე} ]
+			.o. [ რ (->) 0 || მ _ \Vowel ] # ღმთის
+			.o. [ 0 (<-) "-" ]
+			.o. [ 0 <- [ "[" | "]" ] ]
+	    		;
+
+define MiddleGeorgian [ #   [ "+A" "+Part" <- "+Part" ] # todo: move elsewhere
+			#.o. [ "+N" "+VN" <- "+VN" ]
+			#.o. simplifyFrame
+		      	#.o. normalizeMGTags
+			 #.o. OGCommon
+			#.o. [ MiddleG | NGAdv OGNounEnclitics ] # prelim?
+			MiddleGeorgian1
+			.o. middleGeoOrth ]
+		       | OGIndSpeechToken
+		       | OGTmesisInfix # treated as separate words; tmesis splitting is done programmatically
+		       | OGLetterNum
+		       | RomanNum ;
+
+read regex MiddleGeorgian ;
+#echo > eliminate flag Frame
+#eliminate flag Frame
+save stack georgian-morph-mg.fst
+pop stack
+
+undefine MiddleGeorgian ;

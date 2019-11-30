@@ -1,0 +1,110 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2007 by Powerset, Inc.  All rights reserved.
+# Written by Ron Kaplan
+
+echo
+echo  Shifting lower epsilons
+echo  -----------------------
+
+# Script for shifting epsilons on the lower side of a transducer away from the start state.
+# Source this from a higher script that has placed the input transducer on the top of the
+# stack.  On exit, the modified machine is at the top of the stack.
+
+# It might have been easier to use "push epsilons" but that doesn't seem to do the
+# right thing.  So we do it by a succession of (up to 3) transformations, each one finding
+# a next non-epsilon and moving it to the left.
+
+# On input, the machine howfar can be defined to have values 1, 2, or 3 (3 is the default). That
+# controls how far away from the startstate the shifting should go.
+if ~[?* [howfar & [1|2|3] .o. ?*:0].l] ; 
+	define howfar 3 ;
+endif
+echo
+echo Distance from startstate:
+push howfar
+upper
+echo
+pop
+
+define input
+
+regex `[input,?,oThEr] ;  # Substitute ? by oThEr. Should work whether or not input has ?, hope oThEr isn't in the sigma
+unoptimize
+cleanup net
+define noother
+push noother
+	# Get the surface sigma to be used in building the swapping machines.
+label net
+lower-side
+sigma net
+compact sigma
+define sig
+define sigma sig - oThEr ; # No EPS and no oThEr
+
+define inputEPS `[noother,0,EPS] ; # Substitute 0 by EPS
+       				   # Should work even if no epsilons. Of course, then this whole
+                                   # thing is a noop, maybe we should now test for EPS in the sigma
+                                   # and branch around the rest of this code.
+
+# Start by building a swapping machine that replaces an initial EPS with a non-EPS
+# found after an intervening sequence of EPS.
+
+# Double the sigma (aa, bb, cc...)
+set retokenize on
+	# Remove { and } since they screw things up. Won't work if they appear inside a multichar symbol
+# regex sigma-[%{|%}] .o. ? -> "^[" %{ ... %} %^2 "^]" ; # buggy! use this instead:
+regex sigma-[%{|%}] .o. ? -> "^[" %" ... %" %^2 "^]" ; # doubles every symbol except { and }: typical lower word: ^[{+Poss}^2^] ; down a = ^[{a}^2^]
+compile-replace lower # down a = aa etc.
+lower-side # doubled symbols only
+define draft
+define doubles draft | [sigma & %{ ]^2 | [sigma & %}]^2 ; # Explicitly double { and }
+define doubleeps [doubles .o. sigma 0:EPS* sigma].l ;  # X EPS* X; inserts EPSes between doubled symbols
+
+define allsig sigma | EPS | oThEr ;
+define swap [  
+     sigma*                                # Begins with non-EPS, nothing to do
+   | [EPS|oThEr]*                          # Doesn't have a later movable, nothing can be done
+   | [     EPS:sigma  allsig*              # Leading EPS converted to character X
+       .o. doubleeps  allsig*              # X EPS* X  ?*
+       .o. sigma EPS* sigma:EPS allsig*    # Delete the first non-EPS, which must be X
+     ]
+  ] ;
+
+define s0 inputEPS ;
+	# Nothing to do if there is already a regular character in the target position.
+define s1 [s0 .o. ~[sigma^0 EPS ?*]] | [s0 .o. ?^0 swap] ;   # Swap the first:  EPS EPS EPS EPS a b c -> a EPS EPS EPS EPS b c
+Define s2 s1 ; # In case we want only 1
+if howfar & [2|3] ;
+     # release space
+  undefine s2
+  define s2 [s1 .o. ~[sigma^1 EPS ?*]] | [s1 .o. ?^1 swap] ; # Swap the second: a   EPS EPS EPS EPS b c -> a b EPS EPS EPS EPS c
+endif
+define s3 s2 ; # In case we want only 2
+if howfar & 3 ;
+  undefine s3
+  define s3 [s2 .o. ~[sigma^2 EPS ?*]] | [s2 .o. ?^2 swap] ; # Swap the third:  a   b   EPS EPS EPS EPS c -> a b c EPS EPS EPS EPS
+endif
+	# etc.
+
+regex `[`[s3,EPS,0],oThEr,?] ;
+	# Who knows:  maybe some new cleanups to do
+cleanup net
+define shifted
+undefine input
+push shifted
+
+# A little machine to test whether any undesired 0's remain.  There shouldn't be
+# any epsilons within 3 characters of the start-state if there are any
+# non-EPS later on--they should have been shifted.  But nothing can be done for
+# truly short strings.
+# define checkeps [$EPS & ?^{1,3}] $\EPS ;
+
+# To run the test:
+#   push shifted
+#   substitute symbol EPS for 0
+#   define foo
+#   regex foo .o. checkeps ;
+
+# Everything is OK if the result is empty.
+
+

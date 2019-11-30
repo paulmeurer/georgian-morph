@@ -1,0 +1,6094 @@
+არუბა+ON+Area
+ბერმუდა+ON+Area
+ზემო ნორმანდია+I+Area
+პიკარდია+I+Area
+მიკრონეზია+I+Area
+ბავარია+I+Area
+დალარნა+ON+Area
+ანტარქტიკა+I+Area
+კაბო-ვერდე+ON+Area
+ბულონის ტყე+M+Area
+სამხრეთ= პირენეები+A+Area+Pl
+ალანდის კუნძულები+A+Area+Pl
+ფალკლენდის კუნძულები+A+Area+Pl
+კუკის კუნძულები+A+Area+Pl
+ბაჰამის კუნძულები+A+Area+Pl
+ბალეარის კუნძულები+A+Area+Pl
+ფარერის კუნძულები+A+Area+Pl
+რონა-ალპები+A+Area+Pl
+ზაარლანდი+A+Area
+შობის კუნძული+A+Area
+წითელი მოედანი+A+Area
+ნახჭევანი+A+Area
+ლანგედოკი-რუსილონი+A+Area
+პუატუ-შარანტი+A+Area
+ზემო ქართლი+A+Area
+ქვემო ქართლი+A+Area
+შიდა ქართლი+A+Area
+ზემო სვანეთი+A+Area
+ქვემო სვანეთი+A+Area
+სამცხრე-ჯავახეთი+A+Area
+მცხეთა-მთიანეთი+A+Area
+რაჭა-ლეჩხუმი+A+Area
+მასაჩუსეტსი+A+Area
+შუმერი+A+Area
+გარდმანი+A+Area
+ანატოლია+I+Area
+კილიკია+I+Area
+პართია+I+Area
+მიდია+I+Area
+იონია+I+Area
+ლოტარინგია+I+Area
+კრეტა+ON+Area
+მიკენე+ON+Place
+აზოვი+A+Place
+შანზ-ელიზე+O+Road
+#თავისუფლების ქანდაკება+O+Building
+#ხელოვნების ეროვნული გალერეა+O+Building
+ნინევია+I+Building
+ბასტილია+I+Building
+#ატომური კვლევების ევროპული ორგანიზაცია+I+Building
+ტროა+ON+Building
+#ნიუ-იორკის სააქციო ბირჟა+ON+Building
+ავადჰარა+ON+Building
+ჰერენხიმზეე+ON+Place
+ბუკინგემი+A+Place
+#ნოიშვანშტაინის სასახლე+M+Building
+თოფქაფის სასახლე+M+Building
+თამარ მეფის ციხე+M+Building
+ვულუორზ ბილდინგი+A+Building
+კრაისლერ ბილდინგი+A+Building
+ემპაია სტეიტ ბილდინგი+A+Building
+ბრუკლინი+A+Place
+ვერაძანო+O+Building
+ახოთ-ხევი+A+Building
+ურუკი+A+Building
+ეიფელის კოშკი+A+Building
+გრანდ სენტრალ ტერმინალი+A+Building
+ჰუვერის კაშხალი+A+Building
+თაჯ-მაჰალი+A+Building
+კარნეგი-ჰოლი+A+Building
+#თანამედროვე ხელოვნების მუზეუმი+A+Building
+#მეტროპოლიტენის ხელოვნების მუზეუმი+A+Building
+#ამერიკის ბუნების ისტორიის მუზეუმი+A+Building
+#ლუვრის მუზეუმი+A+Building
+პოზნანი+A+Place
+კართაგენი+A+Place
+პენტაგონი+A+Building
+ზემო ქვალონი+A+Building
+ბაბილონი+A+Building
+#პარიზის ღვთისმშობლის ტაძარი+A+Building
+ტაიმს-სქვერი+A+Building
+სირს ტაუერი+A+Building
+#მეტროპოლიტენის ოპერის თეატრი+A+Building
+#ლინკოლნის ცენტრი+A+Building
+#როკფელერის ცენტრი+A+Building
+#პომპიდუს ცენტრი+A+Building
+დობის სადგური+A+Building
+თეზეის სადგური+A+Building
+კორტანეთის სადგური+A+Building
+#ამუნდსენ-სკოტის სადგური+A+Building
+საკოჭავის სადეური+A+Building
+სანსუსი+X+Building
+#ჰარვარდის უნივერსიტეტი+A+Building
+#სტენფორდის უნივერსიტეტი+A+Building
+#კოლუმბიის უნივერსიტეტი+A+Building
+#პენსილვანიის უნივერსიტეტი+A+Building
+#ნიუ-იორკის უნივერსიტეტი+A+Building
+#კორნელის უნივერსიტეტი+A+Building
+#კარნეგი-მელონის უნივერსიტეტი+A+Building
+#პრინსტონის უნივერსიტეტი+A+Building
+#ბრაუნის უნივერსიტეტი+A+Building
+#ჯონს ჰოპკინსის უნივერსიტეტი+A+Building
+#ვანდერბილტის უნივერსიტეტი+A+Building
+გოლდენ გეიტი+A+Building
+#ჩიკაგოს ხელოვნების ინსტიტუტი+A+Building
+#მასაჩუსეტსის ტექნოლოგიის ინსტიტუტი+A+Building
+ტრიუმფალურ= თაღი+AA+Building
+კიში+A+Building
+#დართმუზის კოლეჯი+A+Building
+პონტე ვეკიო+O+Building
+მაჩუ პიკჩუ+O+Building
+#ამაღლება+O+Mountain
+აკიბა+ON+Mountain
+უშბა+O+Mountain
+შხაპიზგა+ON+Mountain
+ჭარინდა+ON+Mountain
+იუდეა+ON+Mountain
+აჟვამგვა+ON+Mountain
+ახარვა+ON+Mountain
+ძიხვა+ON+Mountain
+ლომის მთა+I+Mountain
+შუანის მთა+I+Mountain
+სინის მთა+I+Mountain
+შიშველიმთა+I+Mountain
+საქველმოსმთა+I+Mountain
+ურთა+ON+Mountain
+ხიფსთა+ON+Mountain
+#უღელტეხილი გუდაუთა+ON+Mountain
+სვიათაია+I+Mountain
+ჩვინია+I+Mountain
+საყორნია+I+Mountain
+მიგარია+I+Mountain
+სახარია+I+Mountain
+საკინდრია+I+Mountain
+კავკასია+I+Mountain
+ხუტია+I+Mountain
+ეშტია+I+Mountain
+ხაკა+ON+Mountain
+წყალწითელა+O+Mountain
+ტაბაკელა+ON+Mountain
+ლაილა+ON+Mountain
+ძეგვილა+ON+Mountain
+მახნეჩილა+ON+Mountain
+ჩაამა+ON+Mountain
+ხალხამა+ON+Mountain
+ხიცმა+ON+Mountain
+ქვანა+ON+Mountain
+კოდიანა+ON+Mountain
+აცგარა+ON+Mountain
+აჩადარა+ON+Mountain
+თაზარა+ON+Mountain
+ბაშკაბსარა+ON+Mountain
+ოშარა+ON+Mountain
+შხარა+ON+Mountain
+ბოხუნჯარა+ON+Mountain
+ჩიბჯაგრა+ON+Mountain
+აკუგრა+ON+Mountain
+ღვანდრა+ON+Mountain
+დებადერა+ON+Mountain
+მუჩერა+ON+Mountain
+ნვირა+ON+Mountain
+ჩიპშირა+ON+Mountain
+შუაგორა+ON+Mountain
+ციპორა+ON+Mountain
+ძიშრა+ON+Mountain
+კარეტა+ON+Mountain
+ლახტა+ON+Mountain
+ჯანღა+ON+Mountain
+დიდ= რაყა+OA+Mountain
+გუმირიპშა+ON+Mountain
+მუხურშა+ON+Mountain
+არბხა+ON+Mountain
+ჩიბისხა+ON+Mountain
+შაბაშხა+ON+Mountain
+მამძიშხა+ON+Mountain
+ოგეჯა+ON+Mountain
+შავნაბადა+ON+Mountain
+საყინულე+ON+Mountain
+ოხაჩკუე+ON+Mountain
+კოკოცე+ON+Mountain
+ჟიბე ლახე+ON+Mountain
+კარპატები+A+Mountain+Pl
+ახ-აგი+A+Mountain
+ჰონკონგი+A+Mountain
+თრიალეთის ქედი+A+Mountain
+სვანეთის ქედი+A+Mountain
+ჯავახეთის ქედი+A+Mountain
+მესხეთის ქედი+A+Mountain
+ჩხალთის ქედი+A+Mountain
+სამსარის ქედი+A+Mountain
+შდაკლერის ქედი+A+Mountain
+ქოდორის ქედი+A+Mountain
+ეგრისის ქედი+A+Mountain
+თეთნულდი+A+Mountain
+ორთა თავი+A+Mountain
+ჭვინის თავი+A+Mountain
+დიურისთავი+A+Mountain
+პანავი+A+Mountain
+ქვაზვინევი+A+Mountain
+მურკნევი+A+Mountain
+ნაქალაქევი+A+Mountain
+ასხის მასივი+A+Mountain
+ჯუგუტურლუჩათი+A+Mountain
+კიუმბეთი+A+Mountain
+დიდ= კართი+AA+Mountain
+თოხლ= იურთი+AA+Mountain
+პალი+A+Mountain
+ხოჯალი+A+Mountain
+ხაკელი+A+Mountain
+ამტყელი+A+Mountain
+თავკვეთილი+A+Mountain
+გადირაკილი+A+Mountain
+ცალგმილი+A+Mountain
+ლასილი+A+Mountain
+აჩმარდა უღელტეხილი+A+Mountain
+ხიმსა უღელტეხილი+A+Mountain
+#მერია კელი უღელტეხილი+A+Mountain
+ამტყელ= უღელტეხილი+AA+Mountain
+უიმ= უღელტეხილი+AA+Mountain
+ზაგარ= უღელტეხილი+AA+Mountain
+ნახარ= უღელტეხილი+AA+Mountain
+ერგზაშირ= უღელტეხილი+AA+Mountain
+საურ= უღელტეხილი+AA+Mountain
+ფსიშ= უღელტეხილი+AA+Mountain
+პტიშ= უღელტეხილი+AA+Mountain
+მარუხ= უღელტეხილი+AA+Mountain
+ცხრაწყარო უღელტეხილი+A+Mountain
+კუშონის უღელტეხილი+A+Mountain
+კლუხორის უღელტეხილი+A+Mountain
+ალასთრახუ უღელტეხილი+A+Mountain
+ემლიკლი+A+Mountain
+პატარა აბული+A+Mountain
+დიდ= აბული+AA+Mountain
+ჩედიმი+A+Mountain
+არჯევანი+A+Mountain
+შკვიტცელანი+A+Mountain
+დომბაი ულგენი+A+Mountain
+გუარაპი+A+Mountain
+რკინის ჯვარი+A+Mountain
+აგრიკარი+A+Mountain
+ინცკარი+A+Mountain
+აცალარი+A+Mountain
+კირარი+A+Mountain
+სამსარი+A+Mountain
+აჩოვჩარი+A+Mountain
+ზოტის წვერი+A+Mountain
+მყინვარწვერი+A+Mountain
+ჯვარწვერი+A+Mountain
+შნაგირისწვერი+A+Mountain
+საბოლოკის სერი+A+Mountain
+რაშმორი+A+Mountain
+ური+A+Mountain
+უთური+A+Mountain
+ღური+A+Mountain
+საცხენისი+A+Mountain
+გერნსი+A+Mountain
+ჯერსი+A+Mountain
+დიდ= ზიარატი+AA+Mountain
+დიდ= ლობოროტი+AA+Mountain
+ევერესტი+A+Mountain
+მცირე ხუტი+A+Mountain
+ყორულდაში+A+Mountain
+დადიაში+A+Mountain
+ბერიშ-კუდში+A+Mountain
+ჩუბედიში+A+Mountain
+პსიში+A+Mountain
+დიდრიპში+A+Mountain
+დიდ= სხანაჩი+AA+Mountain
+მცირე შხაპაჩი+A+Mountain
+აჩიბახი+A+Mountain
+ნამშიხი+A+Mountain
+ლეირაკი+A+Mountain
+#უღელტეხილ ყალამრი სუკმ+Mountain
+სანისლობო+O+Mountain
+სამღლეო+O+Mountain
+სამეცხვარიო+O+Mountain
+პუერტო-რიკო+O+Mountain
+საჩიკვანო+O+Mountain
+ოლიმპო+O+Mountain
+მეფისწქარო+O+Mountain
+კილიმანჯარო+O+Mountain
+ერწახო+O+Mountain
+ანჩხო+O+Mountain
+#უღელტეხილი ანჩხო+O+Mountain
+თექრაშდუდუ+O+Mountain
+კიუსიუ+O+Mountain
+სიკოკუ+O+Mountain
+ნატიფურუ+O+Mountain
+სოფრუჯუ+O+Mountain
+ბრამბა+O+Water
+პალიასტომის ტბა+I+Water
+კახის ტბა+I+Water
+წეროს ტბა+I+Water
+ბეთაგა+ON+Water
+გეგა+ON+Water
+გაგიდა+ON+Water
+ლარაკვაკვა+ON+Water
+ატლანტის ოკეანე+M+Water
+ქერჩის სრუტე+M+Water
+მენოტიის ტბა+I+Water
+მარმარილოს ზღვა+I+Water
+შავ= ზღვა+IA+Water
+იონიის ზღვა+I+Water
+აზოვის ზღვა+I+Water
+ადრიატიკის ზღვა+I+Water
+კარიბის ზღვა+I+Water
+ყარიბის ზღვა+I+Water
+კასპიის ზღვა+I+Water
+ხმელთაშუა ზღვა+I+Water
+ხოიჯგეთა+ON+Water
+ჩხალთა+ON+Water
+ჩბაართა+ON+Water
+დასავლეთ= გუმისთა+OA+Water
+აღმოსავლეთ= გუმისთა+OA+Water
+ფხისთა+ON+Water
+ააფსთა+ON+Water
+ხიფსთა+ON+Water
+ბეშთა+ON+Water
+მჭიშთა+ON+Water
+ტბა პასკია+I+Water
+უმნია+I+Water
+ჭურია+I+Water
+მუნჩია+I+Water
+ქცია+I+Water
+მადენკა+ON+Water
+საშვალა+ON+Water
+მესტიაჭალა+ON+Water
+ხალდეჭალა+ON+Water
+ადიშჭალა+ON+Water
+ლაილ-ჭალა+ON+Water
+ნოღელა+ON+Water
+ლაილა+ON+Water
+თაშლი კიშლა+ON+Water
+მაგამა+ON+Water
+ძამა+ON+Water
+მაგანა+ON+Water
+კალიამონა+ON+Water
+ზბაჟა+ON+Water
+ბჟუჟა+ON+Water
+რაშ კვარა+ON+Water
+ჯვავიაკვარა+ON+Water
+ხეწკვარა+ON+Water
+შიწკვარა+ON+Water
+კუტუ შარა+ON+Water
+გლავაშარა+ON+Water
+შავწყალა-ქვიშარა+ON+Water
+იუფშარა+ON+Water
+მწარა+ON+Water
+ავადხარა+ON+Water
+გვანდრა+ON+Water
+ნაკრა+ON+Water
+ნანსკრა+ON+Water
+ნენსკრა+ON+Water
+ზელრა+ON+Water
+დოლრა+ON+Water
+ფიჩორა+ON+Water
+მულხურა+ON+Water
+ინწრა+ON+Water
+სუფსა+ON+Water
+ტბა მადათაფა+ON+Water
+კოლაშა+ON+Water
+დოჩარიფშა+ON+Water
+ხურჩა+ON+Water
+აკუდროხა+ON+Water
+ბარცხა+ON+Water
+ფსირცხა+ON+Water
+რეშევიე+ON+Water
+ოკვინორე+ON+Water
+ლაშიფსე+ON+Water
+ხაოფსე+ON+Water
+ოკალმახე+ON+Water
+ბერზუგაბი+A+Water
+ნატანები+A+Water
+დნესტრ+A+Water
+ბუგ+A+Water
+დნეპრ+A+Water
+ყიზილ-ირმაყ+A+Water
+ჯერის წყალსაცავი+A+Water
+ჯვრის წყალსაცავი+A+Water
+ბჟოლის ხევი+A+Water
+ბანისხევი+A+Water
+ცივი+A+Water
+ტბა კარწაზი+A+Water
+დარჩი-ორმელეთი+A+Water
+კასლეთი+A+Water
+კესლეთი+A+Water
+მორილოკი+A+Water
+მეგრუკი+A+Water
+ჯამპალი+A+Water
+ბარამიძე წყალი+A+Water
+ოთის წყალი+A+Water
+დიდ= ერის წყალი+AA+Water
+ოშირის წყალი+A+Water
+კაჭკაჭის წყალი+A+Water
+შავიწყალი+A+Water
+წინწყალი+A+Water
+ხობისწყალი+A+Water
+ფოცზოვისწყალი+A+Water
+ბახვისწყალი+A+Water
+გუჯარეთისწყალი+A+Water
+მურჯახეთისწყალი+A+Water
+ყულისწყალი+A+Water
+წინუბანისწყალი+A+Water
+ჭანისწყალი+A+Water
+ტბა ხანჩალი+A+Water
+მარნასი+A+Water
+ფარძალი+A+Water
+ტბა ლევალგელი+A+Water
+ურაველი+A+Water
+დედიღელი+A+Water
+ამტყელი+A+Water
+ხებილი+A+Water
+ბაული+A+Water
+ტბა აბული+A+Water
+გუბაზეული+A+Water
+ოკრული+A+Water
+ლახამი+A+Water
+ოქუმი+A+Water
+ჯუმი+A+Water
+ფარავანი+A+Water
+ტბა ფარავანი+A+Water
+ოდურენი+A+Water
+ბუგდაშენი+A+Water
+რიონი+A+Water
+კალიამონი+A+Water
+დალარი+A+Water
+იფარი+A+Water
+იგრი+A+Water
+ხუმფრერი+A+Water
+სკილირი+A+Water
+ბოსფორი+A+Water
+ნიაგარის ჩანჩქერი+A+Water
+ენგური+A+Water
+ლეშკური+A+Water
+ხეშკური+A+Water
+ოჩხომური+A+Water
+ტბა ტაბაწყური+A+Water
+ტეხური+A+Water
+ჩაჩხური+A+Water
+ტიტი+A+Water
+ბზიფი+A+Water
+ჩედაში+A+Water
+არვაში+A+Water
+ურაში+A+Water
+ვიამიში+A+Water
+სამხეთ= პტიში+AA+Water
+პატარა ჩხოუში+A+Water
+დიდ= ჩხოუში+AA+Water
+კლიჩი+A+Water
+სხაპაჭი+A+Water
+ოხაჯი+A+Water
+ტბა საღამო+O+Water
+გუდაუ+O+Water
+ბავიუ+O+Water
+სავერზასუ+O+Water
+ინჯასუ+O+Water
+ინდი+A+Water
+დონი+A+Water
+კუბანი+A+Water
+კუბა+I+Country
+ტონგა+O+Country
+კანადა+I+Country
+გრენადა+I+Country
+უგანდა+ON+Country
+რუანდა+ON+Country
+ანტიგუა და ბარბუდა+O+Country
+გვინეა+I+Country
+პაპუა-ახალ= გვინეა+OA+Country
+ეკვატორულ= გვინეა+OA+Country
+ჩრდილოეთ კორეა+I+Country
+სამხრეთ კორეა+I+Country
+კორეა+I+Country
+ერიტრეა+I+Country
+მოლდოვა+ON+Country
+აიოვა+O+Country
+ლიტვა+ON+Country
+ლიბია+I+Country
+ნამიბია+I+Country
+გამბია+I+Country
+ზამბია+I+Country
+კოლუმბია+I+Country
+ნორვეგია+I+Country
+ბელგია+I+Country
+ახალ= ზელანდია+OA+Country
+გრენლანდია+I+Country
+ირლანდია+I+Country
+ისლანდია+I+Country
+ქვემო ნორმანდია+I+Country
+ბურგუნდია+I+Country
+ბოლივია+I+Country
+ლატვია+I+Country
+ინდონეზია+I+Country
+მალაიზია+I+Country
+პორტუგალია+I+Country
+ავსტრალია+I+Country
+იტალია+I+Country
+ბრაზილია+I+Country
+სიცილია+I+Country
+დანია+I+Country
+იორდანია+I+Country
+ტანზანია+I+Country
+გერმანია+I+Country
+აკვიტანია+I+Country
+მავრიტანია+I+Country
+სლოვენია+I+Country
+კენია+I+Country
+მაკედონია+I+Country
+ახალ= კალედონია+OA+Country
+იაპონია+I+Country
+ეთიოპია+I+Country
+შვეიცარია+I+Country
+ლიბერია+I+Country
+ნიგერია+I+Country
+სირია+I+Country
+პალესტინის ტერიტორია+I+Country
+ავსტრია+I+Country
+სენტ-ლუსია+I+Country
+ხორვატია+I+Country
+იამაიკა+ON+Country
+ცენტრალური აფრიკის რესპუბლიკა+I+Country
+ცენტრალურ= აფრიკა+I+Country
+დომინიკანის რესპუბლიკა+I+Country
+დომინიკა+ON+Country
+კოსტა-რიკა+O+Country
+სამხრეთ აფრიკა+I+Country
+ჩრდილოეთ აფრიკა+I+Area
+მექსიკა+ON+Country
+შრი-ლანკა+ON+Country
+გვატემალა+ON+Country
+ვენესუელა+ON+Country
+ანგოლა+ON+Country
+ალაბამა+ON+Country
+პანამა+ON+Country
+განა+O+Country
+ბოტსვანა+ON+Country
+გაიანა+ON+Country
+ტოსკანა+ON+Country
+უკრაინა+ON+Country
+ბოსნია და ჰერცეგოვინა+ON+Country
+არგენტინა+ON+Country
+არიზონა+ON+Country
+ვალისი და ფუტუნა+ON+Country
+გოა+O+Country
+სამოა+ON+Country
+ამერიკულ= სამოა+OA+Country
+დასავლეთ= საჰარა+OA+Country
+ანდორა+ON+Country
+მალტა+ON+Country
+ნიკარაგუა+ON+Country
+ანტიგუა+ON+Country
+კამბოჯა+ON+Country
+ზიმბაბვე+ON+Country
+ჩილე+ON+Country
+სიერა ლეონე+ON+Country
+გვადელუპე+ON+Country
+ფრანშ-კონტე+ON+Country
+ეგვიპტე+ON+Country
+ჰავაი+X+Country
+ალთაი+X+Mountain
+# პარაგვაი+X+Country
+# ურუგვაი+X+Country
+ნიდერლანდები+A+Country+Pl
+ნიდერლანდების ანტილები+A+Country+Pl
+#შეერთებული შტატების მცირე დაშორებული კუნძულები+A+Country+Pl
+#ჰერდის კუნძული და მაკდონალდის კუნძულები+A+Country+Pl
+მალდივის კუნძულები+A+Country+Pl
+მარშალის კუნძულები+A+Country+Pl
+გილბერტის კუნძულები+A+Area+Pl
+ზონდის კუნძულები+A+Area+Pl
+სეიშელის კუნძულები+A+Country+Pl
+კაიმანის კუნძულები+A+Country+Pl
+სოლომონის კუნძულები+A+Country+Pl
+სან-ტომესა და პრინსიპის კუნძულები+A+Country+Pl
+კომორის კუნძულები+A+Country+Pl
+სენტ-ვინსენტ= და გრენადინები+AA+Country+Pl
+# ფილიპინები+A+Country+Pl
+არაბეთის გაერთიანებულ= ემირატები+AA+Country+Pl
+ამერიკის შეერთებულ= შტატები+AA+Country+Pl
+ჰონგ კონგი+A+Country
+#ფრიდრიხსჰაინ-კროიცბერგი+A+Country
+# ჩადი+A+Country
+ტაილანდი+A+Country
+სვაზილენდი+A+Country
+მერილენდი+A+Country
+ბურუნდი+X+Country
+ბრუნეი+X+Country
+მალავი+A+Country
+ბელიზი+A+Country
+საუდის არაბეთი+A+Country
+სერბეთი+A+Country
+საფრანგეთი+A+Country
+შვედეთი+A+Country
+#აფხაზეთი+A+Country
+ყირგიზეთი+A+Country
+უზბაკეთი+A+Country
+სლოვაკეთი+A+Country
+ტაჯიკეთი+A+Country
+მონღოლეთი+A+Country
+ალბანეთი+A+Country
+სამეგრელო-ზემო სვანეთი+A+Country
+ესპანეთი+A+Country
+ავღანეთი+A+Country
+თურქმენეთი+A+Country
+რუმინეთი+A+Country
+ფინეთი+A+Country
+ჩინეთი+A+Country
+პოლონეთი+A+Country
+ესტონეთი+A+Country
+საბერძნეთი+A+Country
+ინდოეთი+A+Country
+ბულგარეთი+A+Country
+უნგრეთი+A+Country
+რუსეთი+A+Country
+თურქეთი+A+Country
+ყაზახეთი+A+Country
+ჩეხეთი+A+Country
+სასომხეთი+A+Country
+მოზამბიკი+A+Country
+მარტინიკი+A+Country
+მავრიკი+A+Country
+სენეგალი+A+Country
+მალი+X+Country
+სომალი+A+Country
+ნეპალი+A+Country
+ისრაელი+A+Country
+წმინდა ელენეს კუნძული+A+Country
+ნორფოლკის კუნძული+A+Country
+სურინამი+A+Country
+ვიეტნამი+A+Country
+გუამი+A+Country
+ლიუისჰემი+A+Country
+არტაანი+A+Country
+ლიბანი+A+Country
+სუდანი+A+Country
+ტაივანი+A+Country
+ვატიკანი+A+Country
+ომანი+A+Country
+ირანი+A+Country
+ბრეტანი+A+Country
+დაღესტანი+A+Country
+პაკისტანი+A+Country
+ბუტანი+A+Country
+აზერბაიჯანი+A+Country
+ქემდენი+A+Country
+შამპან-არდენი+A+Country
+კუნძულ= მენი+AA+Country
+იემენი+A+Country
+ლიხტენშტაინი+A+Country
+ბაჰრეინი+A+Country
+ბენინი+A+Country
+ჰაკნი+X+Country
+გაბონი+A+Country
+ორეგონი+A+Country
+#ზუგდიდის რაიონი+A+Country
+რეიუნიონი+A+Country
+სენტ-პიერ= და მიქელონი+AA+Country
+კამერუნი+A+Country
+მადაგასკარი+A+Country
+მიანმარი+A+Country
+კატარი+A+Country
+გიბრალტარი+A+Country
+კოტ-დ’ივუარი+A+Country
+ნიგერი+A+Country
+დელავერი+A+Country
+#პროვანსი-ალპები-ლაჟვარდოვან= ნაპირი+AA+Country
+ალჟირი+A+Country
+ნიუ-ჰემპშირი+A+Country
+ეკვადორი+A+Country
+სალვადორი+A+Country
+აღმოსავლეთ= ტიმორი+AA+Country
+ღაზის სექტორი+A+Country
+სინგაპური+A+Country
+ელზასი+A+Country
+არკანზასი+A+Country
+ჰონდურასი+A+Country
+სენტ-კიტს= და ნევისი+AA+Country
+ტუნისი+A+Country
+ლაოსი+A+Country
+ბარბადოსი+A+Country
+კვიპროსი+A+Country
+ჯერსი+A+Country
+ბელარუსი+A+Country
+კირიბატი+A+Country
+მონსერატი+A+Country
+ჰაიტი+A+Country
+კუვეიტი+A+Country
+ვერმონტი+A+Country
+ჯიბუტი+A+Country
+კონექტიკუტი+A+Country
+#შარლოტენბურგ-ვილმერსდორფი+A+Country
+ერაყი+A+Country
+ბანგლადეში+A+Country
+#ბრიტანული ტერიტორია ინდოეთის ოკეანეში+A+Country
+ფიჯი+A+Country
+მაკაო+O+Country
+ტრინიდად= და ტობაგო+OA+Country
+კონგო+O+Country
+ტოგო+O+Country
+კოსოვო+O+Country
+ლესოთო+O+Country
+მონაკო+O+Country
+პუერტო რიკო+O+Country
+მაროკო+O+Country
+სან-მარინო+O+Country
+მონტენეგრო+O+Country
+ბურკინა ფასო+O+Country
+გაერთიანებულ= სამეფო+OA+Country
+პალაუ+O+Country
+გვინეა-ბისაუ+O+Country
+დამან= და დიუ+OA+Country
+ტუვალუ+O+Country
+პერუ+O+Country
+ნაურუ+O+Country
+ვანუატუ+O+Country
+უაზაბაა+ON+Place
+დაბა+ON+Place
+ახალდაბა+ON+Place
+დღვაბა+ON+Place
+განაზლება+O+Place
+#თავიუფლება+O+Place
+#განახლება+ON+Place
+შუა განახლება+ON+Place
+სამება+ON+Place
+ვედრება+ON+Place
+მრამბა+ON+Place
+წალენჯიხის მეურნეობა+ON+Place
+#ტბა+ON+Place
+იენა+ON+Place
+დიხაგუძბა+ON+Place
+ჰააგა+ON+Place
+ბითაგა+ON+Place
+გონძაგა+ON+Place
+აიბგა+ON+Place
+მოდეგა+ON+Place
+რიგა+I+Place
+ბოგა+ON+Place
+გაღმა შუა ხორგა+ON+Place
+გამოღმა შუა ხორგა+ON+Place
+გაღმა პირველ= ხორგა+OA+Place
+გამოღმა პირველ= ხორგა+OA+Place
+ნაბადა+ON+Place
+ყადა+ON+Place
+გაგიდა+ON+Place
+სიდა+ON+Place
+კოლხიდა+I+Place
+მესამე ბალდა+ON+Place
+პირველ= ბალდა+OA+Place
+წებელდა+ON+Place
+სულდა+ON+Place
+აფიანდა+ON+Place
+ლინდა+ON+Place
+ქვემო ლინდა+ON+Place
+ოლინდა+ON+Place
+ანდრიაწმინდა+ON+Place
+გიორგიწმინდა+ON+Place
+წყალწმინდა+ON+Place
+ეიეოწმინდა+ON+Place
+გვარდა+ON+Place
+აჩმარდა+ON+Place
+აბაახუდა+ON+Place
+ბრატისლავა+ON+Place
+უკანავა+ON+Place
+მუჟავა+ON+Place
+მიქავა+ON+Place
+ვარშავა+ON+Place
+ლიძავა+ON+Place
+არაგვა+ON+Place
+ჟენევა+ON+Place
+აჭაკვა+ON+Place
+ნარვა+ON+Place
+სირქვა+ON+Place
+აციჯქვა+ON+Place
+მალთაყვა+ON+Place
+აბჟაყვა+ON+Place
+ლარჩვა+ON+Place
+ქვემო იაშთხვა+ON+Place
+ზემო იაშთხვა+ON+Place
+მაზიხვა+ON+Place
+არხვა+ON+Place
+ჯგიდირხვა+ON+Place
+ონდანირხვა+ON+Place
+სინირხვა+ON+Place
+აოსირხვა+ON+Place
+მუგუძირხვა+ON+Place
+მამიჯირხვა+ON+Place
+ბლაბურხვა+ON+Place
+ანუხვა+ON+Place
+ცოუხვა+ON+Place
+აფცხვა+ON+Place
+რიკზა+ON+Place
+ლათა+ON+Place
+ზემო ლათა+ON+Place
+ბზიბთა+ON+Place
+ხეთა+ON+Place
+ბაღიქითა+ON+Place
+მთისკალთა+ON+Place
+ჩხალთა+ON+Place
+წითელმთა+ON+Place
+აზანთა+ON+Place
+ბალანთა+ON+Place
+ბიჭვინთა+ON+Place
+ოთა+ON+Place
+ჟინოთა+ON+Place
+პატარა ჟინოთა+ON+Place
+ღართა+ON+Place
+ურთა+ON+Place
+ჭაბურთა+ON+Place
+გუმისთა+ON+Place
+გუდაუთა+ON+Place
+არუთა+ON+Place
+ქვაბრუთა+ON+Place
+ჭირუთა+ON+Place
+აპუშთა+ON+Place
+ოტობაია+I+Place
+მგორე ოტობაია+I+Place
+პირველ= ოტობაია+OA+Place
+თაია+I+Place
+ანუხვა-არმიანსკაია+I+Place
+ტყაია+I+Place
+ბია+I+Place
+ზემო ბია+I+Place
+ლია+I+Place
+ზედა ლია+I+Place
+ხაჯალია+I+Place
+ქოთელია+I+Place
+სევილია+I+Place
+ზიკილია+I+Place
+მელილია+I+Place
+ანაკლია+I+Place
+კატანია+I+Place
+დაბნია+I+Place
+მერენია+I+Place
+დიდ= ხორენია+OA+Place
+არღუნია+I+Place
+აფნია+I+Place
+ბათარია+I+Place
+ალექსანდრია+I+Place
+#პარიზის მერია+I+Place
+თორია+I+Place
+ჩხორია+I+Place
+სკურია+I+Place
+ულურია+I+Place
+ლემსია+I+Place
+ვალენსია+I+Place
+მთჭატია+I+Place
+ორსანტია+I+Place
+მესტია+I+Place
+ხუტია+I+Place
+ეშტია+I+Place
+ფილადელფია+I+Place
+სოფია+I+Place
+ონოღია+I+Place
+ვენეცია+I+Place
+მეორე კიწია+I+Place
+პირველ= კმწია+OA+Place
+მახუნჯია+I+Place
+ოსაკა+ON+Place
+რეკა+ON+Place
+ტამბოვკა+ON+Place
+გროელოვკა+ON+Place
+ვესიოლოვკა+ON+Place
+ორლოვკა+ON+Place
+ეფრემოვკა+ON+Place
+როდიონოვკა+ON+Place
+ფილიპოვკა+ON+Place
+ალექსანდროვკა+ON+Place
+ვლადიმიროვკა+ON+Place
+სპასოვკა+ON+Place
+ფოკა+ON+Place
+დილისკა+ON+Place
+დამალა+ON+Place
+ტყემალა+ON+Place
+იდუმალა+ON+Place
+პატარა თხინალა+ON+Place
+დიდ= თხინალა+OA+Place
+ჩამძვრალა+ON+Place
+ზიდმაღალა+ON+Place
+ჭალა+ON+Place
+ქვიშანჭალა+ON+Place
+გახომელა+ON+Place
+ყელა+ON+Place
+სარტყელა+ON+Place
+იხტილა+ON+Place
+ჭყონხუმლა+ON+Place
+წინაგოლა+ON+Place
+ახალ= ხიბულა+OA+Place
+ძველ= ხიბულა+OA+Place
+დამჩხრეულა+ON+Place
+ლახამულა+ON+Place
+ჭიხარულა+ON+Place
+ისულა+ON+Place
+იოკოჰამა+ON+Place
+თმა+ON+Place
+ქვემო ზიმა+ON+Place
+ჰიროსიმა+ON+Place
+შრომა+ON+Place
+ყაურმა+ON+Place
+გუმა+ON+Place
+შუა ფარცხმა+ON+Place
+ზემო ფარცხმა+ON+Place
+აგანა+ON+Place
+ჰავანა+ON+Place
+შკვანა+ON+Place
+ტყემლოვანა+ON+Place
+წიფლოვანა+ON+Place
+დღვანა+ON+Place
+ზანა+ON+Place
+პატარა ზანა+ON+Place
+ლიუბლიანა+ON+Place
+ასკანა+ON+Place
+ტყემლანა+ON+Place
+აზმანა+ON+Place
+უჯმანა+ON+Place
+გორანა+ON+Place
+ლევიტანა+ON+Place
+ასტანა+ON+Place
+აცანა+ON+Place
+ჟაბნა+ON+Place
+პტენა+ON+Place
+დურღენა+ON+Place
+მედინა+ON+Place
+თირკნა+ON+Place
+რბონა+ON+Place
+შამგონა+ON+Place
+ბარსელონა+ON+Place
+უჩაშონა+ON+Place
+ქვიშონა+ON+Place
+ლეკუხონა+ON+Place
+ვარნა+ON+Place
+სუჯუნა+ON+Place
+ამბარა+ON+Place
+აგარა+ON+Place
+აძლაგარა+ON+Place
+აბგარა+ON+Place
+ლეზგარა+ON+Place
+აჩადარა+ON+Place
+მაზანდარა+ON+Place
+აჭანდარა+ON+Place
+აღდარა+ON+Place
+წიფნაგვარა+ON+Place
+მამზვარა+ON+Place
+წვკვარა+ON+Place
+შაბათკვარა+ON+Place
+შაშიკვარა+ON+Place
+ხეცკვარა+ON+Place
+შიწკვარა+ON+Place
+აჯმატვარა+ON+Place
+კაიდახვარა+ON+Place
+აფშანხვარა+ON+Place
+თბლუხვარა+ON+Place
+ამზარა+ON+Place
+ანკარა+ON+Place
+ლარა+ON+Place
+ადანა+ON+Place
+კეთილარა+ON+Place
+შლარა+ON+Place
+იფნარა+ON+Place
+ქვემო აჟარა+ON+Place
+აძიბჟარა+ON+Place
+ზემო ფჟარა+ON+Place
+არასარა+ON+Place
+ასფარა+ON+Place
+ომარიშარა+ON+Place
+ქვაბჩარა+ON+Place
+სანჩარა+ON+Place
+ნიჟნაია მწარა+ON+Place
+ვერხნაია მწარა+ON+Place
+აჯხახარა+ON+Place
+ოთხარა+ON+Place
+ბუხარა+ON+Place
+ღვებრა+ON+Place
+გაგრა+ON+Place
+აბგავერა+ON+Place
+ტამკვაჩ იგვავერა+ON+Place
+მიუსერა+ON+Place
+ეშერა+ON+Place
+ზემო ეშერა+ON+Place
+ხეცერა+ON+Place
+ჭერა+ON+Place
+ბავრა+ON+Place
+ხიზაბავრა+ON+Place
+დევრა+ON+Place
+ჯაღირა+ON+Place
+ჰაფშირა+ON+Place
+ნახშირა+ON+Place
+ნაკრა+ON+Place
+ალრა+ON+Place
+ზელრა+ON+Place
+აკალამრა+ON+Place
+ბომბორა+ON+Place
+წი?ელგორა+ON+Place
+ორგორა+ON+Place
+სორა+ON+Place
+ოშორა+ON+Place
+კოხორა+ON+Place
+ჩხაკოურა+ON+Place
+აჯიმჩიღრა+ON+Place
+კუტიძრა+ON+Place
+მზახრა+ON+Place
+კინშასა+ON+Place
+ოდესა+ON+Place
+ლესა+ON+Place
+ედიქილისა+ON+Place
+თიქილისა+ON+Place
+ყიზილქილისა+ON+Place
+ფერსა+ON+Place
+თორსა+ON+Place
+ინდუსა+ON+Place
+სუფსა+ON+Place
+გაღმა ქარიატა+ON+Place
+გამოღმა ქარიატა+ON+Place
+ვალეტა+ON+Place
+ახმეტა+ON+Place
+აღურაფეტა+ON+Place
+აწყვიტა+ON+Place
+ტიტა+ON+Place
+იალტა+ON+Place
+პანტა+ON+Place
+თავპანტა+ON+Place
+ქვედა სორტა+ON+Place
+ზედა სორტა+ON+Place
+გაგრაფსტა+ON+Place
+სეუტა+ON+Place
+კალკუტა+ON+Place
+პადუა+ON+Place
+გენუა+ON+Place
+კაპუა+ON+Place
+აკაფა+ON+Place
+კვანაფა+ON+Place
+ზარწუფა+ON+Place
+მექა+ON+Place
+ორქა+ON+Place
+მეორე აკვაღა+ON+Place
+პირველ= აკვაღა+OA+Place
+პრაღა+ON+Place
+ქვაბღა+ON+Place
+ნოღა+ON+Place
+მეორე ჭოღა+ON+Place
+პირველ= ჭოღა+OA+Place
+აბაშა+ON+Place
+ძველ= აბაშა+OA+Place
+აძღაფშა+ON+Place
+ბაჩა+ON+Place
+აქვაჩა+ON+Place
+კურჩა+ON+Place
+ხურჩა+ON+Place
+მუხურჩა+ON+Place
+ტობახჩა+ON+Place
+თახჩა+ON+Place
+ძიხჩა+ON+Place
+აუალიცა+ON+Place
+ნიცა+ON+Place
+პოდგორიცა+ON+Place
+კონსტანცა+ON+Place
+ქუნცა+ON+Place
+ბანძა+ON+Place
+ასპინძა+ON+Place
+წყორძა+ON+Place
+აჩკაწა+ON+Place
+რაფიწა+ON+Place
+აკვასქემწა+ON+Place
+პატრახუწა+ON+Place
+ამბარიხუწა+ON+Place
+ვახა+ON+Place
+გარახა+ON+Place
+ოეხა+ON+Place
+ჯიხა+ON+Place
+წალენჯიხა+ON+Place
+ცხრამუხა+ON+Place
+გუმიშხა+ON+Place
+კინჩხა+ON+Place
+ჩუნჩხა+ON+Place
+ქვემო ბირცხა+ON+Place
+ზემო ბირცხა+ON+Place
+კირცხა+ON+Place
+აუძხა+ON+Place
+განჯა+ON+Place
+ერინჯა+ON+Place
+ბირჯა+ON+Place
+ორჯა+ON+Place
+სებორჯა+ON+Place
+ნარუჯა+ON+Place
+ნინოწმინდა+ON+Place
+თერჯოლა+ON+Place
+ვალე+O+Place
+ბერგენი+A+Place
+ჯვარი+A+Place
+ბაღდათი+A+Place
+ჩაბანლუგი+A+Place
+ლედგებე+O+Place
+ხალდე+O+Place
+კლდე+O+Place
+ლებარდე+O+Place
+ლექარდე+O+Place
+ლეშამუდე+O+Place
+სათავე+O+Place
+ლეცავე+O+Place
+ორაგვე+O+Place
+წინაკვერკვე+O+Place
+კოხტლა-იარვე+O+Place
+რიზე+O+Place
+მზეთამზე+O+Place
+ლეკოკაიე+O+Place
+ლესაჯაიე+O+Place
+ლეგოგიე+O+Place
+რეშევიე+O+Place
+არმიანსკოე უშჩელიე+O+Place
+სკოპიე+O+Place
+ვაკე+O+Place
+ლექობალე+O+Place
+ლესალე+O+Place
+ჭალე+O+Place
+ლეახალე+O+Place
+ჰალე+O+Place
+ჭველე+O+Place
+ლეკეკელე+O+Place
+ღრმაღელე+O+Place
+ლაშისღელე+O+Place
+სანტიაგო დე ჩილე+O+Place
+ლეხარჩილე+O+Place
+საღანძილე+O+Place
+ხოლე+O+Place
+ლეძაძამე+O+Place
+ოირემე+O+Place
+სალმე+O+Place
+ხაბუმე+O+Place
+ლეწურუმე+O+Place
+მედანე+O+Place
+ცვანე+O+Place
+ლევახანე+O+Place
+ლესეჭინე+O+Place
+გეორგიევსკოე+O+Place
+პეტროვსკოე+O+Place
+პრიმორსკოე+O+Place
+სერებრიანოე+O+Place
+ზვარე+O+Place
+ლედარსარე+O+Place
+ლეგახარე+O+Place
+საკირე+O+Place
+ნამიკოლავო მეორე+O+Place
+ოკვინორე+O+Place
+მონტრე+O+Place
+ოჭუბურე+O+Place
+ხაშუფსე+O+Place
+კარლსრუე+O+Place
+ლეფშჩხუე+O+Place
+ლეჯიქე+O+Place
+დოშაყე+O+Place
+რიყე+O+Place
+კუდატყე+O+Place
+გურისტყე+O+Place
+ლებაჩე+O+Place
+ოჩე+O+Place
+პატარა ოჩე+O+Place
+ლეკარჩე+O+Place
+მოშოვცე+O+Place
+კატოვიცე+O+Place
+ოცარცე+O+Place
+მინაძე+O+Place
+ლესელიძე+O+Place
+ხე+O+Place
+მოიდანახე+O+Place
+სათხე+O+Place
+ლეჯოლიხე+O+Place
+დაბლაციხე+O+Place
+ბუკისციხე+O+Place
+ველისციხე+O+Place
+ბულბულისციხე+O+Place
+ლესხულუხე+O+Place
+ბაკურიანი+A+Place
+მელბურნი+A+Place
+პორტ-ფილიპი+A+Place
+შანჰაი+A+Place
+ბაბი+A+Place
+პეტუშკი+O+Place
+ესინო+O+Place
+ხრაპუნოვო+O+Place
+ფრიაზევო+O+Place
+სათიბები+A+Place
+ბეჟანთ-უბანი+B+Place
+ქვები+A+Place
+კოშკები+A+Place
+პატარა ხალები+A+Place
+ზემო ნატანები+A+Place
+ზაგრები+A+Place
+ჭანდრები+A+Place
+ტუსრები+A+Place
+შუა სურები+A+Place
+ზემო სურები+A+Place
+თავსურები+A+Place
+ქვემო ბარღები+A+Place
+ზემო ბარღები+A+Place
+ქარცები+A+Place
+ტვიბი+A+Place
+მიწობი+A+Place
+ხობი+A+Place
+პატარა მიტარბი+A+Place
+დიდ= მიტარბი+AA+Place
+ზუბი+A+Place
+ზედა უჩხუბი+A+Place
+ხოჯაბეგი+A+Place
+ბრაუნშვაიგი+A+Place
+ოლიანგი+A+Place
+ტაგანროგი+A+Place
+ჩოლაბარგი+A+Place
+ნოვი ტარგი+A+Place
+ჰაიდელბერგი+A+Place
+ნიურნბერგი+A+Place
+ჰამბურგი+A+Place
+ლუქსემბურგი+A+Place
+ოლდენბურგი+A+Place
+ბრანდენბურგი+A+Place
+სანკტ-პეტერბურგი+A+Place
+ფრედერიკსბურგი+A+Place
+მაზარ ე შარიფი+A+Place
+აშხაბადი+A+Place
+განთიადი+A+Place
+ბელგრადი+A+Place
+ქვედა ვედი+A+Place
+ზედა ვედი+A+Place
+ფალედი+A+Place
+შემოქმედი+A+Place
+ვანისქედი+A+Place
+ოქროსქედი+A+Place
+იაზდი+A+Place
+ჭალადიდი+A+Place
+ზუგდიდი+A+Place
+მადრიდი+A+Place
+ცხემლისხიდი+A+Place
+ღვებალდი+A+Place
+ცხუმალდი+A+Place
+ლაბსყალდი+A+Place
+ჩოხულდი+A+Place
+ქვედა წვირმინდი+A+Place
+ნოვგოროდი+A+Place
+ღვაშიგვგრდი+A+Place
+ოლავერდი+A+Place
+ეწერფერდი+A+Place
+ციხისფერდი+A+Place
+გაშფერდი+A+Place
+სკურდი+A+Place
+ლახუშდი+A+Place
+რუსთავი+A+Place
+თელავი+A+Place
+ქვენაფლავი+A+Place
+ზანავი+A+Place
+საკოჭავი+A+Place
+თმოგვი+A+Place
+ნადარბაზევი+A+Place
+კიევი+A+Place
+ნაბაკევი+A+Place
+ღვლევი+A+Place
+ნაღობილევი+A+Place
+ჯოლევი+A+Place
+ნობულევი+A+Place
+ყულევი+A+Place
+ნაქალაქევი+A+Place
+ზემო ხევი+A+Place
+ჩითახევი+A+Place
+ნოჯიხევი+A+Place
+კუთხენოჯიხევი+A+Place
+იმერხევი+A+Place
+ქვაბისხევი+A+Place
+ჭობისხევი+A+Place
+კრისხევი+A+Place
+პლოვდივი+A+Place
+თელ-ავივი+A+Place
+ზაკვი+A+Place
+ლეშუკვი+A+Place
+კიშინიოვი+A+Place
+კრაკოვი+A+Place
+ხარკოვი+A+Place
+მოსკოვი+A+Place
+ჟდანოვი+A+Place
+კიროვი+A+Place
+კუროვი+A+Place
+ქვედა ბახვი+A+Place
+ზედა ბეხვი+A+Place
+ცაცხვი+A+Place
+ვლადიკავკაზი+A+Place
+დიზი+A+Place
+პარიზი+A+Place
+ქვემო ჩიბათი+A+Place
+ზემო ჩიბათი+A+Place
+გუმბათი+A+Place
+აბედათი+A+Place
+პატარა გეზათი+A+Place
+კოკათი+A+Place
+კონჭკათი+A+Place
+კვაჭალათი+A+Place
+თეკლათი+A+Place
+ქვედა მამათი+A+Place
+ჯუმათი+A+Place
+ძირიჯუმათი+A+Place
+ტაბანათი+A+Place
+გაღმა ზანათი+A+Place
+გამოღმა ზანათი+A+Place
+ჭინათი+A+Place
+ყორათი+A+Place
+უშაფათი+A+Place
+ჭანჭათი+A+Place
+კახათი+A+Place
+დიდ= ნეძის კახათი+AA+Place
+ახალკახათი+A+Place
+მახათი+A+Place
+ჩოჩხათი+A+Place
+ზვარბეთი+A+Place
+ტბეთი+A+Place
+ოდეთი+A+Place
+ბუზავეთი+A+Place
+ხავეთი+A+Place
+თაგვეთი+A+Place
+ჯურუყვეთი+A+Place
+ქაშვეთი+A+Place
+ციზეთი+A+Place
+ლეთეთი+A+Place
+ზემო ლეთეთი+A+Place
+გოგიეთი+A+Place
+სერგიეთი+A+Place
+ბჟოლიეთი+A+Place
+ჭანიეთი+A+Place
+ქვემო რიეთი+A+Place
+ბუქსიეთი+A+Place
+სეფიეთი+A+Place
+ქვემო აკეთი+A+Place
+ზემო აკეთი+A+Place
+კვირიკეთი+A+Place
+ქვემო ონჭიკეთი+A+Place
+ზემო ონჭიკეთი+A+Place
+ქვემო ერკეთი+A+Place
+ზემო ერკეთი+A+Place
+ზრიალეთი+A+Place
+ბარალეთი+A+Place
+ფამფალეთი+A+Place
+პატარა ყელეთი+A+Place
+დიდ= ყელეთი+AA+Place
+მეორე შეშელეთი+A+Place
+პირველ= შეშელეთი+AA+Place
+პატარა ზავლეთი+A+Place
+დიდ= ხავლეთი+AA+Place
+ბაილეთი+A+Place
+მუზილეთი+A+Place
+ბასილეთი+A+Place
+ზომლეთი+A+Place
+გრიგოლეთი+A+Place
+ბესლეთი+A+Place
+ბაღლეთი+A+Place
+ბეღლეთი+A+Place
+ჩომეთი+A+Place
+ორმეთი+A+Place
+რუმელი+A+Place
+სკორმეთი+A+Place
+ზემო მაკვანეთი+A+Place
+იანეთი+A+Place
+კოტიანეთი+A+Place
+კორტანეთი+A+Place
+ვარდგინეთი+A+Place
+ლოშკინეთი+A+Place
+გვერძინეთი+A+Place
+საყუნეთი+A+Place
+ჭობარეთი+A+Place
+მუგარეთი+A+Place
+მაჩხვარეთი+A+Place
+ომფარეთი+A+Place
+გუჯარეთი+A+Place
+პატარა წერეთი+A+Place
+აზავრეთი+A+Place
+ხორეთი+A+Place
+ქვემო ხვედურეთი+A+Place
+ზემო ხვედურეთი+A+Place
+ბურნაუეთი+A+Place
+ბურნაშეთი+A+Place
+ჩანჩეთი+A+Place
+ქვემო ხეთი+A+Place
+მურჯახეთი+A+Place
+მეხეთი+A+Place
+გულუხეთი+A+Place
+ქვიშხეთი+A+Place
+გეჯეთი+A+Place
+ქვაითი+A+Place
+ალგითი+A+Place
+ინკითი+A+Place
+მოლითი+A+Place
+სხლითი+A+Place
+ქვედა ძიმითი+A+Place
+ზედა ძიმითი+A+Place
+ჯუმითი+A+Place
+სუქითი+A+Place
+ლეთკანთი+A+Place
+ბობოთი+A+Place
+ხეოთი+A+Place
+ფოთი+A+Place
+პატარა ფოთი+A+Place
+კვაუთი+A+Place
+ქაქუთი+A+Place
+ახუთი+A+Place
+ზემო შუხუთი+A+Place
+სუდაკი+A+Place
+სენაკი+A+Place
+ძველ= სენაკი+AA+Place
+აგარაკი+A+Place
+ნაგასაკი+A+Place
+ეკი+A+Place
+ლიუბეკი+A+Place
+ურეკი+A+Place
+ჰელსინკი+A+Place
+თოკი+A+Place
+კოკი+A+Place
+ბანგკოკი+A+Place
+გრებეშოკი+A+Place
+ნიუარკი+A+Place
+ნიუ-იორკი+A+Place
+მინსკი+A+Place
+ოსნაბრიუკი+A+Place
+ხანწკი+A+Place
+გალი+A+Place
+ჯგალი+A+Place
+სუზდალი+A+Place
+მონრეალი+A+Place
+ჯორკვალი+A+Place
+თხინვალი+A+Place
+ნადქორვალი+A+Place
+უღვალი+A+Place
+ბრზალი+A+Place
+დამკალი+A+Place
+ფარცხნალი+A+Place
+ჯამპალი+A+Place
+ნანყვამ-ზაგრალი+A+Place
+თავრალი+A+Place
+ლალხორალი+A+Place
+ჭარტალი+A+Place
+პატარა არაქალი+A+Place
+დიდ= არაქალი+AA+Place
+ნაკარღალი+A+Place
+ღვრიაწყალი+A+Place
+წინწყალი+A+Place
+მაჭარწყალი+A+Place
+პატარა ხანჩალი+A+Place
+საყუდაბელი+A+Place
+სანიბელი+A+Place
+ღვთისმშობელი+A+Place
+დელი+X+Place
+ნიუ-დელი+X+Place
+მაგარდელი+A+Place
+ველი+A+Place
+ურაველი+A+Place
+რველი+A+Place
+ნამიკოლავო პირველი+A+Place
+ძველი+A+Place
+იელი+A+Place
+გურკელი+A+Place
+მურშკელი+A+Place
+მურყმელი+A+Place
+ღრელი+A+Place
+თისელი+A+Place
+მარსელი+A+Place
+ბრიუსელი+A+Place
+ლანტელი+A+Place
+აზალსოფელი+B+Place
+ახალსოფელი+B+Place
+წითელსოფელი+B+Place
+ოქროსოფელი+B+Place
+ისლამაბადი+A+Place
+ამტყელი+A+Place
+დარჩელი+A+Place
+არცხელი+A+Place
+კორცხელი+A+Place
+ლაილი+A+Place
+ბოგილი+A+Place
+წყურგილი+A+Place
+გაჭედილი+A+Place
+ჩრდილი+A+Place
+მარტვილი+A+Place
+ნეშვილი+A+Place
+ნინოშვილი+A+Place
+შეკვეთილი+A+Place
+ჰეშკილი+A+Place
+გიმოზგონჯილი+A+Place
+ნეაპოლი+A+Place
+სოლი+A+Place
+აბული+A+Place
+ქაბული+A+Place
+ნაკადული+A+Place
+თარგამეული+A+Place
+იანეული+A+Place
+ანასეული+A+Place
+მზისეული+A+Place
+არჩეული+A+Place
+# ქართული+A+Place
+გორაბერეჟოული+A+Place
+ლივერპული+A+Place
+პერტული+A+Place
+მეორე გურიფული+A+Place
+პირველ= გურიფული+AA+Place
+ამსტერდამი+A+Place
+მაიამი+A+Place
+პატარა ბეკამი+A+Place
+გულიკამი+A+Place
+კარტიკამი+A+Place
+ოკამი+A+Place
+ბეთლემი+A+Place
+ჰაარლემი+A+Place
+წყემი+A+Place
+ცემი+A+Place
+პატარა ცემი+A+Place
+მეორე გურძემი+A+Place
+პირველ= გურძემი+AA+Place
+აიაზმი+A+Place
+მანჰაიმი+A+Place
+იერუსალიმი+A+Place
+სტოკჰოლმი+A+Place
+ულმი+A+Place
+გომი+A+Place
+რომი+A+Place
+წრომი+A+Place
+ბორჯომი+A+Place
+წვირმი+A+Place
+ზუმი+A+Place
+ბათუმი+A+Place
+ლუცერიუმი+A+Place
+ჯუმი+A+Place
+ბეით-ლაჰმი+A+Place
+ბანი+A+Place
+ლიბანი+A+Place
+ქოლობანი+A+Place
+ქვენობანი+A+Place
+ზენობანი+A+Place
+კრობანი+A+Place
+ზედუბანი+B+Place
+გუდათუბანი+B+Place
+ალათუბანი+B+Place
+ბეჟათუბანი+B+Place
+ყველაანთუბანი+B+Place
+თათანაანთუბანი+B+Place
+ქობესაანთუბანი+B+Place
+რუსაანთუბანი+B+Place
+ყიფიანთუბანი+B+Place
+ორთუბანი+B+Place
+წინუბანი+B+Place
+კიმოთესუბანი+B+Place
+გოგოლესუბანი+B+Place
+გვერდისუბანი+B+Place
+ვაზისუბანი+B+Place
+შრომისუბანი+B+Place
+კულტუბანი+B+Place
+შუბანი+B+Place
+თხილაგანი+A+Place
+ზეგანი+A+Place
+გოდოგანი+A+Place
+მოედანი+A+Place
+ქედანი+A+Place
+მაიდანი+A+Place
+ახალ= ორლეანი+AA+Place
+ვანი+A+Place
+ბგარდვანი+A+Place
+ვარდევანი+A+Place
+ნარდევანი+A+Place
+ვარევანი+A+Place
+ერევანი+B+Place
+ქართვანი+A+Place
+ხეივანი+B+Place
+ვაშლოვანი+A+Place
+ციტრუსოვანი+A+Place
+თხმელიარვანი+A+Place
+ლეღვანი+A+Place
+თოთანი+A+Place
+ჩვაბიანი+A+Place
+ჩვიბიანი+A+Place
+ჟიბიანი+A+Place
+კლდიანი+A+Place
+ბოვიანი+A+Place
+ქვიანი+A+Place
+ნიგვზიანი+A+Place
+მზიანი+A+Place
+დავითიანი+A+Place
+ნაკიანი+A+Place
+მიასნიკიანი+A+Place
+წაბლიანი+A+Place
+იდლიანი+A+Place
+გურიანი+A+Place
+ვაშტიანი+A+Place
+ვაჩიანი+A+Place
+კიროვაკანი+A+Place
+მილანი+A+Place
+ბესლანი+A+Place
+ფახულანი+A+Place
+კამანი+A+Place
+კოდმანი+A+Place
+ტელმანი+A+Place
+გომანი+A+Place
+აბასთუმანი+B+Place
+ახალ= აბასთუმანი+AA+Place
+მარანი+A+Place
+ბაღმარანი+A+Place
+თეირანი+A+Place
+ალასტანი+A+Place
+განძანი+A+Place
+ვახანი+A+Place
+ლახანი+A+Place
+თოთხანი+A+Place
+ჰაგენი+A+Place
+კოპენჰაგენი+A+Place
+გეტინგენი+A+Place
+დრეზდენი+A+Place
+კოვენტ გარდენი+A+Place
+ზენი+A+Place
+ნარაზენი+A+Place
+დობერაზენი+A+Place
+ათენი+A+Place
+საკენი+A+Place
+ზაარბრიუკენი+A+Place
+კაუნიაინენი+A+Place
+გოგაშენი+A+Place
+ჯიგრაშენი+A+Place
+ბუღაშენი+A+Place
+აზალშენი+A+Place
+ახალშენი+A+Place
+დემერჩენი+A+Place
+აახენი+A+Place
+მიუნხენი+A+Place
+ოზნი+A+Place
+ფრანკფურტ-ამ-მაინი+A+Place
+პეკინი+A+Place
+ტალინი+A+Place
+დუბლინი+A+Place
+ლუბლინი+A+Place
+ბრუკლინი+A+Place
+ბერლინი+A+Place
+ტურინი+A+Place
+ეჩმიაძინი+A+Place
+ლისაბონი+A+Place
+ლონდონი+A+Place
+ხუდონი+A+Place
+ფალაზონი+A+Place
+ტრაბზონი+A+Place
+ალიონი+A+Place
+თამაკონი+A+Place
+პატარა თამაკონი+A+Place
+ქვალონი+A+Place
+ზემო ქვალონი+A+Place
+თაგილონი+A+Place
+გვიმარონი+A+Place
+ტარსონი+A+Place
+ბოსტონი+A+Place
+სარაქონი+A+Place
+სირიაჩქონი+A+Place
+დიდ= ჭყონი+AA+Place
+ნოჩხონი+A+Place
+ნესგუნი+A+Place
+მართუნი+A+Place
+ჩქუნი+A+Place
+ლიხნი+A+Place
+ხაჩკოი+A+Place
+დარაქოი+A+Place
+აძიგეჟი+A+Place
+ტობარი+A+Place
+ჩუბარი+A+Place
+ზაგარი+A+Place
+კადარი+A+Place
+ბავარი+A+Place
+დგვარი+A+Place
+ციცხვარი+A+Place
+ჯვარი+A+Place
+ვაკიჯვარი+A+Place
+ციხისჯვარი+A+Place
+წალაკარი+A+Place
+ვედიდკარი+A+Place
+კლდეკარი+A+Place
+ოხვამეკარი+A+Place
+კიმაანთკარი+A+Place
+ჯაგარაანთკარი+A+Place
+იმერლიანთკარი+A+Place
+გულეიკარი+A+Place
+ჯიხასკარი+A+Place
+ისკარი+A+Place
+განათლებისკარი+A+Place
+გონებისკარი+A+Place
+შრომისკარი+A+Place
+ცოდნისკარი+A+Place
+ტაშისკარი+A+Place
+თხინაშკარი+A+Place
+ყულიშკარი+A+Place
+დიდ= სახვლარი+AA+Place
+ლარილარი+A+Place
+ოროჯოლარი+A+Place
+მამულარი+A+Place
+ბაგვდანარი+A+Place
+ჭკიდანარი+A+Place
+უშხვანარი+A+Place
+კვანჭიანარი+A+Place
+მოცვნარი+A+Place
+გაუწყინარი+A+Place
+ბუკნარი+A+Place
+იფნარი+A+Place
+ბაღნარი+A+Place
+მუხნარი+A+Place
+ხოსრარი+A+Place
+იფრარი+A+Place
+პატარა სამსარი+A+Place
+დიდ= სამსარი+AA+Place
+ფარი+A+Place
+ქვედა იფარი+A+Place
+ჯაპშაქარი+A+Place
+ყარი+A+Place
+ჭითაწყარი+A+Place
+ნახარი+A+Place
+დავბერი+A+Place
+ტვიბერი+A+Place
+ოქტომბერი+A+Place
+სადგერი+A+Place
+ფრანკფურტ-ან-დერ-ოდერი+A+Place
+დღუდერი+A+Place
+ღეშდერი+A+Place
+ჰანოვერი+A+Place
+წაღვერი+A+Place
+ლაშთხვერი+A+Place
+მაზერი+A+Place
+თეზერი+A+Place
+ჩქვალერი+A+Place
+ტალერი+A+Place
+შყალერი+A+Place
+ცალერი+A+Place
+ლადრერი+A+Place
+ფხუტრერი+A+Place
+მონასტერი+A+Place
+მანჩესტერი+A+Place
+ლეწფერი+A+Place
+ჩანჩქერი+A+Place
+პონდიშერი+A+Place
+დაბალ= გწერი+AA+Place
+ეწერი+A+Place
+ზედა ეწერი+A+Place
+მეორე ეწერი+A+Place
+პირველ= ეწერი+AA+Place
+ფოცხოეწერი+A+Place
+რეფო-ეწერი+A+Place
+ლანხერი+A+Place
+ლაყვრი+A+Place
+კვათეთრი+A+Place
+გაღმა დობირი+A+Place
+ინგირი+A+Place
+მონგირი+A+Place
+მოგირი+A+Place
+მეხადირი+A+Place
+უსგვირი+A+Place
+დვირი+A+Place
+ძიბზირი+A+Place
+ჭელირი+A+Place
+იზმირი+A+Place
+მთისპირი+A+Place
+აბაშისპირი+A+Place
+ნოსირი+A+Place
+შუა ნოსირი+A+Place
+პირველ= ნოსირი+AA+Place
+ტყირი+A+Place
+ნებოძირი+A+Place
+ლახირი+A+Place
+შდიხირი+A+Place
+ცხირი+A+Place
+ჯიხანჯირი+A+Place
+გომბორი+A+Place
+გორი+A+Place
+ახალგორი+A+Place
+გაღმა კოდორი+A+Place
+გამოღმა კოდორი+A+Place
+ცილორი+A+Place
+ოლორი+A+Place
+ბალტიმორი+A+Place
+ლუქსორი+A+Place
+თიქორი+A+Place
+ფიჩორი+A+Place
+ხორი+A+Place
+ლალხორი+A+Place
+ფორთონოხორი+A+Place
+ლაჰორი+A+Place
+ნიაბაური+A+Place
+შველაურ ციციბაური+A+Place
+ქალა ქადაგაური+A+Place
+ბოხვაური+A+Place
+ქვემო ოსიაური+A+Place
+ზემო ოსიაური+A+Place
+გვიმრალაური+A+Place
+სილაური+A+Place
+ხუნჯულაური+A+Place
+მანანაური+A+Place
+ჩოხატაური+A+Place
+გაგური+A+Place
+ძიგური+A+Place
+ბუძგური+A+Place
+მელექედური+A+Place
+პატარა კონდური+A+Place
+დიდ= კონდური+AA+Place
+ჭანიუთური+A+Place
+მზიური+A+Place
+ბატიური+A+Place
+გოლასკური+A+Place
+ხამისკური+A+Place
+ხუმუშკური+A+Place
+წაჩკური+A+Place
+პალური+A+Place
+ოჩხომური+A+Place
+გოგოური+A+Place
+ჯოდპური+A+Place
+კუალა-ლუმპური+A+Place
+კელასური+A+Place
+ღინტური+A+Place
+ხუმენი-ნათოფური+A+Place
+სქური+A+Place
+აწყური+A+Place
+ტაბაწყური+A+Place
+ხაშური+A+Place
+კასპი+A+Place
+ახალციხე+M+Place
+ქვემო ბოშური+A+Place
+ზემო ბოშური+A+Place
+მუხური+A+Place
+განარჯიის მუხური+A+Place
+პატარა ინჩხური+A+Place
+დიდ= ინჩხური+AA+Place
+ლოს-ანჯელესი+A+Place
+ქუთაისი+A+Place
+ყვიბისი+A+Place
+დეისი+A+Place
+ხერთვისი+A+Place
+ყინწვისი+A+Place
+ბიისი+A+Place
+ყულალისი+A+Place
+მარელისი+A+Place
+თბილისი+A+Place
+ჯინისი+A+Place
+ბოლნისი+A+Place
+ნუნისი+A+Place
+წნისი+A+Place
+საცხვარისი+A+Place
+ზემო ქსოვრისი+A+Place
+ტაძრისი+A+Place
+მემფისი+A+Place
+ხცისი+A+Place
+ბევერლი ჰილსი+A+Place
+პორტ-ო-პრენსი+A+Place
+ყარსი+A+Place
+ვილნიუსი+A+Place
+ერგეტი+A+Place
+ბაკურიანის ანდეზიტი+A+Place
+დერბენტი+A+Place
+ტაშკენტი+A+Place
+ზოტი+A+Place
+წალკოტი+A+Place
+ლანჩხუთი+A+Place
+ქარელი+A+Place
+შტუტგარტი+A+Place
+ალერტი+A+Place
+ფრანკფურტი+A+Place
+ბუქარესტი+A+Place
+ბუდაპეშტი+A+Place
+ზაარლუი+A+Place
+სვიფი+A+Place
+ბზიფი+A+Place
+დილიფი+A+Place
+პეტერჰოფი+A+Place
+გარფი+A+Place
+ჭაჭარაქი+A+Place
+ანჰაშთუქი+A+Place
+აბღარხუქი+A+Place
+ქვემო მარღი+A+Place
+ზემო მარღი+A+Place
+ახალქალაქი+A+Place
+ბაში+A+Place
+ცალდაში+A+Place
+კიჩხულდაში+A+Place
+ნოდაში+A+Place
+ხერხვაში+A+Place
+ზარდლაში+A+Place
+ქოლაში+A+Place
+იენაში+A+Place
+ვიჩნაში+A+Place
+ჩაჟაში+A+Place
+დურაში+A+Place
+ქურაში+A+Place
+ჭკადუაში+A+Place
+მოხაში+A+Place
+მეორე მოხაში+A+Place
+ბარჯაში+A+Place
+ჟაბეში+A+Place
+დადეში+A+Place
+ჰმაში-თოთალეში+A+Place
+ბულეში+A+Place
+ბოგრეში+A+Place
+კუხეში+A+Place
+რიათში+A+Place
+ცაიში+A+Place
+ხაიში+A+Place
+ტვებიში+A+Place
+აგიში+A+Place
+ადიში+A+Place
+ოდიში+A+Place
+მარჯვენა გენწვიში+A+Place
+მარცხენა გენწვიში+A+Place
+გრიგოლიში+A+Place
+ბულიში+A+Place
+გერგემიში+A+Place
+ბარმიში+A+Place
+ჩხენიში+A+Place
+სგურიში+A+Place
+მარჯვენა პტიში+A+Place
+მარცხენა პტიში+A+Place
+ტოლოში+A+Place
+შუა ხორში+A+Place
+დიდ= ხორში+AA+Place
+ჟამუში+A+Place
+წყოუში+A+Place
+ჩხოუში+A+Place
+ზვანდრიფში+A+Place
+მიქელრიფში+A+Place
+დურიფში+A+Place
+კუშჩი+A+Place
+გრაცი+A+Place
+მაინცი+A+Place
+ორმოცი+A+Place
+ვადუცი+A+Place
+ალახაძი+A+Place
+დიდ= ნეძი+AA+Place
+ქვემო ხუნწი+A+Place
+აჭი+A+Place
+სოჭი+A+Place
+ტყვარჩელი+A+Place
+ლეხალმახი+A+Place
+კარწახი+A+Place
+ლაგოდეხი+A+Place
+ალძიხი+A+Place
+სადაროხი+A+Place
+კორხი+A+Place
+მუსხი+A+Place
+რუხი+A+Place
+იფხი+A+Place
+ტურცხი+A+Place
+ლომატურცხი+A+Place
+ჭაქვინჯი+A+Place
+ჭუბურხინჯი+A+Place
+მათხოჯი+A+Place
+ობუჯი+A+Place
+ჩანდიგარჰი+A+Place
+ქვედა ლუჰი+A+Place
+ნაესაკაო+O+Place
+საგუგუნაო+O+Place
+ნალეფსაო+O+Place
+საცხვიტაო+O+Place
+სამიქაო+O+Place
+გაღმა საჯიჯაო+O+Place
+ჩიკაგო+O+Place
+გლაზგო+O+Place
+ღადო+O+Place
+ხანდო+O+Place
+კუმურდო+O+Place
+შურდო+O+Place
+მონტევიდეო+O+Place
+ნახარებავო+O+Place
+საჩიქობავო+O+Place
+ზემო ნაგვაზავო+O+Place
+საგვაზავო+O+Place
+საელიავო+O+Place
+სახოჭოლავო+O+Place
+ნახუნავო+O+Place
+ლეხაინდრავო+O+Place
+ნაგებერავო+O+Place
+საღვამიჩავო+O+Place
+სატყებუჩავო+O+Place
+საბოკუჩავო+O+Place
+ნაჯახავო+O+Place
+სარაევო+O+Place
+სულევო+O+Place
+ანტანანარივო+O+Place
+შაფრანოვო+O+Place
+ნაფიჩხოვო+O+Place
+საბუთბაიო+O+Place
+საბეჭვაიო+O+Place
+საადანაიო+O+Place
+საშურღაიო+O+Place
+სანაჭყებიო+O+Place
+საშამუგიო+O+Place
+სახარბედიო+O+Place
+გოკიო+O+Place
+ტოკიო+O+Place
+საბუკიო+O+Place
+საბესელიო+O+Place
+საჭურღულიო+O+Place
+საალანიო-საფაჩულიო+O+Place
+საადამიო+O+Place
+საგვარამიო+O+Place
+საკილასონიო+O+Place
+ბია-საშონიო+O+Place
+საგუნიო+O+Place
+ხოსპიო+O+Place
+საბერიო+O+Place
+საბულის კერიო+O+Place
+საგაბესკირიო+O+Place
+საწულეისკირიო+O+Place
+საქირიო+O+Place
+ნორიო+O+Place
+საქორქიო+O+Place
+საგვიჩიო+O+Place
+კოჭიო+O+Place
+სამესხიო+O+Place
+მეხიკო+O+Place
+სან-ფრანცისკო+O+Place
+სან ფრანცისკო+O+Place
+სამარქვალო+O+Place
+აბუხალო+O+Place
+ავრანლო+O+Place
+ოსლო+O+Place
+საღამო+O+Place
+ხულგუმო+O+Place
+ახალ= ხულგუმო+OA+Place
+ბეჟანო+O+Place
+გროზნო+O+Place
+საგარეჯო+O+Place
+სტარუშკინო+O+Place
+საჩინო+O+Place
+სალხინო+O+Place
+ესპოო+O+Place
+საბაჟო+O+Place
+სარო+O+Place
+ქვემო წყარო+O+Place
+ზემო წყარო+O+Place
+თეთრიწყარო+O+Place
+ალექსანდრესწყარო+O+Place
+ქაირო+O+Place
+რიო-დე-ჟანეირო+O+Place
+საპორო+O+Place
+ტარანტო+O+Place
+ბენევენტო+O+Place
+კიოტო+O+Place
+საესებუო+O+Place
+საჭოჭუო+O+Place
+მეორე ონტოფო+O+Place
+პირველ= ონტოფო+OA+Place
+ბაქო+O+Place
+ქოყო+O+Place
+მოგადიშო+O+Place
+ბალხო+O+Place
+ფოცხო+O+Place
+ჭყონაგორი+A+Place
+ნაჭკადუ+O+Place
+კლდუ+O+Place
+ნაგვაზუ+O+Place
+დვაბზუ+O+Place
+გაღმა დვაბზუ+O+Place
+კურზუ+O+Place
+ხაბიუ+O+Place
+გიურგიუ+O+Place
+ნაწულუკუ+O+Place
+ორულუ+O+Place
+პიარნუ+O+Place
+ნაღვალოუ+O+Place
+ნაგურუ+O+Place
+კათნატუ+O+Place
+ნაცატუ+O+Place
+ტარტუ+O+Place
+პორტუ+O+Place
+ნაფოშტუ+O+Place
+ოფაჩხაფუ+O+Place
+ნაკიფუ+O+Place
+ბულიწყუ+O+Place
+ჩხოროწყუ+O+Place
+ქვედა ჩხოროწყუ+O+Place
+არაშახუ+O+Place
+ჩერქეზიხუ+O+Place
+ჭიხუ+O+Place
+წვიშარხუ+O+Place
+ფსხუ+O+Place
+ალაჰაშხუ+O+Place
+ლეგოგიე ნასაჯუ+O+Place
+ური+A+Place
+ურუქი+A+Place
+ქიში+A+Place
+ნიფური+A+Place
+მოჰენჯო-დარო+O+Place
+ჰარაპა+ON+Place
+ნიკეა+M+Place
+კონსტანტინოპოლი+A+Place
+მანასკერტი+A+Place
+ალექსანდრია+I+Place
+ბერდიანსკი+A+Place
+მარიუპოლი+A+Place
+როსტოვი+A+Place
+დონის-როსტოვი+A+Place
+იეისკი+A+Place
+მანიჩი+A+Water
+# საქართველოს სოფლები; conjugation classes have to be checked
+უაზაბაა+ON+Place
+ახივაა+ON+Place
+ნაა+ON+Place
+დაბა+ON+Place
+ახალდაბა+ON+Place
+ყველდაბა+ON+Place
+დღვაბა+ON+Place
+თაზახარაბა+ON+Place
+სვიდება+ON+Place
+გამარჯვება+ON+Place
+შეერთება+ON+Place
+განათლება+ON+Place
+თავისუფლება+ON+Place
+ამაღლება+ON+Place
+შუა ამაღლება+ON+Place
+განახლება+ON+Place
+დასახლება+ON+Place
+სამება+ON+Place
+ქვედა სამება+ON+Place
+ზედა სამება+ON+Place
+პატარა სამება+ON+Place
+ხარება+ON+Place
+ვედრება+ON+Place
+ნაკრება+ON+Place
+მრამბა+ON+Place
+ხეობა+ON+Place
+სომხურ= ხეობა+ON+Place
+საქართველოს ხეობა+ON+Place
+შუა სბა+ON+Place
+ქვემო სბა+ON+Place
+ტბა+ON+Place
+სხალტბა+ON+Place
+ბესლახუბა+ON+Place
+დიხაგუძბა+ON+Place
+ბაგა+ON+Place
+ბითაგა+ON+Place
+ანაგა+ON+Place
+ძველ= ანაგა+ON+Place
+ფანაგა+ON+Place
+პატარა ირაგა+ON+Place
+დიდ= ირაგა+ON+Place
+მოდეგა+ON+Place
+ბოგა+ON+Place
+გაღმა შუა ხორგა+ON+Place
+გამოღმა შუა ხორგა+ON+Place
+გაღმა პირველი ხორგა+ON+Place
+გამოღმა პირველი ხორგა+ON+Place
+დიხაზურგა+ON+Place
+ღვადა+ON+Place
+პატარა სმადა+ON+Place
+დიდ= სმადა+ON+Place
+ყადა+ON+Place
+ახალ= მარაბდა+ON+Place
+ძველ= მარაბდა+ON+Place
+ლეშკედა+ON+Place
+ერედა+ON+Place
+ქედა+ON+Place
+გაგიდა+ON+Place
+გულიდა+ON+Place
+სიდა+ON+Place
+აძხიდა+ON+Place
+მესამე ბალდა+ON+Place
+მეორე ბალდა+ON+Place
+პირველ= ბალდა+ON+Place
+ზალდა+ON+Place
+მალდა+ON+Place
+წებელდა+ON+Place
+ზემო ვილდა+ON+Place
+შილდა+ON+Place
+სულდა+ON+Place
+ანდა+ON+Place
+აფიანდა+ON+Place
+დრანდა+ON+Place
+პატარა ქანდა+ON+Place
+ძველ= ქანდა+ON+Place
+აქენდა+ON+Place
+არაშენდა+ON+Place
+ლინდა+ON+Place
+ქვემო ლინდა+ON+Place
+საბაწმინდა+ON+Place
+ერთაწმინდა+ON+Place
+ელიაწმინდა+ON+Place
+ილიაწმინდა+ON+Place
+ანდრიაწმინდა+ON+Place
+გიორგწმინდა+ON+Place
+კვირიკეწმინდა+ON+Place
+გიორგიწმინდა+ON+Place
+წყალწმინდა+ON+Place
+მიქელწმინდა+ON+Place
+ივანწმინდა+ON+Place
+მირონწმინდა+ON+Place
+თედოწმინდა+ON+Place
+ნინოწმინდა+ON+Place
+ნიკორწმინდა+ON+Place
+სონდა+ON+Place
+გულსუნდა+ON+Place
+ღუნდა+ON+Place
+კოდა+ON+Place
+მამკოდა+ON+Place
+გვარდა+ON+Place
+აჩმარდა+ON+Place
+ჯგერდა+ON+Place
+მუგუდა+ON+Place
+ხუნკუდა+ON+Place
+აბაახუდა+ON+Place
+გუდავა+ON+Place
+მეორე გუდავა+ON+Place
+პირველ= გუდავა+ON+Place
+შუა სხვავა+ON+Place
+ზემო სხვავა+ON+Place
+უკანავა+ON+Place
+მუჟავა+ON+Place
+მიქავა+ON+Place
+ლიძავა+ON+Place
+ქვედა დაგვა+ON+Place
+ზედა დაგვა+ON+Place
+არაგვა+ON+Place
+სევა+ON+Place
+ქვედა წევა+ON+Place
+ზედა წევა+ON+Place
+ბოდახევა+ON+Place
+თეთრახევა+ON+Place
+ვეძათხევა+ON+Place
+ზნაკვა+ON+Place
+ცეკვა+ON+Place
+აჭანვა+ON+Place
+სიქთარვა+ON+Place
+წაქვა+ON+Place
+აკვარიქვა+ON+Place
+სირქვა+ON+Place
+ჟაშქვა+ON+Place
+აციჯქვა+ON+Place
+ლეღვა+ON+Place
+ნიგორზღვა+ON+Place
+თიღვა+ON+Place
+აბჟაყვა+ON+Place
+თასრაყვა+ON+Place
+ბოყვა+ON+Place
+ქვედა აჭყვა+ON+Place
+ზედა აჭყვა+ON+Place
+ლარჩვა+ON+Place
+ორცვა+ON+Place
+ნაძვა+ON+Place
+პაპწვა+ON+Place
+მზახვა+ON+Place
+ურთხვა+ON+Place
+ქვემო იაშთხვა+ON+Place
+ზემო იაშთხვა+ON+Place
+მაზიხვა+ON+Place
+მოხვა+ON+Place
+ბაალარხვა+ON+Place
+ჯგიდირხვა+ON+Place
+ონდანირხვა+ON+Place
+სინირხვა+ON+Place
+გუგუნირხვა+ON+Place
+აოსირხვა+ON+Place
+მუგუძირხვა+ON+Place
+ჯირხვა+ON+Place
+მამიჯირხვა+ON+Place
+ბლაბურხვა+ON+Place
+ყულანურხვა+ON+Place
+ანუხვა+ON+Place
+სომხურ= ანუხვა+ON+Place
+ცოუხვა+ON+Place
+აფცხვა+ON+Place
+ირტავაზა+ON+Place
+თორტიზა+ON+Place
+ზემო ხიზა+ON+Place
+ახალხიზა+ON+Place
+ნიგოზა+ON+Place
+კროზა+ON+Place
+ილტოზა+ON+Place
+რიღზა+ON+Place
+მალძიგათა+ON+Place
+ბაჯიგათა+ON+Place
+ხუგათა+ON+Place
+კალვათა+ON+Place
+ჭახვათა+ON+Place
+ბრითათა+ON+Place
+ჭელიათა+ON+Place
+გოიათა+ON+Place
+პატარა ციხიათა+ON+Place
+დიდ= ციხიათა+ON+Place
+როკათა+ON+Place
+სიუკათა+ON+Place
+ლათა+ON+Place
+ზემო ლათა+ON+Place
+სარიტათა+ON+Place
+ხიხათა+ON+Place
+ტიბეთა+ON+Place
+არგვეთა+ON+Place
+ბითეთა+ON+Place
+ზემო მლეთა+ON+Place
+მოწამეთა+ON+Place
+ერეთა+ON+Place
+ფერეთა+ON+Place
+ზასეთა+ON+Place
+აბუქეთა+ON+Place
+ხეთა+ON+Place
+მცხეთა+ON+Place
+კავთა+ON+Place
+ჩხიკვთა+ON+Place
+რაქვთა+ON+Place
+კაბუზთა+ON+Place
+ბზითა+ON+Place
+ვალითა+ON+Place
+მამითა+ON+Place
+შიბოითა+ON+Place
+ტასოითა+ON+Place
+წარითა+ON+Place
+ელბაქითა+ON+Place
+ბაზიქითა+ON+Place
+ბაღიქითა+ON+Place
+შუშითა+ON+Place
+ბალთა+ON+Place
+ლაშებალთა+ON+Place
+სერიბალთა+ON+Place
+კობალთა+ON+Place
+მაწყვალთა+ON+Place
+მთისკალთა+ON+Place
+ჩხალთა+ON+Place
+თანდელთა+ON+Place
+ბოსელთა+ON+Place
+ქეშელთა+ON+Place
+შტროლთა+ON+Place
+უშოლთა+ON+Place
+ცოცოლთა+ON+Place
+მიგრიაულთა+ON+Place
+კარწაულთა+ON+Place
+ყემულთა+ON+Place
+შუამთა+ON+Place
+შამთა+ON+Place
+მესამე შამთა+ON+Place
+წითელმთა+ON+Place
+გარდანთა+ON+Place
+უგარდანთა+ON+Place
+ვანთა+ON+Place
+ლაგვანთა+ON+Place
+აზანთა+ON+Place
+გულიანთა+ON+Place
+გურიანთა+ON+Place
+ბალანთა+ON+Place
+სანთა+ON+Place
+გალუანთა+ON+Place
+ელყანთა+ON+Place
+ჭვინთა+ON+Place
+კორინთა+ON+Place
+დუნთა+ON+Place
+ოთა+ON+Place
+თებოთა+ON+Place
+აგოთა+ON+Place
+კალოთა+ON+Place
+ჟინოთა+ON+Place
+პატარა ჟინოთა+ON+Place
+წყაროთა+ON+Place
+მულდართა+ON+Place
+წანიგვართა+ON+Place
+ხუმსართა+ON+Place
+ქვემო ბაქართა+ON+Place
+მაქართა+ON+Place
+ღართა+ON+Place
+ბერთა+ON+Place
+წვინდირთა+ON+Place
+იკორთა+ON+Place
+ქორთა+ON+Place
+ურთა+ON+Place
+ბინდაურთა+ON+Place
+აკაურთა+ON+Place
+ჯალაურთა+ON+Place
+ქუმელაურთა+ON+Place
+უძილაურთა+ON+Place
+გოგოლაურთა+ON+Place
+ჭაბურთა+ON+Place
+ბუჩუკურთა+ON+Place
+ქურთა+ON+Place
+გუჩმასთა+ON+Place
+გუმისთა+ON+Place
+აძუსთა+ON+Place
+ათარბა-იხუსთა+ON+Place
+გაგრაფსთა+ON+Place
+აღურაფსთა+ON+Place
+გუდაუთა+ON+Place
+ძიგუთა+ON+Place
+არუთა+ON+Place
+ქვაბრუთა+ON+Place
+ჭირუთა+ON+Place
+ჯუთა+ON+Place
+ბზიფთა+ON+Place
+პატარა გუფთა+ON+Place
+დიდ= გუფთა+ON+Place
+მეორე ბაგაჟიაშთა+ON+Place
+პირველ= ბაგაჟიაშთა+ON+Place
+ლაჩთა+ON+Place
+ათიძთა+ON+Place
+სიხთა+ON+Place
+თოხთა+ON+Place
+სოხთა+ON+Place
+კულუხთა+ON+Place
+მეორე ოტობაია+I+Place
+პირველ= ოტობაია+I+Place
+თაია+I+Place
+ბია+I+Place
+ზემო ბია+I+Place
+ავგია+I+Place
+ბედია+I+Place
+აგუბედია+I+Place
+სამტრედია+I+Place
+ქვედა ღვარდია+I+Place
+ზედა ღვარდია+I+Place
+მარჯვენა რკვია+I+Place
+მარცხენა რკვია+I+Place
+წიფლაკაკია+I+Place
+აკვასკია+I+Place
+ახალ= აკვასკია+I+Place
+ლია+I+Place
+ზედა ლია+I+Place
+საჩაჩხალია+I+Place
+ხაჯალია+I+Place
+კოთელია+I+Place
+თლია+I+Place
+ზიკილია+I+Place
+საყულია+I+Place
+დამია+I+Place
+ცხვარიჭამია+I+Place
+გედსამანია+I+Place
+დაბნია+I+Place
+ნენია+I+Place
+მერენია+I+Place
+ხორენია+I+Place
+პატარა ხორენია+I+Place
+ნინია+I+Place
+ჯონია+I+Place
+არღუნია+I+Place
+აფნია+I+Place
+ბათარია+I+Place
+ანარია+I+Place
+ჯობრია+I+Place
+ივერია+I+Place
+მერია+I+Place
+ფერია+I+Place
+ხერია+I+Place
+თორია+I+Place
+ანტორია+I+Place
+ლაცორია+I+Place
+საქასრია+I+Place
+სკურია+I+Place
+ულურია+I+Place
+იწრია+I+Place
+ჯრია+I+Place
+საპრასია+I+Place
+ლემსია+I+Place
+კვატია+I+Place
+კანატია+I+Place
+მაჭატია+I+Place
+ხუტია+I+Place
+ეშტია+I+Place
+ფია+I+Place
+ონოღია+I+Place
+ლაშია+I+Place
+საკეცია+I+Place
+ქცია+I+Place
+ტანძია+I+Place
+ვარძია+I+Place
+პატარა ვარძია+I+Place
+მეორე კიწია+I+Place
+პირველ= კიწია+I+Place
+ციხია+I+Place
+საკოხია+I+Place
+ოტორონჯია+I+Place
+მახუნჯია+I+Place
+გორაკა+ON+Place
+რეკა+ON+Place
+ალექსეევკა+ON+Place
+მეტელევკა+ON+Place
+ტამბოვკა+ON+Place
+ჩერნიგოვკა+ON+Place
+ათარბეკოვკა+ON+Place
+მიასნიკოვკა+ON+Place
+გორელოვკა+ON+Place
+ვესიოლოვკა+ON+Place
+ორლოვკა+ON+Place
+ეფრემოვკა+ON+Place
+ივანოვკა+ON+Place
+ულიანოვკა+ON+Place
+შაუმიანოვკა+ON+Place
+როდიონოვკა+ON+Place
+ბუდიონოვკა+ON+Place
+ფილიპოვკა+ON+Place
+ამბაროვკა+ON+Place
+ალექსანდროვკა+ON+Place
+ვიზიროვკა+ON+Place
+კიროვკა+ON+Place
+ვლადიმიროვკა+ON+Place
+სპასოვკა+ON+Place
+წალკა+ON+Place
+ესტონკა+ON+Place
+კოკა+ON+Place
+შუა როკა+ON+Place
+ქვემო როკა+ON+Place
+ზემო როკა+ON+Place
+წყავროკა+ON+Place
+ფოკა+ON+Place
+დილისკა+ON+Place
+კოშკა+ON+Place
+ქვემო კოშკა+ON+Place
+ზემო კოშკა+ON+Place
+როშკა+ON+Place
+ხოლოდნაია-რეჩკა+ON+Place
+ჟინვალა+ON+Place
+ბუზალა+ON+Place
+უზუნთალა+ON+Place
+ჭართალა+ON+Place
+ჩაჩხრიალა+ON+Place
+აშკალა+ON+Place
+დამალა+ON+Place
+ტყემალა+ON+Place
+იდუმალა+ON+Place
+ბარდნალა+ON+Place
+თხინალა+ON+Place
+პატარა თხინალა+ON+Place
+დიდ= თხინალა+ON+Place
+ჭაპალა+ON+Place
+გვიმბრალა+ON+Place
+ჩამძვრალა+ON+Place
+გვიმრალა+ON+Place
+ხიდმაღალა+ON+Place
+ცივწყალა+ON+Place
+ზემო ღარისწყალა+ON+Place
+ორბოძალა+ON+Place
+ჭალა+ON+Place
+მრგვალ= ჭალა+ON+Place
+გრძელ= ჭალა+ON+Place
+ქვემო ჭალა+ON+Place
+ვერტყვიჭალა+ON+Place
+სართიჭალა+ON+Place
+მარანჭალა+ON+Place
+ქვიშანჭალა+ON+Place
+ხევისჭალა+ON+Place
+საჩალისჭალა+ON+Place
+ვანისჭალა+ON+Place
+ხალა+ON+Place
+ყარაჯალა+ON+Place
+განჯალა+ON+Place
+კაციჰაბლა+ON+Place
+ათარჰაბლა+ON+Place
+დიდველა+ON+Place
+სონდისველა+ON+Place
+თელა+ON+Place
+გადაღმა წყალწითელა+ON+Place
+გადმოღმა წყალწითელა+ON+Place
+გახომელა+ON+Place
+ტაბახმელა+ON+Place
+ჭალახმელა+ON+Place
+ბოსელა+ON+Place
+დიდწიფელა+ON+Place
+ყელა+ON+Place
+სარტყელა+ON+Place
+ჭელა+ON+Place
+წინსვლა+ON+Place
+წყალთბილა+ON+Place
+ჭორვილა+ON+Place
+ვერტყვილა+ON+Place
+შახვეტილა+ON+Place
+შეხვეტილა+ON+Place
+იხტილა+ON+Place
+ყარაფილა+ON+Place
+თხილა+ON+Place
+ლებურცხილა+ON+Place
+ჭყონხუმლა+ON+Place
+წინაგოლა+ON+Place
+გლოლა+ON+Place
+მეორე ტოლა+ON+Place
+პირველ= ტოლა+ON+Place
+ყოლა+ON+Place
+წოლა+ON+Place
+ოჯოლა+ON+Place
+თერჯოლა+ON+Place
+ახალ= თერჯოლა+ON+Place
+კვერნაულა+ON+Place
+ხარაულა+ON+Place
+საკრაულა+ON+Place
+ძველ= ხიბულა+ON+Place
+ახალხიბულა+ON+Place
+ძმაგულა+ON+Place
+ზარაგულა+ON+Place
+გულგულა+ON+Place
+დეგეულა+ON+Place
+დამჩხრეულა+ON+Place
+მერკულა+ON+Place
+ზემო კორკულა+ON+Place
+მამულა+ON+Place
+ლახამულა+ON+Place
+ბენთქოულა+ON+Place
+ჭიხარულა+ON+Place
+ქვედრულა+ON+Place
+ბერულა+ON+Place
+ძირულა+ON+Place
+ისულა+ON+Place
+გარიყულა+ON+Place
+ახყულა+ON+Place
+კუჭულა+ON+Place
+ყარათაქლა+ON+Place
+აღთაქლა+ON+Place
+ვარცლა+ON+Place
+ჭეჭლა+ON+Place
+დუზაგრამა+ON+Place
+ლესემა+ON+Place
+ზარზმა+ON+Place
+ზიმა+ON+Place
+შრომა+ON+Place
+უჯარმა+ON+Place
+ფერმა+ON+Place
+ბოჭორმა+ON+Place
+ყაურმა+ON+Place
+ბურმა+ON+Place
+გუმა+ON+Place
+ჯვარცხმა+ON+Place
+შუა ფარცხმა+ON+Place
+ზემო ფარცხმა+ON+Place
+აგანა+ON+Place
+ზემო ქლივანა+ON+Place
+შხივანა+ON+Place
+სკვანა+ON+Place
+შკვანა+ON+Place
+ქვედა თხილვანა+ON+Place
+ზედა თხილვანა+ON+Place
+ცხემვანა+ON+Place
+წაბლოვანა+ON+Place
+ტყემლოვანა+ON+Place
+წიფლოვანა+ON+Place
+დღვანა+ON+Place
+ყვანა+ON+Place
+ბორცვანა+ON+Place
+ჭვანა+ON+Place
+ზანა+ON+Place
+პატარა ზანა+ON+Place
+ბზანა+ON+Place
+ართანა+ON+Place
+თხილიანა+ON+Place
+ასკანა+ON+Place
+წაბლანა+ON+Place
+ტყემლანა+ON+Place
+აზმანა+ON+Place
+უჯმანა+ON+Place
+ჯაპანა+ON+Place
+ალპანა+ON+Place
+მარანა+ON+Place
+გორანა+ON+Place
+იკვლივგორანა+ON+Place
+მუხრანა+ON+Place
+ლევიტანა+ON+Place
+ბოსტანა+ON+Place
+ვახტანა+ON+Place
+ზედა ყანა+ON+Place
+თლიაყანა+ON+Place
+ქვემო ოქროყანა+ON+Place
+ზემო ოქროყანა+ON+Place
+ლამისყანა+ON+Place
+ჩორჩანა+ON+Place
+ხორჩანა+ON+Place
+ცანა+ON+Place
+აცანა+ON+Place
+ლასხანა+ON+Place
+ლაჯანა+ON+Place
+ჟაბნა+ON+Place
+მეძიბნა+ON+Place
+მექვენა+ON+Place
+პტენა+ON+Place
+დურღენა+ON+Place
+კოდიბინა+ON+Place
+ოჯიბინა+ON+Place
+თელაგინა+ON+Place
+გადიგინა+ON+Place
+ნაზიგინა+ON+Place
+ახსარგინა+ON+Place
+ციფგინა+ON+Place
+ფიჭვიგვინა+ON+Place
+გვირგვინა+ON+Place
+ქვემო ძაღინა+ON+Place
+ზემო ძაღინა+ON+Place
+თხინა+ON+Place
+გვინჯინა+ON+Place
+თირკნა+ON+Place
+მნა+ON+Place
+ცხემნა+ON+Place
+რბონა+ON+Place
+გონა+ON+Place
+დონა+ON+Place
+ვერონა+ON+Place
+ფონა+ON+Place
+ცხრაფონა+ON+Place
+ლეფონა+ON+Place
+ოქონა+ON+Place
+ქვემო ოქონა+ON+Place
+ზემო ოქონა+ON+Place
+ღონა+ON+Place
+ქვიშონა+ON+Place
+წონა+ON+Place
+ლეკუხონა+ON+Place
+ბოდორნა+ON+Place
+ნოკორნა+ON+Place
+ბოჭორნა+ON+Place
+გურნა+ON+Place
+სუჯუნა+ON+Place
+აძუბჟა+ON+Place
+ამბარა+ON+Place
+შუბარა+ON+Place
+აგარა+ON+Place
+ქვედა აგარა+ON+Place
+ზედა აგარა+ON+Place
+აძლაგარა+ON+Place
+აბგარა+ON+Place
+ლეზგარა+ON+Place
+აჩადარა+ON+Place
+აჭანდარა+ON+Place
+სხანდარა+ON+Place
+შინდარა+ON+Place
+ლახუნდარა+ON+Place
+აღდარა+ON+Place
+გვარა+ON+Place
+წიფნაგვარა+ON+Place
+ადეიგვარა+ON+Place
+აჩიგვარა+ON+Place
+შაბათკვარა+ON+Place
+შაშიკვარა+ON+Place
+ალაფანკვარა+ON+Place
+ხეცკვარა+ON+Place
+შიცკვარა+ON+Place
+აჯმატვარა+ON+Place
+აყვარა+ON+Place
+მამწვარა+ON+Place
+კალდახვარა+ON+Place
+აფშანხვარა+ON+Place
+აბლუხვარა+ON+Place
+ჯვარა+ON+Place
+ნიგვზარა+ON+Place
+ამზარა+ON+Place
+ათარა+ON+Place
+სომხურ= ათარა+ON+Place
+ღვიარა+ON+Place
+კარა+ON+Place
+ხვანჭკარა+ON+Place
+ლარა+ON+Place
+ცხემლარა+ON+Place
+შლარა+ON+Place
+აიმარა+ON+Place
+ჯიმარა+ON+Place
+ბენარა+ON+Place
+ნიგვზნარა+ON+Place
+პიტნარა+ON+Place
+იფნარა+ON+Place
+ბუღნარა+ON+Place
+ცოცხნარა+ON+Place
+არაჟპარა+ON+Place
+აჟარა+ON+Place
+ქვემო აჟარა+ON+Place
+ზემო აჟარა+ON+Place
+აძიბჟარა+ON+Place
+არასარა+ON+Place
+ოფიტარა+ON+Place
+ასფარა+ON+Place
+ქვედა საქარა+ON+Place
+ზედა საქარა+ON+Place
+ომარიშარა+ON+Place
+ბაბუშარა+ON+Place
+ქვაბჩარა+ON+Place
+კოჩარა+ON+Place
+ახეცარა+ON+Place
+ქვემო მწარა+ON+Place
+ზემო მწარა+ON+Place
+აჭარა+ON+Place
+დიდაჭარა+ON+Place
+მაჭარა+ON+Place
+ზემო მაჭარა+ON+Place
+აჯხახარა+ON+Place
+ოთხარა+ON+Place
+ლეკუმხარა+ON+Place
+ძირფხარა+ON+Place
+ქვემო მაჩხარა+ON+Place
+ლაბრა+ON+Place
+ღვებრა+ON+Place
+გუმბრა+ON+Place
+გაგრა+ON+Place
+აქიდრა+ON+Place
+გვანდრა+ON+Place
+ცაგერა+ON+Place
+აბგავერა+ON+Place
+აგვავერა+ON+Place
+თამკვაჩ-იგვავერა+ON+Place
+მაშავერა+ON+Place
+ლემშვენიერა+ON+Place
+იმერა+ON+Place
+ეშერა+ON+Place
+ზემო ეშერა+ON+Place
+უწერა+ON+Place
+ბავრა+ON+Place
+ხიზაბავრა+ON+Place
+ქვედა შავრა+ON+Place
+ზედა შავრა+ON+Place
+დევრა+ON+Place
+აჯამფაზრა+ON+Place
+აბჟააფთრა+ON+Place
+მიწაბოგირა+ON+Place
+ოხომირა+ON+Place
+ჯაღირა+ON+Place
+ჰაფშირა+ON+Place
+ნახშირა+ON+Place
+წირა+ON+Place
+ნაკრა+ON+Place
+ნადოკრა+ON+Place
+სკრა+ON+Place
+ალრა+ON+Place
+ხელრა+ON+Place
+აკალამრა+ON+Place
+ბამბორა+ON+Place
+გორა+ON+Place
+ქვედა გორა+ON+Place
+ზედა გორა+ON+Place
+შუა გორა+ON+Place
+ჭყონაგორა+ON+Place
+ვარდიგორა+ON+Place
+წითელგორა+ON+Place
+ნაცარგორა+ON+Place
+ორგორა+ON+Place
+ღოდორა+ON+Place
+ჭიორა+ON+Place
+ოჟორა+ON+Place
+ლესორა+ON+Place
+ოშორა+ON+Place
+კოხორა+ON+Place
+ქვემო ყანდაურა+ON+Place
+ზემო ყანდაურა+ON+Place
+ჭიაურა+ON+Place
+ჟანაურა+ON+Place
+მასაურა+ON+Place
+ჯიღაურა+ON+Place
+ლასკადურა+ON+Place
+ჭიათურა+ON+Place
+მათურა+ON+Place
+აკურა+ON+Place
+სკურა+ON+Place
+მელურა+ON+Place
+ჩხაკოურა+ON+Place
+ლექსურა+ON+Place
+ელტურა+ON+Place
+მუხაშურა+ON+Place
+კახურა+ON+Place
+მახურა+ON+Place
+მუხურა+ON+Place
+აჯიმჩიღრა+ON+Place
+კუტიძრა+ON+Place
+აჯრა+ON+Place
+თავასა+ON+Place
+ლესა+ON+Place
+ედისა+ON+Place
+ვაკევისა+ON+Place
+პერევისა+ON+Place
+ქვედა ბერეთისა+ON+Place
+ზედა ბერეთისა+ON+Place
+ვაკისა+ON+Place
+ლისა+ON+Place
+ახალისა+ON+Place
+ველისა+ON+Place
+ჩივთქილისა+ON+Place
+ყიზილქილისა+ON+Place
+ჯვარისა+ON+Place
+გორისა+ON+Place
+დღნორისა+ON+Place
+ფერსა+ON+Place
+თორსა+ON+Place
+სუფსა+ON+Place
+ბაგატა+ON+Place
+გაღმა ქარიატა+ON+Place
+გამოღმა ქარიატა+ON+Place
+გეტა+ON+Place
+ახმეტა+ON+Place
+ჯაბიტა+ON+Place
+აწყვიტა+ON+Place
+ივლიტა+ON+Place
+ტიტა+ON+Place
+პანტა+ON+Place
+თავპანტა+ON+Place
+ბუჭყინტა+ON+Place
+ჟებოტა+ON+Place
+ზეკოტა+ON+Place
+ქვედა სორტა+ON+Place
+ზედა სორტა+ON+Place
+ღურტა+ON+Place
+ბახუტა+ON+Place
+კვაშტა+ON+Place
+კუწახტა+ON+Place
+კოხტა+ON+Place
+გომმუხაყრუა+ON+Place
+ჯალაფსუა+ON+Place
+წყალთაშუა+ON+Place
+ამბართაფა+ON+Place
+დაშთაფა+ON+Place
+აკაფა+ON+Place
+ქვემო ახკალაფა+ON+Place
+ზემო ახკალაფა+ON+Place
+კვანაფა+ON+Place
+ტელეფა+ON+Place
+ლახეფა+ON+Place
+წიფა+ON+Place
+ოჭოფა+ON+Place
+ზარწუფა+ON+Place
+ორქა+ON+Place
+ჟირღალიშქა+ON+Place
+მეორე აკვაღა+ON+Place
+პირველ= აკვაღა+ON+Place
+ქვემო ჯომაღა+ON+Place
+ზემო ჯომაღა+ON+Place
+ქვაბღა+ON+Place
+ბიღა+ON+Place
+ჯულღა+ON+Place
+ამღა+ON+Place
+ნოღა+ON+Place
+გაღმა ნოღა+ON+Place
+გამოღმა ნოღა+ON+Place
+ქვემო ნოღა+ON+Place
+ზემო ნოღა+ON+Place
+მეორე ჭოღა+ON+Place
+პირველ= ჭოღა+ON+Place
+ვაყა+ON+Place
+შოყა+ON+Place
+დარყა+ON+Place
+აბაშა+ON+Place
+ძველ= აბაშა+ON+Place
+ქვემო აბაშა+ON+Place
+ზემო აბაშა+ON+Place
+ღორეშა+ON+Place
+დოლოშა+ON+Place
+შროშა+ON+Place
+არშა+ON+Place
+კორშა+ON+Place
+ლაუშა+ON+Place
+აძღაფშა+ON+Place
+ბაჩა+ON+Place
+დაჩა+ON+Place
+აქვაჩა+ON+Place
+მეორე ობჩა+ON+Place
+პირველ= ობჩა+ON+Place
+თოხოლჩა+ON+Place
+ქვემო აფიანჩა+ON+Place
+ზემო აფიანჩა+ON+Place
+იონჩა+ON+Place
+ტონჩა+ON+Place
+ახალ= ტონჩა+ON+Place
+ვარჩა+ON+Place
+მუხურჩა+ON+Place
+კარკუჩა+ON+Place
+თახჩა+ON+Place
+სუხჩა+ON+Place
+აუალიცა+ON+Place
+ტკოცა+ON+Place
+ქვენატკოცა+ON+Place
+აქუცა+ON+Place
+ფცა+ON+Place
+ხოფცა+ON+Place
+ბრეძა+ON+Place
+ბანძა+ON+Place
+წყორძა+ON+Place
+აჩკაწა+ON+Place
+ფაწა+ON+Place
+იწა+ON+Place
+რაფიწა+ON+Place
+აბახუამწა+ON+Place
+აკვასქემწა+ON+Place
+უნწა+ON+Place
+ახუწა+ON+Place
+ჯგერდა-ახუწა+ON+Place
+ღვადაახუწა+ON+Place
+პატრახუწა+ON+Place
+ამბარიხუწა+ON+Place
+კუჭეჭა+ON+Place
+ახა+ON+Place
+ვახა+ON+Place
+ცუძახა+ON+Place
+რეხა+ON+Place
+ზემო რეხა+ON+Place
+ფარეხა+ON+Place
+ბინთხა+ON+Place
+ჩიხა+ON+Place
+ჯიხა+ON+Place
+წალენჯიხა+ON+Place
+არხა+ON+Place
+აჩირხა+ON+Place
+ცხრამუხა+ON+Place
+დიდმუხა+ON+Place
+ხიზარუხა+ON+Place
+კუტიშხა+ON+Place
+ქვემო ჟოშხა+ON+Place
+ზემო ჟოშხა+ON+Place
+ფაჩხა+ON+Place
+ძიჩხა+ON+Place
+ქვედა კინჩხა+ON+Place
+ზედა კინჩხა+ON+Place
+ჩუნჩხა+ON+Place
+ქვემო ბირცხა+ON+Place
+ზემო ბირცხა+ON+Place
+ფსირცხა+ON+Place
+აუძხა+ON+Place
+ახვაჯა+ON+Place
+საჯა+ON+Place
+ერინჯა+ON+Place
+ნოჯა+ON+Place
+ბანოჯა+ON+Place
+ოხოჯა+ON+Place
+ბირჯა+ON+Place
+ორჯა+ON+Place
+ქვედა ლუჰა+ON+Place
+ზედა ლუჰა+ON+Place
+საბე+ON+Place
+ატაბე+ON+Place
+ქვემო ბოდბე+ON+Place
+ზემო ბოდბე+ON+Place
+ლედგებე+ON+Place
+კიბე+ON+Place
+გოსტიბე+ON+Place
+ერგე+ON+Place
+ზემო ერგე+ON+Place
+ლეშამუგე+ON+Place
+ხალდე+ON+Place
+სამშვილდე+ON+Place
+კლდე+ON+Place
+კენჭაკლდე+ON+Place
+სკანდე+ON+Place
+უდე+ON+Place
+ქვაყუდე+ON+Place
+ლეგულორდავე+ON+Place
+სათავე+ON+Place
+ლეპატარავე+ON+Place
+ლემიქავე+ON+Place
+ლეცავე+ON+Place
+ორაგვე+ON+Place
+სოდევე+ON+Place
+სათივე+ON+Place
+პატარა სატივე+ON+Place
+დიდ= სატივე+ON+Place
+წინაკვერკვე+ON+Place
+მზეთამზე+ON+Place
+ლეციცხვაიე+ON+Place
+ლეკოკაიე+ON+Place
+ლეჭარაიე+ON+Place
+ლესაჯაიე+ON+Place
+ლექაჯაიე+ON+Place
+ლეგოგიე+ON+Place
+რეშევიე+ON+Place
+ლეკვანტალიე+ON+Place
+ლეფილიე+ON+Place
+ლეჟვანიე+ON+Place
+ვაკე+ON+Place
+ქვედა წიფლავაკე+ON+Place
+ზედა წიფლავაკე+ON+Place
+დიდვაკე+ON+Place
+ტყლაპივაკე+ON+Place
+კვირიკე+ON+Place
+ქვედა კვირიკე+ON+Place
+ზედა კვირიკე+ON+Place
+საბოლოკე+ON+Place
+ლექობალე+ON+Place
+ვალე+ON+Place
+ლესალე+ON+Place
+ლედარსალე+ON+Place
+საჩალე+ON+Place
+ჭალე+ON+Place
+ლეახალე+ON+Place
+საწაბლე+ON+Place
+ჭველე+ON+Place
+ლეკეკელე+ON+Place
+მელე+ON+Place
+ჭელიაღელე+ON+Place
+ღრმაღელე+ON+Place
+შუაღელე+ON+Place
+შავღელე+ON+Place
+ნახშირღელე+ON+Place
+ლაშისღელე+ON+Place
+სათოვლე+ON+Place
+ხოვლე+ON+Place
+ლეხარჩილე+ON+Place
+საღანძილე+ON+Place
+სახილე+ON+Place
+ხოლე+ON+Place
+ლეკაკულე+ON+Place
+სათაფლე+ON+Place
+ლეძაძამე+ON+Place
+სალმე+ON+Place
+საირმე+ON+Place
+ქვედა საირმე+ON+Place
+ზედა საირმე+ON+Place
+ხაბუმე+ON+Place
+ლეწურწუმე+ON+Place
+სავანე+ON+Place
+ოკვანე+ON+Place
+ლევახანე+ON+Place
+ქვემო რენე+ON+Place
+ზემო რენე+ON+Place
+საცხენე+ON+Place
+არზნე+ON+Place
+ლეგოგინე+ON+Place
+საღვინე+ON+Place
+ლესიჭინე+ON+Place
+მეორე ლესიჭინე+ON+Place
+მებრუნე+ON+Place
+გეორგიევსკოე+ON+Place
+პავლოვსკოე+ON+Place
+პოლტავა-ალექსანდროვსკოე+ON+Place
+პეტროვსკოე+ON+Place
+ვოლოდარსკოე+ON+Place
+პრიმორსკოე+ON+Place
+სერებრიანოე+ON+Place
+ოტრადნოე+ON+Place
+ზვარე+ON+Place
+საჯვარე+ON+Place
+ლეგახარე+ON+Place
+დრე+ON+Place
+ჯუნმერე+ON+Place
+ქერე+ON+Place
+ზემო ქერე+ON+Place
+საქერე+ON+Place
+საჩხერე+ON+Place
+საყავრე+ON+Place
+საკირე+ON+Place
+სანახშირე+ON+Place
+ოჩამჩირე+ON+Place
+საწირე+ON+Place
+ნამიკოლავო მეორე+ON+Place
+სანიორე+ON+Place
+ოკვინორე+ON+Place
+ოჭუბურე+ON+Place
+ლებაღათურე+ON+Place
+მუღურე+ON+Place
+სამყურე+ON+Place
+ჩანტლისყურე+ON+Place
+საჭურე+ON+Place
+წრე+ON+Place
+ხაშუფსე+ON+Place
+ფლატე+ON+Place
+მუხაესტატე+ON+Place
+ნოსტე+ON+Place
+საბუე+ON+Place
+ლეფოჩხუე+ON+Place
+სეფე+ON+Place
+გვიდაქე+ON+Place
+ლეჯიქე+ON+Place
+დოშაყე+ON+Place
+კუდატყე+ON+Place
+ჭალატყე+ON+Place
+გარეტყე+ON+Place
+საყვავისტყე+ON+Place
+გურისტყე+ON+Place
+ლაშე+ON+Place
+მლაშე+ON+Place
+ფხელშე+ON+Place
+ლებაჩე+ON+Place
+ოჩე+ON+Place
+პატარა ოჩე+ON+Place
+ლექარჩე+ON+Place
+წარჩე+ON+Place
+ოცარცე+ON+Place
+სახორცე+ON+Place
+კობაძე+ON+Place
+სააკაძე+ON+Place
+მინაძე+ON+Place
+დეპეგინძე+ON+Place
+სათერძე+ON+Place
+ღორძე+ON+Place
+საღრძე+ON+Place
+ქვემო ხვწე+ON+Place
+ზემო ხვწე+ON+Place
+საკურწე+ON+Place
+აჭე+ON+Place
+ხე+ON+Place
+მოიდანახე+ON+Place
+სათხე+ON+Place
+ნინუაკუთხე+ON+Place
+ლეჯოლიხე+ON+Place
+ქვაციხე+ON+Place
+დაბლაციხე+ON+Place
+ახალციხე+ON+Place
+ვარციხე+ON+Place
+ბაკურციხე+ON+Place
+ბუკისციხე+ON+Place
+ველისციხე+ON+Place
+ქუმლისციხე+ON+Place
+ბულბულისციხე+ON+Place
+უფლისციხე+ON+Place
+მწყერისციხე+ON+Place
+გორისციხე+ON+Place
+მოხე+ON+Place
+საირხე+ON+Place
+ლესხულუხე+ON+Place
+აგრაი+A+Place
+საბჭოთა ჩაი+A+Place
+ირგანჩაი+A+Place
+ბაბი+A+Place
+ნიაბი+A+Place
+ნაგები+A+Place
+ველეები+A+Place
+იაკობაძეები+A+Place
+გოდგაძეები+A+Place
+გოგაძეები+A+Place
+გორგაძეები+A+Place
+ადაძეები+A+Place
+ცივაძეები+A+Place
+ძირკვაძეები+A+Place
+მინთაძეები+A+Place
+ჭინკაძეები+A+Place
+ბალაძეები+A+Place
+წინწკალაძეები+A+Place
+გელაძეები+A+Place
+ღორჯომელაძეები+A+Place
+ირემაძეები+A+Place
+ვაშაყმაძეები+A+Place
+ვანაძეები+A+Place
+ზარნაძეები+A+Place
+ტუნაძეები+A+Place
+ცენტერაძეები+A+Place
+პაქსაძეები+A+Place
+დუაძეები+A+Place
+ლაბაიძეები+A+Place
+ნაკაიძეები+A+Place
+შარაბიძეები+A+Place
+სირაბიძეები+A+Place
+მეკეიძეები+A+Place
+მახალაკიძეები+A+Place
+ტაკიძეები+A+Place
+ჩეტკიძეები+A+Place
+ჯერვალიძეები+A+Place
+სიხალიძეები+A+Place
+გეგელიძეები+A+Place
+ელელიძეები+A+Place
+ჯაბნიძეები+A+Place
+გოგინიძეები+A+Place
+ქიძინიძეები+A+Place
+დიაკონიძეები+A+Place
+ზარიძეები+A+Place
+ინაშარიძეები+A+Place
+ზანაქიძეები+A+Place
+დარჩიძეები+A+Place
+კვიახიძეები+A+Place
+ქვები+A+Place
+ნიგავზები+A+Place
+კოშკები+A+Place
+პატარა ხალები+A+Place
+დიდ= ხალები+A+Place
+ქედლები+A+Place
+ველები+A+Place
+გრძელველები+A+Place
+ახშნისველები+A+Place
+ღულელები+A+Place
+გუდანელები+A+Place
+ხადოელები+A+Place
+ჯალაბაშვილები+A+Place
+გოგიაშვილები+A+Place
+მოსიაშვილები+A+Place
+ხაბელაშვილები+A+Place
+ბესელაშვილები+A+Place
+მეხელაშვილები+A+Place
+დეკანაშვილები+A+Place
+სტეფანაშვილები+A+Place
+ოქრუაშვილები+A+Place
+პაპოშვილები+A+Place
+ტოლები+A+Place
+ბოსლები+A+Place
+მიგრიაულები+A+Place
+ქარაულები+A+Place
+თეთრაულები+A+Place
+გულები+A+Place
+დორეულები+A+Place
+იარაჯულები+A+Place
+ბაღლები+A+Place
+თეთრ= წყლები+A+Place
+ხიდეშლები+A+Place
+მსხლები+A+Place
+მამადაანები+A+Place
+გოჯიაანები+A+Place
+თეგერაანები+A+Place
+კახოიანები+A+Place
+ქვემო ნატანები+A+Place
+ზემო ნატანები+A+Place
+სენები+A+Place
+ვერნები+A+Place
+აგარები+A+Place
+პატარა ჭვარები+A+Place
+დიდ= ჭვარები+A+Place
+თაბაგრები+A+Place
+ჭანდრები+A+Place
+ტუსრები+A+Place
+დუდაურები+A+Place
+თვაურები+A+Place
+დულუზაურები+A+Place
+ძებნიაურები+A+Place
+ჭურჭელაურები+A+Place
+ჩიტაურები+A+Place
+მწითურები+A+Place
+შუა სურები+A+Place
+ზემო სურები+A+Place
+ტობახჩა-თავსურები+A+Place
+ბაქაქურები+A+Place
+ტუშურები+A+Place
+ბეწენწურები+A+Place
+საფუძრები+A+Place
+ნაოხრები+A+Place
+ახალ= ოსები+A+Place
+კურსები+A+Place
+ღები+A+Place
+პატარა ღები+A+Place
+ქვემო ბარღები+A+Place
+ზემო ბარღები+A+Place
+ქარცები+A+Place
+ვეძები+A+Place
+ხინჭები+A+Place
+გომნატეხები+A+Place
+ტვიბი+A+Place
+გვაშტიბი+A+Place
+გვიშტიბი+A+Place
+მნათობი+A+Place
+კობი+A+Place
+ლელობი+A+Place
+ვაშლობი+A+Place
+ყანობი+A+Place
+ღობი+A+Place
+კურცობი+A+Place
+მიწობი+A+Place
+ხობი+A+Place
+კარბი+A+Place
+პატარა მიტარბი+A+Place
+დიდ= მიტარბი+A+Place
+დირბი+A+Place
+პატარა გუბი+A+Place
+შუა გუბი+A+Place
+დიდ= გუბი+A+Place
+ზუბი+A+Place
+ლუთხუბი+A+Place
+ზედა უჩხუბი+A+Place
+ლელბაგი+A+Place
+ზუნდაგი+A+Place
+კოლაგი+A+Place
+ჩაჩინაგი+A+Place
+რაგი+A+Place
+სტირმასიგი+A+Place
+ბურმასიგი+A+Place
+ჩოლაბარგი+A+Place
+ბაღდადი+A+Place
+ლივადი+A+Place
+განთიადი+A+Place
+დიდ= განთიადი+A+Place
+თვალადი+A+Place
+წამადი+A+Place
+ახადი+A+Place
+ქვედა ვედი+A+Place
+ზედა ვედი+A+Place
+ქვედი+A+Place
+ღვედი+A+Place
+შკედი+A+Place
+ფალედი+A+Place
+ხელედი+A+Place
+ერისიმედი+A+Place
+შემოქმედი+A+Place
+ქვემო ქედი+A+Place
+ზემო ქედი+A+Place
+შიმშილაქედი+A+Place
+ქედქედი+A+Place
+ღუდუმექედი+A+Place
+საქარიქედი+A+Place
+დოლასქედი+A+Place
+ბროლისქედი+A+Place
+ვანისქედი+A+Place
+ოქროსქედი+A+Place
+მუქედი+A+Place
+ქვედა მუქედი+A+Place
+ზედა მუქედი+A+Place
+გადიდი+A+Place
+მარადიდი+A+Place
+ზუგდიდი+A+Place
+მსხალდიდი+A+Place
+ივანდიდი+A+Place
+ზენდიდი+A+Place
+ქვედა კონდიდი+A+Place
+ზედა კონდიდი+A+Place
+სკურდიდი+A+Place
+ხიდი+A+Place
+ნახიდი+A+Place
+კაკასხიდი+A+Place
+ცხემლისხიდი+A+Place
+ტინისხიდი+A+Place
+ღვებალდი+A+Place
+ცხუმალდი+A+Place
+ლაბსყალდი+A+Place
+ჭოხულდი+A+Place
+ლეკოსანდი+A+Place
+ბიწმენდი+A+Place
+თაზაქენდი+A+Place
+მინსაზქენდი+A+Place
+აზიზქენდი+A+Place
+ყირმიზქენდი+A+Place
+ენიქენდი+A+Place
+უსეინქენდი+A+Place
+საბირქენდი+A+Place
+აჯიისქენდი+A+Place
+ქვედა წვირმინდი+A+Place
+ზედა წვირმინდი+A+Place
+ლესინდი+A+Place
+ზოდი+A+Place
+ლაშფსარდი+A+Place
+ალავერდი+A+Place
+ოლავერდი+A+Place
+მუხათგვერდი+A+Place
+ღვაშიგვერდი+A+Place
+კინჩხაფერდი+A+Place
+ეწერფერდი+A+Place
+ციხისფერდი+A+Place
+გაშფერდი+A+Place
+ქვედა გორდი+A+Place
+ზედა გორდი+A+Place
+ახალ= ჩორდი+A+Place
+სკურდი+A+Place
+ჰებუდი+A+Place
+ლახუშდი+A+Place
+მუწდი+A+Place
+ოხურეი+A+Place
+მეორე ოხურეი+A+Place
+პირველ= ოხურეი+A+Place
+ვარგავი+A+Place
+ფხუნდავი+A+Place
+ბოდავი+A+Place
+დიდთავი+A+Place
+ჭალასთავი+A+Place
+ხიდისთავი+A+Place
+კლდისთავი+A+Place
+ჩაქვისთავი+A+Place
+აჭყვისთავი+A+Place
+აძვისთავი+A+Place
+ჭალისთავი+A+Place
+ყოროლისთავი+A+Place
+ყუმისთავი+A+Place
+კაპნისთავი+A+Place
+ღარისთავი+A+Place
+ლეხიდრისთავი+A+Place
+აბისისთავი+A+Place
+წყაროსთავი+A+Place
+რუსთავი+A+Place
+ტყვიავი+A+Place
+თელავი+A+Place
+ფლავი+A+Place
+ქვენაფლავი+A+Place
+ნაბეღლავი+A+Place
+ზანავი+A+Place
+პატარა ზანავი+A+Place
+მანავი+A+Place
+ტყემაკარავი+A+Place
+ურავი+A+Place
+ცურტავი+A+Place
+სწროფავი+A+Place
+წყალშავი+A+Place
+უკანაფშავი+A+Place
+ჭივჭავი+A+Place
+საკოჭავი+A+Place
+ძეგვი+A+Place
+ბოგვი+A+Place
+თმოგვი+A+Place
+ერედვი+A+Place
+სარბევი+A+Place
+ნაქურდევი+A+Place
+ღვევი+A+Place
+ნადარბაზევი+A+Place
+ქვემო ღვერთევი+A+Place
+ნაბაკევი+A+Place
+შუა ალევი+A+Place
+ქვემო ალევი+A+Place
+ძეგლევი+A+Place
+ველევი+A+Place
+ავლევი+A+Place
+ღვლევი+A+Place
+ბეთლევი+A+Place
+ნაღობილევი+A+Place
+ამლევი+A+Place
+კნოლევი+A+Place
+ჭოლევი+A+Place
+ჯოლევი+A+Place
+გაღმა ბოსლევი+A+Place
+გამოღმა ბოსლევი+A+Place
+ნაბოსლევი+A+Place
+ნობულევი+A+Place
+ყულევი+A+Place
+ნახახულევი+A+Place
+პატარა ფლევი+A+Place
+დიდ= ფლევი+A+Place
+ბეღლევი+A+Place
+ვაშლევი+A+Place
+უწლევი+A+Place
+მღვიმევი+A+Place
+ნაგომევი+A+Place
+ნამანევი+A+Place
+ფარცხანაყანევი+A+Place
+ბობნევი+A+Place
+ავნევი+A+Place
+იკვნევი+A+Place
+ბჟინევი+A+Place
+ფრინევი+A+Place
+ხუნევი+A+Place
+ნაგარევი+A+Place
+ნაღვარევი+A+Place
+ჭიბრევი+A+Place
+მერევი+A+Place
+პერევი+A+Place
+კვესრევი+A+Place
+ზემო ოტრევი+A+Place
+ნამონასტრევი+A+Place
+დისევი+A+Place
+ნამლისევი+A+Place
+ქვემო კორსევი+A+Place
+ზემო კორსევი+A+Place
+ნაცხავატევი+A+Place
+ხოტევი+A+Place
+ორტევი+A+Place
+ნაბახტევი+A+Place
+ნაქალაქევი+A+Place
+ზედა ნაქალაქევი+A+Place
+ნოქალაქევი+A+Place
+არცევი+A+Place
+ქვემო არცევი+A+Place
+ვაჭევი+A+Place
+ონჭევი+A+Place
+ხევი+A+Place
+ქვემო ხევი+A+Place
+ზემო ხევი+A+Place
+ჩითახევი+A+Place
+ოშანახევი+A+Place
+ნავენახევი+A+Place
+ქვემო შარახევი+A+Place
+ზემო შარახევი+A+Place
+სახევი+A+Place
+ზემო შუახევი+A+Place
+დიდხევი+A+Place
+აბათხევი+A+Place
+ლაკათხევი+A+Place
+ვეძათხევი+A+Place
+დევენაანთხევი+A+Place
+სიმონიანთხევი+A+Place
+ძალანთხევი+A+Place
+ნავიხევი+A+Place
+ღარიხევი+A+Place
+ბაჯიხევი+A+Place
+ნოჯიხევი+A+Place
+კუთხენოჯიხევი+A+Place
+მშრალხევი+A+Place
+კაწალხევი+A+Place
+წითელხევი+A+Place
+იმერხევი+A+Place
+ოხერხევი+A+Place
+ორხევი+A+Place
+ბაკურხევი+A+Place
+მელიასხევი+A+Place
+კვირიასხევი+A+Place
+წაბლარასხევი+A+Place
+ქვაბისხევი+A+Place
+ბოდბისხევი+A+Place
+ფიჭვებისხევი+A+Place
+ბალებისხევი+A+Place
+ჭობისხევი+A+Place
+ფეტვისხევი+A+Place
+ბზისხევი+A+Place
+კავთისხევი+A+Place
+ისროლისხევი+A+Place
+თეძმისხევი+A+Place
+ლავრისხევი+A+Place
+ჯვრისხევი+A+Place
+პატარა მეჯვრისხევი+A+Place
+დიდ= მეჯვრისხევი+A+Place
+კრისხევი+A+Place
+აწრისხევი+A+Place
+კისისხევი+A+Place
+აბანოსხევი+A+Place
+ქუშხევი+A+Place
+მერჯევი+A+Place
+მზივი+A+Place
+თივი+A+Place
+თვალივი+A+Place
+ზაკვი+A+Place
+ზემო სნეკვი+A+Place
+ლეშუკვი+A+Place
+შოვი+A+Place
+დუმაცხოვი+A+Place
+აჯაჟვი+A+Place
+აქვი+A+Place
+წერაქვი+A+Place
+ქვემო ბოლქვი+A+Place
+ზემო ბოლქვი+A+Place
+მოქვი+A+Place
+ქვედა აღვი+A+Place
+ზედა აღვი+A+Place
+შუა აღვი+A+Place
+აძვი+A+Place
+მოძვი+A+Place
+ქვედა ბახვი+A+Place
+ზედა ბახვი+A+Place
+კეხვი+A+Place
+თრეხვი+A+Place
+ორხვი+A+Place
+დარბაზი+A+Place
+პატარა დარბაზი+A+Place
+ნადარბაზი+A+Place
+გავაზი+A+Place
+ნავაზი+A+Place
+არმაზი+A+Place
+სტირფაზი+A+Place
+თეზი+A+Place
+დიზი+A+Place
+ფარიზი+A+Place
+ზემო კოზი+A+Place
+ოლოზი+A+Place
+ზემო ნიქოზი+A+Place
+თუზი+A+Place
+ქვემო ჩიბათი+A+Place
+ზემო ჩიბათი+A+Place
+გუმბათი+A+Place
+ძანგათი+A+Place
+აბედათი+A+Place
+ბაღდათი+A+Place
+დავათი+A+Place
+ცხავათი+A+Place
+ბობოყვათი+A+Place
+ცუცხვათი+A+Place
+გეზათი+A+Place
+პატარა გეზათი+A+Place
+უბიათი+A+Place
+კოკათი+A+Place
+კონჭკათი+A+Place
+გრიგალათი+A+Place
+კვაჭალათი+A+Place
+ნედლათი+A+Place
+გელათი+A+Place
+წელათი+A+Place
+ჯგილათი+A+Place
+რცხილათი+A+Place
+თეკლათი+A+Place
+მამათი+A+Place
+ქვედა მამათი+A+Place
+გუმათი+A+Place
+ჯუმათი+A+Place
+ძირიჯუმათი+A+Place
+შმათი+A+Place
+ტაბანათი+A+Place
+ვანათი+A+Place
+გაღმა ზანათი+A+Place
+გამოღმა ზანათი+A+Place
+ჭინათი+A+Place
+კირნათი+A+Place
+ზედა კირნათი+A+Place
+ბურნათი+A+Place
+ზარათი+A+Place
+ყორათი+A+Place
+ფერსათი+A+Place
+კონტუათი+A+Place
+უშაფათი+A+Place
+გუგუნაყათი+A+Place
+ქინძათი+A+Place
+ჭანჭათი+A+Place
+მახათი+A+Place
+ჭახათი+A+Place
+კოხათი+A+Place
+უხათი+A+Place
+მუხათი+A+Place
+ჩოჩხათი+A+Place
+მანდაეთი+A+Place
+გუნდაეთი+A+Place
+კაჩაეთი+A+Place
+კაკაბეთი+A+Place
+ჯალაბეთი+A+Place
+ქვემო აჩაბეთი+A+Place
+ზემო აჩაბეთი+A+Place
+კობეთი+A+Place
+ტონტობეთი+A+Place
+ხვარბეთი+A+Place
+ორბეთი+A+Place
+ტბეთი+A+Place
+ჩაჩუბეთი+A+Place
+ენაგეთი+A+Place
+ალგეთი+A+Place
+ინგეთი+A+Place
+გიორგეთი+A+Place
+ოზურგეთი+A+Place
+არადეთი+A+Place
+ოდეთი+A+Place
+ნერგეეთი+A+Place
+ქვედა კლდეეთი+A+Place
+ზედა კლდეეთი+A+Place
+კორეეთი+A+Place
+მელუშეეთი+A+Place
+ჩალხეეთი+A+Place
+ჯოლხეეთი+A+Place
+ბუზავეთი+A+Place
+ძაბლავეთი+A+Place
+ხატავეთი+A+Place
+ყანჩავეთი+A+Place
+ხავეთი+A+Place
+თაგვეთი+A+Place
+ორაგვეთი+A+Place
+ბანგვეთი+A+Place
+ბოგვეთი+A+Place
+არგვეთი+A+Place
+გამოღმა არგვეთი+A+Place
+მორძგვეთი+A+Place
+ავკვეთი+A+Place
+დარკვეთი+A+Place
+ცხრუკვეთი+A+Place
+კუცხოვეთი+A+Place
+ინწკირვეთი+A+Place
+მირვეთი+A+Place
+ჯურუყვეთი+A+Place
+ქაშვეთი+A+Place
+არახვეთი+A+Place
+მარმაზეთი+A+Place
+ფრეზეთი+A+Place
+ციზეთი+A+Place
+ნიგოზეთი+A+Place
+ქვემო ლეთეთი+A+Place
+ზემო ლეთეთი+A+Place
+გოლთეთი+A+Place
+ღვერთეთი+A+Place
+ბიეთი+A+Place
+გოგიეთი+A+Place
+სერგიეთი+A+Place
+სინდიეთი+A+Place
+ნაკიეთი+A+Place
+სალიეთი+A+Place
+მშველიეთი+A+Place
+ბჟოლიეთი+A+Place
+ჭანიეთი+A+Place
+მაჟიეთი+A+Place
+ბუქსიეთი+A+Place
+ფუტიეთი+A+Place
+აფიეთი+A+Place
+სეფიეთი+A+Place
+მეწიეთი+A+Place
+ჭაჭიეთი+A+Place
+კეჭიეთი+A+Place
+კვაშხიეთი+A+Place
+ქვემო აკეთი+A+Place
+ზემო აკეთი+A+Place
+მანიაკეთი+A+Place
+ლაკლაკეთი+A+Place
+კვირიკეთი+A+Place
+პატრიკეთი+A+Place
+ნოჯიკეთი+A+Place
+ქვემო ერკეთი+A+Place
+ზემო ერკეთი+A+Place
+ამაშუკეთი+A+Place
+კობალეთი+A+Place
+გუდალეთი+A+Place
+პატარა ხურვალეთი+A+Place
+დიდ= ხურვალეთი+A+Place
+ახალ= ხურვალეთი+A+Place
+ბაზალეთი+A+Place
+ხრიალეთი+A+Place
+დამპალეთი+A+Place
+ბარალეთი+A+Place
+კარალეთი+A+Place
+მარალეთი+A+Place
+ფამფალეთი+A+Place
+ქალეთი+A+Place
+იდლეთი+A+Place
+თედელეთი+A+Place
+გველეთი+A+Place
+საზელეთი+A+Place
+თელეთი+A+Place
+ქვემო თელეთი+A+Place
+ზემო თელეთი+A+Place
+მუხრან-თელეთი+A+Place
+პატარა ყელეთი+A+Place
+დიდ= ყელეთი+A+Place
+მეორე შეშელეთი+A+Place
+პირველ= შეშელეთი+A+Place
+კვახაჯელეთი+A+Place
+დიდ= ხავლეთი+A+Place
+ბაილეთი+A+Place
+ჩრდილეთი+A+Place
+ძვილეთი+A+Place
+პიპილეთი+A+Place
+ბასილეთი+A+Place
+ძეძილეთი+A+Place
+მუხილეთი+A+Place
+საბარკლეთი+A+Place
+ზამლეთი+A+Place
+ზომლეთი+A+Place
+გრიგოლეთი+A+Place
+გოგოლეთი+A+Place
+სამოლეთი+A+Place
+ქოქოლეთი+A+Place
+ქვედა ქოქოლეთი+A+Place
+ბესლეთი+A+Place
+ქობულეთი+A+Place
+ზეღდულეთი+A+Place
+ბეღლეთი+A+Place
+ჭაშლეთი+A+Place
+ბროწლეთი+A+Place
+აბრამეთი+A+Place
+უჩამეთი+A+Place
+აჯამეთი+A+Place
+შარდომეთი+A+Place
+ჩომეთი+A+Place
+ორმეთი+A+Place
+ძლოურ-დანეთი+A+Place
+ვანეთი+A+Place
+სავანეთი+A+Place
+ქვემო მაკვანეთი+A+Place
+ზემო მაკვანეთი+A+Place
+იანეთი+A+Place
+დადიანეთი+A+Place
+მზიანეთი+A+Place
+კიანეთი+A+Place
+კოტიანეთი+A+Place
+უკანეთი+A+Place
+რომანეთი+A+Place
+მურმანეთი+A+Place
+მაგრანეთი+A+Place
+კორტანეთი+A+Place
+შუშანეთი+A+Place
+ერგნეთი+A+Place
+სვენეთი+A+Place
+საცხენეთი+A+Place
+ბაგინეთი+A+Place
+ვარდგინეთი+A+Place
+სარკინეთი+A+Place
+ლოშკინეთი+A+Place
+მოფრინეთი+A+Place
+ფათქინეთი+A+Place
+ქიქინეთი+A+Place
+გვერძინეთი+A+Place
+დაბაკნეთი+A+Place
+არკნეთი+A+Place
+პატარა თონეთი+A+Place
+დიდ= თონეთი+A+Place
+სიმონეთი+A+Place
+ქვედა სიმონეთი+A+Place
+ზედა სიმონეთი+A+Place
+ჟონეთი+A+Place
+გობრონეთი+A+Place
+კვერნეთი+A+Place
+ჩკუნეთი+A+Place
+ქვედა ჩხუტუნეთი+A+Place
+ზედა ჩხუტუნეთი+A+Place
+ჩიქუნეთი+A+Place
+საყუნეთი+A+Place
+მწყნეთი+A+Place
+არბოეთი+A+Place
+იგოეთი+A+Place
+კადოეთი+A+Place
+ახალ= კადოეთი+A+Place
+აბანოეთი+A+Place
+ჯოყოეთი+A+Place
+ჭოეთი+A+Place
+სპეთი+A+Place
+ბარეთი+A+Place
+ჭობარეთი+A+Place
+მუგარეთი+A+Place
+ზვარეთი+A+Place
+მაჩხვარეთი+A+Place
+ზამთარეთი+A+Place
+მახიარეთი+A+Place
+გომარეთი+A+Place
+ცხომარეთი+A+Place
+არკინარეთი+A+Place
+ცინარეთი+A+Place
+ფიტარეთი+A+Place
+სეფარეთი+A+Place
+მიფარეთი+A+Place
+ომფარეთი+A+Place
+კახარეთი+A+Place
+იჯარეთი+A+Place
+გუჯარეთი+A+Place
+ბრეთი+A+Place
+ქვემო ამბრეთი+A+Place
+ზემო ამბრეთი+A+Place
+საბერეთი+A+Place
+მერეთი+A+Place
+ალისმერეთი+A+Place
+სამღერეთი+A+Place
+ლეყერეთი+A+Place
+პატარა წერეთი+A+Place
+დიდ= წერეთი+A+Place
+აზავრეთი+A+Place
+ბევრეთი+A+Place
+გეზევრეთი+A+Place
+ივრეთი+A+Place
+ზოვრეთი+A+Place
+ქსოვრეთი+A+Place
+საკვირეთი+A+Place
+სასირეთი+A+Place
+კუსირეთი+A+Place
+მუჯირეთი+A+Place
+ქვემო გორეთი+A+Place
+ზემო გორეთი+A+Place
+ლაშის იგორეთი+A+Place
+კიცხისიგორეთი+A+Place
+ანდორეთი+A+Place
+წოდორეთი+A+Place
+კისორეთი+A+Place
+წყალაფორეთი+A+Place
+ქორეთი+A+Place
+საღორეთი+A+Place
+ხორეთი+A+Place
+ქვემო ხვედურეთი+A+Place
+ზემო ხვედურეთი+A+Place
+ასურეთი+A+Place
+უფურეთი+A+Place
+ოფრეთი+A+Place
+კაჭრეთი+A+Place
+ზემო კაჭრეთი+A+Place
+ბუეთი+A+Place
+ინტაბუეთი+A+Place
+ხოზუეთი+A+Place
+თვალუეთი+A+Place
+გარუეთი+A+Place
+ბერშუეთი+A+Place
+ლაფეთი+A+Place
+პატარა ოფეთი+A+Place
+დიდ= ოფეთი+A+Place
+ნაწილოფეთი+A+Place
+ქვემო შაქშაქეთი+A+Place
+ზემო შაქშაქეთი+A+Place
+ჯვარიქეთი+A+Place
+ქვემო ონჭიქეთი+A+Place
+ზემო ონჭიქეთი+A+Place
+დაღეთი+A+Place
+ღოღეთი+A+Place
+რიყეთი+A+Place
+ტომაშეთი+A+Place
+ბურნაშეთი+A+Place
+საქაშეთი+A+Place
+დუშეთი+A+Place
+ჩანჩეთი+A+Place
+ქვემო ჩოჩეთი+A+Place
+ზემო ჩოჩეთი+A+Place
+დარჩეთი+A+Place
+ქვედა მახუნცეთი+A+Place
+ზედა მახუნცეთი+A+Place
+ნავარძეთი+A+Place
+სკორძეთი+A+Place
+ქვემო ხეთი+A+Place
+შომახეთი+A+Place
+ფარახეთი+A+Place
+ხახეთი+A+Place
+მურჯახეთი+A+Place
+მეხეთი+A+Place
+ლიხეთი+A+Place
+კორომხეთი+A+Place
+ონჯოხეთი+A+Place
+ქვედა მესხეთი+A+Place
+ზედა მესხეთი+A+Place
+გულუხეთი+A+Place
+ქვიშხეთი+A+Place
+სოჩხეთი+A+Place
+მერჩხეთი+A+Place
+ოფურჩხეთი+A+Place
+გეჯეთი+A+Place
+ჯიჯეთი+A+Place
+კულბითი+A+Place
+ზირბითი+A+Place
+ახალ= ზირბითი+A+Place
+ალგითი+A+Place
+სორგითი+A+Place
+ხრეითი+A+Place
+ხეითი+A+Place
+ოფშკვითი+A+Place
+ხვითი+A+Place
+ზემო ხვითი+A+Place
+ღვანკითი+A+Place
+როკითი+A+Place
+ქვედა კვალითი+A+Place
+ზედა კვალითი+A+Place
+შუა კვალითი+A+Place
+მოლითი+A+Place
+სხლითი+A+Place
+ქვედა ძიმითი+A+Place
+ზედა ძიმითი+A+Place
+ჯიმითი+A+Place
+ჯუმითი+A+Place
+ზენითი+A+Place
+ნიგოითი+A+Place
+ბორითი+A+Place
+ხორითი+A+Place
+ისრითი+A+Place
+აბააქითი+A+Place
+ჩაწვქითი+A+Place
+დოპოუქითი+A+Place
+სუქითი+A+Place
+ხვაშითი+A+Place
+ქარჩითი+A+Place
+კვარხითი+A+Place
+უჩხითი+A+Place
+ბაჯითი+A+Place
+ლეთკანთი+A+Place
+ბაბოთი+A+Place
+ბობოთი+A+Place
+დოდოთი+A+Place
+ქვემო დოდოთი+A+Place
+ზემო დოდოთი+A+Place
+კუდოთი+A+Place
+ხეოთი+A+Place
+თოთი+A+Place
+ბახიოთი+A+Place
+იკოთი+A+Place
+ბელოთი+A+Place
+კინოთი+A+Place
+ფოთი+A+Place
+პატარა ფოთი+A+Place
+რუფოთი+A+Place
+აჭარისაღმართი+A+Place
+კვაუთი+A+Place
+ფარნაუთი+A+Place
+გეგუთი+A+Place
+გუგუთი+A+Place
+მუგუთი+A+Place
+ხურუთი+A+Place
+შუქრუთი+A+Place
+წყრუთი+A+Place
+ფუთი+A+Place
+ქაქუთი+A+Place
+ახუთი+A+Place
+უხუთი+A+Place
+იმერუხუთი+A+Place
+ქვემო შუხუთი+A+Place
+ზემო შუხუთი+A+Place
+ლანჩხუთი+A+Place
+კვაცხუთი+A+Place
+ქვემო ხანდაკი+A+Place
+ზემო ხანდაკი+A+Place
+მაღლაკი+A+Place
+სენაკი+A+Place
+ძველ= სენაკი+A+Place
+აგარაკი+A+Place
+ხაკი+A+Place
+ეკი+A+Place
+სარეკი+A+Place
+ბირლიკი+A+Place
+არბოშიკი+A+Place
+თოკი+A+Place
+ანთოკი+A+Place
+ძირკოკი+A+Place
+გრებეშოკი+A+Place
+ღვერკი+A+Place
+ზემო სარაბუკი+A+Place
+ბერბუკი+A+Place
+ზანდუკი+A+Place
+ბუდუკი+A+Place
+პატარა დურნუკი+A+Place
+დიდ= დურნუკი+A+Place
+ტაბარუკი+A+Place
+სუკი+A+Place
+შქაშისუკი+A+Place
+ხანწკი+A+Place
+ალი+A+Place
+სტეფასდაბალი+A+Place
+კაბალი+A+Place
+ხარბალი+A+Place
+კირბალი+A+Place
+გალი+A+Place
+ზემო გალი+A+Place
+ჯგალი+A+Place
+წინანდალი+A+Place
+ზუდალი+A+Place
+ხარისთვალი+A+Place
+ჯორკვალი+A+Place
+თხინვალი+A+Place
+ცხინვალი+A+Place
+ნაენდროვალი+A+Place
+ნალქორვალი+A+Place
+წირქვალი+A+Place
+უღვალი+A+Place
+ლარჩვალი+A+Place
+ბოზალი+A+Place
+ქვასათალი+A+Place
+ვაშტიალი+A+Place
+გრაკალი+A+Place
+თეკალი+A+Place
+ფსკალი+A+Place
+დგნალი+A+Place
+ჭარნალი+A+Place
+ზედა ჭარნალი+A+Place
+თერნალი+A+Place
+ჭურნალი+A+Place
+ფარცხნალი+A+Place
+ჯამპალი+A+Place
+არალი+A+Place
+ქვემო სარალი+A+Place
+ზემო სარალი+A+Place
+ნანყვამ-ზაგრალი+A+Place
+თავრალი+A+Place
+ნასაკირალი+A+Place
+ლასკრალი+A+Place
+ორალი+A+Place
+ლალხორალი+A+Place
+ქალქვა-ნამესრალი+A+Place
+ნასამხრალი+A+Place
+ჭარტალი+A+Place
+სხარტალი+A+Place
+არაქალი+A+Place
+პატარა არაქალი+A+Place
+დიდ= არაქალი+A+Place
+თექალი+A+Place
+ქალაღალი+A+Place
+ხემაღალი+A+Place
+გორმაღალი+A+Place
+კორმაღალი+A+Place
+სვეტმაღალი+A+Place
+კვარჩხიღალი+A+Place
+ფართოღალი+A+Place
+ნაკარღალი+A+Place
+ფიცარღალი+A+Place
+ღვრიაწყალი+A+Place
+ყვარელწყალი+A+Place
+მაჭარწყალი+A+Place
+გუბისწყალი+A+Place
+ცხენისწყალი+A+Place
+აჭარისწყალი+A+Place
+კასრისწყალი+A+Place
+პატარა ხანჩალი+A+Place
+დიდ= ხანჩალი+A+Place
+მრავალძალი+A+Place
+კურცხალი+A+Place
+ჯალი+A+Place
+საყუდაბელი+A+Place
+სალებელი+A+Place
+სანებელი+A+Place
+ღვთისმშობელი+A+Place
+ორბელი+A+Place
+ქედელი+A+Place
+კომანდელი+A+Place
+მაგარდელი+A+Place
+ვეშკუდელი+A+Place
+ველი+A+Place
+შორაველი+A+Place
+ურაველი+A+Place
+ფშაველი+A+Place
+ფხოველი+A+Place
+რველი+A+Place
+საძეგურ= პირველი+A+Place
+ნამიკოლავო პირველი+A+Place
+დისველი+A+Place
+მიშველი+A+Place
+ძველი+A+Place
+დაბაძველი+A+Place
+ვერხველი+A+Place
+წერეთელი+A+Place
+მიწაწითელი+A+Place
+ქვემო ენთელი+A+Place
+ზემო ენთელი+A+Place
+იელი+A+Place
+მისაქციელი+A+Place
+ახიელი+A+Place
+კვენაკელი+A+Place
+გურკელი+A+Place
+მურშკელი+A+Place
+სადმელი+A+Place
+მურყმელი+A+Place
+ხოხმელი+A+Place
+ვანელი+A+Place
+აყნელი+A+Place
+ყვარელი+A+Place
+ქარელი+A+Place
+ქვახვრელი+A+Place
+ღრელი+A+Place
+თისელი+A+Place
+ენისელი+A+Place
+ბოსელი+A+Place
+ქოსელი+A+Place
+ახატელი+A+Place
+ლანტელი+A+Place
+ჩხუტელი+A+Place
+ფელი+A+Place
+შუასოფელი+A+Place
+ზესოფელი+A+Place
+ტოლათსოფელი+A+Place
+ხევსურთსოფელი+A+Place
+ციხისოფელი+A+Place
+ახალსოფელი+A+Place
+ქვემო ახალსოფელი+A+Place
+ზემო ახალსოფელი+A+Place
+წითელსოფელი+A+Place
+წინსოფელი+A+Place
+ოქროსოფელი+A+Place
+ქოსოფელი+A+Place
+ხატისსოფელი+A+Place
+კოშკასყელი+A+Place
+ამტყელი+A+Place
+ტყვარჩელი+A+Place
+დერცელი+A+Place
+საძელი+A+Place
+ხორხელი+A+Place
+არცხელი+A+Place
+წაღვლი+A+Place
+ბაბილი+A+Place
+ბოგილი+A+Place
+წყურგილი+A+Place
+გაჭედილი+A+Place
+ჩრდილი+A+Place
+ბეტისჩრდილი+A+Place
+მარტვილი+A+Place
+შტვილი+A+Place
+ჯორჯიაშვილი+A+Place
+ნინოშვილი+A+Place
+შეკვეთილი+A+Place
+ჰეშკილი+A+Place
+ბრილი+A+Place
+ხრესილი+A+Place
+ქვემო ხეჩილი+A+Place
+ზემო ხეჩილი+A+Place
+გიმოზგონჯილი+A+Place
+ლაჰილი+A+Place
+ქვემო ბოლი+A+Place
+ზემო ბოლი+A+Place
+დოლი+A+Place
+კონდოლი+A+Place
+ჩხორთოლი+A+Place
+ქროლი+A+Place
+სოლი+A+Place
+კუტოლი+A+Place
+ნაშთქოლი+A+Place
+წირქოლი+A+Place
+ხარაბაული+A+Place
+ჭორბაული+A+Place
+ბარათაული+A+Place
+კვირიაული+A+Place
+ფუშრუკაული+A+Place
+ვარჯანაული+A+Place
+არსენაული+A+Place
+ბერძენაული+A+Place
+როდინაული+A+Place
+დანისპარაული+A+Place
+ჯაფარაული+A+Place
+პატარა ჩხირაული+A+Place
+ბუთურაული+A+Place
+არსაული+A+Place
+ჩარექაული+A+Place
+გურძაული+A+Place
+აბული+A+Place
+ხოდაბული+A+Place
+ტყიბული+A+Place
+გორგული+A+Place
+მზისგული+A+Place
+ნაკადული+A+Place
+გომარდული+A+Place
+ქურდული+A+Place
+ძირაგეული+A+Place
+ბუგეული+A+Place
+მტერჩვეული+A+Place
+ნიგაზეული+A+Place
+თარგამეული+A+Place
+ივანეული+A+Place
+იანეული+A+Place
+თორმანეული+A+Place
+მარნეული+A+Place
+ბარეული+A+Place
+ნაფარეული+A+Place
+ახალბედისეული+A+Place
+მზისეული+A+Place
+მირსკისეული+A+Place
+ლელაძისეული+A+Place
+არჩეული+A+Place
+პატარძეული+A+Place
+მერხეული+A+Place
+ქვემო მერხეული+A+Place
+ღურზული+A+Place
+ჩუკული+A+Place
+ლული+A+Place
+ხომული+A+Place
+შურმული+A+Place
+ნული+A+Place
+კორბოული+A+Place
+გორაბერეჟოული+A+Place
+დედისფერული+A+Place
+ქვედა გეზრული+A+Place
+შუა გეზრული+A+Place
+პერტული+A+Place
+მეორე გურიფული+A+Place
+პირველ= გურიფული+A+Place
+ჯირღული+A+Place
+მეორე ჯირღული+A+Place
+ქვედა ორღული+A+Place
+ზედა ორღული+A+Place
+ახალ= ბურღული+A+Place
+ნაცული+A+Place
+მოლაოღლი+A+Place
+მუხლი+A+Place
+თეზამი+A+Place
+პატარა ბეკამი+A+Place
+დიდ= ბეკამი+A+Place
+გულიკამი+A+Place
+კარტიკამი+A+Place
+ოკამი+A+Place
+ლამი+A+Place
+მამი+A+Place
+ბოჟამი+A+Place
+რამი+A+Place
+ტამი+A+Place
+ლახამი+A+Place
+თოთხამი+A+Place
+ცხამი+A+Place
+ხარჯამი+A+Place
+ბეთლემი+A+Place
+ქვედა ილემი+A+Place
+ზედა ილემი+A+Place
+გრემი+A+Place
+ჭერემი+A+Place
+წყემი+A+Place
+ცემი+A+Place
+პატარა ცემი+A+Place
+მეორე გურძემი+A+Place
+პირველ= გურძემი+A+Place
+აიაზმი+A+Place
+დიმი+A+Place
+ზედა დიმი+A+Place
+მაწიმი+A+Place
+გომი+A+Place
+დაბლაგომი+A+Place
+ხამფალგომი+A+Place
+პატარა ღრომი+A+Place
+დიდ= ღრომი+A+Place
+წრომი+A+Place
+ოხტომი+A+Place
+ბორჯომი+A+Place
+ღორჯომი+A+Place
+წვირმი+A+Place
+ზუმი+A+Place
+ბათუმი+A+Place
+ორთაბათუმი+A+Place
+ოქუმი+A+Place
+ჩქუმი+A+Place
+კაპრეშუმი+A+Place
+სოხუმი+A+Place
+ხაშმი+A+Place
+ანი+A+Place
+ქებაანი+A+Place
+ტიბაანი+A+Place
+კოჭბაანი+A+Place
+ზეგაანი+A+Place
+ჯუგაანი+A+Place
+ბადაანი+A+Place
+მორბედაანი+A+Place
+ფოდაანი+A+Place
+ოზაანი+A+Place
+გობოზაანი+A+Place
+მირზაანი+A+Place
+დოგუზაანი+A+Place
+პაპიაანი+A+Place
+თინიკაანი+A+Place
+ჭიკაანი+A+Place
+მანჭიკაანი+A+Place
+შიუკაანი+A+Place
+ბალაანი+A+Place
+ახალაანი+A+Place
+ხაბელაანი+A+Place
+მიდელაანი+A+Place
+მელაანი+A+Place
+თორელაანი+A+Place
+თიბილაანი+A+Place
+მამულაანი+A+Place
+ვარსიმაანი+A+Place
+ჩაბინაანი+A+Place
+ოთარაანი+A+Place
+ომარაანი+A+Place
+მაჭარაანი+A+Place
+მაღრაანი+A+Place
+პირმისაანი+A+Place
+ყიტაანი+A+Place
+ოქრუაანი+A+Place
+ქენქაანი+A+Place
+ბუღაანი+A+Place
+ჯუღაანი+A+Place
+ქარქუშაანი+A+Place
+ბუჩაანი+A+Place
+ქვემო მაჩხაანი+A+Place
+ზემო მაჩხაანი+A+Place
+გურჯაანი+A+Place
+ბანი+A+Place
+გარდაბანი+B+Place
+დიდებანი+A+Place
+ნადიბანი+A+Place
+ლიბანი+A+Place
+ქოლობანი+A+Place
+ქვენობანი+A+Place
+ზენობანი+A+Place
+კრობანი+A+Place
+გარბანი+A+Place
+უბანი+B+Place
+#ზემო უბანი+B+Place
+ჩალაუბანი+B+Place
+უკანაუბანი+B+Place
+ზედუბანი+B+Place
+ბარდუბანი+B+Place
+შეუბანი+B+Place
+გუდათუბანი+B+Place
+ალათუბანი+B+Place
+გოლათუბანი+B+Place
+ბეჟათუბანი+B+Place
+მაქათუბანი+B+Place
+ქველეთუბანი+B+Place
+სარქველთუბანი+B+Place
+მთიულთუბანი+B+Place
+გულიკაანთუბანი+B+Place
+თათანაანთუბანი+B+Place
+სუქანაანთუბანი+B+Place
+ქობესაანთუბანი+B+Place
+მამისაანთუბანი+B+Place
+რუსაანთუბანი+B+Place
+გაიჩაანთუბანი+B+Place
+ყიფიანთუბანი+B+Place
+გაგლუანთუბანი+B+Place
+წყაროთუბანი+B+Place
+მოხოროთუბანი+B+Place
+მარტოთუბანი+B+Place
+კართუბანი+B+Place
+იმერთუბანი+B+Place
+ორთუბანი+B+Place
+გორთუბანი+B+Place
+ჯიქთუბანი+B+Place
+ახალუბანი+B+Place
+წითელუბანი+B+Place
+ლელუბანი+B+Place
+ზენუბანი+B+Place
+წინუბანი+B+Place
+ღოუბანი+B+Place
+გარუბანი+B+Place
+დელტასუბანი+B+Place
+ტიმოთესუბანი+B+Place
+გოგოლესუბანი+B+Place
+ბაისუბანი+B+Place
+ჩაისუბანი+B+Place
+ქედისუბანი+B+Place
+კლდისუბანი+B+Place
+ხუნდისუბანი+B+Place
+არდისუბანი+B+Place
+ვარდისუბანი+B+Place
+კოდავარდისუბანი+B+Place
+გვერდისუბანი+B+Place
+ვაზისუბანი+B+Place
+მთისუბანი+B+Place
+ქვედა ალისუბანი+B+Place
+ზედა ალისუბანი+B+Place
+ჩრდილისუბანი+B+Place
+შრომისუბანი+B+Place
+სავანისუბანი+B+Place
+სტალინისუბანი+B+Place
+ჯვარისუბანი+B+Place
+გორისუბანი+B+Place
+უტყისუბანი+B+Place
+რაჭისუბანი+B+Place
+ციხისუბანი+B+Place
+კულტუბანი+B+Place
+წიაღუბანი+B+Place
+შუბანი+B+Place
+ხუცუბანი+B+Place
+თხილაგანი+A+Place
+ჭაგანი+A+Place
+ზეგანი+A+Place
+ქვედა ზეგანი+A+Place
+ზედა ზეგანი+A+Place
+გოდოგანი+A+Place
+დოლოგანი+A+Place
+რგანი+A+Place
+ზედა რგანი+A+Place
+ილორგანი+A+Place
+მედანი+A+Place
+მოედანი+A+Place
+ქედანი+A+Place
+ცედანი+A+Place
+მაიდანი+A+Place
+სიდანი+A+Place
+სეროდანი+A+Place
+გუდანი+A+Place
+ვანი+A+Place
+ზედა ვანი+A+Place
+გალავანი+B+Place
+თერეგვანი+A+Place
+დვანი+A+Place
+ზემო დვანი+A+Place
+ბგარდვანი+A+Place
+ვარდევანი+A+Place
+ნარდევანი+A+Place
+შანკევანი+A+Place
+ვარევანი+A+Place
+ანგრევანი+A+Place
+რატევანი+A+Place
+ქვემო არქევანი+A+Place
+ზემო არქევანი+A+Place
+მუშევანი+A+Place
+მაწევანი+A+Place
+ბზვანი+A+Place
+ქვედა ბზვანი+A+Place
+ზედა ბზვანი+A+Place
+ქართვანი+A+Place
+ხეივანი+A+Place
+არწივანი+A+Place
+ქვემო ალვანი+A+Place
+ზემო ალვანი+A+Place
+ტყელვანი+A+Place
+ბულვანი+A+Place
+ჭალოვანი+A+Place
+ქვედა ჭალოვანი+A+Place
+ზედა ჭალოვანი+A+Place
+ლელოვანი+A+Place
+ბაყილოვანი+A+Place
+ჭილოვანი+A+Place
+თხილოვანი+A+Place
+ღოლოვანი+A+Place
+წიფლოვანი+A+Place
+ვაშლოვანი+A+Place
+ქვემო ვაშლოვანი+A+Place
+ზემო ვაშლოვანი+A+Place
+სხლოვანი+A+Place
+ლამოვანი+A+Place
+წეროვანი+A+Place
+ძიროვანი+A+Place
+გოროვანი+A+Place
+მუხროვანი+A+Place
+ციტრუსოვანი+A+Place
+კეხოვანი+A+Place
+ფიჩხოვანი+A+Place
+არჯევან-სარვანი+A+Place
+დღვანი+A+Place
+ლეღვანი+A+Place
+ხვანი+A+Place
+ნამოხვანი+A+Place
+მუკუზანი+A+Place
+თოთანი+A+Place
+აღაიანი+A+Place
+ჩვაბიანი+A+Place
+ჩვიბიანი+A+Place
+ჟიბიანი+A+Place
+მშვიდობიანი+A+Place
+ზინობიანი+A+Place
+კლდიანი+A+Place
+ბურდიანი+A+Place
+ლაზვიანი+A+Place
+ქვიანი+A+Place
+ფიჭვიანი+A+Place
+ვერხვიანი+A+Place
+ცაცხვიანი+A+Place
+ვაზიანი+A+Place
+ნიგვზიანი+A+Place
+მზიანი+A+Place
+ნავთიანი+A+Place
+დავითიანი+A+Place
+ნაკიანი+A+Place
+მიასნიკიანი+A+Place
+ბოლოკიანი+A+Place
+ბირკიანი+A+Place
+ჭაბუკიანი+A+Place
+წაბლიანი+A+Place
+შიბლიანი+A+Place
+მგლიანი+A+Place
+იდლიანი+A+Place
+აბელიანი+A+Place
+თელიანი+A+Place
+ლელიანი+A+Place
+მიქელიანი+A+Place
+პავლიანი+A+Place
+კევლიანი+A+Place
+კაკლიანი+A+Place
+გულიანი+A+Place
+ვაშლიანი+A+Place
+ნანიანი+A+Place
+ფანიანი+A+Place
+ჯავშანიანი+A+Place
+გურგენიანი+A+Place
+ძირხვნიანი+A+Place
+ჩადუნიანი+A+Place
+ლაფნიანი+A+Place
+ჩიგოიანი+A+Place
+ელოიანი+A+Place
+ჭყოპიანი+A+Place
+ვარიანი+A+Place
+თამარიანი+A+Place
+ძეძვნარიანი+A+Place
+ვაშპარიანი+A+Place
+ქარიანი+A+Place
+მღებრიანი+A+Place
+ჯგერიანი+A+Place
+ფოცხვერიანი+A+Place
+ნამტვრიანი+A+Place
+მირიანი+A+Place
+ნუკრიანი+A+Place
+გვიმრიანი+A+Place
+პეტრიანი+A+Place
+ბურიანი+A+Place
+ბებურიანი+A+Place
+საყურიანი+A+Place
+შაქრიანი+A+Place
+ჭინჭრიანი+A+Place
+ალმასიანი+A+Place
+პრასიანი+A+Place
+რუსიანი+A+Place
+წიწმატიანი+A+Place
+ხოშატიანი+A+Place
+ჩიტიანი+A+Place
+პანტიანი+A+Place
+ახალ= პანტიანი+A+Place
+მარტიანი+A+Place
+სვიანა-როსტიანი+A+Place
+ელბაქიანი+A+Place
+ოქიანი+A+Place
+ბაღიანი+A+Place
+კაპრაშიანი+A+Place
+ფაშიანი+A+Place
+შაშიანი+A+Place
+ქვიშიანი+A+Place
+ვაჩიანი+A+Place
+ყოჩიანი+A+Place
+ვაჩნაძიანი+A+Place
+ჭოჭიანი+A+Place
+ქევხიანი+A+Place
+მუხიანი+A+Place
+ბალღოჯიანი+A+Place
+ჟდანოვაკანი+A+Place
+კიროვაკანი+A+Place
+დელკანი+A+Place
+წილკანი+A+Place
+ბალანი+A+Place
+დოდლანი+A+Place
+ხარკელანი+A+Place
+ფახულანი+A+Place
+კამანი+A+Place
+კოდმანი+A+Place
+ქვემო ოროზმანი+A+Place
+ზემო ოროზმანი+A+Place
+ქვემო ქარზმანი+A+Place
+ზემო ქარზმანი+A+Place
+ტელმანი+A+Place
+ჩოლმანი+A+Place
+გომანი+A+Place
+შუა ერმანი+A+Place
+ქვემო ერმანი+A+Place
+ფლავისმანი+A+Place
+ფიროსმანი+A+Place
+აბასთუმანი+A+Place
+წარბასთუმანი+A+Place
+ძენწმანი+A+Place
+სიჯანანი+A+Place
+ლოპანი+A+Place
+ზარანი+A+Place
+მარანი+A+Place
+ბაღმარანი+A+Place
+არეშფერანი+A+Place
+თრანი+A+Place
+ჩრდილო ჩიფრანი+A+Place
+სამხრეთის ჩიფრანი+A+Place
+მაღრანი+A+Place
+მუხრანი+A+Place
+ქვემო ბროლოსანი+A+Place
+ზემო ბროლოსანი+A+Place
+კარსანი+A+Place
+ქსანი+A+Place
+მატანი+A+Place
+კუჭატანი+A+Place
+ახატანი+A+Place
+ქვემო არტანი+A+Place
+ზემო არტანი+A+Place
+ალასტანი+A+Place
+კისტანი+A+Place
+ბაზუანი+A+Place
+აყვარჩაფანი+A+Place
+ყაჩაღანი+A+Place
+ბალღანი+A+Place
+ახშანი+A+Place
+ჩორჩანი+A+Place
+განძანი+A+Place
+შუა ხალაწანი+A+Place
+ქვემო ხალაწანი+A+Place
+ზემო ხალაწანი+A+Place
+ალაჭანი+A+Place
+ხანი+A+Place
+ბახანი+A+Place
+ვახანი+A+Place
+ლახანი+A+Place
+წახანი+A+Place
+ხიხანი+A+Place
+ვარხანი+A+Place
+მირაშხანი+A+Place
+არბაჩხანი+A+Place
+გოგნი+A+Place
+ადიგენი+A+Place
+შევარდენი+A+Place
+ზენი+A+Place
+დობერაზენი+A+Place
+საკენი+A+Place
+ატენი+A+Place
+პატარა ატენი+A+Place
+დიდ= ატენი+A+Place
+გარდატენი+A+Place
+გაიბოტენი+A+Place
+აფენი+A+Place
+ქერქენი+A+Place
+გოგაშენი+A+Place
+ხოდაშენი+A+Place
+ქვემო ხოდაშენი+A+Place
+ზემო ხოდაშენი+A+Place
+ხევაშენი+A+Place
+ბეშთაშენი+A+Place
+საღოლაშენი+A+Place
+ორმაშენი+A+Place
+თამარაშენი+A+Place
+ჯიგრაშენი+A+Place
+საღრაშენი+A+Place
+ბუღაშენი+A+Place
+ახაშენი+A+Place
+ახალშენი+A+Place
+ზედა ახალშენი+A+Place
+ქვემო ახალშენი+A+Place
+ზემო ახალშენი+A+Place
+ოთარშენი+A+Place
+ოზნი+A+Place
+ნაგუთნი+A+Place
+ლეჟბადინი+A+Place
+ხუტორ-ლეჟბადინი+A+Place
+ტაბაკინი+A+Place
+თვრინი+A+Place
+ვეჯინი+A+Place
+ონი+A+Place
+პატარა ონი+A+Place
+კალაგონი+A+Place
+ბენიან-ბეგონი+A+Place
+ტოგონი+A+Place
+ბედონი+A+Place
+ხალივდონი+A+Place
+ათონი+A+Place
+ახალ= ათონი+A+Place
+ალიონი+A+Place
+რიონი+A+Place
+საყდრიონი+A+Place
+სიონი+A+Place
+მაღლაკონი+A+Place
+თამაკონი+A+Place
+პატარა თამაკონი+A+Place
+ბოკონი+A+Place
+ქვალონი+A+Place
+ზემო ქვალონი+A+Place
+თაგილონი+A+Place
+სორმონი+A+Place
+ჟოჟონი+A+Place
+გვიმარონი+A+Place
+ტარსონი+A+Place
+ზესტაფონი+A+Place
+მიქელეფონი+A+Place
+სარაქონი+A+Place
+სირიაჩქონი+A+Place
+დიდ= ჭყონი+A+Place
+ხონი+A+Place
+ნოჩხონი+A+Place
+უშარნი+A+Place
+ზემო ამირნი+A+Place
+ხოჯორნი+A+Place
+თოთიაურნი+A+Place
+მეჯილაურნი+A+Place
+კაიშაურნი+A+Place
+ვეშაგურნი+A+Place
+სეთურნი+A+Place
+დავითურნი+A+Place
+თხუბუნი+A+Place
+ნესგუნი+A+Place
+მოსაბრუნი+A+Place
+მარტუნი+A+Place
+ჩქუნი+A+Place
+არღუნი+A+Place
+დუცხუნი+A+Place
+ხაჩკოი+A+Place
+დარაქოი+A+Place
+ქვედა ჭყეპი+A+Place
+ზედა ჭყეპი+A+Place
+ლიპი+A+Place
+კასპი+A+Place
+აძიგეჟი+A+Place
+მაშნაარი+A+Place
+ქვემო ბარი+A+Place
+ზემო ბარი+A+Place
+აბარი+A+Place
+ჭვებარი+A+Place
+ალიბარი+A+Place
+სარიბარი+A+Place
+ალამბარი+A+Place
+ტობარი+A+Place
+ჩუბარი+A+Place
+ზაგარი+A+Place
+კადარი+A+Place
+ბაიდარი+A+Place
+ხიდარი+A+Place
+ჭანდარი+A+Place
+ჯანდარი+A+Place
+ლოქჯანდარი+A+Place
+ზეინდარი+A+Place
+საყდარი+A+Place
+შავსაყდარი+A+Place
+ბავარი+A+Place
+ალავარი+A+Place
+დგვარი+A+Place
+ნადიკვარი+A+Place
+ქვემო ნაშოვარი+A+Place
+ზემო ნაშოვარი+A+Place
+სამქვარი+A+Place
+მომწვარი+A+Place
+ციცხვარი+A+Place
+ჯვარი+A+Place
+ხახალაჯვარი+A+Place
+პატარა გარეჯვარი+A+Place
+დიდ= გარეჯვარი+A+Place
+მჭადიჯვარი+A+Place
+კოდიჯვარი+A+Place
+ვაკიჯვარი+A+Place
+ბერიჯვარი+A+Place
+პატარა გორიჯვარი+A+Place
+დიდ= გორიჯვარი+A+Place
+კეხიჯვარი+A+Place
+მარიამჯვარი+A+Place
+ძლევისჯვარი+A+Place
+მცხეთისჯვარი+A+Place
+გომისჯვარი+A+Place
+ციხისჯვარი+A+Place
+ჩეთარი+A+Place
+ზიარი+A+Place
+შინდილიარი+A+Place
+მოტყიარი+A+Place
+ბერთაკარი+A+Place
+ვედიდკარი+A+Place
+კლდეკარი+A+Place
+ოხვამეკარი+A+Place
+ზაქათკარი+A+Place
+დორეთკარი+A+Place
+ქარელთკარი+A+Place
+ფოლადაანთკარი+A+Place
+აღდგომელაანთკარი+A+Place
+ცალუღელაანთკარი+A+Place
+თანდილაანთკარი+A+Place
+უნდილაანთკარი+A+Place
+ჭილაანთკარი+A+Place
+მუმლაანთკარი+A+Place
+გრიგოლაანთკარი+A+Place
+ლაფანაანთკარი+A+Place
+ფრიდონაანთკარი+A+Place
+ბეჟაანთკარი+A+Place
+ჯაგარაანთკარი+A+Place
+ნავდარაანთკარი+A+Place
+კოტორაანთკარი+A+Place
+ბარნაბიანთკარი+A+Place
+ზადიანთკარი+A+Place
+ზარდიანთკარი+A+Place
+ზოტიკიანთკარი+A+Place
+დვალიანთკარი+A+Place
+ნაგლიანთკარი+A+Place
+მჭედლიანთკარი+A+Place
+წიკვლიანთკარი+A+Place
+იმერლიანთკარი+A+Place
+თანიანთკარი+A+Place
+თოგოიანთკარი+A+Place
+მეზვრიანთკარი+A+Place
+წინამძღვრიანთკარი+A+Place
+გუგუტიანთკარი+A+Place
+ველთაურთკარი+A+Place
+ბზიკურთკარი+A+Place
+ბანცურთკარი+A+Place
+გულეიკარი+A+Place
+წალიკარი+A+Place
+ზემო ზონკარი+A+Place
+ისკარი+A+Place
+გონებისკარი+A+Place
+ერეთისკარი+A+Place
+სარმანიშვილისკარი+A+Place
+შრომისკარი+A+Place
+ცოდნისკარი+A+Place
+მაცხოვრისკარი+A+Place
+ტაშისკარი+A+Place
+მაღაროსკარი+A+Place
+თხინაშკარი+A+Place
+დალარი+A+Place
+ქოსალარი+A+Place
+ბახჩალარი+A+Place
+ყარაჯალარი+A+Place
+ხიბლარი+A+Place
+პატარა ბეგლარი+A+Place
+დიდ= ბეგლარი+A+Place
+თხმელარი+A+Place
+პატარა სახვლარი+A+Place
+კაზლარი+A+Place
+ქურთლარი+A+Place
+ქბილარი+A+Place
+ჩანგილარი+A+Place
+ნაწისქვილარი+A+Place
+კეთილარი+A+Place
+ლარილარი+A+Place
+ოროჯოლარი+A+Place
+ისლარი+A+Place
+თულარი+A+Place
+მამულარი+A+Place
+ქვემო ყულარი+A+Place
+ზემო ყულარი+A+Place
+გედაქლარი+A+Place
+მამიშლარი+A+Place
+ნაგომარი+A+Place
+ნაღომარი+A+Place
+ბეყმარი+A+Place
+ბაგვდანარი+A+Place
+ჭკიდანარი+A+Place
+უშხვანარი+A+Place
+სიდიანარი+A+Place
+კვანჭიანარი+A+Place
+ცალანარი+A+Place
+ნანარი+A+Place
+სხანარი+A+Place
+ჭოგნარი+A+Place
+მოცვნარი+A+Place
+გაუწყინარი+A+Place
+კეჭინარი+A+Place
+ბუკნარი+A+Place
+თხილნარი+A+Place
+ზედა თხილნარი+A+Place
+შუა ისნარი+A+Place
+პანტნარი+A+Place
+დაფნარი+A+Place
+იფნარი+A+Place
+წიფნარი+A+Place
+ნადუქნარი+A+Place
+ბაღნარი+A+Place
+ფუძნარი+A+Place
+გოხნარი+A+Place
+კოხნარი+A+Place
+მუხნარი+A+Place
+ხოსრარი+A+Place
+იფრარი+A+Place
+პატარა სამსარი+A+Place
+დიდ= სამსარი+A+Place
+ნაოსარი+A+Place
+ნატახტარი+B+Place
+ფარი+A+Place
+ქვედა იფარი+A+Place
+ნაკიფარი+A+Place
+კახიფარი+A+Place
+ქვემო ნაქალაქარი+A+Place
+ზემო ნაქალაქარი+A+Place
+ჯაპშაქარი+A+Place
+ღარი+A+Place
+ქვემო ბიყარი+A+Place
+ზემო ბიყარი+A+Place
+ქვიშარი+A+Place
+გომეწარი+A+Place
+ნახარი+A+Place
+სათიხარი+A+Place
+უკანამხარი+A+Place
+ზენამხარი+A+Place
+ჩხარი+A+Place
+კაერი+A+Place
+დავბერი+A+Place
+ტვიბერი+A+Place
+ოქტომბერი+A+Place
+გერი+A+Place
+ცაგერი+A+Place
+ქვედა ცაგერი+A+Place
+სადგერი+A+Place
+ძიგიდერი+A+Place
+გვალდერი+A+Place
+ბენდერი+A+Place
+ისუნდერი+A+Place
+ჟახუნდერი+A+Place
+ზღუდერი+A+Place
+ღეშდერი+A+Place
+ტალავერი+A+Place
+გელავერი+A+Place
+შულავერი+A+Place
+ცხავერი+A+Place
+სვერი+A+Place
+წეღვერი+A+Place
+წვერი+A+Place
+გუდაწვერი+A+Place
+ლაშთხვერი+A+Place
+მაზერი+A+Place
+ტეზერი+A+Place
+სალბიერი+A+Place
+მაჯვდიერი+A+Place
+ჭველიერი+A+Place
+წილამიერი+A+Place
+ტობანიერი+A+Place
+ზედა ეწერ-ტობანიერი+A+Place
+ბენიერი+A+Place
+სხიერი+A+Place
+ჩქვალერი+A+Place
+ტალერი+A+Place
+შყალერი+A+Place
+ცალერი+A+Place
+შქმერი+A+Place
+ნასპერი+A+Place
+ლადრერი+A+Place
+ფხუტრერი+A+Place
+ლაშხრერი+A+Place
+წიწკანაანთსერი+A+Place
+მონასტერი+A+Place
+ზემო მონასტერი+A+Place
+ძაძვისმონასტერი+A+Place
+ქემფერი+A+Place
+ლეწფერი+A+Place
+ჩანჩქერი+A+Place
+შუყერი+A+Place
+ლეუშერი+A+Place
+ცხუკუშერი+A+Place
+ეწერი+A+Place
+ქვედა ეწერი+A+Place
+ზედა ეწერი+A+Place
+პატარა ეწერი+A+Place
+მეორე ეწერი+A+Place
+დაბალ= ეწერი+A+Place
+მაღალ= ეწერი+A+Place
+პირველ= ეწერი+A+Place
+რეფო-ეწერი+A+Place
+ჩხარ-ეწერი+A+Place
+ჯუნეწერი+A+Place
+ფოცხოეწერი+A+Place
+ჭერი+A+Place
+ამხერი+A+Place
+ლამხერი+A+Place
+ფხერი+A+Place
+ჩხერი+A+Place
+მეჩხერი+A+Place
+უცხერი+A+Place
+ძევრი+A+Place
+ჟანივრი+A+Place
+ლაყვრი+A+Place
+ლანხვრი+A+Place
+ქვათეთრი+A+Place
+შუა ქვათეთრი+A+Place
+ზემო ქვათეთრი+A+Place
+ირი+A+Place
+ალბირი+A+Place
+ზღუბირი+A+Place
+მონგირი+A+Place
+ფიჩხისბოგირი+A+Place
+მეხადირი+A+Place
+უსგვირი+A+Place
+დვირი+A+Place
+სვირი+A+Place
+მეორე სვირი+A+Place
+ახალ= სვირი+A+Place
+პირველ= სვირი+A+Place
+ტყვირი+A+Place
+დეხვირი+A+Place
+ძიბზირი+A+Place
+შათირი+A+Place
+ჭელირი+A+Place
+იმირი+A+Place
+ღანირი+A+Place
+ორპირი+A+Place
+მეჯუდისპირი+A+Place
+არაგვისპირი+A+Place
+მთისპირი+A+Place
+ველისპირი+A+Place
+მაჭახლისპირი+A+Place
+რუისპირი+A+Place
+ტყისპირი+A+Place
+აბაშისპირი+A+Place
+ნოსირი+A+Place
+შუა ნოსირი+A+Place
+პირველ= ნოსირი+A+Place
+ქვიტირი+A+Place
+ქუტირი+A+Place
+ვაქირი+A+Place
+ტყირი+A+Place
+კავშირი+A+Place
+ტყაჩირი+A+Place
+ხიხაძირი+A+Place
+ნებოძირი+A+Place
+მთისძირი+A+Place
+ტახტისძირი+A+Place
+ციხისძირი+A+Place
+ბურსაჭირი+A+Place
+კვახჭირი+A+Place
+ლახირი+A+Place
+შდიხირი+A+Place
+ოხირი+A+Place
+ცხირი+A+Place
+ზემო ცხირი+A+Place
+ჯიხანჯირი+A+Place
+შაორი+A+Place
+ბორი+A+Place
+თაბორი+A+Place
+გომბორი+A+Place
+გორი+A+Place
+პატარა გორი+A+Place
+ლემზაგორი+A+Place
+სპათაგორი+A+Place
+დიდგორი+A+Place
+თელათგორი+A+Place
+ჩეკურაანთგორი+A+Place
+ივლიანთგორი+A+Place
+სიონთგორი+A+Place
+ნინიგორი+A+Place
+ქვემო მსხალგორი+A+Place
+ზემო მსხალგორი+A+Place
+წითელგორი+A+Place
+ახალ= სამგორი+A+Place
+უკანგორი+A+Place
+ნიჯგორი+A+Place
+სკინდორი+A+Place
+ვერხვის მინდორი+A+Place
+გაღმა კოდორი+A+Place
+გამოღმა კოდორი+A+Place
+თორი+A+Place
+ღვითორი+A+Place
+იორი+A+Place
+ხონჭიორი+A+Place
+მანდიკორი+A+Place
+ილორი+A+Place
+ცილორი+A+Place
+ოლორი+A+Place
+სულორი+A+Place
+ციხესულორი+A+Place
+თხმორი+A+Place
+ცხმორი+A+Place
+წყნორი+A+Place
+წნორი+A+Place
+სორი+A+Place
+ფსორი+A+Place
+სხვიტორი+A+Place
+ჭოტორი+A+Place
+წიფორი+A+Place
+ქვილიშორი+A+Place
+ფიჩორი+A+Place
+ბურდაძორი+A+Place
+ჩიხორი+A+Place
+ლალხორი+A+Place
+ფართონოხორი+A+Place
+სასხორი+A+Place
+კოჯორი+B+Place
+წაღკაძორი+B+Place
+წასრი+A+Place
+ნიაბაური+A+Place
+კაკაბაური+A+Place
+გუჯაბაური+A+Place
+სალიბაური+A+Place
+ქვედა სალიბაური+A+Place
+სილიბაური+A+Place
+შველაურ-ციციბაური+A+Place
+მშვიდობაური+A+Place
+იაკობაური+A+Place
+კუშუბაური+A+Place
+ჭალა-ქადაგაური+A+Place
+ბიჩნიგაური+A+Place
+ოლადაური+A+Place
+ფოლადაური+A+Place
+წმენდაური+A+Place
+გუნდაური+A+Place
+გუდაური+A+Place
+ბოხვაური+A+Place
+გვაზაური+A+Place
+მახათაური+A+Place
+ქუთაური+A+Place
+წიფთაური+A+Place
+ბეგიაური+A+Place
+ბადიაური+A+Place
+ბზიაური+A+Place
+თოხლიაური+A+Place
+ნანიაური+A+Place
+ნამნიაური+A+Place
+ბესიაური+A+Place
+ოსიაური+A+Place
+ქვემო ოსიაური+A+Place
+ზემო ოსიაური+A+Place
+ჭიაური+A+Place
+მახალაკაური+A+Place
+დილიკაური+A+Place
+ბუნიკაური+A+Place
+კობალაური+A+Place
+ჩობალაური+A+Place
+დედალაური+A+Place
+კალაური+A+Place
+წანკალაური+A+Place
+გვიმრალაური+A+Place
+შალაური+A+Place
+გელაური+A+Place
+ფოთელაური+A+Place
+მელაური+A+Place
+კურდღელაური+A+Place
+ოდილაური+A+Place
+მახვილაური+A+Place
+კეთილაური+A+Place
+ასკილაური+A+Place
+ოქროპილაური+A+Place
+სილაური+A+Place
+ამბროლაური+A+Place
+ხუნჯულაური+A+Place
+დოღლაური+A+Place
+ლომანაური+A+Place
+მანანაური+A+Place
+ონანაური+A+Place
+გოგნაური+A+Place
+ინაური+A+Place
+გოგინაური+A+Place
+პანტნაური+A+Place
+მაისაური+A+Place
+ჩაკიტაური+A+Place
+მაჩიტაური+A+Place
+კანტაური+A+Place
+კოკოტაური+A+Place
+კოლოტაური+A+Place
+ქისტაური+A+Place
+ხალიფაური+A+Place
+ბოღაური+A+Place
+ინაშაური+A+Place
+ჯუმუშაური+A+Place
+ფშაური+A+Place
+ხელვაჩაური+A+Place
+ბულაჩაური+A+Place
+გოგმაჩაური+A+Place
+ყინჩაური+A+Place
+ლაცაური+A+Place
+ბოძაური+A+Place
+ხიჭაური+A+Place
+ბალახაური+A+Place
+ჭახაური+A+Place
+ლიხაური+A+Place
+მუხაური+A+Place
+შუა მახინჯაური+A+Place
+ნადაბური+A+Place
+შევაბური+A+Place
+კაბური+A+Place
+გაგური+A+Place
+სინაგური+A+Place
+ძიგური+A+Place
+ბუძგური+A+Place
+საბადური+A+Place
+მელექედური+A+Place
+ნახიდური+A+Place
+პატარა გონდური+A+Place
+დიდ= გონდური+A+Place
+პავლეური+A+Place
+ბაბანეური+A+Place
+მანასეური+A+Place
+საჩხეური+A+Place
+ვეზური+A+Place
+მაცხვარლამეზური+A+Place
+ჭანიეთური+A+Place
+მეჩხეთური+A+Place
+შიხანთური+A+Place
+გუთური+A+Place
+მზიური+A+Place
+ბატიური+A+Place
+ციცქიური+A+Place
+ცხუნკური+A+Place
+გოლასკური+A+Place
+ხამისკური+A+Place
+პალური+A+Place
+მჭედლური+A+Place
+რცხმელური+A+Place
+პატარა ჩაილური+A+Place
+დიდ= ჩაილური+A+Place
+წიწამური+A+Place
+ჭაჭამური+A+Place
+ოჩხომური+A+Place
+ყუმური+A+Place
+ცუმური+A+Place
+ჯუყმური+A+Place
+ანანური+A+Place
+ასანური+A+Place
+ძუყნური+A+Place
+გოგოური+A+Place
+უძლოური+A+Place
+ალპური+A+Place
+კელასური+A+Place
+ღინტური+A+Place
+დუმასტური+A+Place
+ხუმენი-ნათოფური+A+Place
+ხოფური+A+Place
+ჭითაუშქური+A+Place
+ხუმუშქური+A+Place
+ლაფანყური+A+Place
+წალასყური+A+Place
+ხიდისყური+A+Place
+ლალისყური+A+Place
+აწყური+A+Place
+ტაბაწყური+A+Place
+ფუწყური+A+Place
+ხაშური+A+Place
+ქვემო ბოშური+A+Place
+ზემო ბოშური+A+Place
+ლეჩური+A+Place
+ბანცური+A+Place
+გომახური+A+Place
+საციხური+A+Place
+ნაჯიხური+A+Place
+მუხური+A+Place
+წაჩხური+A+Place
+პატარა ინჩხური+A+Place
+დიდ= ინჩხური+A+Place
+სალაჯური+A+Place
+ბოლაჯური+A+Place
+ჯიხანჯური+A+Place
+ჩიმასი+A+Place
+ყორასი+A+Place
+დესი+A+Place
+დოესი+A+Place
+რესი+A+Place
+ქრისტესი+A+Place
+ფიცესი+A+Place
+წესი+A+Place
+ხრამჰესი+A+Place
+სერბაისი+A+Place
+ქუთაისი+A+Place
+პირველ= მაისი+A+Place
+ამსაისი+A+Place
+აბისი+A+Place
+ყვიბისი+A+Place
+ზემო სობისი+A+Place
+წორბისი+A+Place
+ზემო წორბისი+A+Place
+ტბისი+A+Place
+უბისი+A+Place
+ახალ= ნიჩბისი+A+Place
+ქვემო ნიჩბისი+A+Place
+ზემო ნიჩბისი+A+Place
+ვახტანგისი+A+Place
+წკადისი+A+Place
+წედისი+A+Place
+ანდისი+A+Place
+გულხანდისი+A+Place
+არდისი+A+Place
+გუდისი+A+Place
+დეისი+A+Place
+პატარა კლდეისი+A+Place
+დიდ= კლდეისი+A+Place
+სამთავისი+A+Place
+ბნავისი+A+Place
+ლარგვისი+A+Place
+თერგვისი+A+Place
+დათვისი+A+Place
+ხერთვისი+A+Place
+ქვემო აძვისი+A+Place
+ზემო აძვისი+A+Place
+ყინწვისი+A+Place
+ჯინჭვისი+A+Place
+ითხვისი+A+Place
+სუათისი+A+Place
+სამთისი+A+Place
+ხურთისი+A+Place
+ბიისი+A+Place
+მეღვრეკისი+A+Place
+ლისის ტბა+I+Water
+ლისი+A+Place
+ქვემო ლისი+A+Place
+ეთვალისი+A+Place
+ყულალისი+A+Place
+მენქალისი+A+Place
+ძალისი+A+Place
+წნელისი+A+Place
+მარელისი+A+Place
+თბილისი+A+Place
+სხვილისი+A+Place
+ზემო სხვილისი+A+Place
+მილისი+A+Place
+ცხემლისი+A+Place
+პატარა გოლისი+A+Place
+დიდ= გოლისი+A+Place
+კუმისი+A+Place
+ახალ= კუმისი+A+Place
+განისი+A+Place
+დმანისი+A+Place
+პატარა დმანისი+A+Place
+დიდ= დმანისი+A+Place
+არანისი+A+Place
+ტატანისი+A+Place
+კრწანისი+A+Place
+ვარჯანისი+A+Place
+ებნისი+A+Place
+ბებნისი+A+Place
+ურბნისი+A+Place
+ბორგნისი+A+Place
+ავენისი+A+Place
+ფხვენისი+A+Place
+დმენისი+A+Place
+საცხენისი+A+Place
+ჭვრინისი+A+Place
+დიოკნისი+A+Place
+ახალ= დიოკნისი+A+Place
+ბოლნისი+A+Place
+ქვემო ბოლნისი+A+Place
+ზემო ბოლნისი+A+Place
+ცერონისი+A+Place
+ხირხონისი+A+Place
+ყორნისი+A+Place
+ზემო ყორნისი+A+Place
+ნუნისი+A+Place
+სუნისი+A+Place
+აფნისი+A+Place
+ტირძნისი+A+Place
+წნისი+A+Place
+ბიჯნისი+A+Place
+ხოპისი+A+Place
+წონიარისი+A+Place
+თამარისი+A+Place
+ზენადრისი+A+Place
+მერისი+A+Place
+სამწევრისი+A+Place
+ქსოვრისი+A+Place
+ზემო ქსოვრისი+A+Place
+ცხმორისი+A+Place
+კეტრისი+A+Place
+ფრისი+A+Place
+ზემო ფრისი+A+Place
+ტაძრისი+A+Place
+ახრისი+A+Place
+ერტისი+A+Place
+დუისი+A+Place
+ძმუისი+A+Place
+რუისი+A+Place
+ითრაფისი+A+Place
+იცქისი+A+Place
+ხცისი+A+Place
+ოძისი+A+Place
+საბეჭისი+A+Place
+მოხისი+A+Place
+ფარცხისი+A+Place
+თეჯისი+A+Place
+გამსი+A+Place
+უჩვარსი+A+Place
+კლარსი+A+Place
+ტნუსი+A+Place
+ეზატი+A+Place
+ალმატი+A+Place
+კარაპეტი+A+Place
+ნაწრეტი+A+Place
+კატეგორია: ახალგორის მუნიციპალიტეტი+A+Place
+ფანშეტი+A+Place
+ტყარშეტი+A+Place
+ბუშეტი+A+Place
+დიატომიტი+A+Place
+მეორე კოპიტი+A+Place
+პირველ= კოპიტი+A+Place
+ევჟენტი+A+Place
+არდოტი+A+Place
+ზოტი+A+Place
+წალკოტი+A+Place
+ალოტი+A+Place
+არხოტი+A+Place
+აჩხოტი+A+Place
+ზერტი+A+Place
+ალერტი+A+Place
+ქემერტი+A+Place
+მამხუტი+A+Place
+ოტაფი+A+Place
+ფშაფი+A+Place
+ქვემო ფშაფი+A+Place
+ზემო ფშაფი+A+Place
+ტეფი+A+Place
+სხეფი+A+Place
+სვიფი+A+Place
+დოლასვიფი+A+Place
+ბზიფი+A+Place
+დილიფი+A+Place
+წიფი+A+Place
+ჭველფი+A+Place
+ლეჩქოფი+A+Place
+მარტყოფი+A+Place
+წოფი+A+Place
+ხოფი+A+Place
+გარფი+A+Place
+სარფი+A+Place
+ახქერფი+A+Place
+გუფი+A+Place
+ქულბაქი+A+Place
+ანდაქი+A+Place
+ახალქალაქი+A+Place
+ჭაჭარაქი+A+Place
+პატარა შირაქი+A+Place
+მეორე სალამალექი+A+Place
+პირველ= სალამალექი+A+Place
+ანჰაშთუქი+A+Place
+კუდრახუქი+A+Place
+აძლაგარხუქი+A+Place
+აბღარხუქი+A+Place
+გულბაღი+A+Place
+ახალ= გედაგდაღი+A+Place
+ძველ= გედაგდაღი+A+Place
+მაღი+A+Place
+სიღნაღი+A+Place
+კინდღი+A+Place
+ახალ= კინდღი+A+Place
+ვეღი+A+Place
+ქვემო მარღი+A+Place
+ზემო მარღი+A+Place
+ნორგიუღი+A+Place
+ქვედა თლუღი+A+Place
+ზედა თლუღი+A+Place
+ყორუღი+A+Place
+ყაზაყი+A+Place
+ჩუმლაყი+A+Place
+ფაყი+A+Place
+ქვედა ბაში+A+Place
+ზედა ბაში+A+Place
+შუა ბაში+A+Place
+მეორე ეწერბაში+A+Place
+პირველ= ეწერბაში+A+Place
+დაშბაში+A+Place
+ცალდაში+A+Place
+ყორულდაში+A+Place
+კიჩხულდაში+A+Place
+ნოდაში+A+Place
+ლაღარვაში+A+Place
+ხერხვაში+A+Place
+მაზაში+A+Place
+ლასურიაში+A+Place
+კალაში+A+Place
+ლამფალაში+A+Place
+ზარდლაში+A+Place
+ლაილაში+A+Place
+ჭოლაში+A+Place
+წანაში+A+Place
+იენაში+A+Place
+კენაში+A+Place
+ვიჩნაში+A+Place
+ჩაჟაში+A+Place
+აყვარაში+A+Place
+ლაშხარაში+A+Place
+დურაში+A+Place
+ქურაში+A+Place
+დოღურაში+A+Place
+სასაში+A+Place
+მახაში+A+Place
+მოხაში+A+Place
+მეორე მოხაში+A+Place
+ბარჯაში+A+Place
+ჟაბეში+A+Place
+დადეში+A+Place
+სარგვეში+A+Place
+ქვეში+A+Place
+ძველ= ქვეში+A+Place
+ფოქვეში+A+Place
+ნაკურალეში+A+Place
+ჰამაში-თოთოლეში+A+Place
+ბულეში+A+Place
+ფარავნეში+A+Place
+ჩუნეში+A+Place
+ჩიხარეში+A+Place
+ბოგრეში+A+Place
+ყვედრეში+A+Place
+ოყურეში+A+Place
+ჭრეში+A+Place
+უყეში+A+Place
+ხაჩეში+A+Place
+კუხეში+A+Place
+ხაიში+A+Place
+პატარა ჯიხაიში+A+Place
+დიდ= ჯიხაიში+A+Place
+გოჩაჯიხაიში+A+Place
+ტვებიში+A+Place
+აგიში+A+Place
+ზოგიში+A+Place
+ადიში+A+Place
+ღადიში+A+Place
+რონდიში+A+Place
+ოდიში+A+Place
+ქვედა ონჭეიში+A+Place
+ზედა ონჭეიში+A+Place
+მარგვიში+A+Place
+ტვიში+A+Place
+ჭყვიში+A+Place
+ქვედა ჭყვიში+A+Place
+ზედა ჭყვიში+A+Place
+ჭაგან-ჭყვიში+A+Place
+მარჯვენა გენწვიში+A+Place
+მარცხენა გენწვიში+A+Place
+ქოთიში+A+Place
+ბულიში+A+Place
+ტამიში+A+Place
+გერგემიში+A+Place
+ბარმიში+A+Place
+თოუმიში+A+Place
+ნიში+A+Place
+ქორენიში+A+Place
+ჩხენიში+A+Place
+მაცხვარიში+A+Place
+ყარიში+A+Place
+ქვედა ღვირიში+A+Place
+ზედა ღვირიში+A+Place
+წკრიში+A+Place
+სგურიში+A+Place
+ქვემო ღუმურიში+A+Place
+ზემო ღუმურიში+A+Place
+მარჯვენა პტიში+A+Place
+მარცხენა პტიში+A+Place
+გადამში+A+Place
+დღამში+A+Place
+ხიმში+A+Place
+ტოლოში+A+Place
+ჯანხოში+A+Place
+ბარში+A+Place
+შუა ხორში+A+Place
+დიდ= ხორში+A+Place
+გენდუში+A+Place
+ჟამუში+A+Place
+სურმუში+A+Place
+წყოუში+A+Place
+რიაფში+A+Place
+ჩიგრიფში+A+Place
+ზვანდრიფში+A+Place
+მიქელრიფში+A+Place
+გულრიფში+A+Place
+ზემო გულრიფში+A+Place
+დურიფში+A+Place
+გაგულეჩი+A+Place
+არაკიჩი+A+Place
+ლიჩი+A+Place
+ნაოჩი+A+Place
+დერჩი+A+Place
+წიფერჩი+A+Place
+სანორჩი+A+Place
+ბეითარაფჩი+A+Place
+კუშჩი+A+Place
+ქაფანახჩი+A+Place
+ჩანახჩი+A+Place
+ააცი+A+Place
+მებეცი+A+Place
+დიცი+A+Place
+არგვიცი+A+Place
+დემერჩენცი+A+Place
+ორმოცი+A+Place
+ატოცი+A+Place
+ალახაძი+A+Place
+ხოძი+A+Place
+ხეკორძი+A+Place
+ლიწი+A+Place
+ქვემო ხუნწი+A+Place
+ზემო ხუნწი+A+Place
+აჭი+A+Place
+ბალიჭი+A+Place
+მარდახუჭი+A+Place
+ჩარდახი+A+Place
+ჯავახი+A+Place
+ქვემო ყარაბულახი+A+Place
+ზემო ყარაბულახი+A+Place
+კარდანახი+A+Place
+გუდარახი+A+Place
+ცახი+A+Place
+კარწახი+A+Place
+ლაგოდეხი+A+Place
+ზოდეხი+A+Place
+გუდარეხი+A+Place
+წინარეხი+A+Place
+ტეხი+A+Place
+მეტეხი+A+Place
+შუა კრიხი+A+Place
+ქვემო კრიხი+A+Place
+ზემო კრიხი+A+Place
+არასაძიხი+A+Place
+მეორე არასაძიხი+A+Place
+ნეძიხი+A+Place
+ალძიხი+A+Place
+არგოხი+A+Place
+კოხი+A+Place
+ათნოხი+A+Place
+როხი+A+Place
+შოროხი+A+Place
+კიტოხი+A+Place
+ჭორჭოხი+A+Place
+დამია-გიაურარხი+A+Place
+კორხი+A+Place
+ზემო ხორხი+A+Place
+მუსხი+A+Place
+კუხი+A+Place
+პატარა კუხი+A+Place
+დიდ= კუხი+A+Place
+ლუხი+A+Place
+ძულუხი+A+Place
+გუდრუხი+A+Place
+მუჯუხი+A+Place
+იფხი+A+Place
+რეჩხი+A+Place
+გურჩხი+A+Place
+კაცხი+A+Place
+დიდ= კაცხი+A+Place
+კიცხი+A+Place
+კირცხი+A+Place
+ტურცხი+A+Place
+ლომატურცხი+A+Place
+ბაჯი+A+Place
+პატარა პამაჯი+A+Place
+დიდ= პამაჯი+A+Place
+ახმაჯი+A+Place
+ყარაღაჯი+A+Place
+ფახვიჯი+A+Place
+კითხიჯი+A+Place
+თოლენჯი+A+Place
+ჭუბურხინჯი+A+Place
+ბულიშხინჯი+A+Place
+ხოჯი+A+Place
+მათხოჯი+A+Place
+ხორნაბუჯი+A+Place
+ობუჯი+A+Place
+ლუჯი+A+Place
+ქვედა ნაგვაზაო+O+Place
+საკაო+O+Place
+ნაესაკაო+O+Place
+მოწმაო+O+Place
+სალომინაო+O+Place
+საცხვიტაო+O+Place
+სამიქაო+O+Place
+ჩაო+O+Place
+გაღმა საჯიჯაო+O+Place
+ხახაბო+O+Place
+კიკიბო+O+Place
+საჯინიბო+O+Place
+ქვედა საწუმბო+O+Place
+საქობო+O+Place
+არბო+O+Place
+დრბო+O+Place
+წყალტუბო+O+Place
+პირველ= წყალტუბო+O+Place
+თაგო+O+Place
+ბაცალიგო+O+Place
+მორგო+O+Place
+ღადო+O+Place
+საიმედო+O+Place
+სამტრედო+O+Place
+პალდო+O+Place
+ხანდო+O+Place
+სანავარდო+O+Place
+კუმურდო+O+Place
+შურდო+O+Place
+ცდო+O+Place
+საწულუკიძეო+O+Place
+საჩიქობავო+O+Place
+ქვემო ნაგვაზავო+O+Place
+ზემო ნაგვაზავო+O+Place
+საგვაზავო+O+Place
+საკუკავო+O+Place
+ნახურცილავო+O+Place
+სახოჭოლავო+O+Place
+საბერულავო+O+Place
+საგუგუნავო+O+Place
+ნახუნავო+O+Place
+ლეხაინდრავო+O+Place
+ნაგებერავო+O+Place
+საღვამიჩავო+O+Place
+სატყებუჩავო+O+Place
+საბოკუჩავო+O+Place
+ნაჯახავო+O+Place
+მენდელეევო+O+Place
+სულევო+O+Place
+ორეხოვო+O+Place
+ნაფიჩხოვო+O+Place
+გოზო+O+Place
+ერეთო+O+Place
+იყალთო+O+Place
+ქოთანთო+O+Place
+კოღოთო+O+Place
+საბუთბაიო+O+Place
+ვაიო+O+Place
+სამელაიო+O+Place
+საადანაიო+O+Place
+საშურღაიო+O+Place
+სანაჭყებიო+O+Place
+სახახუბიო+O+Place
+საშამუგიო+O+Place
+სახარბედიო+O+Place
+გოკიო+O+Place
+საბუკიო+O+Place
+საბესელიო+O+Place
+საალანიო-საფაჩულიო+O+Place
+საადამიო+O+Place
+საგვარამიო+O+Place
+საკვიკვინიო+O+Place
+საკილასონიო+O+Place
+ბია-საშონიო+O+Place
+საგუნიო+O+Place
+ხოსპიო+O+Place
+ოჟიო+O+Place
+საოდიშარიო+O+Place
+საბერიო+O+Place
+საგაბესკირიო+O+Place
+საწულეისკირიო+O+Place
+საბულისკირიო+O+Place
+საქირიო+O+Place
+ნორიო+O+Place
+ფურტიო+O+Place
+საქორქიო+O+Place
+საგვიჩიო+O+Place
+საკრეჭიო+O+Place
+კოჭიო+O+Place
+სამესხიო+O+Place
+ბაკო+O+Place
+ბოტკო+O+Place
+ჭრებალო+O+Place
+ლამბალო+O+Place
+ბორბალო+O+Place
+ხორბალო+O+Place
+დანდალო+O+Place
+ქოდალო+O+Place
+სამარქვალო+O+Place
+ზაზალო+O+Place
+ბაითალო+O+Place
+არხილოსკალო+O+Place
+ახლო ლალალო+O+Place
+ომალო+O+Place
+ქესალო+O+Place
+მეორე ქესალო+O+Place
+პირველ= ქესალო+O+Place
+ქეშალო+O+Place
+აბუხალო+O+Place
+ჩანჩხალო+O+Place
+სეიდხოჯალო+O+Place
+ბლო+O+Place
+იაყუბლო+O+Place
+სამადლო+O+Place
+აღმამედლო+O+Place
+ახალ= მამუდლო+O+Place
+უსახელო+O+Place
+ხანჯი-გაზლო+O+Place
+ილმაზლო+O+Place
+საბათლო+O+Place
+საკორინთლო+O+Place
+დართლო+O+Place
+სოღუთლო+O+Place
+სასადილო+O+Place
+საწისქვილო+O+Place
+ბოქჩვილო+O+Place
+ქალილო+O+Place
+არჭილო+O+Place
+შიხილო+O+Place
+სამრეკლო+O+Place
+დიკლო+O+Place
+ამამლო+O+Place
+კასუმლო+O+Place
+ავრანლო+O+Place
+მუღანლო+O+Place
+დიდ= მუღანლო+O+Place
+ქირაჩ-მუღანლო+O+Place
+იორმუღანლო+O+Place
+ომბოლო+O+Place
+ჯოყოლო+O+Place
+ნაზარლო+O+Place
+კამარლო+O+Place
+შახმარლო+O+Place
+საფარლო+O+Place
+საიმერლო+O+Place
+საცხავატლო+O+Place
+საკრამულო+O+Place
+არაფლო+O+Place
+ბეზაქლო+O+Place
+ულაშლო+O+Place
+კამიშლო+O+Place
+მამიშლო+O+Place
+სადახლო+O+Place
+დაგარახლო+O+Place
+კირიხლო+O+Place
+ყიზილ-აჯლო+O+Place
+ყიზილაჯლო+O+Place
+საგურამო+O+Place
+საღამო+O+Place
+სათემო+O+Place
+ხულგუმო+O+Place
+ახალ= ხულგუმო+O+Place
+ართხმო+O+Place
+აბანო+O+Place
+წყნარ= აბანო+O+Place
+ჩაბანო+O+Place
+დანო+O+Place
+ქვედა ლუხვანო+O+Place
+ზედა ლუხვანო+O+Place
+საზანო+O+Place
+ქვედა საზანო+O+Place
+საკობიანო+O+Place
+საქადაგიანო+O+Place
+ბეჟანო+O+Place
+უდაბნო+O+Place
+საშევარდნო+O+Place
+ინო+O+Place
+სტარუშკინო+O+Place
+კალინინო+O+Place
+საჩინო+O+Place
+ხინო+O+Place
+სალხინო+O+Place
+სნო+O+Place
+საკერპო+O+Place
+საბაჟო+O+Place
+ცხენთარო+O+Place
+ფოთარო+O+Place
+გომარო+O+Place
+რარო+O+Place
+სარო+O+Place
+ჯიმასტარო+O+Place
+ზაქარო+O+Place
+ქვემო მაღარო+O+Place
+ზემო მაღარო+O+Place
+ქვემო წყარო+O+Place
+ზემო წყარო+O+Place
+კოდის წყარო+O+Place
+თხილთაწყარო+O+Place
+სამთაწყარო+O+Place
+თეთრაწყარო+O+Place
+ცხრაწყარო+O+Place
+თავწყარო+O+Place
+ცივწყარო+O+Place
+მუხათწყარო+O+Place
+თანდიწყარო+O+Place
+თეთრიწყარო+O+Place
+ახალწყარო+O+Place
+სამწყარო+O+Place
+შუა სამწყარო+O+Place
+ქვემო სამწყარო+O+Place
+წინწყარო+O+Place
+ალექსანდრესწყარო+O+Place
+კლდისწყარო+O+Place
+კოდისწყარო+O+Place
+ზემო კოდისწყარო+O+Place
+გამდლისწყარო+O+Place
+მილისწყარო+O+Place
+თხილისწყარო+O+Place
+წიფლისწყარო+O+Place
+დედოფლისწყარო+O+Place
+ხრამისწყარო+O+Place
+ტიტვინისწყარო+O+Place
+წახნისწყარო+O+Place
+სანჩარო+O+Place
+ყუდრო+O+Place
+დობირო+O+Place
+გაღმა დობირო+O+Place
+გამოღმა დობირო+O+Place
+საშაბურო+O+Place
+გვესო+O+Place
+მენესო+O+Place
+ბისო+O+Place
+ხისო+O+Place
+ლახატო+O+Place
+დუოდონასტო+O+Place
+საესებუო+O+Place
+საჭოჭუო+O+Place
+მეორე ონტოფო+O+Place
+პირველ= ონტოფო+O+Place
+შენაქო+O+Place
+მუქო+O+Place
+ქოყო+O+Place
+სახალვაშო+O+Place
+ხაიშო+O+Place
+ლიშო+O+Place
+აკუშო+O+Place
+აფშო+O+Place
+ზეისტეჩო+O+Place
+სონჩო+O+Place
+დიხჩო+O+Place
+ბორცო+O+Place
+მუცო+O+Place
+სომიწო+O+Place
+ერწო+O+Place
+ქვემო ჯოჭო+O+Place
+ზემო ჯოჭო+O+Place
+ახო+O+Place
+საჯავახო+O+Place
+მახო+O+Place
+უკანახო+O+Place
+გუდასახო+O+Place
+ბარისახო+O+Place
+ბალხო+O+Place
+კორტოხო+O+Place
+ზესხო+O+Place
+იუხო+O+Place
+დიხაშხო+O+Place
+უჩხო+O+Place
+დუმაცხო+O+Place
+ფოცხო+O+Place
+საგარეჯო+O+Place
+პატარა ჩორჯო+O+Place
+დიდ= ჩორჯო+O+Place
+კართაყაუ+O+Place
+ფალაგყაუ+O+Place
+ნოგყაუ+O+Place
+განითყაუ+O+Place
+ძაგოითყაუ+O+Place
+ცადიყაუ+O+Place
+საულოხთიყაუ+O+Place
+ისაკყაუ+O+Place
+გუფაგუ+O+Place
+ფადგუ+O+Place
+ნაშამგუ+O+Place
+ნახინგუ+O+Place
+ნაჭკადუ+O+Place
+არადუ+O+Place
+ატიშადუ+O+Place
+უკანხადუ+O+Place
+გდუ+O+Place
+კლდუ+O+Place
+ნარჯხეუ+O+Place
+ნაგვაზუ+O+Place
+დვაბზუ+O+Place
+გაღმა დვაბზუ+O+Place
+ქვედა ბზუბზუ+O+Place
+ზედა ბზუბზუ+O+Place
+კურზუ+O+Place
+ხაბიუ+O+Place
+ნაღბოუ+O+Place
+ნახურზოუ+O+Place
+ნაგვალოუ+O+Place
+ჭლოუ+O+Place
+ანდროუ+O+Place
+ნაგურუ+O+Place
+ქვემო ღრუ+O+Place
+ზემო ღრუ+O+Place
+ხეღრუ+O+Place
+წრუ+O+Place
+კათნატუ+O+Place
+ნაფოშტუ+O+Place
+ნაკიფუ+O+Place
+ღუ+O+Place
+ბულიწყუ+O+Place
+ქვედა ჩხოროწყუ+O+Place
+დოჭუ+O+Place
+აბააჟვახუ+O+Place
+არაშახუ+O+Place
+აჯახუ+O+Place
+ჩერქეზიხუ+O+Place
+ჭიხუ+O+Place
+ოსიაარხუ+O+Place
+ტვანაარხუ+O+Place
+ამფარაარხუ+O+Place
+წვიშაარხუ+O+Place
+ანუარხუ+O+Place
+აქვაჩარხუ+O+Place
+ფსხუ+O+Place
+ალაჰაშხუ+O+Place
+ლეგოგიე-ნასაჯუ+O+Place
+
+ავლაბარი+B+Place
+ავშნიანი+A+Place
+ავჭალა+ON+Place
+არსენალი+A+Place
+ბაგები+A+Place+Pl
+გლდანი+A+Place
+გლდანის მასივი+A+Place
+გლდანულა+ON+Place
+დამპალო+O+Place
+დელისი+A+Place
+დიდ= დიღომი+B+Place
+დიღომი+B+Place
+დიდუბე+ON+Place
+#დიღმის მასივი+A+Place
+ელია+I+Place
+ვაზისუბანი+B+Place
+ვაკე+M+Place
+ვანქი+A+Place
+ვანქის უბანი+B+Place
+ვარკეთილი+A+Place
+ვაშლიჯვარი+B+Place
+ვეძისი+A+Place
+ზემელი+A+Place
+ზღვისუბანი+B+Place
+ისანი+B+Place
+კრწანისი+A+Place
+მუხიანი+A+Place
+ნავთლუღი+A+Place
+ნაძალადევი+A+Place
+ორთაჭალა+ON+Place
+საბურთალო+O+Place
+სამგორი+A+Place
+სანზონა+ON+Place
+სეიდაბადი+A+Place
+სვანეთისუბანი+B+Place
+ფონიჭალა+ON+Place
+ჩუღურეთი+A+Place
+ხარფუხი+A+Place
+ხოჯავანქი+A+Place
+სინოპე+ON+Place
+კესარია+I+Place
+ნეოკესარია+I+Place
+ასხობია+I+Place
+ზერო+O+Place
+ამასია+I+Place
+კაფარნაუმი+A+Place
+სიდონი+A+Place
+იორდანე+ON+Water
+რამათ-განი+A+Place
+ტელ-ავივი+A+Place
+გუბაზეული+A+Water
+გუბაზოული+A+Water
+ვარაზი+A+Water
+განდამაკი+A+Place
+ბალა-ჰისარი+A+Place
+ვერსალი+A+Place
+რაპალო+O+Place
+ტამბორა+O+Mountain
+ტომბოროა+O+Mountain
+სუმბავა+O+Area
+მალაი+X+Area
+ტაუპო+O+Mountain
+სუმატრა+O+Area
+კალიმანტანი+A+Area
+სულავესი+X+Area
+მოლუკი+A+Area
+მაჯურო+O+Place
+ბოკაკი+X+Area
+კრაკატაუ+O+Place
+ვაკისუბანი+B+Place
+ტრაფალგარის მოედანი+A+Area
+ნალჩიკ+A+Place
+აძიუბჟა+O+Place
+კულანურხვა+O+Place
+აცა+O+Place
+სიდანია+O+Place
+დალმაცია+I+Area
+სელტიკ პარკ+A+Place
+ყარყატოვან+A+Place
+კოდეთ+A+Place

@@ -1,4 +1,0 @@
-load stack finite-root-list2.fst
-source verb.regex
-echo save stack verb2.fst
-save stack verb2.fst

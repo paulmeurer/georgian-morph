@@ -1,6 +1,0 @@
-load stack kartuli-morph.fst;
-invert;
-define howfar 5;
-source shiftepsilon5.infile;
-invert;
-save stack /usr/local/xledir/pargram/kartuli/kartuli-morph.fst;

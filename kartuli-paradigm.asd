@@ -7,7 +7,7 @@
 	       :georgian-morph
 	       ;;:clsql-mysql-patches
 	       :clsql-postgresql-patches
-	       #-(or allegro sbcl) :cl-aserve
+	       #-(or allegro sbcl) :aserve
 	       #-sbcl :aserve-custom
 	       :javascript :xml
 	       :cl-fst)

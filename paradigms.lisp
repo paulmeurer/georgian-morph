@@ -369,7 +369,6 @@
 					    ,@(fill-template (feature-template root gv tense morph-type)
 							     features
 							     :except '(tense root (type root)))))
-					 ;;(fifi (debug template))
 					 (invertedp
 					  (if (cdr xle-templates)
 					      invertedp

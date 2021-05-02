@@ -22,94 +22,6 @@ used in feature-template()
 			   (char= (char pr 0) #\[))
 		  (collect (mapcar #'parse-integer (split id #\-))))))))))
 
-#+test
-(print (extract-bracketed-pr-ids "projects:georgian-morph;parsed-verb-entries.txt"))
-
-;; load fsa:georgian-parser;parse-verbs.lisp
-#+test ;; open Tschenkéli-LFG before running
-(let ((corrected-c-roots ()))
-  (with-open-file (stream "projects:georgian-morph;corrected-verb-entries.txt")
-    (let ((*package* (find-package :fst)))
-      (loop for form = (read stream nil nil)
-            while form
-            do
-            (let ((c-root (caar form)))
-              (push c-root corrected-c-roots)))))
-  (with-open-file (stream "projects:georgian-morph;parsed-verb-entries.txt" :direction :output :if-exists :supersede)
-    (let ((root-id 0)
-          (w (find-if #'(lambda (w) (string= (dict::window-title w) "Tschenkli-LFG"))
-                      (dict::windows :class 'dict::dictionary-window))))
-      (loop while (dict::parse-one-entry w)
-            do
-            (when dict::*result-list*
-              (incf root-id)
-              (let ((id 0)
-                    (result-list (nreverse dict::*result-list*)))
-                #+debug(pprint result-list)
-                (unless (find (caar result-list) corrected-c-roots :test #'string=)
-                  (dolist (vn (cdr result-list))
-                    (setf (cddr vn) (list* :id (format nil "~d-~d" root-id (incf id)) (cddr vn)))
-                    (let ((tr (getf vn :tr))
-                          (ann (getf vn :ann)))
-                      (when (or (and tr (search "aor" tr) (not (search "merke: aor" tr)))
-                                (and ann (search "aor" ann) (not (search "merke: aor" ann))))
-                        (print (list :aor-in-tr/ann root-id id tr ann)))))
-                  (pprint result-list stream)
-                  (terpri stream))
-                (setf dict::*result-list* nil))))))
-  (progn
-    (with-open-file (stream "projects:georgian-morph;parsed-verb-entries.txt")
-      (setf *parsed-verb-table* (dat::make-string-tree))
-      (let ((*package* (find-package :fst)))
-        (loop for form = (read stream nil nil)
-              while form
-              do 
-              (let ((c-root (caar form)))
-                ;;(print c-root)
-                (setf (dat:string-tree-get *parsed-verb-table* c-root) form)))))
-    (with-open-file (stream "projects:georgian-morph;corrected-verb-entries.txt")
-      (let ((*package* (find-package :fst)))
-        (loop for form = (read stream nil nil)
-              while form
-              do
-              (let ((c-root (caar form)))
-                ;;(print c-root)
-                (setf (dat::string-tree-get *parsed-verb-table* c-root) form)))))))
-
-#+test
-(dat::string-tree-get *parsed-verb-table* "Svr1")
-
-;; for running ediff in emacs:
-#+test
-(progn
-  (with-open-file (stream "projects:georgian-morph;parsed-verb-entries-a.txt" :direction :output :if-exists :supersede)
-    (with-file-lines (line "projects:georgian-morph;parsed-verb-entries.txt")
-      (write-line (nconvert line) stream)))
-  (print :next)
-  #+test
-  (with-open-file (stream "projects:georgian-morph;parsed-verb-entries-old-a.txt" :direction :output :if-exists :supersede)
-    (with-file-lines (line "projects:georgian-morph;parsed-verb-entries-old.txt")
-      (write-line (nconvert line) stream))))
-
-#||
-(let ((root "brjol"))
-  ;;(dolist (r '("brjol" "brj" "brjv") (remhash r *features-table*))
-  (add-root-features root t))
-
-(pprint (gethash '- *features-table*))
-(kartuli-verb-morph "iara")
-(kartuli-verb-morph "momKCeviHar")
-(kartuli-verb-morph "momKCeode")
-(u-transduce "momKCeodi" *fst*)
-(kartuli-verb-morph "viCi")
-(kartuli-verb-morph "viCem")
-(kartuli-verb-morph "damisvmiHar")
-(u-transduce "Har" *fst*)
-(u-transduce "naXuKari" *fst*)
-(u-transduce "dacera" *fst*)
-(paradigm-features "2565-11")
-||#
-
 ;; not used?
 (defun override-features (c-root full-f-list gv) (break)
   #+debug(print (list c-root :full-f-list full-f-list :gv gv))
@@ -793,68 +705,6 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
 
 (defparameter *features-table* (make-hash-table :test #'equal))
 
-#+obsolete
-(defun load-corrected-root-features ()
-  (with-open-file (stream "projects:georgian-morph;corrected-root-features.txt")
-    (let ((*package* (find-package :fst)))
-      (loop for paradigm = (read stream nil nil)
-            while paradigm
-            do (add-corrected-root-features (car paradigm) (cdr paradigm))))))
-
-#+test
-(load-corrected-root-features)
-
-#+main-form-no-xle-lex
-(progn
-  (clrhash *features-table*)
-  (dat::do-string-tree (c-root val *parsed-verb-table*)
-    (declare (ignore val))
-    (add-root-features c-root nil))
-  
-  (load-corrected-root-features)
-  
-  (add-participles) ;; preliminary
-  
-  (with-open-file (stream "projects:georgian-morph;verb-feature-table.txt" :direction :output :if-exists :supersede)
-    (let ((*package* (find-package :fst)))
-      (maphash (lambda (c-root features)
-                 (write c-root :stream stream)
-                 (write-char #\linefeed stream)
-                 (write features :stream stream)
-                 (write-char #\linefeed stream))
-               *features-table*))))
-
-#+main-form-no-xle-lex-incremental
-(progn
-  (load-corrected-root-features)
-  (add-participles) ;; preliminary
-  (with-open-file (stream "projects:georgian-morph;verb-feature-table.txt" :direction :output :if-exists :supersede)
-    (let ((*package* (find-package :fst)))
-      (maphash (lambda (c-root features)
-                 (write c-root :stream stream)
-                 (write-char #\linefeed stream)
-                 (write features :stream stream)
-                 (write-char #\linefeed stream))
-               *features-table*))))
-
-;;#+read-in-again
-#+allegro ;; needed 2011?
-(with-open-file (stream "projects:georgian-morph;verb-feature-table.txt")
-  (clrhash *features-table*)
-  (let ((*package* (find-package :fst)))
-    (loop for root = (read stream nil nil)
-          while root
-          do 
-          (setf (gethash root *features-table*) (read stream nil nil)))))
-
-;; convert to latin transliteration
-#+allegro ;; needed 2011?
-(with-open-file (stream "projects:georgian-morph;verb-feature-table-translit.txt"
-                        :direction :output :if-exists :supersede)
-  (with-file-lines (line "projects:georgian-morph;verb-feature-table.txt")
-    (write-string (convert line) stream)
-    (write-char #\linefeed stream)))
-
 (defun georgian-char-p (char)
    (<= (char-code #\a) (char-code char) (char-code #\ú)))
 
@@ -865,31 +715,8 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
          (vn (remove #\( (remove #\) (remove #\[ (remove #\] (subseq vn 0 vn-end)))))))
     (if (zerop (length vn)) (concat (string-right-trim "1234567¸¹" c-root) "#") vn)))
 
-#+old
-(defun get-pv (features)
-  (dolist (fl features)
-    (let ((tense-list (cadr (assoc 'tense fl))))
-      (when (or (and (parser::extended-list-p tense-list)
-                     (find 'future (parser::extended-list-form tense-list)))
-                (eq tense-list 'future))
-        (return-from get-pv (cadr (assoc 'pv fl))))))
-  (dolist (fl features)
-    (let ((tense-list (cadr (assoc 'tense fl))))
-      (when (or (and (parser::extended-list-p tense-list)
-                     (find 'present (parser::extended-list-form tense-list)))
-                (eq tense-list 'present))
-        (return-from get-pv (cadr (assoc 'pv fl)))))))
-
 (defun get-pv (features)
   (cadr (assoc 'c-pv (car features))))
-
-#+test
-(let ((root "mbob"))
-  (dolist (r '("mbob" "mb" "amb" "tqv1" "tq1" "TK" "TKv" "ubn" "THr2" "THar2")) (remhash r *features-table*))
-  (add-root-features root t))
-
-#+test
-(add-root-features "laparak" t)
 
 (defun add-root-features (c-root &optional (stream1 *standard-output*) stream2 stream3)
   (let* ((root-entry (dat::string-tree-get *parsed-verb-table* c-root))
@@ -933,8 +760,7 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
                                   (t
                                    (format stream "~a V ~a; ETC.~c" key template #\Linefeed)))))
                         (push (list id masdar template-list) templates)
-                        (setf prev-xle-template xle-template))
-                      #+debug(pprint (list id features :of (override-features c-root features (getf paradigm-list :gv)))) 
+                        (setf prev-xle-template xle-template)) 
                       (pushnew root (cddr (gethash id *paradigm-table*)) :test #'string=)
                       (dolist (of (merge-tenses (override-features c-root features (getf paradigm-list :gv)) vn))
                         #+debug(print (list* root gv id pv of))
@@ -961,13 +787,6 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
           (setf (dat:string-tree-get *xle-template-table* (car template-list))
                 (cdr template-list)))))))
 
-;(dat:string-tree-get *xle-template-table* "2113-1")
-
-;(pprint (update-root-features "sH1"))
-;(pprint (update-root-features "abeXHr"))
-
-;;(gethash "vid" *features-table*)
-
 ;; obs: almost the same as update-root-features()
 (defun add-corrected-root-features (paradigm-id features &key (override-p t))
   (let ((roots (cddr (gethash paradigm-id *paradigm-table*))))
@@ -983,18 +802,6 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
     (dolist (f-list features)
       (destructuring-bind (root . gv-features) f-list
         (push gv-features (gethash root *features-table*))))))
-
-#+test
-(add-root-features "jev1" t)
-#+test
-(add-root-features "წერ" t)
-
-#+test
-(get-paradigm-features
- '("basr" "basvr")
- '(:vn "basvra" :id "114-5" :gv "RP1 (OR)" :pr "mebasreba" :aor "damebasra" :pf
-  "dambasvria" :fut "da~" :tr
-  "mir wird et. durchgeschnitten/zerschnitten (mit einer scharfen Waffe); ~ guli mir wird das Herz verwundet, ich erleide schweren Kummer"))
 
 (defun print-dag (dg)
   (labels ((pd (dg level)
@@ -1067,91 +874,6 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
            '{h-root null-root})
           (t 'null-root))))
 
-#+test
-(print (kartuli-verb-morph "moCemuli"))
-#+test
-(print (u-transduce "moCemuli" *fst*))
-#+test
-(u-transduce "cera" *fst*)
-
-#+test
-(paradigm-features "3353-1")
-
-#+test
-(kartuli-verb-morph "avTamaSebulvar") ;; unacc
-#+test
-(kartuli-verb-morph "amTamaSebia") ;;unacc
-#+test
-(kartuli-verb-morph "miTamaSnia") ;; unerg
-
-#+test
-(kartuli-verb-morph "gelaparake")
-#+test
-(kartuli-verb-morph "gamovelaparako")
-#+test
-(kartuli-verb-morph "vTamaSobdi")
-#+test
-(kartuli-verb-morph "davHtunav")
-#+test
-(kartuli-verb-morph "miHumria")
-#+test
-(kartuli-verb-morph "vhHumrebivar")
-#+test
-(kartuli-verb-morph "miHumria")
-#+test
-(kartuli-verb-morph "dammalvia")
-#+test
-(u-transduce "avrev-davrev" *fst*)
-#+test
-(kartuli-verb-morph "amirev-daurevia")
-#+test
-(kartuli-verb-morph "daurevia")
-
-#+test
-(kartuli-verb-morph "amirev-damirevia")
-
-#+test
-(kartuli-verb-morph "camiHumrebia")
-#+test
-(kartuli-verb-morph "mihHdis")
-#+test
-(kartuli-verb-morph "daulevia")
-#+test
-(kartuli-verb-morph "SeHedaven")
-#+test
-(kartuli-verb-morph "mivdivar")
-#+test
-(kartuli-verb-morph "misdis")
-#+test
-(kartuli-verb-morph "midis")
-#+test
-(kartuli-verb-morph "damekaveba")
-#+test
-(kartuli-verb-morph "mekava")
-#+test
-(kartuli-verb-morph "gamikavebia")
-#+test
-(kartuli-verb-morph "emduri")
-#+test
-(kartuli-verb-morph "ekuTvni")
-#+test
-(kartuli-morph "romlebisTvisaC")
-
-#+test
-(let ((root "xr"))
-  (dolist (r '("xr")) (remhash r *features-table*))
-  (add-root-features root nil))
-
-#+test
-(u-transduce "gamikavia" *fst*)
-#+test
-(u-transduce "avsdev-davsdev" *fst*)
-
-(defun set-top-dg-defaults (dg)
-  (dolist (att '(passive-sfx))
-    (unless (path-value dg att)
-      (push `(,att (nil . -)) (cdr dg)))))
-
 (defun passive-morphology-p (morph-type)
   (let ((passive-types '(passive stative-passive causative-passive)))
     (if (parser::extended-list-p morph-type)
@@ -1182,21 +904,9 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
 ;; inv
 ;; caus
 
-#+test
-(maphash (lambda (key value) (print key)) *features-table*)
-
-#+test
-(get-root-override-features "cer")
-
-#-(or mysql sqlite)
+#+ignore ;; see verb-feature-table-sql.lisp
 (defun get-root-override-features (root)
   (gethash root *features-table*))
-
-#+test
-(print (kartuli-verb-morph "vcer"))
-
-#+test
-(pprint (get-root-override-features "ბარგანავ"))
 
 (defun kartuli-verb-morph (verb)
   (let ((parses (u-transduce verb *fst*)))
@@ -1462,70 +1172,6 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
                 (when (find cl classes)
                   (collect cl)))))))
 
-#+test
-(paradigm-classes "2764")
-
-
-#+test
-(id-paradigm-ids "149-14")
-
-#+test
-(kartuli-verb-morph "vqoPiliqav")
-#+test
-(kartuli-verb-morph "saHlSi")
-#+test
-(kartuli-verb-morph "vqoPiliqavi")
-#+test
-(u-transduce "gadavqar-gadmovqare" *fst*)
-
-#+obsolete
-(defparameter *verb-translation-table* (make-hash-table :test #'equal))
-
-#|
-
-(kartuli-verb-morph "gasakeTebeli")
-(u-transduce "movhqevi" *fst*)
-(u-transduce "mCodnoda" *fst*)
-(u-transduce "gaugebari" *fst*)
-(kartuli-verb-morph "momecona")
-
-(kartuli-verb-morph "Xanan")
-
-
-("IV1" :id "3355-6"
- :tenses {conj-future conditional future}
- :parse (nil (obj (nil (num (nil . sg)) (pers (nil . 1)))) (subj (nil (num (nil . sg)) (pers (nil . 3)))) (passive-sfx (nil . "eb")) (sf (nil . -)) (vv (nil . "e")) (voice (nil . passive)) (reduplication (nil . -)) (c-pv (nil . "mo")) (pv (nil . "mo")) (root (nil . "con")) (morph-type (nil . pr-passive)) (c-vv (nil . "e")) (type (nil (subj3-sfx (nil . "a")))) (tense (nil . {present future})) (cat (nil . v)))
- :features ((tense {conj-future conditional future}) (vn "coneba") (c-root "con2") (vn "coneba") (morph-type pr-passive) (pv "mo") (vv "e") (passive-sfx "eb") (passive-sfx "eb"))
- :template ((tense future) ((type root) s-root) (vn "coneba") (morph-type pr-passive) ((subj pers) {1 2 3}) (pv "mo") (gv "IV1") (reduplication -) (red-dir-pv -) (relation relative) (vv "e") (sf -) (passive-sfx "eb") ((type aorist) weak) ((type aorist-3sg) "a") (passive-sfx "eb") (c-vv -)))
-
-Mistakes:
-
-
-(kartuli-verb-morph "cavKezebT")
-(kartuli-verb-morph "gaaHmo") ;; fixed?
-(kartuli-verb-morph "carmovsTKvam")
-
-gamikeTebs -> RP3
-*vXan, vXanvar, Xanan
-mendomeba
-
-ggoniaT
-
----
-(kartuli-morph "am")
-
-(u-transduce "sabxoTa" *fst*)
-(kartuli-morph "datova")
-(kartuli-morph "qvelaPers")
-(kartuli-morph "scqinda")
-(kartuli-morph "damejinos-meTKi")
-(print (kartuli-morph "saKme"))
-(u-transduce "gandevnivnen" *verb-fst*)
-(u-transduce "aairda" *verb-fst*)
-
-(u-generate filter-dg *verb-fst* :root root)
-|#
-
 ;; maps paradigm ids to roots
 (defvar *paradigm-table* (make-hash-table :test #'equal))
 
@@ -1545,120 +1191,6 @@ ggoniaT
       (push (getf paradigm :gv) (gethash (getf paradigm :id) *paradigm-table*)))))
 
 (defparameter *xle-template-table* (dat:make-string-tree))
-
-(defun remove-xle-comments (str &optional in-comment-p (start 0))
-  (let ((quote-pos (position #\" str :start start)))
-    (cond ((null quote-pos)
-           (values (if in-comment-p "" (subseq str start))
-                   in-comment-p))
-          ((and (> quote-pos start) (char= (char str (1- quote-pos)) #\`))
-           (multiple-value-bind (rxc icp) (remove-xle-comments str in-comment-p (1+ quote-pos))
-             (values (concat (if in-comment-p "" (subseq str start (1+ quote-pos))) rxc)
-                     icp)))
-          (t
-           (multiple-value-bind (rxc icp) (remove-xle-comments str (not in-comment-p) (1+ quote-pos))
-             (values (concat (if in-comment-p "" (subseq str start quote-pos)) rxc)
-                     icp))))))
-
-(defun parse-xle-verb-lexicon ()
-  (setf *xle-template-table* (dat:make-string-tree))
-  (dolist (file '(#+disabled "projects:xle;grammars;georgian;georgian-verb-lex.lfg"
-                  ;;"projects:xle;grammars;georgian;kartuli-verb-lex-2.lfg"
-                  ;;"projects:xle;grammars;georgian;kartuli-verb-lex-3.lfg"
-                  ;; this has to be put back!
-                  #+disabled"projects:xle;grammars;kartuli;kartuli-verb-lex-add.lfg"))
-    (let ((entry "")
-          (in-comment-p nil))
-      (with-file-lines (line file)
-        (multiple-value-setq (line in-comment-p)
-          (remove-xle-comments line in-comment-p))
-        (setf line (string-trim '(#\space #\tab) line))
-        (cond ((string= "" line)
-               nil)
-              ((eq (search "STANDARD" line) 0)
-               nil)
-              ((char= (last-char line) #\.)
-               (setf entry (concat entry line))
-               (parse-xle-verb-entry entry)
-               (setf entry ""))
-              (t
-               (setf entry (concat entry line))))))))
-
-(defun write-xle-verb-lexicon-entry (id &optional (stream *standard-output*))
-  (let ((templates (dat:string-tree-get *xle-template-table* id)))
-    (destructuring-bind (masdar . templates) templates
-      (let (#+ascii(masdar (convert-encoding masdar :amirani :unicode))
-	    (templates (mapcar (lambda (template)
-				 (destructuring-bind (xle-tmpl msd pv . rest) template
-				   (list* xle-tmpl
-					  msd #+ascii(convert-encoding msd :amirani :unicode)
-					  pv #+ascii(convert-encoding pv :amirani :unicode)
-					  rest)))
-			       templates)))
-	(format stream "~a-~a V XLE ~:[~;~%  { ~]~{@(~{~a~^ ~})~^ ~%  | ~}~:[~; }~];"
-		masdar
-		id
-		(cdr templates) templates (cdr templates))
-	(when (eq (char (nth 3 (car templates)) 0) #\T)	;; gv
-	  (write-char #\linefeed stream)
-	  (format stream " Vpart XLE ~:[~;~%  { ~]~{@(~{~a~^ ~})~^ ~%  | ~}~:[~; }~];"
-		  (cdr templates) templates (cdr templates)))
-	(write-string " ETC." stream)
-	(write-char #\linefeed stream))
-      nil)))
-
-(defun write-xle-verb-lexicon (&optional (file "projects:xle;grammars;georgian;georgian-verb-lex.lfg"))
-  #+allegro(copy-file file "projects:xle;grammars;georgian;georgian-verb-lex.lfg~")
-  (with-open-file (stream file :direction :output :if-exists :supersede)
-    (write-string "STANDARD KARTULI-VERBS LEXICON (1.0)" stream)
-    (write-char #\linefeed stream)
-    (write-char #\linefeed stream)
-    (dat:do-string-tree  (verb-id val *xle-template-table*)
-      (declare (ignore val))
-      (write-xle-verb-lexicon-entry verb-id stream))
-    (write-char #\linefeed stream)
-    (write-char #\linefeed stream)
-    (write-string "----" stream)
-    (write-char #\linefeed stream)))
-
-#+main-old ;; see verb-feature-table-sql.lisp
-(write-xle-verb-lexicon)
-
-#+test
-(write-xle-verb-lexicon-entry "2113-1")
-
-#+test
-(dat:string-tree-get *xle-template-table* "101-12")
-
-;; this assumes that the first entry is the V entry
-(defun parse-xle-verb-entry (entry)
-  (let ((entry-list (split entry #\;)))
-    #+disabled
-    (assert (and (null (cddr entry-list))
-                 (or (null (cdr entry-list))
-                     (string= (string-trim '(#\space #\tab) (cadr entry-list)) "ETC."))))
-    (let ((entry (car entry-list)))
-      (destructuring-bind (masdar+verb-id pos xle templates)
-                          (split (nsubstitute #\space #\tab entry) #\space 4)  ;; should remove duplicate spaces?
-        (declare (ignore xle))
-        (let* ((split-pos (position-if (lambda (c) (find c "1234567890")) masdar+verb-id :start 1))
-               (verb-id (subseq masdar+verb-id split-pos))
-               (masdar (subseq masdar+verb-id 0 (1- split-pos))))
-          (when (or (not (char= (char pos 0) #\+))
-                    (null (dat:string-tree-get *xle-template-table* verb-id)))
-            (setf (dat:string-tree-get *xle-template-table* verb-id)
-                  (list masdar)))
-          (let ((sub-entries (split (string-trim '(#\space #\tab #\{ #\}) templates) #\|)))
-            (dolist (sub-entry sub-entries)
-              (destructuring-bind (template vn pv gv id) (split (string-trim "@() " sub-entry) #\space)
-                ;;(declare (ignore vn pv gv))
-                (assert (string= id verb-id :start1 1))
-                (pushnew (list template vn pv gv id)
-                         (cdr (dat:string-tree-get *xle-template-table* verb-id)
-                              #+old(gethash verb-id *xle-template-table*)) :test #'equal)))))))))
-
-#+test
-(parse-xle-verb-lexicon)
 
 ;; used in verb-lexicon-regexp()
 (defun xle-template-to-frame (xle-template #+ignore tense)
@@ -1720,7 +1252,6 @@ ggoniaT
       (:V-QOLA-AUX "AuxTransHum")
       (:V-QOPNA-AUX "AuxIntr")
       )))
-
 
 (defun paradigm-person-marking-restrictions (xle-templates morph-syntax gv tense)
   (let* ((markings (mapcar (lambda (template)
@@ -1788,55 +1319,6 @@ ggoniaT
   (if (and gv morph-type)
     (gv-syntax gv morph-type)
     "part"))
-
-#+test
-(kartuli-verb-morph "elis")
-#+test
-(generate-paradigm "3260-3" :tense 'past-part :debug nil)
-#+test
-(generate-paradigm "3260-10" :tense 'masdar :debug t)
-#+test
-(generate-paradigm "3260-10" :debug nil)
-#+test
-(generate-paradigm "2032-106" :debug nil :standard-only-p t)
-#+test
-(u-transduce "tirili" *fst*)
-
-#+test
-(generate-paradigm "553-1" :tense 'future :debug nil)
-#+test
-(generate-paradigm "2858-1"
-                   :tense '(present future aorist perfect)
-                   :pers 1
-                   :num 'sg
-                   :obj3sg-only-p t
-                   )
-#|
-
-;; gasaboli
-
-(u-transduce "dasaceri" *fst*)
-(kartuli-morph "meCodineba")
-
-#+test
-(generate-paradigm "2032-106" :tense 'present :debug t)
-
-
-(paradigm-features "2192-2")
-
-#+test
-(generate-paradigm "904-3" :tense 'future-part :debug nil)
-#+test
-(generate-paradigm "904-3" :tense 'present-part :debug nil)
-#+test
-(generate-paradigm "904-3" :tense 'negative-part :debug nil)
-#+test
-(generate-paradigm "204-3" :tense 'past-part :debug nil)
-
-(generate-paradigm "3385-9" :tense 'aorist :debug t)
-
-
-|#
 
 (defun paradigm-features (paradigm-id &optional (print t))
   (let ((paradigm-features 
@@ -1930,10 +1412,6 @@ ggoniaT
                        (root ,root)
                        (sf ,(get-feature-value 'sf features '-))
                        (part-sfx ,(or part-sfx '-))))))))))
-
-#+test
-(extract-pp-features (cdr (print (paradigm-features "2889-22" nil))))
-
 #+test
 (add-participles)
 
@@ -1974,13 +1452,5 @@ ggoniaT
                                (gethash (car pp-features) *features-table*)
                                :test #'override-features-equal)
                       (pushnew (parse-integer id :start (1+ (position #\- id))) merge-list))))))))))))
-
-#+test
-(let ((tree (dat:make-string-tree)))
-  (u:with-file-lines (comp "projects:georgian-morph;lists;vcomp-candidates.txt")
-    (let ((comp (delete-if (lambda (c) (find c "\\/[]{}|()")) comp)))
-      (incf (dat:string-tree-get tree (subseq comp (1+ (position #\- comp :from-end t))) 0))))
-  (dat:do-string-tree (suff count tree)
-    (format t "~a~%" suff)))
 
 :eof

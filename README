@@ -267,4 +267,4 @@ mkondi nein
 ;; import: 
 ;; psql -U gnc -d gnc < gnc-2013-01-15.sql
 ;; 
-:: DB location: /var/lib/pgsql/9.1/data
+:: DB location: /var/lib/pgsql/9.4/data

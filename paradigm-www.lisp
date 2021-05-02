@@ -109,10 +109,6 @@
 (defun ensure-list (obj)
   (if (listp obj) obj (list obj)))
 
-#-(or mysql sqlite)
-(defun verb-translation (&key paradigm-id)
-  (gethash paradigm-id fst::*verb-translation-table*))
-
 (defparameter *xle-template-list* ())
 
 #+test

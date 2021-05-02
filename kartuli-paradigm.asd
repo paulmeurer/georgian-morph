@@ -5,7 +5,6 @@
 (asdf:defsystem :kartuli-paradigm
   :depends-on (:encoding
 	       :georgian-morph
-	       ;;:clsql-mysql-patches
 	       :clsql-postgresql-patches
 	       #-(or allegro sbcl) :aserve
 	       #-sbcl :aserve-custom

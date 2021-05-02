@@ -86,7 +86,7 @@
 (define-url-function noun-features-xml
     (request (search-stem)
 	     :xsl #'noun-features-xsl
-	     :path (concatenate 'string "/kartuli/noun-features.xml"))
+	     :path (concatenate 'string "/kartuli/nouns"))
   #m((nouns :search-stem #s search-stem)))
 
 (define-url-function js/noun-features

@@ -24,7 +24,7 @@
 
 (setf lxml::*newline-after-endtag-p* nil)
 
-(defparameter *url-base* cl-user::*url-base*)
+(defparameter *url-base* "kartuli")
 
 (defparameter +georgian-unicode+
   (map 'string #'code-char #(4304 4305 4306 4307 4308 4309 4310 4311 4312 4313 4314 4315 4316 4317
@@ -148,7 +148,7 @@
 	     :post (not (eq :get (request-method request)))
 	     :xsl #'georgian-paradigm-xsl
 	     :force-xslt :sablotron
-	     :path (concat "/" *url-base* "/georgian-paradigm.xml"))
+	     :path (concat "/" *url-base* "/paradigm"))
   ;;(print (request-query request))
   (setf counts t)
   (ccl:with-lock-grabbed (*parse-lock*)
@@ -545,7 +545,7 @@
 	((xsl:element :name "form")
 	 ((xsl:attribute :name "method") "post")
 	 ((xsl:attribute :name "name") "form")
-	 ((xsl:attribute :name "action") "georgian-paradigm.xml")
+	 ((xsl:attribute :name "action") "paradigm")
 	 ((xsl:element :name "input")
 	  ((xsl:attribute :name "type") "hidden")
 	  ((xsl:attribute :name "name") "id-type")
@@ -670,7 +670,7 @@
 	       " | "
 	       ((xsl:element :name "a")
 		((xsl:attribute :name "href")
-		 "root-list")
+		 "roots")
 		"all roots"))))
 	 (xsl:apply-templates/ :select "reading" :mode "paradigm")))))
      
@@ -1644,7 +1644,7 @@
 	    (xsl:text " ")
 	    ((xsl:element :name "a")
 	     ((xsl:attribute :name "href")
-	      "georgian-paradigm.xml?"
+	      "paradigm?"
 	      "pid=" (xsl:value-of/ :select "@id") "-" (xsl:value-of/ :select "@sub-id")
 	      "&amp;id-type=pid&amp;font=" (xsl:value-of/ :select "@font")
 	      "&amp;standard-only=yes"
@@ -1858,17 +1858,8 @@
 		   false)
 	 (req.send "")
 	 (setf to-span.outerHTML req.responseText)
-	 )
-       
-       #+orig
-       (previous-next-form.submit))
+	 ))
      ))
-
-#+old
-(defmethod delete-nonfinite-xml ((request http-request) entity)
-  (with-database-connection ()
-    (with-html-response (request entity stream (id sub-id) :write-html-header-p nil)
-      (delete-nonfinite-forms id sub-id))))
 
 (define-url-function delete-nonfinite-xml
     (request (id sub-id font)
@@ -1978,8 +1969,6 @@
 	  :where [= [id] ?id]
 	  :order-by '([sub-id] [impf-pv] [pf-pv])))
 
-#+test
-(print (remhash (list 3623 9 "შე" "შე") *paradigm-class-cache*))
 
 #+test
 (print (select [count-distinct [c-root]]
@@ -2319,7 +2308,9 @@
         (title "Georgian Verb Paradigm"
 	       ((xsl:if :test "@user")
 		" [" (xsl:value-of/ :select "@user") "]"))
-	(script/ :src "javascript/jquery-1.9.1.min.js" :type "text/javascript" :language "javascript") 
+	(script/ :src "javascript/jquery-1.9.1.min.js"
+                 :type "text/javascript"
+                 :language "javascript") 
 	((script :type "text/javascript" :language "javascript")
 	 (!CDATA #L(js/masdar stream)))
 	((style :type "text/css")
@@ -2418,7 +2409,7 @@
 	      " | "
 	      ((xsl:element :name "a")
 	       ((xsl:attribute :name "href")
-		"root-list")
+		"roots")
 	       "all roots"))
 	 (div (input/ :type "submit" :name "update" :value "Update" :title "Store changes")
 	      (input/ :type "submit" :name "accept" :value "Accept" :title "Confirm the correctness of the values"))
@@ -2470,7 +2461,7 @@
       (tr (td
 	   (nobr ((xsl:element :name "a")
 		  ((xsl:attribute :name "href")
-		   "georgian-paradigm.xml?"
+		   "paradigm?"
 		   "pid=" (xsl:value-of/ :select "@id")
 		   "&amp;id-type=pid"
 		   "&amp;standard-only=yes"
@@ -3111,7 +3102,7 @@
     (request ()
 	     :xsl #'root-list-xsl
 	     ;;:force-xslt nil
-	     :path (concat "/" *url-base* "/root-list"))
+	     :path (concat "/" *url-base* "/roots"))
   ;;(print (request-query request))
   (with-database-connection ()
     #m(roots
@@ -3134,33 +3125,14 @@
 	((xsl:element :name "a")
 	 #+ignore
 	 ((xsl:attribute :name "href")
-	  "georgian-paradigm.xml?lang=ng&amp;c-root=" (xsl:value-of/ :select "@c-root"))
+	  "paradigm?lang=ng&amp;c-root=" (xsl:value-of/ :select "@c-root"))
 	 ((xsl:attribute :name "href")
 	  "masdars?id=" (xsl:value-of/ :select "@id"))
 	 (xsl:value-of/ :select "@c-root")))))))
-
-
-
-#+test
-(update-records [morph verb-paradigm]
-		:av-pairs '(([vn] "რბენინება"))
-		:where [= [vn] "რბენა-ქთ"])
-
-#+obsolete?
-(publish :path (concat "/" *url-base* "/georgian-root-paradigms.xsl")
-	 :content-type "text/xml"
-	 :function #'georgian-root-paradigms-xsl)
 
 ;;;;
 
 ;; lookup /home/paul/xledir/pargram/kartuli/kartuli-morph.fst < opentext-sorted-words.txt > opentext-sorted-tagged-words.txt
 
-
-#+test
-(let ((tree (dat:make-string-tree)))
-  (with-file-lines (line "projects:georgian-morph;regex;ng-adv.regex")
-    (setf (dat:string-tree-get tree (reverse line)) line))
-  (dat:do-string-tree (rev-word word tree)
-    (write-line word)))
 
 :eof

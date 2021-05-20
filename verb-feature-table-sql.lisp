@@ -3017,4 +3017,79 @@ ZP2 LV
 					[= [sub-id] ?sub-id]
 					[= [stem] ?stem]])))))))
 
+#+test
+(with-open-file (stream "/ssd/data/verb-features-examples.tsv"
+                        :direction :output :if-exists :supersede)
+  (format stream "~{~a~^	~}~%"
+          (list "unique_id" "id" "sub_id" "root" "c_root" "tense" "pv" "vn" "gv" "sf" "caus_sf" "vv"
+                "tsch_class" "morph_type" "relation" "reduplication" "red_dir_pv" "stem_type" "pr_st_ext"
+                "part_pfx" "part_sfx" "passive_sfx" "nasal_infix" "type_aorist" "type_obj_3_pfx" 
+                "type_aorist_3sg" "type_optative" "subj_pers" "subj_num" "obj_pers" "type_subj12_sfx" 
+                "type_subj3_sfx" "type_subj2_pfx" "type_ev_sfx" "style"
+                "type_pr_st_ext" "paradigm_replacement" "deleted" "lang"))
+  (do-query ((unique-id id sub-id root c-root tense pv vn gv sf caus-sf vv
+                        tsch-class morph-type relation reduplication red-dir-pv stem-type pr-st-ext
+                        part-pfx part-sfx passive-sfx nasal-infix type-aorist type-obj-3-pfx
+                        type-aorist-3sg type-optative subj-pers subj-num obj-pers type-subj12-sfx
+                        type-subj3-sfx type-subj2-pfx type-ev-sfx style
+                        type-pr-st-ext paradigm-replacement lang)
+             [select [unique_id] [id] [sub_id] [root] [c_root] [tense] [pv] [vn] [gv] [sf] [caus_sf] [vv]
+                     [tsch_class] [morph_type] [relation] [reduplication] [red_dir_pv] [stem_type] [pr_st_ext]
+                     [part_pfx] [part_sfx] [passive_sfx] [nasal_infix] [type_aorist] [type_obj_3_pfx]
+                     [type_aorist_3sg] [type_optative] [subj_pers] [subj_num] [obj_pers] [type_subj12_sfx]
+                     [type_subj3_sfx] [type_subj2_pfx] [type_ev_sfx] [style]
+                     [type_pr_st_ext] [paradigm_replacement] [lang]
+                     :from [morph verb-features]
+                     :where [in [id] '(3260 904 2073 2120 2764 1116 1628 3581)]
+                     :order-by '([id] [sub-id])])
+    (format stream "~{~a~^	~}~%"
+            (mapcar (lambda (val)
+                      (or val ""))
+                    (list unique-id id sub-id root c-root tense pv vn gv sf caus-sf vv
+                          tsch-class morph-type relation reduplication red-dir-pv stem-type pr-st-ext
+                          part-pfx part-sfx passive-sfx nasal-infix type-aorist type-obj-3-pfx
+                          type-aorist-3sg type-optative subj-pers subj-num obj-pers type-subj12-sfx
+                          type-subj3-sfx type-subj2-pfx type-ev-sfx style
+                          type-pr-st-ext paradigm-replacement lang)))))
+
+("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled")
+
+#+test
+(with-open-file (stream "/centos6/data/verb-paradigm-examples.tsv"
+                        :direction :output :if-exists :supersede)
+  (format stream "~{~a~^	~}~%"
+          '("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled"))
+  (do-query ((&rest rest)
+             [select [*]
+                     :from [morph verb-paradigm]
+                     :where [in [id] '(3260 904 2073 2120 2764 1116 1628 3581)]
+                     :order-by '([id] [sub-id])])
+    (format stream "~{~a~^	~}~%"
+            (mapcar (lambda (val)
+                      (or val ""))
+                    rest))))
+#+test
+(debug (select [*] :from [morph verb-features]
+               :where [= [id] 3260]
+               :limit 1))
+
+#+test
+(debug (select [*] :from [morph verb-paradigm]
+               :where [= [id] 3260]
+               :limit 1))
+
+#+test
+(debug (select [*] :from [morph verbal-noun]
+               :where [= [id] 3260]
+               :limit 1))
+
+;; ("id" "sub_id" "vn" "impf_vn" "pf_vn" "variety" "date")
+
+#+test
+(debug (select [*] :from [morph participle]
+               :where [= [id] 3260]
+               :limit 1))
+
+;; ("id" "sub_id" "type" "stem" "code" "variety" "aspect" "date" "attested" "accepted" "main_form" "root" "wrong" "restriction")
+
 :eof

@@ -16,7 +16,8 @@
 	       (:file "verb-feature-table-sql")
 	       (:file "paradigms")
 	       (:file "paradigm-www")
-	       (:file "noun-table-www")))
+	       (:file "noun-table-www")
+               ))
 
 
 :eof

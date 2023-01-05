@@ -1636,4 +1636,259 @@ ZP2 LV
 	     (#\I (medium))
 	     (#\Z "StatPass"))))))
 
+<<<<<<< HEAD
+=======
+#+test
+(with-database-connection ()
+  (let ((rows (select [verb-paradigm id] [verb-paradigm sub-id]
+		      :from [morph verb-paradigm]
+		      :distinct t
+		      :left-join [morph verb-features :as pres]
+		      :on [and [= [verb-paradigm id] [pres id]]
+			       [= [verb-paradigm features-sub-id] [pres sub-id]]
+			       [like [pres tense] "%|present|%"]]
+		      :left-join [morph verb-features :as fut]
+		      :on [and [= [verb-paradigm id] [fut id]]
+			       [= [verb-paradigm features-sub-id] [fut sub-id]]
+			       [like [fut tense] "%|future|%"]
+			       [= [fut passive-sfx] "დ+ებ"]]
+		      :where [and [<> [pres morph-type] [fut morph-type]]
+				  [= [impf-pv] "-"]]
+		      :order-by [verb-paradigm id])))
+    (with-transaction ()
+      (loop for (id sub-id) in rows
+	   do (delete-records :from [morph verb-features]
+			      :where [and [= [id] ?id]
+					  [= [sub-id] ?sub-id]
+					  [like [tense] "%|present|%"]])
+	   ))))
+
+;; check VN/stem consistency
+#+test
+(defparameter *vn-lemma-table* (dat:make-string-tree))
+
+#+test
+(u:with-file-lines (vn "projects:georgian-morph;regex;vn-lemma-list.txt")
+  (destructuring-bind (lemma root) (u:split vn #\/)
+    (let ((pv-pos (position #\- lemma :end (- (length lemma) 3))))
+      (when pv-pos (setf lemma (subseq lemma (1+ pv-pos)))))
+    (pushnew lemma (dat:string-tree-get *vn-lemma-table* root) :test #'string=)))
+
+#+test
+(dat:do-string-tree (root lemma-list *vn-lemma-table*)
+  (when (find-if (lambda (lemma) (not (search root lemma))) lemma-list)
+    (format t "~a: ~{~a~^, ~}~%" root lemma-list)))
+		    
+
+;; participle decl.
+
+#+test ;; has to be corrected
+(with-database-connection ()
+  (print (select [code] [participle stem]
+		 :from [morph participle]
+		 :where [and [= [type] "NEGATIVE-PART"]
+			     [like [stem] "%აველ"]] )))
+
+#+test ;; has to be corrected
+(with-database-connection ()
+  (do-query ((code stem)
+	     [select [code] [stem]
+		     :from [morph participle]
+		     :where [= [type] "NEGATIVE-PART"]
+		     ;;:limit 40
+		     ])
+    (let ((codes (select [code] :distinct t :flatp t
+			 :from [morph noun-features]
+			 :where [like [stem] (u:concat "%" (string-trim "*" stem))])))
+      (when (or (> (length codes) 1)
+		(not (find code codes :test #'string=)))
+	(print (list code stem codes)))
+      ))) 
+
+#+test
+(with-database-connection ()
+  (do-query ((root)
+	     [select [root]
+		     :from [morph verb-features]
+		     :where [like [root] "%ვ%"]
+		     :distinct t
+		     :order-by [root]
+		     ])
+    (unless (or (char= (char root 0) #\ვ)
+		(search "ოვ" root)
+		(search "ავ" root)
+		(search "ევ" root)
+		(search "უვ" root)
+		(search "ივ" root)
+		(search "-ვ" root)
+		(equal (search "ვრ" root) (- (length root) 2))
+		(equal (search "ვლ" root) (- (length root) 2))
+		(equal (search "ვნ" root) (- (length root) 2)))
+      (print root))))
+
+;; ვ -> u/უ
+#+test
+(with-transactionxx ()
+  (do-query ((id sub-id vn impf-vn pf-vn root)
+	     [select [verbal-noun id] [verbal-noun sub-id]
+		     [verbal-noun vn] [verbal-noun impf-vn] [verbal-noun pf-vn]
+		     [root]
+		     :from [morph verbal-noun]
+		     :left-join [morph verb-features]
+		     :on [and [= [verb-features id] [verbal-noun id]]
+			      [= [verb-features sub-id] [verbal-noun sub-id]]]
+		     :where [like [verb-features root] "%ვ%"]
+		     :distinct t
+		     :order-by [root]
+		     ])
+    (unless (or (char= (char root 0) #\ვ)
+		(search "ოვ" root)
+		(search "ავ" root)
+		(search "ევ" root)
+		(search "უვ" root)
+		(search "ივ" root)
+		(search "-ვ" root)
+		(equal (search "ვრ" root) (- (length root) 2))
+		(equal (search "ვლ" root) (- (length root) 2))
+		(equal (search "ვნ" root) (- (length root) 2)))
+      (print (list id root vn (search root vn)))
+      (let ((u-root (substitute #\u #\ვ root)))
+	(update-records [morph verb-features]
+			:av-pairs `(([root] ,u-root))
+			:where [and [= [verb-features id] ?id]
+				    [= [verb-features sub-id] ?sub-id]
+				    [= [root] ?root]])
+	(when (equal (search root vn) 0)
+	  (let ((u-vn (u:concat u-root (subseq vn (length root)))))
+	    (print (list root u-vn))
+	    (update-records [morph verbal-noun]
+			    :av-pairs `(([vn] ,u-vn))
+			    :where [and [= [verbal-noun id] ?id]
+					[= [verbal-noun sub-id] ?sub-id]
+					[= [vn] ?vn]])))
+	(when (and impf-vn (equal (search root impf-vn) 0)
+	  (let ((u-vn (u:concat u-root (subseq impf-vn (length root)))))
+	    (print (list root u-vn))
+	    (update-records [morph verbal-noun]
+			    :av-pairs `(([impf-vn] ,u-vn))
+			    :where [and [= [verbal-noun id] ?id]
+					[= [verbal-noun sub-id] ?sub-id]
+					[= [impf-vn] ?impf-vn]]))))
+	(when (and pf-vn (equal (search root pf-vn) 0)
+	  (let ((u-vn (u:concat u-root (subseq pf-vn (length root)))))
+	    (print (list root u-vn))
+	    (update-records [morph verbal-noun]
+			    :av-pairs `(([pf-vn] ,u-vn))
+			    :where [and [= [verbal-noun id] ?id]
+					[= [verbal-noun sub-id] ?sub-id]
+					[= [pf-vn] ?pf-vn]]))))))))
+
+#+test
+(with-transactionxx ()
+  (do-query ((id sub-id root p-root stem)
+	     [select [verb-features id] [verb-features sub-id]
+		     [verb-features root] [participle root] [stem]
+		     :from [morph participle]
+		     :left-join [morph verb-features]
+		     :on [and [= [verb-features id] [participle id]]
+			      [= [verb-features sub-id] [participle sub-id]]]
+		     :where [like [verb-features root] "%u%"]
+		     :distinct t
+		     :order-by [verb-features root]
+		     ])
+    (let* ((v-root (substitute #\ვ #\u root))
+	   (pos (search v-root stem)))
+      ;;(when p-root (print p-root))
+      ;;(print (list id sub-id root p-root stem (search v-root stem)  (search v-root p-root)))
+      (when pos
+	(let ((u-stem (u:concat (subseq stem 0 pos)
+				root
+				(subseq stem (+ pos (length root)))))
+	      (u-root (when (equal v-root p-root) root)))
+	  (unless (and (char= (char root (1- (length root))) #\u)
+		       (> (length stem) (+ pos (length root)))
+		       (find (char stem (+ pos (length root))) "უო"))
+	    (print (list id sub-id root stem u-stem))
+	    (update-records [morph participle]
+			    :av-pairs `(([stem] ,u-stem))
+			    :where [and [= [id] ?id]
+					[= [sub-id] ?sub-id]
+					[= [stem] ?stem]])))))))
+
+#+test
+(with-open-file (stream "/ssd/data/verb-features-examples.tsv"
+                        :direction :output :if-exists :supersede)
+  (format stream "~{~a~^	~}~%"
+          (list "unique_id" "id" "sub_id" "root" "c_root" "tense" "pv" "vn" "gv" "sf" "caus_sf" "vv"
+                "tsch_class" "morph_type" "relation" "reduplication" "red_dir_pv" "stem_type" "pr_st_ext"
+                "part_pfx" "part_sfx" "passive_sfx" "nasal_infix" "type_aorist" "type_obj_3_pfx" 
+                "type_aorist_3sg" "type_optative" "subj_pers" "subj_num" "obj_pers" "type_subj12_sfx" 
+                "type_subj3_sfx" "type_subj2_pfx" "type_ev_sfx" "style"
+                "type_pr_st_ext" "paradigm_replacement" "deleted" "lang"))
+  (do-query ((unique-id id sub-id root c-root tense pv vn gv sf caus-sf vv
+                        tsch-class morph-type relation reduplication red-dir-pv stem-type pr-st-ext
+                        part-pfx part-sfx passive-sfx nasal-infix type-aorist type-obj-3-pfx
+                        type-aorist-3sg type-optative subj-pers subj-num obj-pers type-subj12-sfx
+                        type-subj3-sfx type-subj2-pfx type-ev-sfx style
+                        type-pr-st-ext paradigm-replacement lang)
+             [select [unique_id] [id] [sub_id] [root] [c_root] [tense] [pv] [vn] [gv] [sf] [caus_sf] [vv]
+                     [tsch_class] [morph_type] [relation] [reduplication] [red_dir_pv] [stem_type] [pr_st_ext]
+                     [part_pfx] [part_sfx] [passive_sfx] [nasal_infix] [type_aorist] [type_obj_3_pfx]
+                     [type_aorist_3sg] [type_optative] [subj_pers] [subj_num] [obj_pers] [type_subj12_sfx]
+                     [type_subj3_sfx] [type_subj2_pfx] [type_ev_sfx] [style]
+                     [type_pr_st_ext] [paradigm_replacement] [lang]
+                     :from [morph verb-features]
+                     :where [in [id] '(3260 904 2073 2120 2764 1116 1628 3581)]
+                     :order-by '([id] [sub-id])])
+    (format stream "~{~a~^	~}~%"
+            (mapcar (lambda (val)
+                      (or val ""))
+                    (list unique-id id sub-id root c-root tense pv vn gv sf caus-sf vv
+                          tsch-class morph-type relation reduplication red-dir-pv stem-type pr-st-ext
+                          part-pfx part-sfx passive-sfx nasal-infix type-aorist type-obj-3-pfx
+                          type-aorist-3sg type-optative subj-pers subj-num obj-pers type-subj12-sfx
+                          type-subj3-sfx type-subj2-pfx type-ev-sfx style
+                          type-pr-st-ext paradigm-replacement lang)))))
+
+("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled")
+
+#+test
+(with-open-file (stream "/centos6/data/verb-paradigm-examples.tsv"
+                        :direction :output :if-exists :supersede)
+  (format stream "~{~a~^	~}~%"
+          '("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled"))
+  (do-query ((&rest rest)
+             [select [*]
+                     :from [morph verb-paradigm]
+                     :where [in [id] '(3260 904 2073 2120 2764 1116 1628 3581)]
+                     :order-by '([id] [sub-id])])
+    (format stream "~{~a~^	~}~%"
+            (mapcar (lambda (val)
+                      (or val ""))
+                    rest))))
+#+test
+(debug (select [*] :from [morph verb-features]
+               :where [= [id] 3260]
+               :limit 1))
+
+#+test
+(debug (select [*] :from [morph verb-paradigm]
+               :where [= [id] 3260]
+               :limit 1))
+
+#+test
+(debug (select [*] :from [morph verbal-noun]
+               :where [= [id] 3260]
+               :limit 1))
+
+;; ("id" "sub_id" "vn" "impf_vn" "pf_vn" "variety" "date")
+
+#+test
+(debug (select [*] :from [morph participle]
+               :where [= [id] 3260]
+               :limit 1))
+
+;; ("id" "sub_id" "type" "stem" "code" "variety" "aspect" "date" "attested" "accepted" "main_form" "root" "wrong" "restriction")
+
+>>>>>>> 1972362f8ec327beddc746c08ee0585b72eb1870
 :eof

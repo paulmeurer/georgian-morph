@@ -1,4 +1,5 @@
-Annotation: a: ambiguity, p: POS error, m: morph cat error, l: lemma error, x: other, u: unknown word
+Annotation: a: ambiguity, p: POS error, m: morph cat error, l: lemma error, x: other, u: unknown word, f: wrong frame,
++: unimportant ambiguity (syncope vs. no syncope)
 
 	ოთარ	¦ოთარ¦	¦ N Prop Anthr FirstName Nom Att ¦
 	ჭილაძე	¦ჭილაძ[ე]¦	¦ N Prop Anthr LastName Nom ¦
@@ -112,13 +113,13 @@ m	ამ	¦ეს¦	¦ Pron Dem Advb ¦
 	აღარც	¦აღარც¦	¦ Adv Neg ¦
 	უცდიათ	¦ცდ[ა]/ცდ¦	¦ V Act Perf <S-DO> <S:Dat> <DO:Nom> S:3Pl DO:3 ¦
 	დაკარგულის	¦და·კარგულ·ი/კარგ¦	¦ A Part PastPart Pv Gen Sg ¦
-a	ძებნა	¦ძებნ[ა]/ძებნ¦ძებნ[ა]/ძებ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
+a+	ძებნა	¦ძებნ[ა]/ძებნ¦ძებნ[ა]/ძებ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	დაბრუნება	¦და·ბრუნებ[ა]/ბრუნ¦	¦ N VN Pv Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	მათი	¦მათ·ი¦	¦ Pron Poss Poss3Pl Inst Att ¦
 	ღრმა	¦ღრმ[ა]¦	¦ A Inst Att ¦
-a	რწმენით	¦რწმენ[ა]/რწმენ¦რწმენ[ა]/რწამ¦	¦ N VN Inst Sg ¦ N VN Inst Sg ¦
+a+	რწმენით	¦რწმენ[ა]/რწმენ¦რწმენ[ა]/რწამ¦	¦ N VN Inst Sg ¦ N VN Inst Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რაც	¦რ[ა]¦	¦ Pron Rel Nonhum Nom Rel:ც ¦
 	დროთა	¦დრო¦	¦ N Temp Gen Pl OldPl ¦
@@ -140,8 +141,8 @@ a	რაღაც	¦რაღაც¦რაღაც¦	¦ Pron Indef Nonhum Nom 
 	,	¦,¦	¦ Punct Comma ¦
 	მიატოვა	¦მი·ტოვებ[ა]/ტოვ¦	¦ V Act Aor Pv <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-a	როგორც	¦როგორც¦როგორც¦	¦ Cj Sub ¦ Cj Compar ¦
-a	მარჩენალმა	¦მარჩენალ·ი¦მარჩენ[ა]ლ·ი¦	¦ N Erg Sg ¦ N Erg Sg ¦
+a+	როგორც	¦როგორც¦როგორც¦	¦ Cj Sub ¦ Cj Compar ¦
+a+	მარჩენალმა	¦მარჩენალ·ი¦მარჩენ[ა]ლ·ი¦	¦ N Erg Sg ¦ N Erg Sg ¦
 	–	¦–¦	¦ Punct Dash ¦
 	ოჯახი	¦ოჯახ·ი¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -328,7 +329,7 @@ m	ესმინა	¦სმენ[ა]/სმ¦	¦ V MedPass Inv IterPres <S-D
 	სოფლის	¦სოფ[ე]ლ·ი¦	¦ N Gen Sg ¦
 	გზირისათვის	¦გზირ·ი¦	¦ N Hum Gen Sg L PP PP:თვის ¦
 	რომ	¦რომ¦	¦ Compl ¦
-a	გეკითხათ	¦კითხვ[ა]/კითხ¦კითხვ[ა]/კითხ¦	¦ V MedAct PluPerf <S> <S:Dat> S:2Pl ¦ V MedAct PluPerf <S-DO> <S:Dat> <DO:Nom> DO:3Sg S:2Pl ¦
+af	გეკითხათ	¦კითხვ[ა]/კითხ¦კითხვ[ა]/კითხ¦	¦ V MedAct PluPerf <S> <S:Dat> S:2Pl ¦ V MedAct PluPerf <S-DO> <S:Dat> <DO:Nom> DO:3Sg S:2Pl ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ოთარაანთ	¦ოთარა¦	¦ Prop Anthr Coll Gen ¦
 	ქვრივის	¦ქვრივ·ი¦	¦ N Hum Gen Sg ¦
@@ -544,7 +545,7 @@ x	ათიოდ	¦ათიოდ¦ათიოდ¦ათიოდ¦	¦ Num C
 	ასე	¦ასე¦	¦ Adv Mann ¦
 	იფიქრეთ	¦ფიქრ·ი/ფიქრ¦ფიქრ·ი/ფიქრ¦	¦ V MedAct Impv <S> <S:Erg> S:2Pl ¦ V MedAct Impv <S-DO> <S:Erg> <DO:Nom> S:2Pl DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦	¦ N VN Inst Sg ¦ N Inst Sg ¦
+a+	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦	¦ N VN Inst Sg ¦ N Inst Sg ¦
 	გაჭირვეულებულს	¦გა·ჭირვეულებულ·ი/ჭირვეულ¦	¦ A Part PastPart Pv Dat Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	გაკაპასებულს	¦გა·კაპასებულ·ი/კაპას¦	¦ A Part PastPart Pv Dat Sg ¦
@@ -587,7 +588,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	ერიდებიან	¦*·რიდებ[ა]/რიდ¦	¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Pl IO:3 ¦
 	და	¦და¦	¦ Cj Coord ¦
-	უფრთხიან	¦*·ფრთხობ[ა]/ფრთხ¦	¦ V Pres OV <S-IO> S:3Pl DO:3 ¦
+x??	უფრთხიან	¦*·ფრთხობ[ა]/ფრთხ¦	¦ V Pres OV <S-IO> S:3Pl DO:3 ¦
 	ყველანი	¦ყველა¦	¦ A Quant Nom Pl OldPl ¦
 	.	¦.¦	¦ Punct Period ¦
 
@@ -604,10 +605,10 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	თავისთავად	¦თავისთავად¦	¦ Adv Mann ¦
 	.	¦.¦	¦ Punct Period ¦
 	–	¦–¦	¦ Punct Dash ¦
-	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Nom Sg ¦
+p	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Nom Sg ¦
 	რად	¦რ[ა]¦	¦ Pron Int Nonhum Advb ¦
 	უნდა	¦უნდა¦	¦ Modal ¦
-	ეშინოდეთ	¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦	¦ V Pass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> S:3Pl DO:3 ¦ V Pass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> DO:2Pl S:3 ¦ V MedPass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> S:3Pl DO:3 ¦ V MedPass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> DO:2Pl S:3 ¦
+a	ეშინოდეთ	¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦	¦ V Pass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> S:3Pl DO:3 ¦ V Pass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> DO:2Pl S:3 ¦ V MedPass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> S:3Pl DO:3 ¦ V MedPass Inv ConjPres <S-IO> <S:Dat> <IO:Gen> DO:2Pl S:3 ¦
 	?	¦?¦	¦ Punct IntMark ¦
 	რა	¦რ[ა]¦	¦ Pron Int Nonhum Nom Att ¦
 	ბაყბაყ-დევი	¦ბაყბაყდევ·ი¦	¦ N Nom Sg ¦
@@ -660,9 +661,9 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	უყვარდა	¦სიყვარულ·ი/ყვარ¦	¦ V MedPass Inv Impf OV <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
 	იმისი	¦იმის·ი¦	¦ Pron Poss Poss3Sg Dist Nom Att ¦
-	თქმა	¦თქმ[ა]/თქმ¦თქმ[ა]¦	¦ N VN Nom Sg ¦ N Nom Sg ¦
+a+	თქმა	¦თქმ[ა]/თქმ¦თქმ[ა]¦	¦ N VN Nom Sg ¦ N Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
-	ქმნა	¦ქმნ[ა]/შვრ¦ქმნ[ა]/ქმნ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
+a+	ქმნა	¦ქმნ[ა]/შვრ¦ქმნ[ა]/ქმნ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
 	ერთი	¦ერთ·ი¦	¦ Num Card Alpha Nom Sg ¦
 	იყო	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -673,7 +674,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ჩემმა	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Erg Att ¦
 	ღმერთმა	¦ღმ[ე]რთ·ი¦	¦ N Hum Erg Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბარაქალა	¦ბარაქალა¦	¦ N Nom Sg ¦
+?	ბარაქალა	¦ბარაქალა¦	¦ N Nom Sg ¦
 	დედაკაციაო	¦დედაკაც·ი¦	¦ N Hum Nom Sg Encl:Aux Encl:IndSp3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	–	¦–¦	¦ Punct Dash ¦
@@ -718,20 +719,20 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	არ	¦არ¦	¦ Adv Neg ¦
 	დადგებაო	¦და·დგომ[ა]/დგ¦	¦ V Pass Fut Pv <S> <S:Nom> S:3Sg Encl:IndSp3 ¦
 	.	¦.¦	¦ Punct Period ¦
-	6სოფლის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	სოფლის	¦სოფ[ე]ლ·ი¦	¦ N Gen Sg ¦
 	დედაკაცობას	¦დედაკაცობ[ა]/დედაკაც¦	¦ N VN Dat Sg ¦
 	ხომ	¦ხომ¦	¦ Adv Disc ¦
 	უფრო	¦უფრო¦	¦ Adv Deg ¦
-	ეშინოდა	¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦	¦ V Pass Inv Impf <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦ V MedPass Inv Impf <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦
+a	ეშინოდა	¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦	¦ V Pass Inv Impf <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦ V MedPass Inv Impf <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦
 	ოთარაანთ	¦ოთარა¦	¦ Prop Anthr Coll Gen ¦
-	ქვრივისა	¦ქვრივ·ი¦ქვრივ·ი¦	¦ N Hum Gen Sg L ¦ N Hum Gen Sg DNom DSg ¦
+a	ქვრივისა	¦ქვრივ·ი¦ქვრივ·ი¦	¦ N Hum Gen Sg L ¦ N Hum Gen Sg DNom DSg ¦
 	.	¦.¦	¦ Punct Period ¦
 	ვაი	¦ვაი¦	¦ Interj ¦
 	იმას	¦ის¦	¦ Pron Pers 3 Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ვისაც	¦ვინ¦ვინ¦	¦ Pron Rel Hum Gen Rel:ც ¦ Pron Rel Hum Dat Rel:ც ¦
 	უსაქმოდ	¦უსაქმო¦	¦ A Advb Sg ¦
-	მოასწრობდა	¦??¦	¦ Unrecognized ¦
+u	მოასწრობდა	¦??¦	¦ Unrecognized ¦
 	ხოლმე	¦ხოლმე¦	¦ Adv Iter ¦
 	:	¦:¦	¦ Punct Colon ¦
 	ძირიანად	¦ძირიან·ი¦	¦ A Advb Sg ¦
@@ -744,7 +745,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	–	¦–¦	¦ Punct Dash ¦
 	რაო	¦რ[ა]¦	¦ Pron Int Nonhum Nom Encl:IndSp3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	მუქთამჭამელოო	¦მუქთამჭამელ·ი¦მუქთამჭამ[ე]ლ·ი¦	¦ N Voc Sg Encl:IndSp3 ¦ N Voc Sg Encl:IndSp3 ¦
+a+	მუქთამჭამელოო	¦მუქთამჭამელ·ი¦მუქთამჭამ[ე]ლ·ი¦	¦ N Voc Sg Encl:IndSp3 ¦ N Voc Sg Encl:IndSp3 ¦
 	?	¦?¦	¦ Punct IntMark ¦
 	–	¦–¦	¦ Punct Dash ¦
 	ეტყოდა	¦თქმ[ა]/ტყ¦	¦ V MedPass Cond <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
@@ -761,10 +762,10 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	შენც	¦შენ¦შენ¦	¦ Pron Pers 2 Erg Sg Encl:ც Foc ¦ Pron Pers 2 Dat Sg Encl:ც Foc ¦
 	მუქთად	¦მუქთად¦	¦ Adv Mann ¦
-	გკვებოსო	¦კვებ[ა]/კვებ¦კვებ[ა]/კვებ¦კვებ[ა]/კვებ¦	¦ V Act Opt <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:2Sg Encl:IndSp3 ¦ V Act Opt <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:2Pl Encl:IndSp3 ¦ V Act Opt <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:2 Encl:IndSp3 ¦
+a+	გკვებოსო	¦კვებ[ა]/კვებ¦კვებ[ა]/კვებ¦კვებ[ა]/კვებ¦	¦ V Act Opt <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:2Sg Encl:IndSp3 ¦ V Act Opt <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:2Pl Encl:IndSp3 ¦ V Act Opt <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:2 Encl:IndSp3 ¦
 	.	¦.¦	¦ Punct Period ¦
 	რას	¦რ[ა]¦	¦ Pron Int Nonhum Dat ¦
-	დაგიკრებია	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დაგიკრებია	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	გულზე	¦გულ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	ეგ	¦ეგ¦	¦ Pron Dem Nom ¦
 	დასამიწი	¦და·სამიწ·ი/მიწ¦	¦ A Part FutPart Pv Nom Att ¦
@@ -773,19 +774,19 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	–	¦–¦	¦ Punct Dash ¦
 	აი	¦აი¦აი¦	¦ Interj ¦ Adv Disc ¦
 	,	¦,¦	¦ Punct Comma ¦
-	მოგიკვდეს	¦მო·კვდომ[ა]/კვდ¦მო·კვდომ[ა]/კვდ¦	¦ V Pass Opt Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Pl ¦ V Pass Opt Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2 ¦
+a+	მოგიკვდეს	¦მო·კვდომ[ა]/კვდ¦მო·კვდომ[ა]/კვდ¦	¦ V Pass Opt Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Pl ¦ V Pass Opt Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2 ¦
 	ეგ	¦ეგ¦	¦ Pron Dem Nom ¦
 	უგულო	¦უგულო¦	¦ A Nom Att ¦
 	გული	¦გულ·ი¦	¦ N Nom Sg ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	მამა-შენსა	¦მამაშენ·ი¦	¦ N Hum Poss2Sg Dat Sg L ¦
 	აქვს	¦ქონ[ა]/ქვ¦	¦ V MedPass Inv Pres LV <S-DO> <AuxTrans> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
-	ცხონება	¦ცხონებ[ა]/ცხონ¦ცხონებ[ა]/ცხოვნ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
+a+	ცხონება	¦ცხონებ[ა]/ცხონ¦ცხონებ[ა]/ცხოვნ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	შენც	¦შენ¦შენ¦	¦ Pron Pers 2 Nom Sg Encl:ც Foc ¦ Pron Pers 2 Dat Sg Encl:ც Foc ¦
+a	შენც	¦შენ¦შენ¦	¦ Pron Pers 2 Nom Sg Encl:ც Foc ¦ Pron Pers 2 Dat Sg Encl:ც Foc ¦
 	თუ	¦თუ¦	¦ Adv ¦
 	ხელი	¦ხელ·ი¦	¦ N Nom Sg ¦
-	გასძარი	¦გა·ძვრ[ა]/ძ[ა]რ¦	¦ V Act Impv Pv <S-DO> <S:Erg> <DO:Nom> S:2Sg DO:3 NonStand ¦
+?	გასძარი	¦გა·ძვრ[ა]/ძ[ა]რ¦	¦ V Act Impv Pv <S-DO> <S:Erg> <DO:Nom> S:2Sg DO:3 NonStand ¦
 	,	¦,¦	¦ Punct Comma ¦
 	შენს	¦შენ·ი¦	¦ Pron Poss Poss2Sg Dat Att ¦
 	ქმარს	¦ქმ[ა]რ·ი¦	¦ N Hum Dat Sg ¦
@@ -794,7 +795,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გულზე	¦გულ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	დაადგება	¦და·დგომ[ა]/დგ¦	¦ V Pass Fut Pv LV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	აი	¦აი¦აი¦	¦ Interj ¦ Adv Disc ¦
+a	აი	¦აი¦აი¦	¦ Interj ¦ Adv Disc ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	…	¦…¦	¦ Punct Ellipsis ¦
 	მეტი	¦მეტ·ი¦	¦ A Quant Nom Sg ¦
@@ -803,9 +804,9 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	…	¦…¦	¦ Punct Ellipsis ¦
 	აი	¦აი¦	¦ Adv Disc ¦
-	დამიწდი	¦და·წდომ[ა]/წდ¦და·მიწებ[ა]/მიწ¦	¦ V Pass Impv Pv OV <S-IO> <S:Nom> <IO:Dat> S:2Sg IO:1Sg ¦ V Pass Impv Pv <S> <S:Nom> S:2Sg ¦
+a	დამიწდი	¦და·წდომ[ა]/წდ¦და·მიწებ[ა]/მიწ¦	¦ V Pass Impv Pv OV <S-IO> <S:Nom> <IO:Dat> S:2Sg IO:1Sg ¦ V Pass Impv Pv <S> <S:Nom> S:2Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	დამიწდი	¦და·წდომ[ა]/წდ¦და·მიწებ[ა]/მიწ¦	¦ V Pass Impv Pv OV <S-IO> <S:Nom> <IO:Dat> S:2Sg IO:1Sg ¦ V Pass Impv Pv <S> <S:Nom> S:2Sg ¦
+a	დამიწდი	¦და·წდომ[ა]/წდ¦და·მიწებ[ა]/მიწ¦	¦ V Pass Impv Pv OV <S-IO> <S:Nom> <IO:Dat> S:2Sg IO:1Sg ¦ V Pass Impv Pv <S> <S:Nom> S:2Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	კარგი	¦კარგ·ი¦	¦ A Nom Att ¦
 	რამ	¦რამ¦	¦ Pron SIndef Nonhum Nom ¦
@@ -815,16 +816,16 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	…	¦…¦	¦ Punct Ellipsis ¦
 	ისე	¦ისე¦	¦ Adv Mann ¦
 	არავის	¦არავინ¦	¦ Pron Neg Hum Dat ¦
-	გაუვლიდა	¦გა·ვლ[ა]/ვლ¦	¦ V Act Cond Pv OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
+?	გაუვლიდა	¦გა·ვლ[ა]/ვლ¦	¦ V Act Cond Pv OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	გვერდით	¦გვერდ·ი¦	¦ N Inst Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	არ	¦არ¦	¦ Adv Neg ¦
-	გაეკინწლა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	გაეკინწლა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თუ	¦თუ¦	¦ Cj Sub ¦
 	რამ	¦რ[ა]¦	¦ Pron Int Nonhum Erg ¦
-	თვალში	¦თვალ·ი¦თვ[ა]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦ N Dat Sg PP PP:ში ¦
+a+	თვალში	¦თვალ·ი¦თვ[ა]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦ N Dat Sg PP PP:ში ¦
 	არ	¦არ¦	¦ Adv Neg ¦
 	მოუვიდოდა	¦მო·სვლ[ა]/ვ{ი}დ¦	¦ V MedPass Cond Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -834,7 +835,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	ტკბილი	¦ტკბილ·ი¦	¦ A Nom Att ¦
 	სიტყვა	¦სიტყვ[ა]¦	¦ N Nom Sg ¦
-	ეთქვა	¦თქმ[ა]/თქვ¦თქმ[ა]/თქვ¦	¦ V MedAct PluPerf <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦ V Act PluPerf <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
+a	ეთქვა	¦თქმ[ა]/თქვ¦თქმ[ა]/თქვ¦	¦ V MedAct PluPerf <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦ V Act PluPerf <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	ვისთვისმე	¦ვინ:მე¦	¦ Pron SIndef Hum Gen PP PP:თვის ¦
 	.	¦.¦	¦ Punct Period ¦
 
@@ -852,7 +853,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ამ	¦ეს¦	¦ Pron Dem Dat ¦
 	გამწარებულს	¦გა·მწარებულ·ი/მწარ¦	¦ A Part PastPart Pv Dat Sg ¦
 	წუთის-სოფელში	¦წუთის-სოფ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦
-	ტკბილი	¦ტკბილ·ი¦	¦ A Nom Att ¦
+m	ტკბილი	¦ტკბილ·ი¦	¦ A Nom Att ¦
 	სხვა	¦სხვ[ა]¦	¦ A Nom Sg ¦
 	რა	¦რ[ა]¦	¦ Pron Int Nonhum Nom ¦
 	არის	¦ყოფნ[ა]/არ¦	¦ V MedPass Pres <S> <AuxIntr> <S:Nom> S:3Sg ¦
@@ -861,7 +862,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	სიტყვა	¦სიტყვ[ა]¦	¦ N Nom Sg ¦
 	იყოს	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Opt <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
-	6რას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	რას	¦რ[ა]¦	¦ Pron Int Nonhum Dat ¦
 	მიქვიან	¦რქმევ[ა]/ქვ¦	¦ V MedPass Inv Pres OV <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
 	ტკბილი	¦ტკბილ·ი¦	¦ A Nom Att ¦
 	სიტყვა	¦სიტყვ[ა]¦	¦ N Nom Sg ¦
@@ -879,8 +880,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გულს	¦გულ·ი¦	¦ N Dat Sg ¦
 	მოჰფხანს	¦მო·ფხან[ა]/ფხან¦	¦ V Act Fut Pv <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
-	გულის-ფხანა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	რაღა	¦რაღა¦რაღ[ა]¦	¦ Interj ¦ Pron Int Nonhum Nom ¦
+u	გულის-ფხანა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+a	რაღა	¦რაღა¦რაღ[ა]¦	¦ Interj ¦ Pron Int Nonhum Nom ¦
 	დარდუბალაა	¦დარდუბალა¦დარდუბ[ა]ლ[ა]¦	¦ N Nom Sg Encl:Aux ¦ N Nom Sg Encl:Aux ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	ფხანა	¦ფხან[ა]/ფხან¦	¦ N VN Nom Sg ¦
@@ -927,7 +928,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გული	¦გულ·ი¦	¦ N Nom Sg ¦
 	ადგილიდამ	¦ადგილ·ი¦	¦ N Inst Sg PP PP:დამ Old ¦
 	უნდა	¦უნდა¦	¦ Modal ¦
-	მისძრას-მოსძრას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	მისძრას-მოსძრას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	კაცმა	¦კაც·ი¦	¦ N Hum Erg Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თუ	¦თუ¦	¦ Cj Sub ¦
@@ -969,10 +970,10 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	იციან	¦ცოდნ[ა]/ც¦	¦ V MedPass Pres <S-DO> <S:Erg> <DO:Nom> S:3Pl DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
-	6თუ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	თუ	¦თუ¦	¦ Cj Sub ¦
 	წუთის-სოფელს	¦წუთის-სოფ[ე]ლ·ი¦	¦ N Dat Sg ¦
 	ერთს	¦ერთ·ი¦	¦ Num Card Alpha Dat Sg ¦
-	ბეწო	¦ბეწო¦	¦ N Nom Sg ¦
+m	ბეწო	¦ბეწო¦	¦ N Nom Sg ¦
 	ხანს	¦ხ[ა]ნ·ი¦	¦ N Temp Dat Sg ¦
 	თვალი	¦თვალ·ი¦თვ[ა]ლ·ი¦	¦ N Nom Sg ¦ N Nom Sg ¦
 	მოუხუჭე	¦მო·ხუჭვ[ა]/ხუჭ¦	¦ V Act Aor Pv OV <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:2Sg DO:3 IO:3 ¦
@@ -982,7 +983,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	როგორც	¦როგორც¦	¦ Cj Sub ¦
 	დიდოელი	¦დიდოელ·ი¦	¦ A Nom Att ¦
-	ლეკი	¦ლეკ·ი¦ლეკ·ი¦	¦ N Nom Sg ¦ N Hum Nom Sg ¦
+a+	ლეკი	¦ლეკ·ი¦ლეკ·ი¦	¦ N Nom Sg ¦ N Hum Nom Sg ¦
 	ნაბადსა	¦ნაბ[ა]დ·ი¦	¦ N Dat Sg L ¦
 	.	¦.¦	¦ Punct Period ¦
 
@@ -1002,7 +1003,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ნოდარ	¦ნოდარ¦	¦ N Prop Anthr FirstName Nom Att ¦
 	დუმბაძე	¦დუმბაძ[ე]¦	¦ N Prop Anthr LastName Nom ¦
 	:	¦:¦	¦ Punct Colon ¦
-	მე	¦მე¦მე¦	¦ Pron Pers 1 Nom Sg ¦ Pron Pers 1 Dat Sg ¦
+a	მე	¦მე¦მე¦	¦ Pron Pers 1 Nom Sg ¦ Pron Pers 1 Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -1012,23 +1013,23 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 
 	ჩემს	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Dat Att ¦
 	სოფელს	¦სოფ[ე]ლ·ი¦	¦ N Dat Sg ¦
-	მარჯვნივ	¦მარჯვნივ¦	¦ Adv Loc ¦
+p	მარჯვნივ	¦მარჯვნივ¦	¦ Adv Loc ¦
 	გუბაზოული	¦გუბაზოულ·ი¦	¦ N Prop Top Hydr Nom ¦
-	ჩაუდის	¦ჩა·სვლ[ა]/დი¦	¦ V MedPass Pres Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
+?	ჩაუდის	¦ჩა·სვლ[ა]/დი¦	¦ V MedPass Pres Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მარცხნივ	¦მარცხნივ¦	¦ Adv Loc ¦
 	–	¦–¦	¦ Punct Dash ¦
-	ლაშის	¦ლაშე¦ლაშ·ი¦	¦ N Prop Top Place Gen ¦ N Gen Sg ¦
+a	ლაშის	¦ლაშე¦ლაშ·ი¦	¦ N Prop Top Place Gen ¦ N Gen Sg ¦
 	ღელე	¦ღელ[ე]¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომელიც	¦რომ[ე]ლ·ი¦	¦ Pron Rel Nom Sg Rel:ც ¦
 	სავსეა	¦სავს[ე]¦	¦ A Nom Sg Encl:Aux ¦
-	კიბორჩხალებით	¦კიბორჩხალა¦კიბორჩხალ·ი¦კიბორჩხ[ა]ლ·ი¦	¦ N Inst Pl NewPl ¦ N Inst Pl NewPl ¦ N Inst Pl NewPl ¦
+a	კიბორჩხალებით	¦კიბორჩხალა¦კიბორჩხალ·ი¦კიბორჩხ[ა]ლ·ი¦	¦ N Inst Pl NewPl ¦ N Inst Pl NewPl ¦ N Inst Pl NewPl ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ღორჯოებით	¦ღორჯო¦	¦ N Inst Pl NewPl ¦
 	და	¦და¦	¦ Cj Coord ¦
-	შარვალაკაპიწებული	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	ბიჭებით	¦ბიჭა¦ბიჭ·ი¦	¦ N Hum Inst Pl NewPl ¦ N Hum Inst Pl NewPl ¦
+u	შარვალაკაპიწებული	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+a	ბიჭებით	¦ბიჭა¦ბიჭ·ი¦	¦ N Hum Inst Pl NewPl ¦ N Hum Inst Pl NewPl ¦
 	.	¦.¦	¦ Punct Period ¦
 	გუბაზოულზე	¦გუბაზოულ·ი¦	¦ N Prop Top Hydr Dat PP PP:ზე ¦
 	ხიდია	¦ხიდ·ი¦	¦ N Nom Sg Encl:Aux ¦
@@ -1092,7 +1093,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	და	¦და¦	¦ Cj Coord ¦
 	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Gen Att ¦
 	ძაღლი	¦ძაღლ·ი¦	¦ N Qual Gen Att ¦
-	მურადა	¦მურ[ა]¦	¦ A Advb Sg L ¦
+l	მურადა	¦მურ[ა]¦	¦ A Advb Sg L ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	ბებიაჩემი	¦ბებიაჩემ·ი¦	¦ N Hum Poss1Sg Nom Sg ¦
@@ -1156,7 +1157,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	პირიანობას	¦პირიანობ[ა]¦	¦ N Dat Sg ¦
 	ვსწავლობ	¦სწავლ[ა]/სწავლ¦	¦ V MedAct Pres <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
+m?	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	–	¦–¦	¦ Punct Dash ¦
@@ -1178,7 +1179,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	სხვა	¦სხვ[ა]¦	¦ A Nom Att ¦
 	პირია	¦პირ·ი¦	¦ N Nom Sg Encl:Aux ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
+m?	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	შენ	¦შენ¦	¦ Pron Pers 2 Dat Sg ¦
 	რომ	¦რომ¦	¦ Compl ¦
@@ -1251,7 +1252,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	კუდიანო	¦კუდიან·ი¦	¦ N Voc Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ახლავე	¦ახლავე¦	¦ Adv Temp ¦
-	წადი	¦წად·ი¦	¦ N Nom Sg Old ¦
+m	წადი	¦წად·ი¦	¦ N Nom Sg Old ¦
 	და	¦და¦	¦ Cj Coord ¦
 	თხა	¦თხ[ა]¦	¦ N Nom Sg ¦
 	გადააბი	¦გადა·ბმ[ა]/ბ¦	¦ V Act Impv Pv <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:2Sg DO:3 IO:3 ¦
@@ -1261,7 +1262,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გირტყამ	¦*·რტყმ[ა]/რტყ¦	¦ V Act Pres OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:2Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რუმბივით	¦რუმბ·ი¦	¦ N Nom Sg PP PP:ვით ¦
-	გაგიხდი	¦გა·ხდენ[ა]/ხდ¦გა·ხდ[ა]/ხდ¦	¦ V Act Fut Pv OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:2Sg ¦ V Act Fut Pv OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:2Sg ¦
+a	გაგიხდი	¦გა·ხდენ[ა]/ხდ¦გა·ხდ[ა]/ხდ¦	¦ V Act Fut Pv OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:2Sg ¦ V Act Fut Pv OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:2Sg ¦
 	ცხვირ-პირს	¦ცხვირ-პირ·ი¦	¦ N Dat Sg ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 
@@ -1288,7 +1289,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	რამდენიც	¦რამდენ·ი¦	¦ Pron Rel Nom Sg Rel:ც ¦
 	კაცი	¦კაც·ი¦	¦ N Hum Nom Sg ¦
 	დაიარება	¦სიარულ·ი/არ¦	¦ V Pass Pres Pv <S> <S:Nom> S:3Sg ¦
-	ამქვეყანაზე	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ამქვეყანაზე	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	და	¦და¦	¦ Cj Coord ¦
 	პირი	¦პირ·ი¦	¦ N Nom Sg ¦
 	იმიტომ	¦იმიტომ¦	¦ Adv Causal ¦
@@ -1364,12 +1365,12 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მომეციო	¦მი-ცემ[ა]/[ე]ც¦	¦ V Act Impv Pv <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:2Sg DO:3 IO:1Sg Encl:IndSp3 ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	2-	¦2-¦	¦ Foreign ¦
+	–	¦–¦	¦ Punct Dash ¦
 	მე	¦მე¦	¦ Pron Pers 1 Nom Sg ¦
 	როგორი	¦როგორ·ი¦	¦ Pron Int Nom Sg ¦
 	ვარ	¦ყოფნ[ა]/არ¦	¦ V MedPass Pres <S> <AuxIntr> <S:Nom> S:1Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბებია	¦ბები[ა]¦	¦ N Hum Voc Sg ¦
+m?	ბებია	¦ბები[ა]¦	¦ N Hum Voc Sg ¦
 	?	¦?¦	¦ Punct IntMark ¦
 
 	–	¦–¦	¦ Punct Dash ¦
@@ -1378,7 +1379,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	პირზე	¦პირ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	მიწადასაყრელი	¦მიწადასაყრელ·ი¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ამოუპირავი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ამოუპირავი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ღვთის	¦ღმერთ-ი¦	¦ N Hum Gen Sg ¦
 	პირიდან	¦პირ·ი¦	¦ N Inst Sg PP PP:დან ¦
@@ -1398,7 +1399,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომელსაც	¦რომ[ე]ლ·ი¦	¦ Pron Rel Dat Sg Rel:ც ¦
 	უკეთესი	¦უკეთეს·ი¦	¦ A Elat Nom Att ¦
-	წყევლა	¦წყევლ[ა]/წყევლ¦წყევლ[ა]¦	¦ N VN Nom Sg ¦ N Nom Sg ¦
+a+	წყევლა	¦წყევლ[ა]/წყევლ¦წყევლ[ა]¦	¦ N VN Nom Sg ¦ N Nom Sg ¦
 	შეეძლოს	¦შე·ძლებ[ა]/ძლ¦	¦ V MedPass Inv Opt Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ვიდრე	¦ვიდრე¦	¦ Cj Compar ¦
@@ -1408,7 +1409,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მაგრამ	¦მაგრამ¦	¦ Cj Coord ¦
 	მე	¦მე¦	¦ Pron Pers 1 Dat Sg ¦
 	მისი	¦მის·ი¦	¦ Pron Poss Poss3Sg Gen Att ¦
-	წყევლის	¦წყევლ[ა]/წყევლ¦წყევლ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
+a+	წყევლის	¦წყევლ[ა]/წყევლ¦წყევლ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
 	არ	¦არ¦	¦ Adv Neg ¦
 	მეშინია	¦შინებ[ა]/შინ¦	¦ V MedPass Inv Pres <S-IO> <S:Dat> <IO:Gen> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -1420,7 +1421,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ნუ	¦ნუ¦	¦ Adv Neg Imp ¦
 	გეშინია	¦შინებ[ა]/შინ¦	¦ V MedPass Inv Pres <S-IO> <S:Dat> <IO:Gen> S:2Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
+m	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	როდესაც	¦როდესაც¦	¦ Cj Sub ¦
 	გწყევლი	¦და·წყევლ[ა]/წყევლ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:2Sg ¦
@@ -1464,7 +1465,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Nom Att ¦
 	მეცადინეობა	¦მეცადინეობ[ა]/მეცადინე¦	¦ N VN Nom Sg ¦
 	ყოველდღე	¦ყოველდღე¦	¦ Adv Temp ¦
-	დიდი-დიდი	¦დენა=დენ[ა]/დი¦დენა=დენ[ა]/დი¦	¦ V MedPass Redup Inv Impf <S-DO> <S:Dat> <DO:Nom> DO:2Sg S:3Sg NonStand ¦ V MedPass Redup Inv Impf <S-DO> <S:Dat> <DO:Nom> DO:2Sg S:3Pl NonStand ¦
+l	დიდი-დიდი	¦დენა=დენ[ა]/დი¦დენა=დენ[ა]/დი¦	¦ V MedPass Redup Inv Impf <S-DO> <S:Dat> <DO:Nom> DO:2Sg S:3Sg NonStand ¦ V MedPass Redup Inv Impf <S-DO> <S:Dat> <DO:Nom> DO:2Sg S:3Pl NonStand ¦
 	ოთხ	¦ოთხ·ი¦	¦ Num Card Alpha Advb Att ¦
 	გაკვეთილამდე	¦გა·კვეთილ·ი/კვეთ¦	¦ A Part PastPart Pv Advb Sg PP PP:მდე ¦
 	გრძელდება	¦*·გრძელებ[ა]/გრძელ¦	¦ V Pass Pres <S> <S:Nom> S:3Sg ¦
@@ -1479,7 +1480,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	შეგრძნების	¦შეგრძნებ[ა]¦	¦ N Gen Sg ¦
 	უნარს	¦უნარ·ი¦	¦ N Dat Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
-	ზომაზე	¦ზომაზე¦	¦ Adv ¦
+l	ზომაზე	¦ზომაზე¦	¦ Adv ¦
 	მეტად	¦მეტ·ი¦	¦ A Quant Advb Sg ¦
 	ხმამაღლა	¦ხმამაღლა¦	¦ Adv Mann ¦
 	ვეკითხები	¦კითხვ[ა]/კითხ¦	¦ V MedAct Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:3 ¦
@@ -1488,8 +1489,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	:	¦:¦	¦ Punct Colon ¦
 
 	–	¦–¦	¦ Punct Dash ¦
-	რომულის	¦რომულ·ი¦	¦ A Gen Sg <Der:ურ> ¦
-	ვენაცვალე	¦ვენაცვალე¦	¦ Interj ¦
+l	რომულის	¦რომულ·ი¦	¦ A Gen Sg <Der:ურ> ¦
+?	ვენაცვალე	¦ვენაცვალე¦	¦ Interj ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	არ	¦არ¦	¦ Adv Neg ¦
@@ -1503,7 +1504,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	დარაჯი	¦დარაჯ·ი¦	¦ N Hum Nom Sg ¦
 	?	¦?¦	¦ Punct IntMark ¦
 
-	რომული	¦რომულ·ი¦	¦ A Nom Sg <Der:ურ> ¦
+l	რომული	¦რომულ·ი¦	¦ A Nom Sg <Der:ურ> ¦
 	იკრიჭება	¦გა·კრეჭ[ა]/კრიჭ¦	¦ V Pass Pres <S> <S:Nom> S:3Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მასწავლებელი	¦მასწავლებ[ე]ლ·ი¦	¦ N Hum Nom Sg ¦
@@ -1567,19 +1568,19 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 
 	–	¦–¦	¦ Punct Dash ¦
-	ნახვამდის	¦ნახვ[ა]/ხახ¦ნახვ[ა]/ნახ¦	¦ N VN Advb Sg PP PP:მდის ¦ N VN Advb Sg PP PP:მდის ¦
+	ნახვამდის	¦ნახვ[ა]/ნახ¦	¦ N VN Advb Sg PP PP:მდის ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	–	¦–¦	¦ Punct Dash ¦
 	ვეუბნები	¦*·თქმ[ა]/უბნ¦	¦ V MedPass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:3 ¦
-	რომულის	¦რომულ·ი¦	¦ A Gen Sg <Der:ურ> ¦
+l	რომულის	¦რომულ·ი¦	¦ A Gen Sg <Der:ურ> ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	–	¦–¦	¦ Punct Dash ¦
-	ნახვამდის	¦ნახვ[ა]/ხახ¦ნახვ[ა]/ნახ¦	¦ N VN Advb Sg PP PP:მდის ¦ N VN Advb Sg PP PP:მდის ¦
+	ნახვამდის	¦ნახვ[ა]/ნახ¦	¦ N VN Advb Sg PP PP:მდის ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	–	¦–¦	¦ Punct Dash ¦
 	მეუბნება	¦*·თქმ[ა]/უბნ¦	¦ V MedPass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
-	რომული	¦რომულ·ი¦	¦ A Nom Sg <Der:ურ> ¦
+l	რომული	¦რომულ·ი¦	¦ A Nom Sg <Der:ურ> ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ხელს	¦ხელ·ი¦	¦ N Dat Sg ¦
 	მიქნევს	¦*·ქნევ[ა]/ქნ[ევ]¦	¦ V Act Pres OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
@@ -1617,7 +1618,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ვამთავრებთ	¦*·მთავრებ[ა]/მთავრ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:1Pl DO:3 ¦
 	ათწლედს	¦ათწლედ·ი¦	¦ N Dat Sg ¦
 	.	¦.¦	¦ Punct Period ¦
-	ვფიქრობ	¦ფიქრ·ი/ფიქრ¦ფიქრ·ი/ფიქრ¦	¦ V MedAct Pres <S> <S:Nom> S:1Sg ¦ V MedAct Pres <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
+a	ვფიქრობ	¦ფიქრ·ი/ფიქრ¦ფიქრ·ი/ფიქრ¦	¦ V MedAct Pres <S> <S:Nom> S:1Sg ¦ V MedAct Pres <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ეს	¦ეს¦	¦ Pron Pers 3 Nom Sg ¦
 	ერთადერთი	¦ერთადერთ·ი¦	¦ A Nom Att ¦
@@ -1625,10 +1626,6 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	კაცობრიობის	¦კაცობრიობ[ა]¦	¦ N Gen Sg ¦
 	ისტორიაში	¦ისტორი[ა]¦	¦ N Dat Sg PP PP:ში ¦
 	.	¦.¦	¦ Punct Period ¦
-
-	*	¦*¦	¦ Symbol Star ¦
-	*	¦*¦	¦ Symbol Star ¦
-	*	¦*¦	¦ Symbol Star ¦
 
 	მე	¦მე¦	¦ Pron Pers 1 Nom Sg ¦
 	რა	¦რ[ა]¦	¦ Pron Int Nonhum Nom ¦
@@ -1650,7 +1647,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 	დაზამთრებამდე	¦და·ზამთრებ[ა]/ზამთრ¦	¦ N VN Pv Advb Sg PP PP:მდე ¦
 	სკოლაში	¦სკოლ[ა]¦	¦ N Dat Sg PP PP:ში ¦
-	ფეხშიშველი	¦ფეხშიშვ[ე]ლ·ი¦	¦ N Nom Sg ¦
+p	ფეხშიშველი	¦ფეხშიშვ[ე]ლ·ი¦	¦ N Nom Sg ¦
 	დავდივარ	¦სიარულ·ი/დი¦	¦ V MedPass Pres Pv <S> <S:Nom> S:1Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	მაქვს	¦ქონ[ა]/ქვ¦	¦ V MedPass Inv Pres LV <S-DO> <AuxTrans> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
@@ -1667,7 +1664,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Nom Att ¦
 	ძაღლი	¦ძაღლ·ი¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	მურადა	¦მურ[ა]¦	¦ A Advb Sg L ¦
+l	მურადა	¦მურ[ა]¦	¦ A Advb Sg L ¦
 	,	¦,¦	¦ Punct Comma ¦
 	სულ	¦სულ¦	¦ Adv Deg ¦
 	თან	¦თან¦	¦ Adv ¦
@@ -1681,7 +1678,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	–	¦–¦	¦ Punct Dash ¦
 	ყალთაბანდს	¦ყალთაბანდ·ი¦	¦ N Hum Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბოლო	¦ბოლო¦	¦ A Nom Att ¦
+m	ბოლო	¦ბოლო¦	¦ A Nom Att ¦
 	ბებია	¦ბები[ა]¦	¦ N Hum Nom Sg ¦
 	კუდიანს	¦კუდიან·ი¦	¦ N Dat Sg ¦
 	მეძახის	¦ძახებ[ა]/ძახ¦	¦ V MedAct Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦
@@ -1692,7 +1689,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ზურიკოა	¦ზურიკო¦	¦ N Prop Anthr FirstName Nom Encl:Aux ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	3როდესაც	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	როდესაც	¦როდესაც¦	¦ Cj Sub ¦
 	ბებიას	¦ბები[ა]¦	¦ N Hum Dat Sg ¦
 	ვაბრაზებ	¦გა·ბრაზებ[ა]/ბრაზ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -1714,12 +1711,12 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ზურგს	¦ზურგ·ი¦	¦ N Dat Sg ¦
 	უკან	¦უკან¦	¦ Adv Loc ¦
 	ამოფარებული	¦ამო·ფარებულ·ი/ფარ¦	¦ A Part PastPart Pv Inst Att ¦
-	წკეპლით	¦წკეპლ[ა]¦წკეპ[ე]ლ·ი¦	¦ N Inst Sg ¦ N Inst Sg ¦
+a	წკეპლით	¦წკეპლ[ა]¦წკეპ[ე]ლ·ი¦	¦ N Inst Sg ¦ N Inst Sg ¦
 	მეპარება	¦*·პარვ[ა]/პარ¦	¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	ღამით	¦ღამ[ე]¦	¦ N Temp Inst Sg ¦
 	ფეხებს	¦ფეხ·ი¦	¦ N Dat Pl NewPl ¦
-	მბანს	¦მბან·ი/ბან¦	¦ A Part PresPart Dat Sg ¦
+l	მბანს	¦მბან·ი/ბან¦	¦ A Part PresPart Dat Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	დაძინებულს	¦და·ძინებულ·ი/ძინ¦	¦ A Part PastPart Pv Dat Sg ¦
 	მკერდზე	¦მკერდ·ი¦	¦ N Dat Sg PP PP:ზე ¦
@@ -1732,7 +1729,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	?	¦?¦	¦ Punct IntMark ¦
 	სკოლაში	¦სკოლ[ა]¦	¦ N Dat Sg PP PP:ში ¦
 	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Gen Att ¦
-	ქცევის	¦ქცევ[ა]/ქც¦ქცევ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
+a+	ქცევის	¦ქცევ[ა]/ქც¦ქცევ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
 	შესახებ	¦შესახებ¦	¦ Pp <Gen> ¦
 	არსებობს	¦არსებობ[ა]/არსებ¦	¦ V MedAct Pres <S> <S:Nom> S:3Sg ¦
 	დოკუმენტი	¦დოკუმენტ·ი¦	¦ N Nom Sg ¦
@@ -1752,12 +1749,12 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	უნიჭო	¦უნიჭო¦	¦ A Gen Att ¦
 	მხატვრის	¦მხატვ[ა]რ·ი¦	¦ N Hum Gen Sg ¦
-	გამოფენაზე	¦გამო·ფენ[ა]/ფინ¦გამო·ფენ[ა]/ფენ¦	¦ N VN Pv Dat Sg PP PP:ზე ¦ N VN Pv Dat Sg PP PP:ზე ¦
+a+	გამოფენაზე	¦გამო·ფენ[ა]/ფინ¦გამო·ფენ[ა]/ფენ¦	¦ N VN Pv Dat Sg PP PP:ზე ¦ N VN Pv Dat Sg PP PP:ზე ¦
 	რომ	¦რომ¦	¦ Compl ¦
 	დევს	¦დებ[ა]/დ¦	¦ V PassState Pres <S> <S:Nom> S:3Sg NonStand ¦
 	და	¦და¦	¦ Cj Coord ¦
 	გამვლელ-გამომვლელს	¦გამვლელ-გამომვლელ·ი¦	¦ A Dat Sg ¦
-	ეხვეწებიან	¦*·ხვეწნ[ა]/ხვეწ¦*·ხვეწ[ა]/ხვეწ¦	¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Pl IO:3 ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Pl IO:3 ¦
+a	ეხვეწებიან	¦*·ხვეწნ[ა]/ხვეწ¦*·ხვეწ[ა]/ხვეწ¦	¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Pl IO:3 ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Pl IO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თუ	¦თუ¦თუ¦	¦ Cj Sub ¦ Adv ¦
 	ძმა	¦ძმ[ა]¦	¦ N Hum Nom Sg ¦
@@ -1790,7 +1787,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ოქმი	¦ოქმ·ი¦	¦ N Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	სხდომას	¦სხდომ[ა]/სხდომ¦სხდომ[ა]¦	¦ N VN Dat Sg ¦ N Dat Sg ¦
+a+	სხდომას	¦სხდომ[ა]/სხდომ¦სხდომ[ა]¦	¦ N VN Dat Sg ¦ N Dat Sg ¦
 	ესწრებოდა	¦*·სწრებ[ა]/სწრ¦	¦ V Pass Impf <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	:	¦:¦	¦ Punct Colon ¦
 	ყველა	¦ყველა¦	¦ A Quant Nom Att ¦
@@ -1801,8 +1798,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	:	¦:¦	¦ Punct Colon ¦
 	მეექვსე	¦მეექვს[ე]¦	¦ Num Ord Alpha Gen Att ¦
 	კლასის	¦კლას·ი¦	¦ N Gen Sg ¦
-	დამრიგებლის	¦და·მრიგებ[ე]ლ·ი/რიგ¦	¦ A Part PresPart Pv Gen Sg ¦
-	მოხსენება	¦მოხსენებ[ა]¦მო·ხსენებ[ა]/ხსენ¦	¦ N Nom Sg ¦ N VN Pv Nom Sg ¦
+p?	დამრიგებლის	¦და·მრიგებ[ე]ლ·ი/რიგ¦	¦ A Part PresPart Pv Gen Sg ¦
+a+	მოხსენება	¦მოხსენებ[ა]¦მო·ხსენებ[ა]/ხსენ¦	¦ N Nom Sg ¦ N VN Pv Nom Sg ¦
 	ამავე	¦ეს¦	¦ Pron Dem Gen Encl:ვე Foc ¦
 	კლასის	¦კლას·ი¦	¦ N Gen Sg ¦
 	მოსწავლის	¦მოსწავლ[ე]¦	¦ N Gen Sg ¦
@@ -1825,7 +1822,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ვაშალომიძე	¦ვაშალომიძ[ე]¦	¦ N Prop Anthr LastName Nom ¦
 	ჩემთვის	¦მე¦	¦ Pron Pers 1 Gen Sg PP PP:თვის ¦
 	ასუცნობიანი	¦ასუცნობიან·ი¦	¦ A Nom Att ¦
-	განტოლებაა	¦განტოლებ[ა]¦გან·ტოლებ[ა]/ტოლ¦	¦ N Nom Sg Encl:Aux ¦ N VN Pv Nom Sg Encl:Aux ¦
+a+	განტოლებაა	¦განტოლებ[ა]¦გან·ტოლებ[ა]/ტოლ¦	¦ N Nom Sg Encl:Aux ¦ N VN Pv Nom Sg Encl:Aux ¦
 	და	¦და¦	¦ Cj Coord ¦
 	სანამ	¦სანამ¦	¦ Cj Sub ¦
 	მასში	¦ის¦	¦ Pron Pers 3 Dat Sg PP PP:ში ¦
@@ -1847,7 +1844,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ჩემს	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Dat Att ¦
 	პიროვნებაზე	¦პიროვნებ[ა]¦	¦ N Dat Sg PP PP:ზე ¦
 	უშუალო	¦უშუალო¦	¦ A Inst Att ¦
-	დაკვირვებით	¦დაკვირვებ[ა]¦და·კვირვებ[ა]/კვირ¦	¦ N Inst Sg ¦ N VN Pv Inst Sg ¦
+a+	დაკვირვებით	¦დაკვირვებ[ა]¦და·კვირვებ[ა]/კვირ¦	¦ N Inst Sg ¦ N VN Pv Inst Sg ¦
 	ჩამოაყალიბა	¦ჩამო·ყალიბებ[ა]/ყალიბ¦	¦ V Act Aor Pv <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	ფიზიკის	¦ფიზიკ[ა]¦	¦ N Gen Sg ¦
 	ახალი	¦ახ[ა]ლ·ი¦	¦ A Nom Att ¦
@@ -1917,20 +1914,6 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	”	¦”¦	¦ Punct Quote ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	რუსულის	¦რუსულ·ი¦	¦ A Gen Sg ¦
-	მასწავლებელმა	¦მასწავლებ[ე]ლ·ი¦	¦ N Hum Erg Sg ¦
-	:	¦:¦	¦ Punct Colon ¦
-
-	„	¦„¦	¦ Punct Quote ¦
-	–	¦–¦	¦ Punct Dash ¦
-	პო	¦პო¦	¦ N Prop Nom ¦
-	მოემუ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	ონ	¦ონ·ი¦ონ·ი¦	¦ A Dat Att ¦ A Advb Att ¦
-	პროსტო	¦??¦	¦ Unrecognized ¦
-	იდიოტ	¦იდიოტ·ი¦იდიოტ·ი¦იდიოტ·ი¦	¦ N Hum Qual Inst Att ¦ N Hum Qual Dat Att ¦ N Hum Qual Advb Att ¦
-	”	¦”¦	¦ Punct Quote ¦
-	.	¦.¦	¦ Punct Period ¦
-
 	გეოგრაფიის	¦გეოგრაფი[ა]¦	¦ N Gen Sg ¦
 	მასწავლებელმა	¦მასწავლებ[ე]ლ·ი¦	¦ N Hum Erg Sg ¦
 	:	¦:¦	¦ Punct Colon ¦
@@ -1950,7 +1933,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ან	¦ან¦	¦ Cj Coord ¦
 	გამოფიტული	¦გამო·ფიტულ·ი/ფიტ¦	¦ A Part PastPart Pv Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
-	ვფიქრობ	¦ფიქრ·ი/ფიქრ¦ფიქრ·ი/ფიქრ¦	¦ V MedAct Pres <S> <S:Nom> S:1Sg ¦ V MedAct Pres <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
+ma	ვფიქრობ	¦ფიქრ·ი/ფიქრ¦ფიქრ·ი/ფიქრ¦	¦ V MedAct Pres <S> <S:Nom> S:1Sg ¦ V MedAct Pres <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მას	¦ის¦	¦ Pron Pers 3 Dat Sg ¦
 	სჭირდება	¦ჭირვებ[ა]/ჭირ¦	¦ V Pass Inv Pres <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
@@ -1975,7 +1958,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	იგი	¦იგი¦	¦ Pron Pers 3 Nom Sg ¦
 	უფრო	¦უფრო¦	¦ Adv Deg ¦
 	ქვის	¦ქვ[ა]¦	¦ N Gen Sg ¦
-	ხანის	¦ხან·ი¦ხან·ი¦ხან[ა]¦ხ[ა]ნ·ი¦	¦ N Hum Gen Sg ¦ N Gen Sg ¦ N Gen Sg ¦ N Temp Gen Sg ¦
+a	ხანის	¦ხან·ი¦ხან·ი¦ხან[ა]¦ხ[ა]ნ·ი¦	¦ N Hum Gen Sg ¦ N Gen Sg ¦ N Gen Sg ¦ N Temp Gen Sg ¦
 	ადამიანია	¦ადამიან·ი¦	¦ N Hum Nom Sg Encl:Aux ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ვიდრე	¦ვიდრე¦	¦ Cj Compar ¦
@@ -2004,7 +1987,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	”	¦”¦	¦ Punct Quote ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	4სკოლის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	სკოლის	¦სკოლ[ა]¦	¦ N Gen Sg ¦
 	დარაჯმა	¦დარაჯ·ი¦	¦ N Hum Erg Sg ¦
 	:	¦:¦	¦ Punct Colon ¦
 
@@ -2015,7 +1998,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მაგ	¦ეგ¦	¦ Pron Dem Dat ¦
 	ბაღანას	¦ბაღან[ა]¦	¦ N Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	თუ	¦თუ¦თუ¦	¦ Cj Sub ¦ Adv ¦
+a	თუ	¦თუ¦თუ¦	¦ Cj Sub ¦ Adv ¦
 	ასე	¦ასე¦	¦ Adv Mann ¦
 	შტერია	¦შტერ·ი¦	¦ A Nom Sg Encl:Aux ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -2035,7 +2018,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	–	¦–¦	¦ Punct Dash ¦
 	შენ	¦შენ¦	¦ Pron Pers 2 Dat Sg ¦
 	არავინ	¦არავინ¦	¦ Pron Neg Hum Nom ¦
-	გეკითხება	¦კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦	¦ V MedAct Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Sg ¦ V Pass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦
+a	გეკითხება	¦კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦	¦ V MedAct Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Sg ¦ V Pass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	შენი	¦შენ·ი¦	¦ Pron Poss Poss2Sg Nom Att ¦
 	საქმეა	¦საქმ[ე]¦	¦ N Nom Sg Encl:Aux ¦
@@ -2077,7 +2060,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	რომელი	¦რომ[ე]ლ·ი¦	¦ Pron Int Nom Sg ¦
 	გყავთ	¦ყოლ[ა]/ყავ¦	¦ V MedPass Inv Pres <S-DO> <AuxTransHum> <S:Dat> <DO:Nom> DO:3 S:2Pl ¦
 	მაგაზე	¦ეგ¦	¦ Pron Pers 3 Dat Sg PP PP:ზე ¦
-	კარგი	¦კარგ·ი¦	¦ N Nom Sg ¦
+p	კარგი	¦კარგ·ი¦	¦ N Nom Sg ¦
 	?	¦?¦	¦ Punct IntMark ¦
 	არც	¦არ¦	¦ Adv Neg Encl:ც Foc ¦
 	ისეა	¦ისე¦	¦ Adv Mann Encl:Aux ¦
@@ -2169,7 +2152,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	–	¦–¦	¦ Punct Dash ¦
 	მაგას	¦ეგ¦	¦ Pron Pers 3 Dat Sg ¦
 	არავინ	¦არავინ¦	¦ Pron Neg Hum Nom ¦
-	გეკითხება	¦კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦	¦ V MedAct Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Sg ¦ V Pass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦
+am	გეკითხება	¦კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦	¦ V MedAct Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Sg ¦ V Pass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:2Sg ¦
 	შენ	¦შენ¦	¦ Pron Pers 2 Dat Sg ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	საერთოდ	¦საერთოდ¦	¦ Adv Sent ¦
@@ -2185,7 +2168,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	თავგადასავალი	¦თავგადასავ[ა]ლ·ი¦	¦ N Nom Sg ¦
 
 	ყოველი	¦ყოვ[ე]ლ·ი¦	¦ A Quant Nom Att ¦
-	არსი	¦არს·ი¦	¦ A Nom Sg ¦
+p	არსი	¦არს·ი¦	¦ A Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	სულიერი	¦სულიერ·ი¦	¦ A Nom Sg ¦
 	თუ	¦თუ¦	¦ Cj Coord ¦
@@ -2249,7 +2232,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ჟონვას	¦ჟონვ[ა]/ჟონ¦	¦ N VN Dat Sg ¦
 	ნელ-ნელა	¦ნელ-ნელა¦	¦ Adv Mann ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ახალფეხადგმულ	¦ახალფეხადგმულ·ი¦ახალფეხადგმულ·ი¦ახალფეხადგმულ·ი¦	¦ A Gen Att <OldPl> ¦ A Dat Att ¦ A Advb Att ¦
+am	ახალფეხადგმულ	¦ახალფეხადგმულ·ი¦ახალფეხადგმულ·ი¦ახალფეხადგმულ·ი¦	¦ A Gen Att <OldPl> ¦ A Dat Att ¦ A Advb Att ¦
 	ბავშვივით	¦ბავშვ·ი¦	¦ N Hum Nom Sg PP PP:ვით ¦
 	,	¦,¦	¦ Punct Comma ¦
 	დაუყვება	¦და·ყოლ[ა]/ყვ¦	¦ V Pass Fut Pv OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
@@ -2289,9 +2272,9 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	აღარაფერს	¦აღარაფ[ე]რ·ი¦	¦ Pron Neg Nonhum Dat Sg ¦
 	ერიდება	¦*·რიდებ[ა]/რიდ¦	¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	:	¦:¦	¦ Punct Colon ¦
-	მირბის	¦სირბილ·ი/რბ¦მი·რბენ[ა]/რბ¦	¦ V MedAct Pres OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦ V MedAct Pres Pv <S> <S:Nom> S:3Sg ¦
+ma	მირბის	¦სირბილ·ი/რბ¦მი·რბენ[ა]/რბ¦	¦ V MedAct Pres OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦ V MedAct Pres Pv <S> <S:Nom> S:3Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
-	მიხტის	¦მი·ხტომ[ა]/ხტ¦*·ხტომ[ა]/ხტ¦	¦ V MedAct Pres Pv <S> <S:Nom> S:3Sg ¦ V MedAct Pres OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦
+ma	მიხტის	¦მი·ხტომ[ა]/ხტ¦*·ხტომ[ა]/ხტ¦	¦ V MedAct Pres Pv <S> <S:Nom> S:3Sg ¦ V MedAct Pres OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦
 	ღრიალ-გრიალით	¦ღრიალ-გრიალ·ი¦	¦ N Inst Sg ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	…	¦…¦	¦ Punct Ellipsis ¦
@@ -2323,7 +2306,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ზარითა	¦ზარ·ი¦	¦ N Inst Sg L ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ზეიმით	¦ზეიმ·ი¦	¦ N Inst Sg ¦
-	ჭალებისაკენ	¦ჭალ·ი¦ჭალ[ა]¦	¦ N Gen Pl NewPl L PP PP:კენ ¦ N Gen Pl NewPl L PP PP:კენ ¦
+a	ჭალებისაკენ	¦ჭალ·ი¦ჭალ[ა]¦	¦ N Gen Pl NewPl L PP PP:კენ ¦ N Gen Pl NewPl L PP PP:კენ ¦
 	მიექანება	¦მი·ქანებ[ა]/ქან¦	¦ V Pass Pres Pv <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	აქ	¦აქ¦	¦ Adv Loc ¦
@@ -2352,7 +2335,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ზღვისაკენ	¦ზღვ[ა]¦	¦ N Gen Sg L PP PP:კენ ¦
 	თავმიცემული	¦თავმიცემულ·ი¦	¦ A Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	შორის	¦შორის¦	¦ Pp <Dat/Gen> ¦
+l	შორის	¦შორის¦	¦ Pp <Dat/Gen> ¦
 	გზით	¦გზ[ა]¦	¦ N Inst Sg ¦
 	მიმავალი	¦მი·მავალ·ი/ვ[ა]ლ¦	¦ A Part PresPart Pv Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -2406,7 +2389,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მერე	¦მერე¦	¦ Adv Temp ¦
 	კი	¦კი¦	¦ Adv Disc ¦
 	საუკუნოდ	¦საუკუნო¦	¦ A Advb Sg ¦
-	ჩაინთქას	¦ჩა·ნთქმ[ა]/ნთქ¦ჩა·ნთქმ[ა]/ნთქ¦	¦ V Pass Opt Pv <S> <S:Nom> S:3Sg ¦ V Act Opt Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
+a	ჩაინთქას	¦ჩა·ნთქმ[ა]/ნთქ¦ჩა·ნთქმ[ა]/ნთქ¦	¦ V Pass Opt Pv <S> <S:Nom> S:3Sg ¦ V Act Opt Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ჩაიღუპოს	¦ჩა·ღუპვ[ა]/ღუპ¦	¦ V Pass Opt Pv <S> <S:Nom> S:3Sg ¦
 	ზღვის	¦ზღვ[ა]¦	¦ N Gen Sg ¦
@@ -2451,7 +2434,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	წყლებშიაც	¦წყ[ა]ლ·ი¦	¦ N Dat Pl NewPl PP PP:ში Encl:ც Foc ¦
 	ყოველგვარ	¦ყოველგვარ·ი¦	¦ A Quant Dat Att ¦
 	მდინარეს	¦მდინარ[ე]¦	¦ N Dat Sg ¦
-	გიჟმაჟი	¦გიჟმაჟ·ი¦	¦ A Gen Att ¦
+m?	გიჟმაჟი	¦გიჟმაჟ·ი¦	¦ A Gen Att ¦
 	ხევის	¦ხევ·ი¦ხევ[ა]/ხ¦	¦ N Gen Sg ¦ N VN Gen Sg ¦
 	წყალი	¦წყ[ა]ლ·ი¦	¦ N Nom Sg ¦
 	მირჩევნია	¦რჩევ[ა]/რჩევნ¦	¦ V MedPass Inv Pres OV <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
@@ -2462,7 +2445,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ერთს	¦ერთ·ი¦	¦ Num Card Alpha Dat Sg ¦
 	მათგანს	¦მათგან·ი¦	¦ N Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ჩიხურას	¦ჩიხურა¦ჩიხურა¦	¦ N Prop Top Hydr Gen ¦ N Prop Top Hydr Dat ¦
+am	ჩიხურას	¦ჩიხურა¦ჩიხურა¦	¦ N Prop Top Hydr Gen ¦ N Prop Top Hydr Dat ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ვაძლევ	¦მი-ცემ[ა]/ძლ[ევ]¦	¦ V Act Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:3 ¦
 	:	¦:¦	¦ Punct Colon ¦
@@ -2494,11 +2477,11 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	შენობას	¦შენობ[ა]¦	¦ N Dat Sg ¦
 	სიმაღლე	¦სიმაღლ[ე]¦	¦ N Nom Sg ¦
 	პატარა	¦პატარ[ა]¦	¦ A Gen Att ¦
-	კოშკისა	¦კოშკ·ი¦კოშკ·ი¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
+am	კოშკისა	¦კოშკ·ი¦კოშკ·ი¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
 	აქვს	¦ქონ[ა]/ქვ¦	¦ V MedPass Inv Pres LV <S-DO> <AuxTrans> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	სიგრძე	¦სიგრძ[ე]¦	¦ N Nom Sg ¦
-	დარბაზისა	¦დარბაზ·ი¦დარბაზ·ი¦დარბაზ·ი¦დარბაზ·ი¦	¦ N Prop Top Place Gen L ¦ N Prop Top Place Gen DNom DSg ¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
+a	დარბაზისა	¦დარბაზ·ი¦დარბაზ·ი¦დარბაზ·ი¦დარბაზ·ი¦	¦ N Prop Top Place Gen L ¦ N Prop Top Place Gen DNom DSg ¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	სისქე	¦სისქ[ე]¦	¦ N Nom Sg ¦
 	–	¦–¦	¦ Punct Dash ¦
@@ -2581,7 +2564,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 
 	თავისთვის	¦თავ·ი¦	¦ Pron Refl Gen PP PP:თვის ¦
-	ჩოჩორს	¦ჩოჩორ·ი¦ჩოჩ[ო]რ·ი¦	¦ N Dat Sg ¦ N Dat Sg ¦
+a+	ჩოჩორს	¦ჩოჩორ·ი¦ჩოჩ[ო]რ·ი¦	¦ N Dat Sg ¦ N Dat Sg ¦
 	აკეთებს	¦*·კეთებ[ა]/კეთ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 
@@ -2629,7 +2612,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გაზეპირებული	¦გა·ზეპირებულ·ი/ზეპირ¦	¦ A Part PastPart Pv Nom Sg ¦
 	„	¦„¦	¦ Punct Quote ¦
 	მამაო	¦მამ[ა]¦	¦ N Hum Nom Sg Encl:IndSp3 ¦
-	ჩვენო”-სავით	¦??¦	¦ N Prop Anthr FirstName ¦
+l	ჩვენო”-სავით	¦??¦	¦ N Prop Anthr FirstName ¦
 	ცხონებული	¦ცხონებულ·ი/ცხოვნ¦	¦ A Part PastPart Nom Att ¦
 	გადიაჩემი	¦გადიაჩემ·ი¦	¦ N Hum Poss1Sg Nom Sg ¦
 	:	¦:¦	¦ Punct Colon ¦
@@ -2652,7 +2635,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	დაიბადა	¦და·ბადებ[ა]/ბად¦	¦ V Pass Aor Pv <S> <S:Nom> S:3Sg ¦
 	ერთი	¦ერთ·ი¦	¦ Num Card Alpha Nom Sg ¦
 	რაღაც	¦რაღაც¦რაღაც¦	¦ Pron Indef Nonhum Nom Sg ¦ Pron Indef Nonhum Att ¦
-	დათვისბელა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დათვისბელა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ბამბისქულა	¦ბამბისქულ[ა]¦	¦ N Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
@@ -2679,7 +2662,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გულშემოყრილი	¦გულშემოყრილ·ი¦	¦ A Nom Sg ¦
 	ეგონა	¦გონებ[ა]/გონ¦	¦ V MedPass Inv Aor <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	და	¦და¦	¦ Cj Coord ¦
-	ჩქმეტა	¦ჩქმეტ[ა]/ჩქმიტ¦ჩქმეტ[ა]/ჩქმეტ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
+a+	ჩქმეტა	¦ჩქმეტ[ა]/ჩქმიტ¦ჩქმეტ[ა]/ჩქმეტ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
 	დაუწყო	¦და·წყებ[ა]/წყ¦	¦ V Act Aor Pv OV <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	…	¦…¦	¦ Punct Ellipsis ¦
@@ -2803,7 +2786,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	;	¦;¦	¦ Punct Semicolon ¦
 	ბოლოს	¦ბოლოს¦	¦ Adv Temp ¦
 	ქალბატონებიც	¦ქალბატონ·ი¦	¦ N Hum Nom Pl NewPl Encl:ც Foc ¦
-	ჩარეულან	¦??¦	¦ N Prop Anthr FirstName ¦
+u	ჩარეულან	¦??¦	¦ N Prop Anthr FirstName ¦
 	(	¦(¦	¦ Punct Paren ¦
 	რასაკვირველია	¦რასაკვირველია¦	¦ Adv Root ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -2818,7 +2801,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 	ამ	¦ეს¦	¦ Pron Dem Dat ¦
 	ამბავს	¦ამბ[ავ]·ი¦	¦ N Dat Sg ¦
-	მიუწევია	¦მი·წევ[ა]/წ[ევ]¦მი·წევ[ა]/წ[ევ]¦	¦ V Act Perf Pv <S> <S:Dat> S:3Sg DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
+a	მიუწევია	¦მი·წევ[ა]/წ[ევ]¦მი·წევ[ა]/წ[ევ]¦	¦ V Act Perf Pv <S> <S:Dat> S:3Sg DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	ვაჟბატონებამდისაც	¦ვაჟბატონ·ი¦	¦ N Hum Advb Pl NewPl PP PP:მდის Encl:ც Foc ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ჩამოვარდნილა	¦ჩამო·ვარდნ[ა]/ვარდნ¦	¦ V Pass Perf Pv <S> <S:Nom> S:3Sg ¦
@@ -2826,7 +2809,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ოჯახს	¦ოჯახ·ი¦	¦ N Dat Sg ¦
 	შუა	¦შუა¦	¦ Pp <Dat> ¦
 	დიდი	¦დიდ·ი¦	¦ N Nom Sg ¦
-	უსიამოვნობა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	უსიამოვნობა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	აღარც	¦აღარც¦	¦ Adv Neg ¦
@@ -2838,17 +2821,17 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	და	¦და¦	¦ Cj Coord ¦
 	აღარც	¦აღარც¦	¦ Adv Neg ¦
 	ხმასა	¦ხმ[ა]¦	¦ N Dat Sg L ¦
-	სცემდენ	¦*·ცემ[ა]/ცემ¦*·ცემ[ა]/ცემ¦	¦ V Act Impf <S-IO> <S:Nom> <IO:Dat> S:3Pl IO:3 NonStand ¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Pl DO:3 IO:3 NonStand ¦
+am	სცემდენ	¦*·ცემ[ა]/ცემ¦*·ცემ[ა]/ცემ¦	¦ V Act Impf <S-IO> <S:Nom> <IO:Dat> S:3Pl IO:3 NonStand ¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Pl DO:3 IO:3 NonStand ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	…	¦…¦	¦ Punct Ellipsis ¦
 	მხოლოდ	¦მხოლოდ¦	¦ Adv Deg ¦
 	თევდორობის	¦თევდორობ[ა]¦	¦ N Gen Sg ¦
 	კვირაში	¦კვირ[ა]¦	¦ N Temp Dat Sg PP PP:ში ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ზიარების	¦ზიარებ[ა]/ზიარ¦ზიარებ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
+a+	ზიარების	¦ზიარებ[ა]/ზიარ¦ზიარებ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
 	წინეთ	¦წინეთ¦	¦ Adv ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ოქროპირ	¦ოქროპირ¦	¦ N Prop Anthr FirstName Voc ¦
+m	ოქროპირ	¦ოქროპირ¦	¦ N Prop Anthr FirstName Voc ¦
 	მღვდლის	¦მღვდ[ე]ლ·ი¦	¦ N Hum Gen Sg ¦
 	რჩევით	¦რჩევ[ა]/რჩ¦	¦ N VN Inst Sg ¦
 	შერიგებულან	¦შე·რიგებ[ა]/რიგ¦	¦ V Pass Perf Pv <S> <S:Nom> S:3Pl ¦
@@ -2880,7 +2863,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	დავუყენოვო	¦და·ყენებ[ა]/ყენ¦	¦ V Act Conj-II Pv OV <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:1Sg DO:3Sg IO:3 Encl:IndSp3 ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	”	¦”¦	¦ Punct Quote ¦
-	გამოვუყვანივართ	¦გამო·ყვან[ა]/ყვან¦გამო·ყვან[ა]/ყვან¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1 S:3Pl ¦
+a+	გამოვუყვანივართ	¦გამო·ყვან[ა]/ყვან¦გამო·ყვან[ა]/ყვან¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1 S:3Pl ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მაგრამ	¦მაგრამ¦	¦ Cj Coord ¦
 	წარმოიდგინეთ	¦წარმო·დგენ[ა]/დგინ¦	¦ V Act Impv Pv SV <S-DO> <S:Erg> <DO:Nom> S:2Pl DO:3 ¦
@@ -2912,7 +2895,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	სოფელში	¦სოფ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦
-	ნამყოფ	¦ნამყოფ·ი/ყოფ¦ნამყოფ·ი¦	¦ A Part PastPart PastPart:ნა Gen Att <OldPl> ¦ A Gen Att <OldPl> ¦
+a+	ნამყოფ	¦ნამყოფ·ი/ყოფ¦ნამყოფ·ი¦	¦ A Part PastPart PastPart:ნა Gen Att <OldPl> ¦ A Gen Att <OldPl> ¦
 	ათი	¦ათ·ი¦	¦ Num Card Alpha Nom Sg ¦
 	თვის	¦თვის·ი¦	¦ A Dat Att ¦
 	ბავშვს	¦ბავშვ·ი¦	¦ N Hum Dat Sg ¦
@@ -2934,7 +2917,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	…	¦…¦	¦ Punct Ellipsis ¦
 	იმათ	¦ის¦	¦ Pron Pers 3 Dat Pl ¦
-	უფიქრიათ	¦ფიქრ·ი/ფიქრ¦ფიქრ·ი/ფიქრ¦	¦ V MedAct Perf <S> <S:Dat> S:3Pl ¦ V MedAct Perf <S-DO> <S:Dat> <DO:Nom> S:3Pl DO:3 ¦
+a	უფიქრიათ	¦ფიქრ·ი/ფიქრ¦ფიქრ·ი/ფიქრ¦	¦ V MedAct Perf <S> <S:Dat> S:3Pl ¦ V MedAct Perf <S-DO> <S:Dat> <DO:Nom> S:3Pl DO:3 ¦
 	:	¦:¦	¦ Punct Colon ¦
 	სწორედ	¦სწორედ¦	¦ Adv Foc ¦
 	შურისა	¦შურ·ი¦	¦ N Gen Sg L ¦
@@ -2945,11 +2928,11 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	თვალი	¦თვალ·ი¦თვ[ა]ლ·ი¦	¦ N Nom Sg ¦ N Nom Sg ¦
 	ჰკრეს	¦კვრ[ა]/კ[ა]რ¦	¦ V Act Aor <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Pl DO:3 IO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	გაღალესო	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	გაღალესო	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ისევ	¦ისევ¦	¦ Adv Sent ¦
 	საჩქაროდ	¦საჩქარო¦	¦ A Advb Sg ¦
-	დავუბრუნებივართ	¦და·ბრუნებ[ა]/ბრუნ¦და·ბრუნებ[ა]/ბრუნ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1 S:3Pl ¦
+a+	დავუბრუნებივართ	¦და·ბრუნებ[ა]/ბრუნ¦და·ბრუნებ[ა]/ბრუნ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1 S:3Pl ¦
 	სოფელში	¦სოფ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	.	¦.¦	¦ Punct Period ¦
 	ძიძასაც	¦ძიძა¦ძიძ[ა]¦	¦ N Dat Sg Encl:ც Foc ¦ N Dat Sg Encl:ც Foc ¦
@@ -2957,18 +2940,18 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ერთ	¦ერთ¦	¦ Adv ¦
 	ვიღაც	¦ვიღაც¦ვიღაც¦	¦ Pron Indef Hum Nom Sg ¦ Pron Indef Hum Att ¦
 	მკითხავთან	¦მკითხავ·ი¦	¦ N Dat Sg PP PP:თან ¦
-	გაუვლია	¦გა·ვლებ[ა]/ვლ¦გა·ვლ[ა]/ვლ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
+a	გაუვლია	¦გა·ვლებ[ა]/ვლ¦გა·ვლ[ა]/ვლ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	გამოულოცვინებია	¦გამო·ლოცვ[ა]/ლოც¦	¦ V Caus Perf Pv <S-DO> S:3Sg DO:3 ¦
 	…	¦…¦	¦ Punct Ellipsis ¦
-	შეუბამთ	¦შე·ბმ[ა]/ბ¦შე·ბმ[ა]/ბ¦შე·ბმ[ა]/ბ¦შე·ბმ[ა]/ბ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Pl DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:2Sg S:3Pl ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:2Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:2 S:3Pl ¦
+a+	შეუბამთ	¦შე·ბმ[ა]/ბ¦შე·ბმ[ა]/ბ¦შე·ბმ[ა]/ბ¦შე·ბმ[ა]/ბ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:3Pl DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:2Sg S:3Pl ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:2Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:2 S:3Pl ¦
 	ჩემთვის	¦მე¦	¦ Pron Pers 1 Gen Sg PP PP:თვის ¦
 	ყელზე	¦ყელ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	ღინჭილა	¦ღინჭილა¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	მწარე-ბალი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	მწარე-ბალი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	და	¦და¦	¦ Cj Coord ¦
-	მივუყვანივართ	¦მი·ყვან[ა]/ყვან¦მი·ყვან[ა]/ყვან¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1 S:3Pl ¦
+a+	მივუყვანივართ	¦მი·ყვან[ა]/ყვან¦მი·ყვან[ა]/ყვან¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1Pl S:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> DO:1 S:3Pl ¦
 	სოფელში	¦სოფ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	–	¦–¦	¦ Punct Dash ¦
 	შინ	¦შინ¦	¦ Adv Loc ¦
@@ -2981,7 +2964,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გული	¦გულ·ი¦	¦ N Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ისევ	¦ისევ¦	¦ Adv Sent ¦
-	დამიწყია	¦და·წყვ[ა]/წყ¦და·წყებ[ა]/წყ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
+al	დამიწყია	¦და·წყვ[ა]/წყ¦და·წყებ[ა]/წყ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
 	სიცილი	¦სიცილ·ი¦	¦ N Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Nom Att ¦
@@ -3022,7 +3005,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	და	¦და¦	¦ Cj Coord ¦
 	მთავრები	¦მთავ[ა]რ·ი¦	¦ N Nom Pl NewPl ¦
 	ერისთავებს	¦ერისთავ·ი¦	¦ N Hum Dat Pl NewPl ¦
-	აბარებდენ	¦ჩა·ბარებ[ა]/ბარ¦*·ბარებ[ა]/ბარ¦	¦ V Act Impf <S-DO> <S:Nom> <DO:Dat> S:3Pl DO:3 NonStand ¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Pl DO:3 IO:3 NonStand ¦
+am	აბარებდენ	¦ჩა·ბარებ[ა]/ბარ¦*·ბარებ[ა]/ბარ¦	¦ V Act Impf <S-DO> <S:Nom> <DO:Dat> S:3Pl DO:3 NonStand ¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Pl DO:3 IO:3 NonStand ¦
 	და	¦და¦	¦ Cj Coord ¦
 	აზრდევინებდენ	¦*·ზრდევინებ[ა]/ზრდ¦	¦ V Caus Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Pl DO:3 IO:3 NonStand ¦
 	თავის	¦თავის·ი¦	¦ Pron Poss Refl Poss3Sg Dat Att ¦
@@ -3070,13 +3053,13 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	:	¦:¦	¦ Punct Colon ¦
 	ეს	¦ეს¦	¦ Pron Dem Nom ¦
 	გაზრდილ-გამზრდელობა	¦გაზრდილ-გამზრდელობ[ა]¦	¦ N Nom Sg ¦
-	აკავშირებდა	¦შე·კავშირებ[ა]/კავშირ¦და·კავშირებ[ა]/კავშირ¦	¦ V Act Impf <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦ V Act Impf <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
+a	აკავშირებდა	¦შე·კავშირებ[ა]/კავშირ¦და·კავშირებ[ა]/კავშირ¦	¦ V Act Impf <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦ V Act Impf <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	ერთმანეთთან	¦ერთმანეთ·ი¦	¦ Pron Recip 3 Dat Sg PP PP:თან ¦
 	სხვადასხვა	¦სხვადასხვ[ა]¦	¦ A Dat Att ¦
-	წოდებას	¦წოდებ[ა]/წოდ¦წოდებ[ა]/წვდ¦	¦ N VN Dat Sg ¦ N VN Dat Sg ¦
+al	წოდებას	¦წოდებ[ა]/წოდ¦წოდებ[ა]/წვდ¦	¦ N VN Dat Sg ¦ N VN Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	გარდა	¦გარდა¦	¦ Pp <Dat/Gen> ¦
-	ნათელ-მირონობისა	¦ნათელმირონობ[ა]¦ნათელმირონობ[ა]¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
+am	ნათელ-მირონობისა	¦ნათელმირონობ[ა]¦ნათელმირონობ[ა]¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თითქმის	¦თითქმის¦	¦ Adv Deg ¦
 	სისხლ-ხორცობა	¦სისხლხორცობ[ა]¦	¦ N Nom Sg ¦
@@ -3097,7 +3080,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	და	¦და¦	¦ Cj Coord ¦
 	მათი	¦მათ·ი¦	¦ Pron Poss Poss3Pl Nom Att ¦
 	ახლო	¦ახლო¦	¦ A Nom Att ¦
-	მონათესავენი	¦მონათესავ[ე]¦	¦ A Nom Pl OldPl ¦
+?	მონათესავენი	¦მონათესავ[ე]¦	¦ A Nom Pl OldPl ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მათი	¦მათ·ი¦	¦ Pron Poss Poss3Pl Nom Att ¦
 	შორეული	¦შორეულ·ი¦	¦ A Nom Att ¦
@@ -3178,9 +3161,9 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	რამ	¦რ[ა]¦	¦ Pron Int Nonhum Erg ¦
 	დარჩა	¦და·რჩენ[ა]/რჩ¦	¦ V Pass Aor Pv <S> <S:Nom> S:3Sg ¦
 	ჩემში	¦მე¦	¦ Pron Pers 1 Dat Sg PP PP:ში ¦
-	კარგი	¦კარგ·ი¦	¦ N Nom Sg ¦
+m	კარგი	¦კარგ·ი¦	¦ N Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
-	კეთილი	¦კეთილ·ი¦	¦ N Nom Sg ¦
+m	კეთილი	¦კეთილ·ი¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	უფრო	¦უფრო¦	¦ Adv Deg ¦
 	იმის	¦ის¦	¦ Pron Pers 3 Gen Sg ¦
@@ -3205,12 +3188,12 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	კონსტანტინეს	¦კონსტანტინე¦	¦ N Prop Anthr FirstName Gen ¦
 	მარჯვენა	¦მარჯვ[ე]ნ[ა]¦	¦ N Nom Sg ¦
 
-	ხეკორძულას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ხეკორძულას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	წყალი	¦წყ[ა]ლ·ი¦	¦ N Nom Sg ¦
 	მისვამს	¦*·სმ[ა]/სვ¦	¦ V Act Pres OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 
-	მცხეთა	¦მცხეთა¦მცხეთ[ა]¦	¦ N Prop Top Place Nom ¦ N Prop Top Place Nom ¦
+a+	მცხეთა	¦მცხეთა¦მცხეთ[ა]¦	¦ N Prop Top Place Nom ¦ N Prop Top Place Nom ¦
 	ისე	¦ისე¦	¦ Adv Mann ¦
 	ამიგია	¦ა·გებ[ა]/გ¦	¦ V Act Perf Pv <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -3234,9 +3217,9 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	კომფორტაბელური	¦კომფორტაბელურ·ი¦	¦ A Inst Att ¦
 	ავტოებით	¦ავტო¦	¦ N Inst Pl NewPl NonStand ¦
 	მიემგზავრებიან	¦მი·მგზავრებ[ა]/მგზავრ¦	¦ V Pass Pres Pv <S> <S:Nom> S:3Pl ¦
-	ქალაქგარედ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ქალაქგარედ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ჩვეულებსამებრ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ჩვეულებსამებრ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ჰიპოდრომზე	¦ჰიპოდრომ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	მივდივარ	¦მი·სვლ[ა]/დი¦	¦ V MedPass Pres Pv <S> <S:Nom> S:1Sg ¦
 	ხოლმე	¦ხოლმე¦	¦ Adv Iter ¦
@@ -3259,16 +3242,16 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	იციან	¦ცოდნ[ა]/ც¦	¦ V MedPass Pres <S-DO> <S:Erg> <DO:Nom> S:3Pl DO:3 ¦
 	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Nom Att ¦
 	გარდაუვალი	¦გარდა·უვალ·ი/ვალ¦	¦ A Part NegPart Pv Nom Att ¦
-	ვნება	¦ვნებ[ა]/ვნ¦ვნებ[ა]¦	¦ N VN Nom Sg ¦ N Nom Sg ¦
+a+	ვნება	¦ვნებ[ა]/ვნ¦ვნებ[ა]¦	¦ N VN Nom Sg ¦ N Nom Sg ¦
 	ცხენოსნობისადმი	¦ცხენოსნობ[ა]¦	¦ N Gen Sg PP PP:დმი ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	„	¦„¦	¦ Punct Quote ¦
-	სეირა	¦სეირ·ი¦	¦ A Advb Trunc Sg ¦
+p	სეირა	¦სეირ·ი¦	¦ A Advb Trunc Sg ¦
 	გნებავთ	¦ნებ[ა]/ნებ¦	¦ V MedPass Inv Pres <S-DO> <S:Dat> <DO:Nom> DO:3 S:2Pl ¦
 	?	¦?¦	¦ Punct IntMark ¦
 	”	¦”¦	¦ Punct Quote ¦
-	მეკითხება	¦კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦	¦ V MedAct Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦ V Pass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
+am	მეკითხება	¦კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦*·კითხვ[ა]/კითხ¦	¦ V MedAct Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦ V Pass Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
 	ნოშრევანი	¦ნოშრევან¦	¦ N Prop Anthr FirstName Nom ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ძველი	¦ძველ·ი¦	¦ A Nom Att ¦
@@ -3276,7 +3259,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 
 	„	¦„¦	¦ Punct Quote ¦
-	სეირა	¦სეირ·ი¦	¦ N Advb Trunc Sg ¦
+p	სეირა	¦სეირ·ი¦	¦ N Advb Trunc Sg ¦
 	ჩინებული	¦ჩინებულ·ი/ჩინ¦	¦ A Part PastPart Nom Att ¦
 	ცხენია	¦ცხენ·ი¦	¦ N Nom Sg Encl:Aux ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -3284,13 +3267,13 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	დაცდილი	¦და·ცდილ·ი/ცდ¦	¦ A Part PastPart Pv Nom Sg ¦
 	მაქვს	¦ქონ[ა]/ქვ¦	¦ V MedPass Inv Pres LV <S-DO> <AuxTrans> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	მანქანების	¦მანქანებ[ა]¦მანქან[ა]¦	¦ N Gen Sg ¦ N Gen Pl NewPl ¦
-	ეშინია	¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦	¦ V Pass Inv Pres <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦ V MedPass Inv Pres <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦
+al	მანქანების	¦მანქანებ[ა]¦მანქან[ა]¦	¦ N Gen Sg ¦ N Gen Pl NewPl ¦
+am	ეშინია	¦შინებ[ა]/შინ¦შინებ[ა]/შინ¦	¦ V Pass Inv Pres <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦ V MedPass Inv Pres <S-IO> <S:Dat> <IO:Gen> S:3Sg DO:3 ¦
 	”	¦”¦	¦ Punct Quote ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	„	¦„¦	¦ Punct Quote ¦
-	ნავარდა	¦ნავარდ·ი¦	¦ N Advb Trunc Sg ¦
+p	ნავარდა	¦ნავარდ·ი¦	¦ N Advb Trunc Sg ¦
 	?	¦?¦	¦ Punct IntMark ¦
 	”	¦”¦	¦ Punct Quote ¦
 	თავათვე	¦თავად¦	¦ Adv Mann Dialect Encl:ვე Foc ¦
@@ -3298,7 +3281,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	:	¦:¦	¦ Punct Colon ¦
 
 	„	¦„¦	¦ Punct Quote ¦
-	ნავარდა	¦ნავარდ·ი¦	¦ N Advb Trunc Sg ¦
+p	ნავარდა	¦ნავარდ·ი¦	¦ N Advb Trunc Sg ¦
 	ხიდზე	¦ხიდ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	გასვლას	¦გა·სვლ[ა]/სვლ¦	¦ N VN Pv Dat Sg ¦
 	უფრთხის	¦*·ფრთხობ[ა]/ფრთხ¦	¦ V Pres OV <S-IO> S:3Sg DO:3 ¦
@@ -3306,7 +3289,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 
 	„	¦„¦	¦ Punct Quote ¦
-	დარდიმანდისათვის	¦დარდიმანდ·ი¦	¦ A Gen Sg L PP PP:თვის ¦
+p	დარდიმანდისათვის	¦დარდიმანდ·ი¦	¦ A Gen Sg L PP PP:თვის ¦
 	რას	¦რ[ა]¦	¦ Pron Int Nonhum Dat ¦
 	იტყვით	¦თქმ[ა]/ტყვ¦	¦ V MedAct Fut <S-DO> <S:Nom> <DO:Dat> S:2Pl DO:3 ¦
 	?	¦?¦	¦ Punct IntMark ¦
@@ -3315,7 +3298,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	„	¦„¦	¦ Punct Quote ¦
 	ოჰო	¦ოჰო¦	¦ Interj ¦
 	,	¦,¦	¦ Punct Comma ¦
-	დარდიმანდი	¦დარდიმანდ·ი¦	¦ A Nom Sg ¦
+p	დარდიმანდი	¦დარდიმანდ·ი¦	¦ A Nom Sg ¦
 	ყველაზე	¦ყველა¦	¦ A Quant Dat Sg PP PP:ზე ¦
 	მეტად	¦მეტ·ი¦	¦ A Quant Advb Sg ¦
 	დინჯი	¦დინჯ·ი¦	¦ A Nom Att ¦
@@ -3327,11 +3310,14 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	ხიდზედაც	¦ხიდ·ი¦	¦ N Dat Sg PP PP:ზედ Encl:ც Foc ¦
 	უწყინარად	¦უწყინ[ა]რ·ი/წყენ¦	¦ A Part NegPart Advb Sg ¦
-	გადადის	¦გადა·დენ[ა]/დი¦	¦ V MedPass Inv Pres Pv <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 NonStand ¦
-	”.დარდიმანდზე	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	გადადის	¦გადა·სვლ[ა]/დი¦	¦ V MedPass Pres Pv <S> <S:Nom> S:3Sg ¦
+	”	¦”¦	¦ Punct Quote ¦
+	.	¦.¦	¦ Punct Period ¦
+
+	დარდიმანდზე	¦დარდიმანდ·ი¦	¦ A Dat Sg PP PP:ზე ¦
 	შეჩერდა	¦შე·ჩერებ[ა]/ჩერ¦	¦ V Pass Aor Pv <S> <S:Nom> S:3Sg ¦
 	ჩემი	¦ჩემ·ი¦	¦ Pron Poss Poss1Sg Nom Att ¦
-	არჩევანიც	¦არჩევ[ა]ნ·ი¦ა·რჩევ[ა]/რჩ¦	¦ N Nom Sg Encl:ც Foc ¦ N VN Pv Nom Pl OldPl Encl:ც Foc ¦
+al	არჩევანიც	¦არჩევ[ა]ნ·ი¦ა·რჩევ[ა]/რჩ¦	¦ N Nom Sg Encl:ც Foc ¦ N VN Pv Nom Pl OldPl Encl:ც Foc ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	სწორედ	¦სწორედ¦	¦ Adv Foc ¦
@@ -3344,7 +3330,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	სამი	¦სამ·ი¦	¦ Num Card Alpha Nom Att ¦
 	ეკლესია	¦ეკლესი[ა]¦	¦ N Nom Sg ¦
 	მოათავა	¦მო·თავებ[ა]/თავ¦	¦ V Act Aor Pv <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
-	ფარსმან	¦ფარს·ი¦	¦ N Erg Sg Old ¦
+l	ფარსმან	¦ფარს·ი¦	¦ N Erg Sg Old ¦
 	სპარსმა	¦სპარს·ი¦	¦ N Hum Erg Sg Old ¦
 	სამცხეში	¦სამცხ[ე]¦	¦ N Prop Dat PP PP:ში ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -3359,7 +3345,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მან	¦ის¦	¦ Pron Pers 3 Erg Sg ¦
 	აღმოსავლეთი	¦აღმოსავლეთ·ი¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	შირვანიდან	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	შირვანიდან	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	წამოსული	¦წამო·სულ·ი/ს¦	¦ A Part PastPart Pv Nom Sg ¦
 	ქვემო	¦ქვემო ქართლ·ი¦	¦ N Prop Top Area Dat ¦
 	ქართლს	¦¦	¦ <MWE> ¦
@@ -3385,11 +3371,11 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 
 	ტფილისი	¦ტფილის·ი¦	¦ N Prop Top Place Nom Old ¦
 	იმჟამად	¦იმჟამად¦	¦ Adv Temp ¦
-	სარკინოზებს	¦სარკინოზებ·ი¦	¦ N Dat Sg ¦
+l	სარკინოზებს	¦სარკინოზებ·ი¦	¦ N Dat Sg ¦
 	ეპყრათ	¦პყრობ[ა]/პყ[ა]რ¦	¦ V PassState Aor <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3Pl ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ფარსმანი	¦ფარსმან¦	¦ N Prop Anthr FirstName Nom ¦
-	ამირას	¦ამირა¦	¦ N Hum Dat Sg ¦
+m	ამირას	¦ამირა¦	¦ N Hum Dat Sg ¦
 	კარზე	¦კარ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	იყო	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	ნამყოფი	¦ნამყოფ·ი¦	¦ N Nom Sg Dialect ¦
@@ -3397,7 +3383,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გიორგის	¦გიორგი¦	¦ N Prop Anthr FirstName Gen ¦
 	მამას	¦მამ[ა]¦	¦ N Hum Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბაგრატ	¦ბაგრატ¦	¦ N Prop Anthr FirstName Voc ¦
+m	ბაგრატ	¦ბაგრატ¦	¦ N Prop Anthr FirstName Voc ¦
 	კურაპალატს	¦კურაპალატ·ი¦	¦ N Dat Sg ¦
 	ტყვედ	¦ტყვ[ე]¦	¦ N Advb Sg ¦
 	ჰყავდა	¦ყოლ[ა]/ყავ¦	¦ V MedPass Inv Impf <S-DO> <AuxTransHum> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
@@ -3432,7 +3418,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	უცნაური	¦უცნაურ·ი¦	¦ A Nom Sg ¦
 	მეწამლე	¦მო·წამვლ[ა]/წამლ¦	¦ V Act Impv Pv <S-DO> <S:Erg> <DO:Nom> S:2Sg DO:3 Dialect ¦
-	და	¦დ[ა]¦	¦ N Hum Qual Nom Att ¦
+l	და	¦დ[ა]¦	¦ N Hum Qual Nom Att ¦
 	მჩხიბავი	¦მჩხიბავ·ი¦	¦ N Hum Nom Sg Old ¦
 	.	¦.¦	¦ Punct Period ¦
 
@@ -3506,15 +3492,15 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	კეისართან	¦კეის[ა]რ·ი¦	¦ N Hum Dat Sg PP PP:თან ¦
 	მტკიცე	¦მტკიც[ე]¦	¦ A Nom Att ¦
 	ზავი	¦ზავ·ი¦	¦ N Nom Sg ¦
-	შეიკრა	¦შე·კვრ[ა]/კ[ა]რ¦შე·კვრ[ა]/კ[ა]რ¦	¦ V Act Opt Pv SV <S-DO> <S:Erg> <DO:Nom> S:2Sg DO:3 ¦ V Act Aor Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
+am	შეიკრა	¦შე·კვრ[ა]/კ[ა]რ¦შე·კვრ[ა]/კ[ა]რ¦	¦ V Act Opt Pv SV <S-DO> <S:Erg> <DO:Nom> S:2Sg DO:3 ¦ V Act Aor Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ბაგრატ	¦ბაგრატ¦	¦ N Prop Anthr FirstName Voc ¦
+m	ბაგრატ	¦ბაგრატ¦	¦ N Prop Anthr FirstName Voc ¦
 	კურაპალატის	¦კურაპალატ·ი¦	¦ N Gen Sg ¦
 	მიერ	¦მიერ¦	¦ Pp <Gen> ¦
 	მრავალგზის	¦მრავალგზის¦მრავალგზის¦	¦ Adv Repet ¦ Adv ¦
 	გვემული	¦გვემულ·ი¦	¦ A Nom Att ¦
 	განძელი	¦განძელ·ი¦	¦ N Nom Sg ¦
-	ფადლონი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ფადლონი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ხარკს	¦ხარკ·ი¦	¦ N Dat Sg ¦
 	აძლევდა	¦მი-ცემ[ა]/ძლ[ევ]¦	¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	მეფეს	¦მეფ[ე]¦	¦ N Hum Dat Sg ¦
@@ -3544,10 +3530,10 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	და	¦და¦	¦ Cj Coord ¦
 	ქართლში	¦ქართლ·ი¦	¦ N Prop Top Area Dat PP PP:ში ¦
 	,	¦,¦	¦ Punct Comma ¦
-	აგებდა	¦*·გებ[ა]/გ¦*·გებ[ა]/გ¦	¦ V Act Impf LV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
+as	აგებდა	¦*·გებ[ა]/გ¦*·გებ[ა]/გ¦	¦ V Act Impf LV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	ციხე-ქალაქებს	¦ციხე-ქალაქ·ი¦	¦ N Dat Pl NewPl ¦
 	,	¦,¦	¦ Punct Comma ¦
-	აგარებსა	¦აგარებ·ი¦	¦ N Prop Top Place Dat L ¦
+l	აგარებსა	¦აგარებ·ი¦	¦ N Prop Top Place Dat L ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ეკლესიებს	¦ეკლესი[ა]¦	¦ N Dat Pl NewPl ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -3555,13 +3541,13 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ზავის	¦ზავ·ი¦	¦ N Gen Sg ¦
 	დროს	¦დრო¦	¦ N Temp Dat Sg ¦
 	ხანგრძლივი	¦ხანგრძლივ·ი¦	¦ A Gen Att ¦
-	ომებისათვის	¦ომებ[ა]/ომ¦ომ·ი¦	¦ N VN Gen Sg L PP PP:თვის ¦ N Gen Pl NewPl L PP PP:თვის ¦
+a	ომებისათვის	¦ომებ[ა]/ომ¦ომ·ი¦	¦ N VN Gen Sg L PP PP:თვის ¦ N Gen Pl NewPl L PP PP:თვის ¦
 	ემზადებოდა	¦*·მზადებ[ა]/მზად¦	¦ V Pass Impf <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	ახალ	¦ახ[ა]ლ·ი¦	¦ A Dat Att ¦
 	წელს	¦წ[ე]ლ·ი¦	¦ N Temp Dat Sg ¦
-	მცხეთაში	¦მცხეთა¦მცხეთ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
+as	მცხეთაში	¦მცხეთა¦მცხეთ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
 	იყო	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	ტაძრეულითურთ	¦ტაძრეულ·ი¦	¦ N Inst Sg Old PP PP:ურთ ¦
 	გიორგი	¦გიორგი¦	¦ N Prop Anthr FirstName Erg Att ¦
@@ -3584,7 +3570,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	კლარჯეთიდან	¦კლარჯეთ·ი¦	¦ N Prop Inst PP PP:დან ¦
 	ჩამოტანილი	¦ჩამო·ტანილ·ი/ტან¦	¦ A Part PastPart Pv Gen Att ¦
-	ძელიცხოველის	¦ძელიცხოველ·ი¦ძელიცხოვ[ე]ლ·ი¦	¦ N Gen Sg ¦ N Gen Sg ¦
+as	ძელიცხოველის	¦ძელიცხოველ·ი¦ძელიცხოვ[ე]ლ·ი¦	¦ N Gen Sg ¦ N Gen Sg ¦
 	ჯვარი	¦ჯვ[ა]რ·ი¦	¦ N Nom Sg ¦
 	მიართვა	¦მი·რთმევ[ა]/რთვ¦	¦ V Act Aor Pv <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -3597,11 +3583,11 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	და	¦და¦	¦ Cj Coord ¦
 	ძვირფასი	¦ძვირფას·ი¦	¦ A Nom Att ¦
 	ხატი	¦ხატ·ი¦	¦ N Nom Sg ¦
-	ამინაშატისა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ამინაშატისა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	3დილიდანვე	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	ეწვიენ	¦??¦	¦ N Prop Anthr LastName ¦
+	დილიდანვე	¦დილ[ა]¦	¦ N Temp Inst Sg PP PP:დან Encl:ვე Foc ¦
+u	ეწვიენ	¦??¦	¦ N Prop Anthr LastName ¦
 	მეფეს	¦მეფ[ე]¦	¦ N Hum Dat Sg ¦
 	ერისთავნი	¦ერისთავ·ი¦	¦ N Hum Nom Pl OldPl ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -3616,11 +3602,11 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	ეზოსმოძღვარი	¦ეზოსმოძღვარ·ი¦ეზოსმოძღვ[ა]რ·ი¦	¦ N Nom Sg ¦ N Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
-	ჩუხჩარხი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ჩუხჩარხი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მოლარეთუხუცესი	¦მოლარეთუხუცეს·ი¦	¦ N Hum Qual Nom Old Att ¦
 	და	¦დ[ა]¦	¦ N Hum Qual Nom Att ¦
-	მეღვინეთუხუცესი	¦მეღვინეთუხუცეს·ი¦	¦ N Prop Anthr LastName Nom ¦
+m	მეღვინეთუხუცესი	¦მეღვინეთუხუცეს·ი¦	¦ N Prop Anthr LastName Nom ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მენადირეთუხუცესმა	¦მენადირეთუხუცეს·ი¦	¦ N Hum Erg Sg ¦
 	სამი	¦სამ·ი¦	¦ Num Card Alpha Nom Att ¦
@@ -3637,7 +3623,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ერთი	¦ერთ·ი¦	¦ Num Card Alpha Nom Att ¦
 	თავიც	¦თავ·ი¦	¦ N Nom Sg Encl:ც Foc ¦
 	ველური	¦ველურ·ი¦	¦ A Gen Att ¦
-	ეშვისა	¦ეშვ·ი¦ეშვ·ი¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
+am	ეშვისა	¦ეშვ·ი¦ეშვ·ი¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
 	სავსებით	¦სავსებით¦	¦ Adv Deg ¦
 	მოოქროვილი	¦მო·ოქროვილ·ი/ოქროვ¦	¦ A Part PastPart Pv Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -3658,14 +3644,14 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	მსხვილნი	¦მსხვილ·ი¦	¦ A Nom Pl OldPl ¦
 	ბოძალნი	¦ბოძ[ა]ლ·ი¦	¦ N Nom Pl OldPl ¦
-	დიდნადირთათვის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დიდნადირთათვის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ქეიბურნი	¦ქეიბურ·ი¦	¦ N Nom Pl OldPl Old ¦
 	მხეცთათვის	¦მხეც·ი¦	¦ N Gen Pl OldPl PP PP:თვის ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ხარჩა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ხარჩა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	და	¦და¦	¦ Cj Coord ¦
-	ქიბურჯი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ქიბურჯი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ფრინველთათვის	¦ფრინველ·ი¦ფრინვ[ე]ლ·ი¦	¦ N Gen Pl OldPl PP PP:თვის ¦ N Gen Pl OldPl PP PP:თვის ¦
 	,	¦,¦	¦ Punct Comma ¦
 	დიდ-დიდნი	¦დიდ-დიდ·ი¦	¦ A Nom Pl OldPl ¦
@@ -3676,7 +3662,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მოიღო	¦მო·ღებ[ა]/ღ¦	¦ V Act Aor Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	მთელი	¦მთელ·ი¦	¦ A Quant Nom Att ¦
 	კონა	¦კონ[ა]¦	¦ N Nom Sg ¦
-	ისრებისა	¦ის[ა]რ·ი¦ის[ა]რ·ი¦	¦ N Gen Pl NewPl L ¦ N Gen Pl NewPl DNom DSg ¦
+am	ისრებისა	¦ის[ა]რ·ი¦ის[ა]რ·ი¦	¦ N Gen Pl NewPl L ¦ N Gen Pl NewPl DNom DSg ¦
 	ბანჯგვლიანმა	¦ბანჯგვლიან·ი¦	¦ A Erg Att ¦
 	მამამზე	¦მამამზე¦	¦ N Prop Anthr FirstName Erg Att ¦
 	ერისთავმა	¦ერისთავ·ი¦	¦ N Prop Anthr LastName Erg ¦
@@ -3693,7 +3679,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	ჭრელი	¦ჭრელ·ი¦	¦ A Nom Att ¦
 	და	¦და¦	¦ Cj Coord ¦
-	მჭრელი	¦მჭრელ·ი/ჭრელ¦მჭრელ·ი/ჭრ¦	¦ A Part PresPart Nom Att ¦ A Part PresPart Nom Att ¦
+al	მჭრელი	¦მჭრელ·ი/ჭრელ¦მჭრელ·ი/ჭრ¦	¦ A Part PresPart Nom Att ¦ A Part PresPart Nom Att ¦
 	თვალები	¦თვალ·ი¦	¦ N Nom Pl NewPl ¦
 	ისარივით	¦ის[ა]რ·ი¦	¦ N Nom Sg PP PP:ვით ¦
 	მიაჭდო	¦მი·ჭდობ[ა]/ჭდ¦	¦ V Act Aor Pv LV <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Sg DO:3 IO:3 ¦
@@ -3715,18 +3701,18 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ესე	¦ესე¦	¦ Adv Mann ¦
 	გულსა	¦გულ·ი¦	¦ N Dat Sg L ¦
 	შინა	¦შინ¦	¦ Adv Loc L ¦
-	განერთხოს	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	მეფობისა	¦მეფობ[ა]¦მეფობ[ა]¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
-	შენისა	¦შენ[ა]/შენ¦შენ[ა]/შენ¦	¦ N VN Gen Sg L ¦ N VN Gen Sg DNom DSg ¦
+u	განერთხოს	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+am	მეფობისა	¦მეფობ[ა]¦მეფობ[ა]¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
+am	შენისა	¦შენ[ა]/შენ¦შენ[ა]/შენ¦	¦ N VN Gen Sg L ¦ N VN Gen Sg DNom DSg ¦
 	ორგულსა	¦ორგულ·ი¦	¦ N Dat Sg L ¦
 	.	¦.¦	¦ Punct Period ¦
 	წყეულიმც	¦წყეულ·ი/წყ¦	¦ A Part PastPart Nom Sg Encl:მც Foc ¦
 	იყოს	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Opt <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	ყოველი	¦ყოვ[ე]ლ·ი¦	¦ A Quant Nom Sg ¦
-	გულბოროტი	¦??¦	¦ Unrecognized ¦
+u	გულბოროტი	¦??¦	¦ Unrecognized ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ქვეგამხედვარი	¦ქვეგამხედვ[ა]რ·ი¦	¦ N Nom Sg ¦
-	ტახტისა	¦ტახტ·ი¦ტახტ·ი¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
+am	ტახტისა	¦ტახტ·ი¦ტახტ·ი¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
 	შენისაი	¦შენ[ა]/შენ¦	¦ N VN Gen Sg DNom DSg Old ¦
 	”	¦”¦	¦ Punct Quote ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -3746,23 +3732,23 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მან	¦ის¦	¦ Pron Pers 3 Erg Sg ¦
 	ხმალივით	¦ხმ[ა]ლ·ი¦	¦ N Nom Sg PP PP:ვით ¦
 	შეაგება	¦შე·გებებ[ა]/გებ¦	¦ V Act Aor Pv <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Sg DO:3 IO:3 ¦
-	მზერა	¦მზერ[ა]/მზირ¦მზერ[ა]/მზერ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
+al	მზერა	¦მზერ[ა]/მზირ¦მზერ[ა]/მზერ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
 	ისრიმისფერ	¦ისრიმისფერ·ი¦	¦ A Dat Att ¦
 	თვალებს	¦თვალ·ი¦	¦ N Dat Pl NewPl ¦
 	,	¦,¦	¦ Punct Comma ¦
-	დაფანჩვულ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დაფანჩვულ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თეთრ	¦თეთრ·ი¦	¦ A Dat Att ¦
 	წარბებქვეშ	¦წარბა¦წარბ·ი¦	¦ N Dat Pl NewPl PP PP:ქვეშ ¦ N Dat Pl NewPl PP PP:ქვეშ ¦
 	თრითინებსავით	¦თრითინა¦თრითინ[ა]¦	¦ N Dat Pl NewPl PP PP:ვით ¦ N Dat Pl NewPl PP PP:ვით ¦
 	აწრიალებულ	¦ა·წრიალებულ·ი/წრიალ¦	¦ A Part PastPart Pv Abs ¦
 	,	¦,¦	¦ Punct Comma ¦
-	შემდგომ	¦შემდგომ¦	¦ Adv Temp ¦
+p	შემდგომ	¦შემდგომ¦	¦ Adv Temp ¦
 	ამისა	¦ეს¦	¦ Pron Pers 3 Gen Sg L ¦
 	,	¦,¦	¦ Punct Comma ¦
 	სპასალარისაკენ	¦სპასალარ·ი¦	¦ N Hum Gen Sg L Old PP PP:კენ ¦
 	გადაიტანა	¦გადა·ტან[ა]/ტან¦	¦ V Act Aor Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
-	მზერა	¦მზერ[ა]/მზირ¦მზერ[ა]/მზერ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
+al	მზერა	¦მზერ[ა]/მზირ¦მზერ[ა]/მზერ¦	¦ N VN Nom Sg ¦ N VN Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	ჭაბუა	¦ჭაბუა¦	¦ N Prop Anthr LastName Nom Att ¦
@@ -3799,8 +3785,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ყრუ	¦ყრუ¦	¦ A Nom Att ¦
 	კედელი	¦კედ[ე]ლ·ი¦	¦ N Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
-	გრაფ	¦გრაფ·ი¦გრაფ·ი¦გრაფ·ი¦გრაფ·ი¦	¦ N Hum Qual Inst Att ¦ N Hum Qual Gen Att ¦ N Hum Qual Dat Att ¦ N Hum Qual Advb Att ¦
-	სეგედის	¦??¦??¦	¦ N Prop Anthr FirstName ¦ N Prop Anthr LastName ¦
+am	გრაფ	¦გრაფ·ი¦გრაფ·ი¦გრაფ·ი¦გრაფ·ი¦	¦ N Hum Qual Inst Att ¦ N Hum Qual Gen Att ¦ N Hum Qual Dat Att ¦ N Hum Qual Advb Att ¦
+u	სეგედის	¦??¦??¦	¦ N Prop Anthr FirstName ¦ N Prop Anthr LastName ¦
 	ჩვენი	¦ჩვენ·ი¦	¦ Pron Poss Poss1Pl Gen Att ¦
 	სახლის	¦სახლ·ი¦	¦ N Gen Sg ¦
 	სარდაფში	¦სარდაფ·ი¦	¦ N Dat Sg PP PP:ში ¦
@@ -3865,14 +3851,14 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	როცა	¦როცა¦	¦ Cj Sub ¦
 	ეზოში	¦ეზო¦	¦ N Dat Sg PP PP:ში ¦
-	ვთამაშობდი	¦თამაშ·ი/თამაშ¦	¦ V MedAct Impf <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
+af	ვთამაშობდი	¦თამაშ·ი/თამაშ¦	¦ V MedAct Impf <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	იშვიათად	¦იშვიათ·ი¦	¦ A Advb Sg ¦
 	ამოდიოდა	¦ამო·სვლ[ა]/დი¦	¦ V MedPass Impf Pv <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	მასთან	¦ის¦	¦ Pron Pers 3 Dat Sg PP PP:თან ¦
 	ჩემთვის	¦მე¦	¦ Pron Pers 1 Gen Sg PP PP:თვის ¦
-	უცნობი	¦უცნობ·ი¦	¦ N Nom Sg ¦
+p	უცნობი	¦უცნობ·ი¦	¦ N Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ჩემზე	¦მე¦	¦ Pron Pers 1 Dat Sg PP PP:ზე ¦
 	უფროსი	¦უფროს·ი¦	¦ A Nom Att ¦
@@ -3884,7 +3870,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	დადიოდა	¦სიარულ·ი/დი¦	¦ V MedPass Impf Pv <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	ისინი	¦ის¦	¦ Pron Pers 3 Nom Pl ¦
-	სეგედისგან	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	სეგედისგან	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	გერმანულ	¦გერმანულ·ი¦	¦ A Dat Att ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ფრანგულ	¦ფრანგულ·ი¦	¦ A Dat Att ¦
@@ -3900,7 +3886,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	ფერმკრთალი	¦ფერმკრთალ·ი¦	¦ A Nom Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
-	სახედანაოჭებული	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	სახედანაოჭებული	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	მოხუცი	¦მოხუც·ი¦	¦ A Nom Sg ¦
 	იყო	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -3911,7 +3897,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ამინდისა	¦ამინდ·ი¦ამინდ·ი¦	¦ N Gen Sg L ¦ N Gen Sg DNom DSg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	შავი	¦შავ·ი¦	¦ N Nom Sg ¦
-	კასტორის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	კასტორის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	პალტო	¦პალტო¦	¦ N Nom Sg ¦
 	ეცვა	¦ცმ[ა]/ცვ¦	¦ V PassState Aor <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -3920,11 +3906,11 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	საყელო	¦საყელო¦	¦ N Nom Sg ¦
 	ჰქონდა	¦ქონ[ა]/ქონ¦	¦ V MedPass Inv Impf <S-DO> <AuxTrans> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
-	რკინისჩარჩოიან	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	რკინისჩარჩოიან	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	პენსნეს	¦პენსნე¦	¦ N Dat Sg ¦
 	იკეთებდა	¦*·კეთებ[ა]/კეთ¦	¦ V Act Impf SV <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ქვაბუნა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ქვაბუნა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ქუდი	¦ქუდ·ი¦	¦ N Nom Sg ¦
 	ეხურა	¦ხურვ[ა]/ხურ¦	¦ V MedPass Inv Aor <S-DO> <S:Dat> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -3960,14 +3946,14 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	სალამს	¦სალ[ა]მ·ი¦	¦ N Dat Sg ¦
 	ვერავინ	¦ვერავინ¦	¦ Pron Neg Hum Nom Pot ¦
-	დამასწრებდა	¦და·სწრებ[ა]/სწრ¦და·სწრებ[ა]/სწრ¦	¦ V Act Cond Pv <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦ V Act Cond Pv <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
+af	დამასწრებდა	¦და·სწრებ[ა]/სწრ¦და·სწრებ[ა]/სწრ¦	¦ V Act Cond Pv <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦ V Act Cond Pv <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	გამონაკლისი	¦გამონაკლის·ი¦	¦ N Nom Sg ¦
 	მხოლოდ	¦მხოლოდ¦	¦ Adv Deg ¦
-	სეგედი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	სეგედი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	იყო	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
-	თვალს	¦თვალ·ი¦თვ[ა]ლ·ი¦	¦ N Dat Sg ¦ N Dat Sg ¦
+al+	თვალს	¦თვალ·ი¦თვ[ა]ლ·ი¦	¦ N Dat Sg ¦ N Dat Sg ¦
 	ვარიდებდი	¦*·რიდებ[ა]/რიდ¦	¦ V Act Impf <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:3 ¦
 	იქამდე	¦იქამდე¦	¦ Adv Loc ¦
 	არ	¦არ¦	¦ Adv Neg ¦
@@ -3978,7 +3964,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მისი	¦მის·ი¦	¦ Pron Poss Poss3Sg Nom Att ¦
 	მოწაფე	¦მოწაფ[ე]¦	¦ N Hum Nom Sg ¦
 	არ	¦არ¦	¦ Adv Neg ¦
-	გავხდი	¦გა·ხდენ[ა]/ხდ¦გა·ხდ[ა]/ხდ¦	¦ V Act Fut Pv <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦ V Act Fut Pv <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
+al	გავხდი	¦გა·ხდენ[ა]/ხდ¦გა·ხდ[ა]/ხდ¦	¦ V Act Fut Pv <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦ V Act Fut Pv <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	–	¦–¦	¦ Punct Dash ¦
 	მეშინოდა	¦შინებ[ა]/შინ¦	¦ V MedPass Inv Impf <S-IO> <S:Dat> <IO:Gen> S:1Sg DO:3 ¦
@@ -4000,7 +3986,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გულის	¦გულ·ი¦	¦ N Gen Sg ¦
 	ფანცქალით	¦ფანცქალ·ი/ფანცქალ¦	¦ N VN Inst Sg ¦
 	მივაკაკუნე	¦მი·კაკუნებ[ა]/კაკუნ¦	¦ V Act Aor Pv <S-DO> <S:Erg> <DO:Nom> S:1Sg DO:3 ¦
-	სეგედის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	სეგედის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	სარდაფის	¦სარდაფ·ი¦	¦ N Gen Sg ¦
 	კარზე	¦კარ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -4027,7 +4013,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მომეგება	¦მო·გებებ[ა]/გებ¦	¦ V Pass Aor Pv <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:1Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ღიმილით	¦ღიმილ·ი¦	¦ N Inst Sg ¦
-	მომმართა	¦მო·მართვ[ა]/მართ¦	¦ V Act Aor Pv <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
+f?	მომმართა	¦მო·მართვ[ა]/მართ¦	¦ V Act Aor Pv <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Sg DO:3 IO:1Sg ¦
 	:	¦:¦	¦ Punct Colon ¦
 
 	–	¦–¦	¦ Punct Dash ¦
@@ -4035,10 +4021,10 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	ჰერ	¦ჰერ·ი¦	¦ N Abs Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	გთხოვთ	¦*·თხოვნ[ა]/თხოვ¦*·თხოვნ[ა]/თხოვ¦	¦ V Act Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:2Pl ¦ V Act Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Pl DO:3 IO:2 ¦
+am+	გთხოვთ	¦*·თხოვნ[ა]/თხოვ¦*·თხოვნ[ა]/თხოვ¦	¦ V Act Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Sg DO:3 IO:2Pl ¦ V Act Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:1Pl DO:3 IO:2 ¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	ბოდიშს	¦ბოდიშ·ი¦	¦ N Dat Sg ¦
-	ვიხდი	¦*·ხდენ[ა]/ხდ¦*·ხდ[ა]/ხდ¦	¦ V Act Pres SV <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦ V Act Pres SV <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
+al	ვიხდი	¦*·ხდენ[ა]/ხდ¦*·ხდ[ა]/ხდ¦	¦ V Act Pres SV <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦ V Act Pres SV <S-DO> <S:Nom> <DO:Dat> S:1Sg DO:3 ¦
 	თქვენს	¦თქვენ¦	¦ Pron Pers 2 Dat Pl ¦
 	წინაშე	¦წინაშე¦	¦ Pp <Gen> ¦
 	ახლავე	¦ახლავე¦	¦ Adv Temp ¦
@@ -4085,7 +4071,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	დავბრუნდები	¦და·ბრუნებ[ა]/ბრუნ¦	¦ V Pass Fut Pv <S> <S:Nom> S:1Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	სეგედი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	სეგედი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	საკუჭნაოში	¦საკუჭნაო¦	¦ N Dat Sg PP PP:ში ¦
 	შევიდა	¦შე·სვლ[ა]/ვ{ი}დ¦	¦ V MedPass Aor Pv <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -4112,7 +4098,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ერთ	¦ერთ·ი¦	¦ Num Card Alpha Dat Att ¦
 	კუთხეში	¦კუთხ[ე]¦	¦ N Dat Sg PP PP:ში ¦
 	იატაკიდან	¦იატაკ·ი¦	¦ N Inst Sg PP PP:დან ¦
-	ჭერამდე	¦ჭერა¦ჭერ·ი¦ჭერ·ი¦ჭერ[ა]/ჭირ¦ჭერ[ა]/ჭერ¦	¦ N Prop Top Place Advb PP PP:მდე ¦ N Prop Top Place Advb PP PP:მდე ¦ N Advb Sg PP PP:მდე ¦ N VN Advb Sg PP PP:მდე ¦ N VN Advb Sg PP PP:მდე ¦
+a	ჭერამდე	¦ჭერა¦ჭერ·ი¦ჭერ·ი¦ჭერ[ა]/ჭირ¦ჭერ[ა]/ჭერ¦	¦ N Prop Top Place Advb PP PP:მდე ¦ N Prop Top Place Advb PP PP:მდე ¦ N Advb Sg PP PP:მდე ¦ N VN Advb Sg PP PP:მდე ¦ N VN Advb Sg PP PP:მდე ¦
 	თარო	¦თარო¦	¦ N Nom Sg ¦
 	იყო	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	ამართული	¦ა·მართულ·ი/მართ¦	¦ A Part PastPart Pv Nom Sg ¦
@@ -4131,7 +4117,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ფიგურა	¦ფიგურ[ა]¦	¦ N Nom Sg ¦
 	იდგა	¦დგომ[ა]/დგ¦	¦ V MedPass Aor <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
-	სეგედის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	სეგედის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ამ	¦ეს¦	¦ Pron Dem Gen ¦
 	ფიგურის	¦ფიგურ[ა]¦	¦ N Gen Sg ¦
 	კეთებაში	¦კეთებ[ა]/კეთ¦	¦ N VN Dat Sg PP PP:ში ¦
@@ -4141,13 +4127,13 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ვიცი	¦ცოდნ[ა]/ც¦	¦ V MedPass Pres <S-DO> <S:Erg> <DO:Nom> S:1Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	სულ	¦სულ¦	¦ Adv Deg ¦
-	რამდენი	¦რამდენ·ი¦რამდენ·ი¦	¦ Pron Rel Nom Att ¦ Pron Int Nom Att ¦
+am	რამდენი	¦რამდენ·ი¦რამდენ·ი¦	¦ Pron Rel Nom Att ¦ Pron Int Nom Att ¦
 	ქანდაკება	¦ქანდაკებ[ა]/ქანდაკ¦ქანდაკებ[ა]¦	¦ N VN Nom Sg ¦ N Nom Sg ¦
 	იქნებოდა	¦ყოფნ[ა]/ქნ¦	¦ V Pass Cond <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მაგრამ	¦მაგრამ¦	¦ Cj Coord ¦
 	აქ	¦აქ¦	¦ Adv Loc ¦
-	იყკნენ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	იყვნენ	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Pl ¦
 	სხვადასხვა	¦სხვადასხვ[ა]¦	¦ A Gen Att ¦
 	ასაკის	¦ასაკ·ი¦	¦ N Temp Gen Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -4157,7 +4143,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ეროვნების	¦ეროვნებ[ა]¦	¦ N Gen Sg ¦
 	ადამიანები	¦ადამიან·ი¦	¦ N Hum Nom Pl NewPl ¦
 	–	¦–¦	¦ Punct Dash ¦
-	ქალები	¦ქალა¦ქალ·ი¦	¦ N Nom Pl NewPl ¦ N Hum Nom Pl NewPl ¦
+al	ქალები	¦ქალა¦ქალ·ი¦	¦ N Nom Pl NewPl ¦ N Hum Nom Pl NewPl ¦
 	და	¦და¦	¦ Cj Coord ¦
 	კაცები	¦კაც·ი¦	¦ N Hum Nom Pl NewPl ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -4204,11 +4190,11 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	კედელზე	¦კედ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	აყუდებულ	¦ა·ყუდებულ·ი/ყუდ¦	¦ A Part PastPart Pv Dat Att ¦
 	მიცვალებულს	¦მი·ცვალებულ·ი/ცვლ¦	¦ A Part PastPart Pv Dat Sg ¦
-	ჰგაკდა	¦??¦	¦ Unrecognized ¦
+	ჰგავდა	¦და·გვანებ[ა]/გავ¦	¦ V MedAct Impf <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	რადიო	¦რადიო¦	¦ N Nom Sg ¦
-	თავისუფლება	¦თავისუფლება¦თავისუფლებ[ა]/თავისუფლ¦თავისუფლებ[ა]¦	¦ N Prop Top Place Nom ¦ N VN Nom Sg ¦ N Nom Sg ¦
+a	თავისუფლება	¦თავისუფლება¦თავისუფლებ[ა]/თავისუფლ¦თავისუფლებ[ა]¦	¦ N Prop Top Place Nom ¦ N VN Nom Sg ¦ N Nom Sg ¦
 
 	თბილისში	¦თბილის·ი¦	¦ N Prop Top Place Dat PP PP:ში ¦
 	გარემოს	¦გარემოს·ი¦	¦ A Gen Old Att <OldPl> ¦
@@ -4264,7 +4250,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ორგანიზაციები	¦ორგანიზაცი[ა]¦	¦ N Nom Pl NewPl ¦
 	თავს	¦თავ·ი¦	¦ Pron Refl Dat ¦
 	ვალდებულად	¦ვალდებულ·ი¦	¦ A Advb Sg ¦
-	მიიჩნევენ	¦მი·ჩნევ[ა]/ჩნ¦მი·ჩნევ[ა]/ჩნ¦	¦ V Act Pres Pv SV <S-DO> <S:Nom> <DO:Dat> S:3Pl DO:3 ¦ V Act Fut Pv SV <S-DO> <S:Nom> <DO:Dat> S:3Pl DO:3 ¦
+am	მიიჩნევენ	¦მი·ჩნევ[ა]/ჩნ¦მი·ჩნევ[ა]/ჩნ¦	¦ V Act Pres Pv SV <S-DO> <S:Nom> <DO:Dat> S:3Pl DO:3 ¦ V Act Fut Pv SV <S-DO> <S:Nom> <DO:Dat> S:3Pl DO:3 ¦
 	განსაკუთრებული	¦გან·საკუთრებულ·ი/საკუთრ¦	¦ A Part PastPart Pv Inst Att ¦
 	ინტენსივობით	¦ინტენსივობ[ა]¦	¦ N Inst Sg ¦
 	გაავრცელონ	¦გა·ვრცელებ[ა]/ვრცელ¦	¦ V Act Opt Pv <S-DO> <S:Erg> <DO:Nom> S:3Pl DO:3 ¦
@@ -4306,7 +4292,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	კომიტეტმა	¦კომიტეტ·ი¦	¦ N Erg Sg ¦
 	დედაშენის	¦დედაშენ·ი¦	¦ N Hum Poss2Sg Gen Sg ¦
 	ძეგლთან	¦ძეგლ·ი¦	¦ N Dat Sg PP PP:თან ¦
-	ყვავილების	¦ყვავილებ[ა]/ყვავილ¦ყვავილ·ი¦	¦ N VN Gen Sg ¦ N Gen Pl NewPl ¦
+al	ყვავილების	¦ყვავილებ[ა]/ყვავილ¦ყვავილ·ი¦	¦ N VN Gen Sg ¦ N Gen Pl NewPl ¦
 	დღესასწაული	¦დღესასწაულ·ი¦	¦ N Nom Sg ¦
 	მოაწყო	¦მო·წყობ[ა]/წყ¦	¦ V Act Aor Pv <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -4323,14 +4309,14 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მესამე	¦მესამ[ე]¦	¦ Num Ord Alpha Dat Att ¦
 	მიკრორაიონში	¦მიკრორაიონ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	სკვერი	¦სკვერ·ი¦	¦ N Nom Sg ¦
-	გაიხსნა	¦გა·ხსნ[ა]/ხს[ე]ნ¦	¦ V Act Aor Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
+m	გაიხსნა	¦გა·ხსნ[ა]/ხს[ე]ნ¦	¦ V Act Aor Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
 	მთელი	¦მთელ·ი¦	¦ A Quant Gen Att ¦
 	დღის	¦დღ[ე]¦	¦ N Temp Gen Sg ¦
 	განმავლობაში	¦განმავლობ[ა]¦	¦ N Dat Sg Old PP PP:ში ¦
 	ქალაქში	¦ქალაქ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	მოძრაობდა	¦მოძრაობ[ა]/მოძრა¦	¦ V MedAct Impf <S> <S:Nom> S:3Sg ¦
-	ინფობუსი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ინფობუსი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომლის	¦რომ[ე]ლ·ი¦	¦ Pron Rel Gen Sg ¦
 	მეშვეობითაც	¦მეშვეობ[ა]¦	¦ N Inst Sg Rel:ც ¦
@@ -4343,25 +4329,28 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 	თუმცა	¦თუმცა¦	¦ Adv Sent ¦
 	,	¦,¦	¦ Punct Comma ¦
-	გარემოსდამცველთა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	გარემოსდამცველთა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ამგვარი	¦ამგვარ·ი¦	¦ A Gen Att ¦
 	აქტიურობის	¦აქტიურობ[ა]¦	¦ N Gen Sg ¦
 	მიუხედავად	¦მიუხედავად¦	¦ Pp <Gen> ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თბილისელების	¦თბილისელ·ი¦	¦ N Hum Gen Pl NewPl ¦
 	უმეტესობა	¦უმეტესობ[ა]¦	¦ N Nom Sg ¦
-	გარემოს	¦გარემოს·ი¦	¦ A Gen Old Att <OldPl> ¦
+l	გარემოს	¦გარემოს·ი¦	¦ A Gen Old Att <OldPl> ¦
 	დაცვის	¦და·ცვ[ა]/ც¦	¦ N VN Pv Gen Sg ¦
 	საერთაშორისო	¦საერთაშორისო¦	¦ A Dat Att ¦
 	დღესთან	¦დღ[ე]¦	¦ N Temp Dat Sg PP PP:თან ¦
 	დაკავშირებით	¦დაკავშირებით¦	¦ Pp <PP:თან> ¦
 	ინფორმირებული	¦ინფორმირებულ·ი¦	¦ A Nom Sg ¦
 	არ	¦არ¦	¦ Adv Neg ¦
-	იყო.-	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	იყო	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Aor <S> <AuxIntr> <S:Nom> S:3Sg ¦
+	.	¦.¦	¦ Punct Period ¦
+
+	–	¦–¦	¦ Punct Dash ¦
 	იცით	¦ცოდნ[ა]/ც¦	¦ V MedPass Pres <S-DO> <S:Erg> <DO:Nom> S:2Pl DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	დღეს	¦დღეს¦	¦ Adv Temp ¦
-	გარემოს	¦გარემოს·ი¦	¦ A Gen Old Att <OldPl> ¦
+l	გარემოს	¦გარემოს·ი¦	¦ A Gen Old Att <OldPl> ¦
 	დაცვის	¦და·ცვ[ა]/ც¦	¦ N VN Pv Gen Sg ¦
 	დღე	¦დღ[ე]¦	¦ N Temp Nom Sg ¦
 	რომ	¦რომ¦	¦ Compl ¦
@@ -4433,10 +4422,10 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	!	¦!¦	¦ Punct ExclPoint ¦
 	“	¦“¦	¦ Punct Quote ¦
 
-	ჩეხ	¦*·ჩეხვ[ა]/ჩეხ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:2Sg DO:3 ¦
+l	ჩეხ	¦*·ჩეხვ[ა]/ჩეხ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:2Sg DO:3 ¦
 	მწერალს	¦მწერ[ა]ლ·ი¦	¦ N Hum Dat Sg ¦
 	მილან	¦მილან·ი¦	¦ N Prop Top Place Abs ¦
-	კუნდერას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	კუნდერას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ბრალად	¦ბრალ·ი¦	¦ A Advb Sg ¦
 	აგენტის	¦აგენტ·ი¦	¦ N Hum Gen Sg ¦
 	დასმენა	¦და·სმენ[ა]/სმენ¦	¦ N VN Pv Nom Sg ¦
@@ -4448,8 +4437,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	სახელი	¦სახელ·ი¦	¦ N Nom Sg ¦
 	ხშირად	¦ხშირ·ი¦	¦ A Advb Sg ¦
 	შეგხვდებათ	¦შე·ხვდომ[ა]/ხვდ¦	¦ V Pass Fut Pv <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Pl ¦
-	პრესის	¦პრეს·ი¦პრეს[ა]¦	¦ N Gen Sg ¦ N Gen Sg ¦
-	ფურცლებზე	¦ფურც[ე]ლ·ი¦ფურც[ე]ლ[ა]¦	¦ N Dat Pl NewPl PP PP:ზე ¦ N Dat Pl NewPl PP PP:ზე ¦
+a	პრესის	¦პრეს·ი¦პრეს[ა]¦	¦ N Gen Sg ¦ N Gen Sg ¦
+a	ფურცლებზე	¦ფურც[ე]ლ·ი¦ფურც[ე]ლ[ა]¦	¦ N Dat Pl NewPl PP PP:ზე ¦ N Dat Pl NewPl PP PP:ზე ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თუმცა	¦თუმცა¦	¦ Cj Coord ¦
 	ამჯერად	¦ამჯერად¦	¦ Adv Temp ¦
@@ -4459,7 +4448,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	არ	¦არ¦	¦ Adv Neg ¦
 	გახლავთ	¦ხლებ[ა]/ახლ¦	¦ V MedPass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:2Pl ¦
 	.	¦.¦	¦ Punct Period ¦
-	კუნდერას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	კუნდერას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ბრალად	¦ბრალ·ი¦	¦ A Advb Sg ¦
 	ედება	¦დებ[ა]/დ¦	¦ V PassState Fut <S> <S:Nom> S:3Sg ¦
 	დასავლეთის	¦დასავლეთ·ი¦	¦ N Gen Sg ¦
@@ -4493,10 +4482,10 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	სტატიის	¦სტატი[ა]¦	¦ N Gen Sg ¦
 	ერთ-ერთი	¦ერთ-ერთ·ი¦	¦ A Quant Nom Att ¦
 	ავტორია	¦ავტორ·ი¦	¦ N Hum Nom Sg Encl:Aux ¦
-	ადამ	¦ადამ¦ადამ¦ადამ¦	¦ N Prop Anthr FirstName Nom Att ¦ N Prop Anthr FirstName Gen Att ¦ N Prop Anthr FirstName Dat Att ¦
-	ჰრადილეკი	¦??¦	¦ N Prop Anthr LastName ¦
+a	ადამ	¦ადამ¦ადამ¦ადამ¦	¦ N Prop Anthr FirstName Nom Att ¦ N Prop Anthr FirstName Gen Att ¦ N Prop Anthr FirstName Dat Att ¦
+u	ჰრადილეკი	¦??¦	¦ N Prop Anthr LastName ¦
 	,	¦,¦	¦ Punct Comma ¦
-	პრაღაში	¦პრაღა¦პრაღ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
+a+	პრაღაში	¦პრაღა¦პრაღ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
 	განთავსებული	¦გან·თავსებულ·ი/თავს¦	¦ A Part PastPart Pv Gen Att ¦
 	ტოტალიტარული	¦ტოტალიტარულ·ი¦	¦ A Gen Att ¦
 	რეჟიმების	¦რეჟიმ·ი¦	¦ N Gen Pl NewPl ¦
@@ -4506,7 +4495,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 	ბოლო	¦ბოლო¦	¦ A Dat Att ¦
 	ხანებში	¦ხ[ა]ნ·ი¦	¦ N Temp Dat Pl NewPl PP PP:ში ¦
-	ჰრადილეკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ჰრადილეკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	50-იან	¦50-იან·ი¦	¦ A Dat Att ¦
 	წლებში	¦წ[ე]ლ·ი¦	¦ N Temp Dat Pl NewPl PP PP:ში ¦
 	მომუშავე	¦მომუშავ[ე]/მუშა¦	¦ A Part PresPart Gen Att ¦
@@ -4544,27 +4533,27 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომელიც	¦რომ[ე]ლ·ი¦	¦ Pron Rel Nom Sg Rel:ც ¦
 	მძაფრსიუჟეტიანი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	რომანივით	¦რომან·ი¦რომან¦	¦ N Nom Sg PP PP:ვით ¦ N Prop Anthr FirstName Nom PP PP:ვით ¦
+a	რომანივით	¦რომან·ი¦რომან¦	¦ N Nom Sg PP PP:ვით ¦ N Prop Anthr FirstName Nom PP PP:ვით ¦
 	იკითხება	¦*·კითხვ[ა]/კითხ¦	¦ V Pass Pres <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 
 	1950	¦1950¦	¦ Num Card Digits ¦
 	წლის	¦წ[ე]ლ·ი¦	¦ N Temp Gen Sg ¦
 	მარტში	¦მარტ·ი¦	¦ N Temp Dat Sg PP PP:ში ¦
-	მიროსლავ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	დვორჟაჩეკი	¦??¦	¦ N Prop Anthr LastName ¦
+u	მიროსლავ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დვორჟაჩეკი	¦??¦	¦ N Prop Anthr LastName ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ანტიკომუნისტი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	ანტიკომუნისტი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	აგენტი	¦აგენტ·ი¦	¦ N Hum Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომელიც	¦რომ[ე]ლ·ი¦	¦ Pron Rel Nom Sg Rel:ც ¦
 	ემიგრაციაში	¦ემიგრაცი[ა]¦	¦ N Dat Sg PP PP:ში ¦
-	მყოფ	¦მყოფ·ი/ყოფ¦	¦ A Part PresPart Gen Att <OldPl> ¦
+m	მყოფ	¦მყოფ·ი/ყოფ¦	¦ A Part PresPart Gen Att <OldPl> ¦
 	ჩეხეთის	¦ჩეხეთ·ი¦	¦ N Prop Top Area Gen ¦
 	დაზვერვაში	¦და·ზვერვ[ა]/ზვერ¦	¦ N VN Pv Dat Sg PP PP:ში ¦
 	მუშაობდა	¦მუშაობ[ა]/მუშა¦	¦ V MedAct Impf <S> <S:Nom> S:3Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	პრაღაში	¦პრაღა¦პრაღ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
+a+	პრაღაში	¦პრაღა¦პრაღ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
 	ჩადის	¦ჩა·სვლ[ა]/დი¦	¦ V MedPass Pres Pv <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	მას	¦ის¦	¦ Pron Pers 3 Dat Sg ¦
@@ -4579,15 +4568,15 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 
 	პრაღაში	¦პრაღა¦პრაღ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
-	დვორჟაჩეკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დვორჟაჩეკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	შემთხვევით	¦შემთხვევით¦	¦ Adv Mann ¦
 	ხვდება	¦*·ხვდომ[ა]/ხვდ¦	¦ V Pass Pres <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	ძველ	¦ძველ·ი¦	¦ A Dat Att ¦
 	მეგობარ	¦მეგობ[ა]რ·ი¦	¦ N Hum Qual Dat Att ¦
 	ქალს	¦ქალ·ი¦	¦ N Hum Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ივა	¦ივა¦ია¦ი[ა]¦	¦ N Prop Anthr FirstName Nom ¦ N Prop Anthr FirstName Nom ¦ N Nom Sg ¦
-	მილიტკას	¦??¦	¦ N Prop Anthr LastName ¦
+a	ივა	¦ივა¦ია¦ი[ა]¦	¦ N Prop Anthr FirstName Nom ¦ N Prop Anthr FirstName Nom ¦ N Nom Sg ¦
+u	მილიტკას	¦??¦	¦ N Prop Anthr LastName ¦
 	,	¦,¦	¦ Punct Comma ¦
 	და	¦და¦	¦ Cj Coord ¦
 	თავის	¦თავის·ი¦	¦ Pron Poss Refl Poss3Sg Dat Att ¦
@@ -4596,7 +4585,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	საერთო	¦საერთო¦	¦ A Dat Att ¦
 	საცხოვრებელში	¦საცხოვრებ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	,	¦,¦	¦ Punct Comma ¦
-	მილიტკას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	მილიტკას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ოთახში	¦ოთახ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რამდენიმე	¦რამდენიმე¦	¦ A Quant Inst Att ¦
@@ -4607,26 +4596,26 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მოულოდნელი	¦მოულოდნელ·ი¦	¦ A Inst Att ¦
 	შეხვედრით	¦შეხვედრ[ა]¦შე·ხვდომ[ა]/ხვდ¦	¦ N Inst Sg ¦ N VN Pv Inst Sg ¦
 	გაკვირვებული	¦გა·კვირვებულ·ი/კვირვ¦	¦ A Part PastPart Pv Nom Sg ¦
-	მილიტკა	¦??¦	¦ Unrecognized ¦
+u	მილიტკა	¦??¦	¦ Unrecognized ¦
 	ამ	¦ეს¦	¦ Pron Dem Dat ¦
 	ამბავს	¦ამბ[ავ]·ი¦	¦ N Dat Sg ¦
 	სადილობისას	¦სადილობ[ა]/სადილ¦	¦ N VN Converb ¦
 	თავის	¦თავის·ი¦	¦ Pron Poss Refl Poss3Sg Dat Att ¦
 	შეყვარებულს	¦შე·ყვარებულ·ი/ყვარ¦	¦ A Part PastPart Pv Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	მიროსლავ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	დლასკს	¦??¦	¦ N Prop Anthr LastName ¦
+u	მიროსლავ	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დლასკს	¦??¦	¦ N Prop Anthr LastName ¦
 	,	¦,¦	¦ Punct Comma ¦
 	უყვება	¦მო·ყოლ[ა]/ყვ¦	¦ V Pass Pres OV <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
-	დლასკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	დლასკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	კი	¦კი¦	¦ Adv Disc ¦
 	,	¦,¦	¦ Punct Comma ¦
 	თავის	¦თავის·ი¦	¦ Pron Poss Refl Poss3Sg Dat Att ¦
 	მხრივ	¦მხრივ¦	¦ Pp <Gen> ¦
 	,	¦,¦	¦ Punct Comma ¦
-	დვორჟაჩეკის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	პრაღაში	¦პრაღა¦პრაღ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
+u	დვორჟაჩეკის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+a+	პრაღაში	¦პრაღა¦პრაღ[ა]¦	¦ N Prop Top Place Dat PP PP:ში ¦ N Prop Top Place Dat PP PP:ში ¦
 	ჩასვლის	¦ჩა·სვლ[ა]/სვლ¦	¦ N VN Pv Gen Sg ¦
 	ამბავს	¦ამბ[ავ]·ი¦	¦ N Dat Sg ¦
 	თავის	¦თავის·ი¦	¦ Pron Poss Refl Poss3Sg Dat Att ¦
@@ -4635,7 +4624,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მეგობარს	¦მეგობ[ა]რ·ი¦	¦ N Hum Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	მილან	¦მილან·ი¦	¦ N Prop Top Place Abs ¦
-	კუნდერას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	კუნდერას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	უზიარებს	¦*·ზიარებ[ა]/ზიარ¦	¦ V Act Pres OV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -4657,7 +4646,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ახლა	¦ახლა¦	¦ Adv Temp ¦
 	აღმოაჩინეს	¦აღმო·ჩენ[ა]/ჩინ¦	¦ V Act Aor Pv <S-DO> <S:Erg> <DO:Nom> S:3Pl DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
-	კუნდერა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	კუნდერა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ამ	¦ეს¦	¦ Pron Dem Inst ¦
 	ინფორმაციით	¦ინფორმაცი[ა]¦	¦ N Inst Sg ¦
 	მაშინვე	¦მაშინვე¦	¦ Adv Temp ¦
@@ -4667,8 +4656,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	რის	¦რის·ი¦რის·ი¦	¦ Pron Poss Rel Nonhum Dat Att ¦ Pron Poss Int Nonhum Dat Att ¦
 	შემდეგაც	¦შემდეგ¦	¦ Pp <Gen> Encl:ც Foc ¦
 	პოლიციელები	¦პოლიციელ·ი¦	¦ N Hum Nom Pl NewPl ¦
-	ივა	¦ივა¦ია¦ი[ა]¦	¦ N Prop Anthr FirstName Nom ¦ N Prop Anthr FirstName Nom ¦ N Nom Sg ¦
-	მილიტკას	¦??¦	¦ N Prop Anthr LastName ¦
+a	ივა	¦ივა¦ია¦ი[ა]¦	¦ N Prop Anthr FirstName Nom ¦ N Prop Anthr FirstName Nom ¦ N Nom Sg ¦
+u	მილიტკას	¦??¦	¦ N Prop Anthr LastName ¦
 	საერთო	¦საერთო¦	¦ A Dat Att ¦
 	საცხოვრებელში	¦საცხოვრებ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	აკითხავენ	¦კითხვ[ა]/კითხ¦	¦ V MedAct Pres LV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Pl DO:3 IO:3 ¦
@@ -4676,8 +4665,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 
 	ინსტიტუტის	¦ინსტიტუტ·ი¦	¦ N Gen Sg ¦
 	თანამშრომელი	¦თანამშრომ[ე]ლ·ი¦	¦ N Hum Nom Sg ¦
-	ირჟი	¦??¦	¦ N Prop Anthr FirstName ¦
-	რაიხლი	¦??¦	¦ N Prop Anthr LastName ¦
+u?	ირჟი	¦??¦	¦ N Prop Anthr FirstName ¦
+u?	რაიხლი	¦??¦	¦ N Prop Anthr LastName ¦
 	პოლიციის	¦პოლიცი[ა]¦	¦ N Gen Sg ¦
 	დოკუმენტიდან	¦დოკუმენტ·ი¦	¦ N Inst Sg PP PP:დან ¦
 	ნაწყვეტს	¦ნაწყვეტ·ი¦	¦ N Dat Sg ¦
@@ -4685,16 +4674,17 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	:	¦:¦	¦ Punct Colon ¦
 
 	[	¦[¦	¦ Punct Bracket ¦
-	რაიხლის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	ხმა„	¦??¦	¦ N Prop Anthr LastName ¦
-	ძებნილთა	¦ძებნილ·ი/ძებნ¦ძებნილ·ი/ძებ¦	¦ A Part PastPart Gen Pl OldPl ¦ A Part PastPart Gen Pl OldPl ¦
+u?	რაიხლის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+	ხმა	¦ხმ[ა]¦	¦ N Nom Sg ¦
+	„	¦„¦	¦ Punct Quote ¦
+a+	ძებნილთა	¦ძებნილ·ი/ძებნ¦ძებნილ·ი/ძებ¦	¦ A Part PastPart Gen Pl OldPl ¦ A Part PastPart Gen Pl OldPl ¦
 	სიაში	¦სი[ა]¦	¦ N Dat Sg PP PP:ში ¦
 	ეწერა	¦წერ[ა]/წერ¦	¦ V PassState Aor <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	ამ	¦ეს¦	¦ Pron Dem Dat ¦
 	პირს	¦პირ·ი¦	¦ N Dat Sg ¦
-	პლზენის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u?	პლზენის	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	რეგიონალური	¦რეგიონალურ·ი¦	¦ A Nom Att ¦
 	პოლიცია	¦პოლიცი[ა]¦	¦ N Nom Sg ¦
 	ეძებს	¦ძებნ[ა]/ძებ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
@@ -4708,12 +4698,12 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	საცხოვრებელში	¦საცხოვრებ[ე]ლ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	მივიდნენ	¦მი·სვლ[ა]/ვ{ი}დ¦	¦ V MedPass Aor Pv <S> <S:Nom> S:3Pl ¦
 	და	¦და¦	¦ Cj Coord ¦
-	მილიტკას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u?	მილიტკას	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ოთახთან	¦ოთახ·ი¦	¦ N Dat Sg PP PP:თან ¦
 	მორიგეობა	¦მორიგეობ[ა]/მორიგე¦	¦ N VN Nom Sg ¦
 	დაიწყეს	¦და·წყებ[ა]/წყ¦	¦ V Act Aor Pv SV <S-DO> <S:Erg> <DO:Nom> S:3Pl DO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
-	დვორჟაჩეკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u?	დვორჟაჩეკი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	ოთახში	¦ოთახ·ი¦	¦ N Dat Sg PP PP:ში ¦
 	საღამოს	¦საღამო¦	¦ N Temp Gen Sg ¦
 	რვა	¦რვ[ა]¦	¦ Num Card Alpha Dat Att ¦
@@ -4729,7 +4719,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	“	¦“¦	¦ Punct Quote ¦
 
 	თავიდან	¦თავ·ი¦	¦ Pron Refl Inst PP PP:დან ¦
-	დვორჟაჩეკს	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u?	დვორჟაჩეკს	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	სიკვდილით	¦სიკვდილ·ი¦	¦ N Inst Sg ¦
 	დასჯა	¦და·სჯ[ა]/სჯ¦	¦ N VN Pv Nom Sg ¦
 	ემუქრებოდა	¦და·მუქრებ[ა]/მუქრ¦	¦ V Pass Impf <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
@@ -4738,7 +4728,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მას	¦ის¦	¦ Pron Pers 3 Dat Sg ¦
 	22	¦22¦	¦ Num Card Digits ¦
 	წლით	¦წ[ე]ლ·ი¦	¦ N Temp Inst Sg ¦
-	თავისუფლების	¦თავისუფლება¦თავისუფლებ[ა]/თავისუფლ¦თავისუფლებ[ა]¦	¦ N Prop Top Place Gen ¦ N VN Gen Sg ¦ N Gen Sg ¦
+a	თავისუფლების	¦თავისუფლება¦თავისუფლებ[ა]/თავისუფლ¦თავისუფლებ[ა]¦	¦ N Prop Top Place Gen ¦ N VN Gen Sg ¦ N Gen Sg ¦
 	აღკვეთა	¦აღ·კვეთ[ა]/კვეთ¦	¦ N VN Pv Nom Sg ¦
 	მიუსაჯეს	¦მი·სჯ[ა]/საჯ¦	¦ V Act Aor Pv OV <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:3Pl DO:3 IO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -4762,7 +4752,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გენერალური	¦გენერალურ·ი¦	¦ A Nom Att ¦
 	მდივანი	¦მდივ[ა]ნ·ი¦	¦ N Hum Nom Sg ¦
 
-	ანანი	¦ანა¦	¦ N Prop Anthr FirstName Nom Pl OldPl ¦
+m	ანანი	¦ანა¦	¦ N Prop Anthr FirstName Nom Pl OldPl ¦
 	გაეროს	¦გაერო¦	¦ N Prop Org Gen ¦
 	თითქმის	¦თითქმის¦	¦ Adv Deg ¦
 	მთელი	¦მთელ·ი¦	¦ A Quant Gen Att ¦
@@ -4784,8 +4774,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ვინ	¦ვინ¦	¦ Pron Int Hum Erg ¦
 	შეიძლება	¦შე·ძლებ[ა]/ძლ¦	¦ V Pass Pres Pv <S> <S:Nom> S:3Sg ¦
 	შეცვალოს	¦შე·ცვლ[ა]/ცვალ¦	¦ V Act Opt Pv <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
-	კოფი	¦კოფ·ი¦	¦ N Nom Sg Dialect ¦
-	ანანი	¦ანანი¦	¦ N Prop Anthr FirstName Nom ¦
+l	კოფი	¦კოფ·ი¦	¦ N Nom Sg Dialect ¦
+m	ანანი	¦ანანი¦	¦ N Prop Anthr FirstName Nom ¦
 	?	¦?¦	¦ Punct IntMark ¦
 
 	გაეროში	¦გაერო¦	¦ N Prop Org Dat PP PP:ში ¦
@@ -4793,7 +4783,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	შტატების	¦შტატ·ი¦	¦ N Gen Pl NewPl ¦
 	ელჩის	¦ელჩ·ი¦	¦ N Hum Gen Sg ¦
 	ჯონ	¦ჯონ¦	¦ N Prop Anthr FirstName Voc ¦
-	ბოსტონის	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Gen ¦ N Prop Gen ¦ N Gen Sg ¦
+p	ბოსტონის	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Gen ¦ N Prop Gen ¦ N Gen Sg ¦
 	შეფასებით	¦შე·ფასებ[ა]/ფას¦	¦ N VN Pv Inst Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ახალი	¦ახ[ა]ლ·ი¦	¦ A Gen Att ¦
@@ -4817,20 +4807,20 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 
 	თუმცა	¦თუმცა¦	¦ Cj Coord ¦
-	ბოსტონი	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Nom ¦ N Prop Nom ¦ N Nom Sg ¦
+p	ბოსტონი	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Nom ¦ N Prop Nom ¦ N Nom Sg ¦
 	ამბობს	¦თქმ[ა]/მბობ¦	¦ V MedAct Pres <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	ამ	¦ეს¦	¦ Pron Dem Dat ¦
 	ეტაპზე	¦ეტაპ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	კონკრეტული	¦კონკრეტულ·ი¦	¦ A Gen Att ¦
-	პირების	¦პირებ[ა]/პირ¦პირ·ი¦	¦ N VN Gen Sg ¦ N Gen Pl NewPl ¦
+a	პირების	¦პირებ[ა]/პირ¦პირ·ი¦	¦ N VN Gen Sg ¦ N Gen Pl NewPl ¦
 	დასახელება	¦და·სახელებ[ა]/სახელ¦	¦ N VN Pv Nom Sg ¦
 	ნაადრევია	¦ნაადრევ·ი¦	¦ A Nom Sg Encl:Aux ¦
 	:	¦:¦	¦ Punct Colon ¦
 
 	[	¦[¦	¦ Punct Bracket ¦
-	ბოსტონის	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Gen ¦ N Prop Gen ¦ N Gen Sg ¦
+p	ბოსტონის	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Gen ¦ N Prop Gen ¦ N Gen Sg ¦
 	ხმა	¦ხმ[ა]¦	¦ N Nom Sg ¦
 	]	¦]¦	¦ Punct Bracket ¦
 	„	¦„¦	¦ Punct Quote ¦
@@ -4860,7 +4850,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მხოლოდ	¦მხოლოდ¦	¦ Adv Deg ¦
 	ეს	¦ეს¦	¦ Pron Pers 3 Nom Sg ¦
 	შემიძლია	¦შე·ძლებ[ა]/ძლ¦	¦ V MedPass Inv Pres Pv OV <S-DO> <S:Dat> <DO:Nom> S:1Sg DO:3 ¦
-	გითხრათ	¦თხრობ[ა]/თხრ¦თქმ[ა]/თხ[ა]რ¦	¦ V MedAct Opt OV <S-IO> <S:Erg> <IO:Dat> S:1Sg IO:2Pl ¦ V Act Opt <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:1Sg DO:3 IO:2Pl ¦
+al	გითხრათ	¦თხრობ[ა]/თხრ¦თქმ[ა]/თხ[ა]რ¦	¦ V MedAct Opt OV <S-IO> <S:Erg> <IO:Dat> S:1Sg IO:2Pl ¦ V Act Opt <S-DO-IO> <S:Erg> <DO:Nom> <IO:Dat> S:1Sg DO:3 IO:2Pl ¦
 	.	¦.¦	¦ Punct Period ¦
 	“	¦“¦	¦ Punct Quote ¦
 
@@ -4872,7 +4862,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	მდივანს	¦მდივ[ა]ნ·ი¦	¦ N Hum Dat Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	უშიშროების	¦უშიშროებ[ა]¦	¦ N Gen Sg ¦
-	საბჭოს	¦საბჭო¦საბჭო¦	¦ N Gen Sg ¦ N Dat Sg ¦
+a	საბჭოს	¦საბჭო¦საბჭო¦	¦ N Gen Sg ¦ N Dat Sg ¦
 	რეკომენდაციის	¦რეკომენდაცი[ა]¦	¦ N Gen Sg ¦
 	გათვალისწინებით	¦გა·თვალისწინებ[ა]/თვალისწინ¦	¦ N VN Pv Inst Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -4896,14 +4886,14 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	იყოს	¦ყოფნ[ა]/ყ[ავ]¦	¦ V Pass Opt <S> <AuxIntr> <S:Nom> S:3Sg ¦
 	ვეტოს	¦ვეტო¦	¦ N Gen Sg ¦
 	უფლების	¦უფლებ[ა]¦უფ[ა]ლ·ი¦	¦ N Gen Sg ¦ N Hum Gen Pl NewPl ¦
-	მქონე	¦მქონ[ე]/ქონ¦	¦ A Part PresPart Nom Sg ¦
+m	მქონე	¦მქონ[ე]/ქონ¦	¦ A Part PresPart Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	საბჭოს	¦საბჭო¦	¦ N Gen Sg ¦
 	ხუთი	¦ხუთ·ი¦	¦ Num Card Alpha Nom Att ¦
 	მუდმივი	¦მუდმივ·ი¦	¦ A Nom Att ¦
 	წევრი	¦წევრ·ი¦	¦ N Nom Sg ¦
 	ქვეყნიდან	¦ქვეყ[ა]ნ[ა]¦	¦ N Inst Sg PP PP:დან ¦
-	რომელიმეს	¦რომელიმე¦რომელიმე¦	¦ Pron SIndef Gen ¦ A Gen Sg ¦
+a?	რომელიმეს	¦რომელიმე¦რომელიმე¦	¦ Pron SIndef Gen ¦ A Gen Sg ¦
 	მოქალაქე	¦მოქალაქ[ე]¦	¦ N Hum Nom Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	ეს	¦ეს¦	¦ Pron Pers 3 Nom Sg ¦
@@ -4942,8 +4932,8 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	შტატების	¦შტატ·ი¦	¦ N Gen Pl NewPl ¦
 	ყოფილი	¦ყოფილ·ი/ყოფ¦	¦ A Part PastPart Nom Att ¦
 	პრეზიდენტი	¦პრეზიდენტ·ი¦	¦ N Hum Nom Sg ¦
-	ბილ	¦ბილ·ი¦ბილ·ი¦	¦ N Prop Abs ¦ N Abs Sg ¦
-	კინტონი	¦კინტო¦	¦ N Nom Pl OldPl Old ¦
+l	ბილ	¦ბილ·ი¦ბილ·ი¦	¦ N Prop Abs ¦ N Abs Sg ¦
+u?	კლინტონი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ალბათ	¦ალბათ¦	¦ Adv Comm ¦
 	,	¦,¦	¦ Punct Comma ¦
@@ -4956,51 +4946,51 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	პოსტზე	¦პოსტ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	.	¦.¦	¦ Punct Period ¦
 
-	კოფი	¦კოფ·ი¦	¦ N Nom Sg Dialect ¦
-	ანანის	¦ანანი¦	¦ N Prop Anthr FirstName Gen ¦
+l	კოფი	¦კოფ·ი¦	¦ N Nom Sg Dialect ¦
+m	ანანის	¦ანანი¦	¦ N Prop Anthr FirstName Gen ¦
 	შესაძლო	¦შე·საძლო/ძლ¦	¦ A Part FutPart Pv Advb Att ¦
 	შემცვლელებად	¦შემცვლელ·ი¦	¦ A Advb Pl NewPl ¦
 	კერძო	¦კერძო¦	¦ A Dat Att ¦
 	საუბრებში	¦საუბ[ა]რ·ი/საუბრ¦	¦ N VN Dat Pl NewPl PP PP:ში ¦
 	სხვა	¦სხვ[ა]¦	¦ A Nom Att ¦
 	სახელები	¦სახელ·ი¦	¦ N Nom Pl NewPl ¦
-	ისმის	¦სმენ[ა]/სმ¦*·სმ[ა]/ს¦	¦ V Pass Pres <S> <S:Nom> S:3Sg ¦ V Pass Pres <S> <S:Nom> S:3Sg ¦
+a	ისმის	¦სმენ[ა]/სმ¦*·სმ[ა]/ს¦	¦ V Pass Pres <S> <S:Nom> S:3Sg ¦ V Pass Pres <S> <S:Nom> S:3Sg ¦
 	.	¦.¦	¦ Punct Period ¦
 	მათ	¦ის¦	¦ Pron Pers 3 Gen Pl ¦
 	შორის	¦შორის¦	¦ Pp <Dat/Gen> ¦
 	არიან	¦ყოფნ[ა]/არ¦	¦ V MedPass Pres <S> <AuxIntr> <S:Nom> S:3Pl ¦
 	:	¦:¦	¦ Punct Colon ¦
 	პოლონეთის	¦პოლონეთ·ი¦	¦ N Prop Top Area Gen ¦
-	ყოფილი	¦ყოფილ·ი/ყოფ¦ყოფილ·ი/ყოფ¦	¦ A Part PastPart Nom Att ¦ A Part PastPart Gen Att ¦
-	პრეზიდენტი	¦პრეზიდენტ·ი¦პრეზიდენტ·ი¦	¦ N Hum Qual Nom Att ¦ N Hum Qual Gen Att ¦
-	ალექსანდრ	¦ალექსანდრ¦ალექსანდრ¦	¦ N Prop Anthr FirstName Nom Att ¦ N Prop Anthr FirstName Gen Att ¦
-	კვაშნევსკი	¦??¦	¦ N Prop Anthr LastName ¦
+a	ყოფილი	¦ყოფილ·ი/ყოფ¦ყოფილ·ი/ყოფ¦	¦ A Part PastPart Nom Att ¦ A Part PastPart Gen Att ¦
+a	პრეზიდენტი	¦პრეზიდენტ·ი¦პრეზიდენტ·ი¦	¦ N Hum Qual Nom Att ¦ N Hum Qual Gen Att ¦
+a	ალექსანდრ	¦ალექსანდრ¦ალექსანდრ¦	¦ N Prop Anthr FirstName Nom Att ¦ N Prop Anthr FirstName Gen Att ¦
+u?	კვაშნევსკი	¦??¦	¦ N Prop Anthr LastName ¦
 	,	¦,¦	¦ Punct Comma ¦
 	ტაილანდის	¦ტაილანდ·ი¦	¦ N Prop Top Area Gen ¦
-	ვიცე-	¦*·ცემ[ა]/ც¦*·ცემ[ა]/ც¦	¦ V Act Conj-II SV <S-DO> <S:Erg> <DO:Nom> S:1Sg DO:3Sg ¦ V Act Aor SV <S-DO> <S:Erg> <DO:Nom> S:1Sg DO:3Sg ¦
-	პრემიერი	¦პრემიერ·ი¦	¦ N Hum Nom Sg ¦
-	სურაკიარტ	¦??¦	¦ N Prop Anthr FirstName ¦
-	სატირატაი	¦??¦	¦ N Prop Anthr LastName ¦
+	ტაილანდის	¦ტაილანდ·ი¦	¦ N Prop Top Area Gen ¦
+	ვიცე-პრემიერი	¦ვიცე-პრემიერ·ი¦	¦ N Hum Nom Sg ¦
+u?	სურაკიარტ	¦??¦	¦ N Prop Anthr FirstName ¦
+u?	სატირატაი	¦??¦	¦ N Prop Anthr LastName ¦
 	,	¦,¦	¦ Punct Comma ¦
 	სამხრეთ	¦სამხრეთ კორე[ა]¦	¦ N Prop Top Area Gen ¦
 	კორეის	¦¦	¦ <MWE> ¦
 	საგარეო	¦საგარეო¦	¦ A Gen Att ¦
 	საქმეთა	¦საქმ[ე]¦	¦ N Gen Pl OldPl ¦
 	მინისტრი	¦მინისტრ·ი¦	¦ N Hum Nom Sg ¦
-	ბან	¦*·ბან[ა]/ბან¦	¦ V Act Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:2Sg DO:3 IO:3 ¦
-	კი	¦კი¦	¦ Adv Disc ¦
-	მუნი	¦მუნ·ი¦	¦ N Nom Sg ¦
+u	ბან	¦*·ბან[ა]/ბან¦	¦ V Act Pres <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:2Sg DO:3 IO:3 ¦
+u	კი	¦კი¦	¦ Adv Disc ¦
+u	მუნი	¦მუნ·ი¦	¦ N Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	გაეროს	¦გაერო¦	¦ N Prop Org Dat ¦
 	განიარაღების	¦გან·იარაღებ[ა]/იარაღ¦	¦ N VN Pv Gen Sg ¦
-	უწყების	¦უწყებ[ა]/უწყ¦უწყებ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
+a+	უწყების	¦უწყებ[ა]/უწყ¦უწყებ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
 	ყოფილი	¦ყოფილ·ი/ყოფ¦	¦ A Part PastPart Nom Att ¦
 	ხელმძღვანელი	¦ხელმძღვანელ·ი¦	¦ N Hum Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	შრი	¦*·შრობ[ა]/შრ¦	¦ V Pass Aor Imperfective <S> <S:Nom> S:2Sg ¦
-	კანკელი	¦კანკელ·ი¦	¦ N Nom Sg ¦
-	ჯაიანმა	¦ჯაიან·ი¦	¦ N Prop Anthr LastName Erg ¦
-	დჰანაპალა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+u	შრი	¦*·შრობ[ა]/შრ¦	¦ V Pass Aor Imperfective <S> <S:Nom> S:2Sg ¦
+u	კანკელი	¦კანკელ·ი¦	¦ N Nom Sg ¦
+u	ჯაიანმა	¦ჯაიან·ი¦	¦ N Prop Anthr LastName Erg ¦
+u	დჰანაპალა	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
 	და	¦და¦	¦ Cj Coord ¦
 	გენერალური	¦გენერალურ·ი¦	¦ A Gen Att ¦
 	ასამბლეის	¦ასამბლე[ა]¦	¦ N Gen Sg Old ¦
@@ -5008,15 +4998,15 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	პრეზიდენტი	¦პრეზიდენტ·ი¦	¦ N Hum Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	შვედი	¦შვედ·ი¦	¦ N Hum Nom Sg ¦
-	იან	¦იან·ი¦	¦ N Abs Sg ¦
+p	იან	¦იან·ი¦	¦ N Abs Sg ¦
 	ელისონი	¦ელისო¦	¦ N Prop Anthr FirstName Nom Pl OldPl ¦
 	.	¦.¦	¦ Punct Period ¦
 	თუმცა	¦თუმცა¦	¦ Cj Coord ¦
 	ამ	¦ეს¦	¦ Pron Dem Gen ¦
 	უკანასკნელის	¦უკანასკნელ·ი¦	¦ A Gen Sg ¦
 	წარმომადგენელი	¦წარმომადგენ[ე]ლ·ი¦	¦ N Hum Nom Sg ¦
-	პრაგატი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
-	პასკაში	¦პასკ[ა]¦	¦ N Dat Sg PP PP:ში ¦
+u?	პრაგატი	¦??¦??¦	¦ Unrecognized ¦ N Prop ¦
+l	პასკაში	¦პასკ[ა]¦	¦ N Dat Sg PP PP:ში ¦
 	აცხადებს	¦*·ცხადებ[ა]/ცხად¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
@@ -5028,14 +5018,14 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	და	¦და¦	¦ Cj Coord ¦
 	,	¦,¦	¦ Punct Comma >P ¦
 	გავრცელებული	¦გა·ვრცელებულ·ი/ვრცელ¦	¦ A Part PastPart Pv Gen Att ¦
-	ცნობების	¦ცნობებ[ა]/ცნობ¦ცნობ[ა]/ცნ¦	¦ N VN Gen Sg ¦ N VN Gen Pl NewPl ¦
+a	ცნობების	¦ცნობებ[ა]/ცნობ¦ცნობ[ა]/ცნ¦	¦ N VN Gen Sg ¦ N VN Gen Pl NewPl ¦
 	მიუხედავად	¦მიუხედავად¦	¦ Pp <Gen> ¦
 	,	¦,¦	¦ Punct Comma ¦
 	გენერალური	¦გენერალურ·ი¦	¦ A Gen Att ¦
 	მდივნის	¦მდივ[ა]ნ·ი¦	¦ N Hum Gen Sg ¦
 	პოსტზე	¦პოსტ·ი¦	¦ N Dat Sg PP PP:ზე ¦
 	კანდიდატურის	¦კანდიდატურ[ა]¦	¦ N Gen Sg ¦
-	წარდგენას	¦წარ·დგენ[ა]/დგინ¦წარ·დგენ[ა]/დგენ¦	¦ N VN Pv Dat Sg ¦ N VN Pv Dat Sg ¦
+a+	წარდგენას	¦წარ·დგენ[ა]/დგინ¦წარ·დგენ[ა]/დგენ¦	¦ N VN Pv Dat Sg ¦ N VN Pv Dat Sg ¦
 	არ	¦არ¦	¦ Adv Neg ¦
 	აპირებს	¦და·პირებ[ა]/პირ¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	.	¦.¦	¦ Punct Period ¦
@@ -5064,19 +5054,19 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	.	¦.¦	¦ Punct Period ¦
 	თუმცა	¦თუმცა¦	¦ Cj Coord ¦
 	ჯონ	¦ჯონ¦	¦ N Prop Anthr FirstName Voc ¦
-	ბოსტონი	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Nom ¦ N Prop Nom ¦ N Nom Sg ¦
+u?	ბოსტონი	¦ბოსტონ·ი¦ბოსტონ·ი¦ბოსტონ·ი¦	¦ N Prop Top Place Nom ¦ N Prop Nom ¦ N Nom Sg ¦
 	აცხადებს	¦*·ცხადებ[ა]/ცხად¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	კანდიდატურის	¦კანდიდატურ[ა]¦	¦ N Gen Sg ¦
-	შერჩევის	¦შერჩევ[ა]¦შე·რჩევ[ა]/რჩ¦	¦ N Gen Sg ¦ N VN Pv Gen Sg ¦
+a+	შერჩევის	¦შერჩევ[ა]¦შე·რჩევ[ა]/რჩ¦	¦ N Gen Sg ¦ N VN Pv Gen Sg ¦
 	პროცესში	¦პროცეს·ი¦	¦ N Dat Sg PP PP:ში ¦
 	გაერო	¦გაერო¦	¦ N Prop Org Nom ¦
 	,	¦,¦	¦ Punct Comma ¦
 	უწინარესად	¦უწინარეს·ი¦	¦ A Elat Advb Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	კვალიფიკაციას	¦კვალიფიკაცი[ა]¦	¦ N Dat Sg ¦
-	მიაქცევს	¦მი·ქცევ[ა]/ქც[ევ]¦მი·ქცევ[ა]/ქც[ევ]¦	¦ V Act Fut Pv LV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦ V Act Fut Pv <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
+a+	მიაქცევს	¦მი·ქცევ[ა]/ქც[ევ]¦მი·ქცევ[ა]/ქც[ევ]¦	¦ V Act Fut Pv LV <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦ V Act Fut Pv <S-DO-IO> <S:Nom> <DO:Dat> <IO:Dat> S:3Sg DO:3 IO:3 ¦
 	ყურადღებას	¦ყურადღებ[ა]¦	¦ N Dat Sg ¦
 	და	¦და¦	¦ Cj Coord ¦
 	არა	¦არა¦	¦ Adv Root ¦
@@ -5088,26 +5078,26 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	გენერალი	¦გენერ[ა]ლ·ი¦	¦ N Hum Nom Sg ¦
 	შეშფოთებას	¦შე·შფოთებ[ა]/შფოთ¦	¦ N VN Pv Dat Sg ¦
 	გამოთქვამს	¦გამო·თქმ[ა]/თქვ¦	¦ V Act Pres Pv <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
-	უკრაინაში	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Dat PP PP:ში ¦ N Prop Top Area Dat PP PP:ში ¦
+a+	უკრაინაში	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Dat PP PP:ში ¦ N Prop Top Area Dat PP PP:ში ¦
 	რუსეთის	¦რუსეთ·ი¦	¦ N Prop Top Area Gen ¦
-	ჯარების	¦ჯარა¦ჯარ·ი¦ჯარ[ა]¦	¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦
-	ყოფნის	¦ყოფნ[ა]/ყოფნ¦ყოფნ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
+a	ჯარების	¦ჯარა¦ჯარ·ი¦ჯარ[ა]¦	¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦
+a+	ყოფნის	¦ყოფნ[ა]/ყოფნ¦ყოფნ[ა]¦	¦ N VN Gen Sg ¦ N Gen Sg ¦
 	გამო	¦გამო¦	¦ Pp <Gen> ¦
 
 	ევროპაში	¦ევროპ[ა]¦	¦ N Prop Top Area Dat PP PP:ში ¦
-	ნატოს	¦ნატო¦ნატო¦	¦ N Prop Org Dat ¦ N Prop Anthr FirstName Dat ¦
-	ჯარების	¦ჯარა¦ჯარ·ი¦ჯარ[ა]¦	¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦
+a	ნატოს	¦ნატო¦ნატო¦	¦ N Prop Org Dat ¦ N Prop Anthr FirstName Dat ¦
+a	ჯარების	¦ჯარა¦ჯარ·ი¦ჯარ[ა]¦	¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦ N Gen Pl NewPl ¦
 	სარდალი	¦სარდ[ა]ლ·ი¦	¦ N Hum Nom Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	ამერიკელი	¦ამერიკელ·ი¦ამერიკელ·ი¦ამერიკელ·ი¦ამერიკელ·ი¦	¦ N Hum Qual Nom Att ¦ N Hum Qual Gen Att ¦ A Nom Att ¦ A Gen Att ¦
-	გენერალი	¦გენერ[ა]ლ·ი¦გენერ[ა]ლ·ი¦	¦ N Hum Qual Nom Att ¦ N Hum Qual Gen Att ¦
-	ფილიპ	¦ფილიპ¦ფილიპ¦	¦ N Prop Anthr FirstName Nom Att ¦ N Prop Anthr FirstName Gen Att ¦
-	ბრიდლავი	¦??¦	¦ N Prop Anthr LastName ¦
+am	ამერიკელი	¦ამერიკელ·ი¦ამერიკელ·ი¦ამერიკელ·ი¦ამერიკელ·ი¦	¦ N Hum Qual Nom Att ¦ N Hum Qual Gen Att ¦ A Nom Att ¦ A Gen Att ¦
+am	გენერალი	¦გენერ[ა]ლ·ი¦გენერ[ა]ლ·ი¦	¦ N Hum Qual Nom Att ¦ N Hum Qual Gen Att ¦
+am	ფილიპ	¦ფილიპ¦ფილიპ¦	¦ N Prop Anthr FirstName Nom Att ¦ N Prop Anthr FirstName Gen Att ¦
+u	ბრიდლავი	¦??¦	¦ N Prop Anthr LastName ¦
 	აცხადებს	¦*·ცხადებ[ა]/ცხად¦	¦ V Act Pres <S-DO> <S:Nom> <DO:Dat> S:3Sg DO:3 ¦
 	,	¦,¦	¦ Punct Comma ¦
 	რომ	¦რომ¦	¦ Cj Sub ¦
 	აღმოსავლეთ	¦აღმოსავლეთ·ი¦	¦ A Dat Att ¦
-	უკრაინაში	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Dat PP PP:ში ¦ N Prop Top Area Dat PP PP:ში ¦
+a+	უკრაინაში	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Dat PP PP:ში ¦ N Prop Top Area Dat PP PP:ში ¦
 	დიდი	¦დიდ·ი¦	¦ A Inst Att ¦
 	რაოდენობით	¦რაოდენობ[ა]¦	¦ N Inst Sg ¦
 	რუსი	¦რუს·ი¦	¦ A Nom Att ¦
@@ -5134,7 +5124,7 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ეს	¦ეს¦	¦ Pron Dem Nom ¦
 	განცხადებები	¦გან·ცხადებ[ა]/ცხად¦	¦ N VN Pv Nom Pl NewPl ¦
 	გენერალმა	¦გენერ[ა]ლ·ი¦	¦ N Hum Erg Sg ¦
-	ბრიდლავმა	¦??¦	¦ N Prop Anthr FirstName ¦
+u	ბრიდლავმა	¦??¦	¦ N Prop Anthr FirstName ¦
 	გააკეთა	¦გა·კეთებ[ა]/კეთ¦	¦ V Act Aor Pv <S-DO> <S:Erg> <DO:Nom> S:3Sg DO:3 ¦
 	კიევში	¦კიევ·ი¦	¦ N Prop Top Place Dat PP PP:ში ¦
 	26	¦26¦	¦ Num Ord Digits ¦
@@ -5142,21 +5132,21 @@ a	ტირილით	¦ტირილ·ი/ტირ¦ტირილ·ი¦
 	ვიზიტისას	¦ვიზიტ·ი¦	¦ N Gen Sg DDat DSg ¦
 	.	¦.¦	¦ Punct Period ¦
 	მისივე	¦მის·ი¦	¦ Pron Poss Poss3Sg Nom Sg Encl:ვე Foc ¦
-	თქმით	¦თქმ[ა]/თქმ¦თქმ[ა]¦	¦ N VN Inst Sg ¦ N Inst Sg ¦
+a+	თქმით	¦თქმ[ა]/თქმ¦თქმ[ა]¦	¦ N VN Inst Sg ¦ N Inst Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
 	შეერთებული	¦შე·ერთებულ·ი/ერთ¦	¦ A Part PastPart Pv Nom Att ¦
 	შტატები	¦შტატ·ი¦	¦ N Nom Pl NewPl ¦
-	უკრაინას	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Dat ¦ N Prop Top Area Dat ¦
+a+	უკრაინას	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Dat ¦ N Prop Top Area Dat ¦
 	დაეხმარება	¦და·ხმარებ[ა]/ხმარ¦	¦ V Pass Fut Pv <S-IO> <S:Nom> <IO:Dat> S:3Sg IO:3 ¦
 	რუსეთის	¦რუსეთ·ი¦	¦ N Prop Top Area Gen ¦
-	მომხრე	¦მომხრ[ე]¦	¦ N Nom Sg ¦
+m?	მომხრე	¦მომხრ[ე]¦	¦ N Nom Sg ¦
 	სეპარატისტებთან	¦სეპარატისტ·ი¦	¦ N Hum Dat Pl NewPl PP PP:თან ¦
 	კონფლიქტის	¦კონფლიქტ·ი¦	¦ N Gen Sg ¦
 	დიპლომატიის	¦დიპლომატი[ა]¦	¦ N Gen Sg ¦
 	გზით	¦გზ[ა]¦	¦ N Inst Sg ¦
 	მოსაგვარებლად	¦მო·საგვარებ[ე]ლ·ი/გვარ¦	¦ A Part FutPart Pv Advb Sg ¦
 	,	¦,¦	¦ Punct Comma ¦
-	უკრაინის	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Gen ¦ N Prop Top Area Gen ¦
+a+	უკრაინის	¦უკრაინა¦უკრაინ[ა]¦	¦ N Prop Top Area Gen ¦ N Prop Top Area Gen ¦
 	სუვერენიტეტისა	¦სუვერენიტეტ·ი¦	¦ N Gen Sg L ¦
 	და	¦და¦	¦ Cj Coord ¦
 	ტერიტორიული	¦ტერიტორიულ·ი¦	¦ A Gen Att ¦

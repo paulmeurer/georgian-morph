@@ -2,6 +2,10 @@
 
 (in-package :cl-user)
 
+;; URLs:
+;; http://gekko.dyndns.org/kartuli/paradigm
+;; http://gekko.dyndns.org/kartuli/nouns
+
 (asdf:defsystem :kartuli-paradigm
   :depends-on (:encoding
 	       :georgian-morph

@@ -2340,9 +2340,17 @@
                     (? (seq ,(utp "ა") v-enclitica)))
                ,(utp "ი" `((case {nom gen inst}) (case-type reduced)))
                ,(utp "მა" `((case erg) (case-type reduced)))
-               ,(utp-e `((case {dat adv}) (case-type reduced)))))
-      
-      
+               ,(utp-e `((case {dat adv}) (case-type reduced)))
+               ;; OG, სარჯველაძე p. 68
+               ,(utp "მან" `((case erg) (case-type full) (lang og)))
+               ,(utp "სა" `((case dat) (case-type full) (lang og)))
+               ,(utp "ისა" `((case gen) (case-type full) (lang og)))
+               ,(utp "თა" `((case inst) (case-type full) (lang og)))
+               ,(utp "ად" `((case adv) (case-type full) (lang og)))
+               ,(utp "ნი" `((case nom) (case-type full) (num pl) (lang og)))
+               ,(utp "თა" `((case {erg dat gen}) (num pl) (case-type full) (lang og)))
+               ))
+            
       (seq ,(utp "ვიღა" `((cat pron+interr+anim)
 			  (lex "vიღა")))
            (or ,(utp-e `((case nom)))
@@ -3516,6 +3524,9 @@
 		 ;; ჩემის ხელის
 		 (seq ,(utp "ის" '((case-type reduced)
 				  (case gen))))
+		 (seq ,(utp "ისა" '((case-type full) ;; მისისა
+				    (case gen)
+                                    (lang og))))
 		 (seq ,(utp-e '((case-type full)))
                       (or ;; dat-group gen-group
 			  inst-group adv-group
@@ -3524,9 +3535,14 @@
 		 ))
 	;; ჩემსას, მისას, თავიანთსას
 	(seq (or pron-poss3-stem-dat
-		 (seq pron-poss12-stem ,(utp "ს")))
-	     (seq ,(utp "ას" '((case-type full)
-			       (case dat)))))
+                 (seq pron-poss12-stem ,(utp "ს")))
+	     (or (seq ,(utp "ას" '((case-type full)
+			           (case dat))))))
+        (seq (or pron-poss3-stem ;; მისსა
+                 pron-poss12-stem))
+	     (or (seq ,(utp "სა" '((case-type full)
+			           (case dat)
+                                   (lang og))))))
 	locative
         pronoun
         determiner-ng

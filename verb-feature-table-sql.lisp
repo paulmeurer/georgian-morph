@@ -983,6 +983,12 @@ ZP2 LV
       (u::subst-substrings new-root (list "*" root))
       root))
 
+(defun replace-participle-stem (stem new-root root)
+  (let ((pos (search root stem)))
+    (if pos
+        (concat (subseq stem 0 pos) new-root (subseq stem (+ pos (length root))))
+        stem)))
+
 (defparameter *author* "paul")
 
 (defun normalize-bar (value) (when value (substitute #\/ #\| value)))
@@ -1197,7 +1203,7 @@ ZP2 LV
 			       :id new-p-id
 			       :sub-id new-p-sub-id
 			       :type (participle-type part)
-			       :stem (participle-stem part)
+			       :stem (replace-participle-stem (participle-stem part) new-root (c-root vpar))
 			       :code (conjugation-code part)
 			       :variety (variety part)
 			       :aspect (aspect part)
@@ -1217,7 +1223,8 @@ ZP2 LV
 					    type-aorist type-obj-3-pfx type-aorist-3sg type-optative
 					    nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
 					    type-subj3-sfx type-subj2-pfx type-ev-sfx
-					    style lang type-pr-st-ext paradigm-replacement) (cdddr row)
+					    style lang type-pr-st-ext paradigm-replacement)
+                      (cdddr row)
 		    (print :inserting)
 		    (when (and copy-p new-id-exists-p)
 		      (remhash root *feature-cache*))

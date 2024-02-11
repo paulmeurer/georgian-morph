@@ -9,6 +9,10 @@
 #+test
 (net.aserve::debug-off :xmit)
 
+;; URLs:
+;; http://gekko.dyndns.org/kartuli/nouns
+;; http://gekko.dyndns.org/kartuli/roots
+
 ;; paradigm checking: 133 begvavs
 
 (in-package :fst)

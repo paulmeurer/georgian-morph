@@ -89,7 +89,7 @@
 	     :path (concatenate 'string "/kartuli/nouns"))
   #m((nouns :search-stem #s search-stem)))
 
-(define-url-function js/noun-features
+(define-url-function js/noun-features-xml
     (request (search-stem action stem-key stem code pos features style-features lang template comment)
 	     :xsl #'js/noun-features-xsl
 	     :write-doctype-p nil ;; no HTML doctype
@@ -1997,7 +1997,7 @@ Z    daviT-daviTis
 						   "Rayfield")))
 		    (t
 		     (dolist (row stem+code+pos+subid)
-		       (destructuring-bind (&optional stem code p-o-s sub-id) row
+		       (destructuring-bind (&optional stem code pos sub-id) row
 			 (update-records [morph noun-features]
 					 :where  [and [= [sub-id] ?sub-id]
 						      [= [stem] ?stem]

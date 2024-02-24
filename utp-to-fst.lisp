@@ -7,6 +7,7 @@
 
 How to build the fst morphology:
 
+load the project kartuli-paradigm.asd;
 eval this file;
 run #+main-ccl below;
 
@@ -812,6 +813,8 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 
 #+test
 (compile-morphology :c-root-list '("წერ" "კითხვ" "თხოვნ" "ჭერ" "ჭამ" "ხილ") :nouns nil)
+#+test
+(compile-morphology :c-root-list '("კბენ") :nouns nil)
 
 #+main-ccl ;; 816/938 s (with/without hyperthreading, lists = nil) ;; 7711 s, 12588 s, 12500
 (time (compile-morphology :lists nil :nouns nil))
@@ -820,12 +823,12 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 (time (compile-morphology :fetch nil))
 
 #+main-ccl ;;
-(time (compile-morphology :lists nil :fetch nil :nouns nil))
+(time (compile-morphology :lists nil :fetch nil :nouns nil :verbs nil))
 
 #+main-ccl ;;
 (time (compile-morphology :lists nil :fetch nil :nouns t :nouns-only t))
 
-#+main-ccl ;; 10269s; 7574s, 7374s, 8246s, 7764s, 26791, 27992, 26565, 15121, 21155, 31191
+#+main-ccl ;; 10269s; 7574s, 7374s, 8246s, 7764s, 26791, 27992, 26565, 15121, 21155, 31191, 35000
 (time (compile-morphology))
 
 #+main-ccl ;; 
@@ -887,6 +890,9 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 	  (ccl::cwd "projects:georgian-morph;regex;foma;")
 	  (ccl::cwd "projects:georgian-morph;regex;"))
     
+      (when (and nouns (not foma))
+	(dolist (type '(:masdar :present-part :past-part :future-part :negative-part))
+	  (write-fst-participle-stems-sql :type type)))
       (when lists
 	(when (and verbs fetch (not foma))
 	  (let ((template-hash (make-hash-table :test #'equal))
@@ -948,6 +954,7 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 		      (return)))
 	    (print :verb-lists-done))))
       (when (and nouns (not foma))
+        #+moved
 	(dolist (type '(:masdar :present-part :past-part :future-part :negative-part))
 	  (write-fst-participle-stems-sql :type type))
 	(Print :writing-noun-stems)
@@ -990,19 +997,22 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 			:wait t
 			:output *standard-output*
 			:error :output)
-      (ccl::run-program fst
-			(if foma
-			    (list "-f" "noun.regex")
-			    (list "-flush" "-f" "noun.regex"))
-			:wait t
-			:output *standard-output*
-			:error :output)
+      (when nouns
+        (ccl::run-program fst
+                          (if foma
+                              (list "-f" "noun.regex")
+                              (list "-flush" "-f" "noun.regex"))
+                          :wait t
+                          :output *standard-output*
+                          :error :output))
       (when nouns-only (return-from compile-morphology))
       (print :verbs)
       (cond (c-root-list
 	     (ccl::run-program fst (list "-f" "verb-subset.infile") :wait t
 			       :output *standard-output* :error :output)
 	     )
+            ((not verbs)
+             nil)
 	    ((>= threads 8)
 	     (let ((procs (loop for i below threads
 			     collect (ccl::run-program fst
@@ -1070,7 +1080,7 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 	       (print :done))))
    
       (print :verbs-done)
-   
+      
       (cond (c-root-list
 	     (ccl::run-program fst (list "-f" "syntax-subset.regex") :wait t :output *standard-output* :error :output))
 	    (t

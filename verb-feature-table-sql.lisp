@@ -1,6 +1,6 @@
 ;; -*- Mode: lisp; Syntax: ansi-common-lisp; Package: FST; Base: 10 -*-
 
-;; paul.meurer@uni.no
+;; paul.meurer@uib.no
 
 (in-package :fst)
 
@@ -8,7 +8,7 @@
   (setf clsql-sys::*original-readtable* nil)
   (enable-sql-reader-syntax))
 
-#.(locally-enable-sql-reader-syntax)
+;; #.(locally-enable-sql-reader-syntax)
 
 
 (set-macro-character clsql-sys::*sql-macro-open-char* #'clsql-sys::sql-reader-open)
@@ -25,8 +25,6 @@
     (pushnew (fst::inv-convert c-root)
 	     (gethash (fst::inv-convert root) fst::*root-table*)
 	     :test #'string=)))
-
-(fst::load-root-table)
 
 ;; overrides the original def.
 (defmethod fst::match-stems ((dfa fst::georgian-dfa) string pos)
@@ -62,44 +60,6 @@
 					    conjugation stem stem pos sub-cat nil nil personp))
 			  i)))))))
 
-#+test
-(do-query ((&rest row)
-	   [select [root] [c-root] [id]
-	   :distinct t
-	   :from [verb-features]
-	   :where [= [root] "lag"]
-	   ])
-  (print row))
-
-#+test
-(print (select [root] [c-root] [id]
-	       :distinct t
-	       :from [verb-features]
-	       :where [= [c-root] "lag"]
-	       ))
-
-;;(print (gethash "123-3" fst::*paradigm-table*))
-
-#+test
-(with-transaction ()
-  (let ((rows (select [unique-id] [pf-sfx]
-		     :from [verb-features]
-		     :where [and [not [null [pf-sfx]]]
-				 [not [= [pf-sfx] "-"]]])))
-    (dolist (row rows)
-      (destructuring-bind (unique-id pf-sfx) row
-	(update-records [verb-features]
-			:attributes `([pp-sfx])
-			:values (list pf-sfx)
-			:where [= [unique-id] unique-id])))))
-
-#+test
-(with-transaction ()
-  (update-records [verb-features]
-		  :attributes (list [pv])
-		  :values (list [null])
-		  :where [= [pv] "-"]))
-
 (defun update-paradigm-table (&key unique-id id)
   (do-query ((root c-root class id sub-id)
 	     [select [root] [verb-paradigm c-root] [verb-paradigm tsch-class]
@@ -124,28 +84,6 @@
       (if (gethash pid fst::*paradigm-table*)
 	  (pushnew root (cddr (gethash pid fst::*paradigm-table*)) :test #'equal)
 	  (setf (gethash pid fst::*paradigm-table*) (list class c-root root))))))
-
-#+copy
-(unique-id id sub-id root c-root tense pv vn gv sf caus-sf vv
-	   tsch-class morph-type relation reduplication red-dir-pv
-	   stem-type pr-st-ext part-pfx part-sfx passive-sfx
-	   type-aorist type-obj-3-pfx type-aorist-3sg type-optative
-	   nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
-	   type-subj3-sfx type-subj2-pfx type-ev-sfx
-	   style lang type-pr-st-ext paradigm-replacement)
-
-#+test
-(with-transaction ()
-  (copy-full-paradigm 156 :new-root "ზღარბ"))
-
-#+test
-(progn
-  (delete-records :from [morph verb-translation]
-		  :where [= [id] 3843])
-  (delete-records :from [morph verb-features]
-		:where [= [id] 3843])
-  (delete-records :from [morph verb-paradigm]
-		  :where [= [id] 3843]))
 
 (defun copy-full-paradigm (id &key new-root new-c-root)
   (let* ((new-c-root (or new-c-root new-root))
@@ -254,7 +192,7 @@
     (update-paradigm-table :id new-id)
     (print new-id)))
 
-
+(fst::load-root-table)
 
 ;; populate *paradigm-table*
 (progn
@@ -264,98 +202,6 @@
 (defun ce (string)
   (convert-encoding string :amirani :unicode))
 
-#+once
-(with-database-connection ("localhost/gnc/gnc/kartuli" :database-type :postgresql)
-  (let ((pg *default-database*))
-    (with-database-connection ("localhost/kartuli/treebank/Heebi" :database-type :mysql)
-      (do-query ((id vn related-vn)
-		 [select [id] [vn] [related-vn]
-			 :from [related-verbal-nouns]
-			 ;;:limit 1
-			 ])
-	(let ((*default-database* pg))
-	  (insert-records
-	   :into [morph related-verbal-nouns]
-	   :attributes (list [id] [vn] [related-vn])
-	   :values (list id
-			 (convert-encoding vn :amirani :unicode)
-			 (convert-encoding related-vn :amirani :unicode))))))))
-
-#+test
-(let ((id+sub-ids (select [id] [sub-id] :distinct t
-			  :from [verb-features]
-			  :where [or [= [tense] "|masdar|"]
-				     [= [tense] "|past-part|"]
-				     [= [tense] "|future-part|"]])))
-  (with-transaction ()
-    (dolist (id+sub-id id+sub-ids)
-      (destructuring-bind (id sub-id) id+sub-id
-	(update-records [verb-translation]
-			:attributes `([participle-sub-id])
-			:values (list sub-id)
-			:where [and [= [id] id] [= [sub-id] sub-id]]
-			)))))
-
-
-
-#+test
-(with-transaction ()
-  (let ((max-uid (car (select [max [unique-id]] :flatp t :from [verb-features]))))
-    (dolist (id (select [id] :distinct t :flatp t
-			:from [verb-features]
-			;;:where [= [id] 2427]
-			))
-      (let* ((sub-ids (select [sub-id] :distinct t :flatp t
-			      :from [verb-features]
-			      :where [= [id] id])))
-	(let ((max-sub-id (apply #'max sub-ids)))
-	  (dolist (sub-id sub-ids)
-	    (let ((pvs (select [pv] :distinct t :flatp t
-			       :from [verb-features]
-			       :where [and [= [id] id]
-					   [= [sub-id] sub-id]
-					   [not [null [pv]]]
-					   [null [subj-pers]]
-					   [null [obj-pers]]
-					   ]
-			       :order-by '([pv]))))
-	      (when (and (cdr pvs)
-			 (not (and (not (cddr pvs))
-				   (or (and (find "mi" pvs :test #'equal)
-					    (find "mo" pvs :test #'equal))
-				       (string= (cadr pvs) (concat (car pvs) "mo"))
-				       )
-				   )))
-		(print (list id sub-id pvs))
-		#-test
-		(dolist (pv (cdr pvs))
-		  (let ((new-sub-id (incf max-sub-id)))
-		    (dolist (uid+pv (select [unique-id] [pv]
-					    :from [verb-features]
-					    :where [and [= [id] id]
-							[= [sub-id] sub-id]]))
-		      (cond ((equal pv (cadr uid+pv))
- 			     (update-records [verb-features]
-					     :attributes `([sub-id])
-					     :values (list new-sub-id)
-					     :where [= [unique-id] (car uid+pv)]))
-			    ((null (cadr uid+pv))
-			     (let ((row (car (select [*] :from [verb-features]
-						     :where [= [unique-id] (car uid+pv)]))))
-			       (insert-records :into [verb-features]
-					       :values (print (list* (incf max-uid) id new-sub-id
-								     (cdddr row))))))))
-		    (let ((row (car (select [*] :from [verb-translation]
-					    :where [and [= [id] id]
-							[= [sub-id] sub-id]]))))
-		      (insert-records :into [verb-translation]
-				      :values (print (list* id new-sub-id nil new-sub-id pv (cddr (cdddr row))))))
-		    (let ((row (car (select [*] :from [xle-template]
-					    :where [and [= [id] id]
-							[= [sub-id] sub-id]]))))
-		      (insert-records :into [xle-template]
-				      :values (list* id new-sub-id  (cddr row))))
-		    ))))))))))
 
 (defun add-related-vn-pair (id vn1 vn2)
   (let ((rel-vn1 (select [related-vn]
@@ -406,96 +252,6 @@
 	     (make-instance 'related-verbal-nouns :id id :vn vn2 :related-vn vn1)
 	     (make-instance 'related-verbal-nouns :id id :vn vn1 :related-vn vn2))))))
 
-#+test
-(add-related-vn-pair 2166 "titini" "titineba")
-#+test
-(add-related-vn-pair 3268 "cvdena" "cvdoma")
-#+test
-(add-related-vn-pair 1116 "laparaki" "laparakeba")
-#+test
-(add-related-vn-pair 128 "bdGvriali" "bdGvrialeba")
-#+test
-(add-related-vn-pair 2164 "tirili" "tireba")
-#+test
-(add-related-vn-pair 2163 "tiktiki" "tiktikeba")
-#+test
-(add-related-vn-pair 2154 "teHa" "tqdoma")
-#+test
-(add-related-vn-pair 3065 "Cekva" "Cekveba")
-#+test
-(add-related-vn-pair 1251 "masHaraoba" "masHaraveba")
-#+test
-(add-related-vn-pair 3277 "cvima" "cvimeba")
-#+test
-(add-related-vn-pair 729 "TareSoba" "TareSeba")
-#+test
-(add-related-vn-pair 3613 "Hvdoma" "Hvedreba")
-#+test
-(add-related-vn-pair 714 "TamaSeba" "TamaSi")
-#+test
-(add-related-vn-pair 3581 "Hedeba" "Hedva")
-#+test
-(add-related-vn-pair 3581 "Hedvineba" "Hedva")
-#+test
-(add-related-vn-pair 3581 "Hedvineba" "Hedeba")
-
-#+test
-(add-related-vn-pair 3062 "Cdoma" "Cdena")
-
-
-#+once
-(dolist (class '(super-paradigm verb-translation verb-features xle-template related-verbal-nouns))
-  ;;(drop-table 'xle-template)
-  (unless (table-exists-p (view-table (find-class class)))
-    (create-view-from-class class)))
-
-#+test
-(pprint 
- (select [id] [sub-id] [features-sub-id] [base-sub-id]
-	 :from [morph verb-paradigm]
-	 :where [<> [features-sub-id] [sub-id]]))
-
-#+once
-(update-recordsxx [morph verb-paradigm]
-		:av-pairs '(([base-sub-id] [sub-id]))
-		:where [<> [features-sub-id] [sub-id]])
-
-#+once
-(progn
-  (unless (index-exists-p [verb-features-id-sub-id])
-    (create-index [verb-features-id-sub-id] :on [morph verb-features]
-		  :attributes '([id] [sub-id]) 
-		  :unique nil))
-  (unless (index-exists-p [verb-features-id-sub-id-root])
-    (create-index [verb-features-id-sub-id-root] :on [morph verb-features]
-		  :attributes '([id] [sub-id] [root]) 
-		  :unique nil))
-  (unless (index-exists-p [verb-features-root-id-sub-id])
-    (create-index [verb-features-root-id-sub-id] :on [morph verb-features]
-		  :attributes '([root] [id] [sub-id]) 
-		  :unique nil))
-  (unless (index-exists-p [verb-translation-id-sub-id])
-    (create-index [verb-translation-id-sub-id] :on [morph verb-translation]
-		  :attributes '([id] [sub-id]) 
-		  :unique t))
-  (unless (index-exists-p [xle-template-id-sub-id])
-    (create-index [xle-template-id-sub-id] :on [morph xle-template]
-		  :attributes '([id] [sub-id]) 
-		  :unique nil)))
-
-#+once-only
-(let ((date (get-universal-time)))
-  (with-transaction ()
-    (dat:do-string-tree (key value-list fst::*xle-template-table*)
-      (dolist (value (cdr value-list))
-	(destructuring-bind (template vn pv class id+subid) value
-	  (destructuring-bind (id sub-id) (mapcar #'parse-integer (split (subseq id+subid 1) #\-))
-	    (insert-records :into [xle-template]
-			    :attributes `([id] [sub-id] [template] [author] [date])
-			    :values (list id sub-id template "derived" date))))))))
-
-;;(disconnect)
-
 (defvar *fullform-count-table* (make-hash-table :test #'equal))
 
 (do-query ((word count)
@@ -503,28 +259,7 @@
   (setf (gethash word *fullform-count-table*) count))
 
 (defun fullform-count (word)
-  (gethash word *fullform-count-table*)
-  #+old
-  (car (select [corpus-count] :from [morph fullform] :flatp t :where [= [word] ?word])))
-
-#+test
-(let ((id-table (dat:make-string-tree)))
-  (with-transaction ()
-    (with-open-file (stream "projects:georgian-morph;verb-translations.txt")
-      (let ((*package* (find-package :fst)))
-	(loop for verb-list = (read stream nil nil)
-	   while verb-list
-	   do (let ((paradigm-id (getf verb-list :id)))
-		(if (dat::string-tree-get id-table paradigm-id)
-		    (print (list :duplicate-id paradigm-id
-				 :old (dat::string-tree-get id-table paradigm-id)
-				 :new (getf verb-list :tr)))
-		    (destructuring-bind (id sub-id) (mapcar #'parse-integer (split paradigm-id #\-))
-		      (setf (dat::string-tree-get id-table paradigm-id) (getf verb-list :tr))
-		      (insert-records :into [verb-translation]
-				      :av-pairs `(([id] ,id)
-						  ([sub-id] ,sub-id)
-						  ([translation] ,(getf verb-list :tr))))))))))))
+  (gethash word *fullform-count-table*))
 
 (defun verb-translation (&key id sub-id paradigm-id)
   (if paradigm-id
@@ -534,81 +269,12 @@
       (car (select [translation] :flatp t :from [morph verb-translation]
 		   :where [and [= [id] ?id] [= [sub-id] ?sub-id]]))))
 
-#+main
-(with-open-file (stream "projects:xle;grammars;georgian;georgian-verb-lex.lfg" :direction :output :if-exists :supersede)
-  (write-lfg-verb-lexicon stream))
 
-(defun write-lfg-verb-lexicon (stream)
-  (let ((prev-id 0)
-	(prev-sub-id 0)
-	(prev-tsch-class nil)
-	(prev-pv nil)
-	(prev-vn nil)
-	(templates ()))
-    (write-line "STANDARD KARTULI-VERBS LEXICON (1.0)" stream)
-    (terpri stream)
-    (do-query ((id sub-id pv vn tsch-class template)
-	       [select [verb-features id] [verb-features sub-id] [verb-translation pv] [vn] [tsch-class] [template]
-		       :distinct t
-		       :from [morph xle-template]
-		       :distinct t
-		       :left-join '([verb-features] [verb-translation])
-		       :on [and [= [verb-features id] [xle-template id]]
-				[= [verb-features sub-id] [xle-template sub-id]]
-				[= [verb-features id] [verb-translation id]]
-				[= [verb-features sub-id] [verb-translation base-sub-id]]]
-		       :where [and [= [base-sub-id] [verb-features sub-id]]
-				   ;;[= [verb-features id] 3261]
-				   ]
-		       :order-by (list [verb-features id] [verb-features sub-id])])
-      (let ((vn (convert-encoding (simple-vn vn) :amirani :unicode))
-	    (pv (convert-encoding pv :amirani :unicode))
-	    (tsch-class (subseq tsch-class 0 (position #\space tsch-class))))
-	#+debug(print (list id sub-id pv vn tsch-class template)) 
-	(cond ((and (= prev-id id)
-		    (= prev-sub-id sub-id))
-	       (push template templates))
-	      (t
-	       (when templates
-		 (if prev-pv
-		     (format stream "~a-~a-~a-~a V XLE "
-			     prev-pv prev-vn prev-id prev-sub-id)
-		     (format stream "~a-~a-~a V XLE "
-			     prev-vn prev-id prev-sub-id))
-		 (when (cdr templates) (format stream "{ "))
-		 (loop for (template . rest) on templates
-		      do (if prev-pv
-			     (format stream "@(~a ~a-~a ~a ~a V~a-~a)"
-				     template prev-pv prev-vn prev-pv prev-tsch-class prev-id prev-sub-id)
-			     (format stream "@(~a ~a - ~a V~a-~a)"
-				     template prev-vn prev-tsch-class prev-id prev-sub-id))
-		      (when rest (format stream "~c~c~c | " #\Linefeed #\Tab #\Tab)))
-		 (if (cdr templates)
-		     (format stream " };~c" #\Linefeed)
-		     (format stream ";~c" #\Linefeed))
-		 (format stream "~c~c Vpart XLE " #\Tab #\Tab)
-		 (when (cdr templates) (format stream "{ "))
-		 (loop for (template . rest) on templates
-		      do (if prev-pv
-			     (format stream "@(~a ~a-~a ~a ~a V~a-~a)"
-				     template prev-pv prev-vn prev-pv prev-tsch-class prev-id prev-sub-id)
-			     (format stream "@(~a ~a - ~a V~a-~a)"
-				     template prev-vn prev-tsch-class prev-id prev-sub-id))
-		      (when rest (format stream "~c~c~c | " #\Linefeed #\Tab #\Tab)))
-		 (if (cdr templates)
-		     (format stream " }; ETC.~c" #\Linefeed)
-		     (format stream "; ETC.~c" #\Linefeed)))
-	       (setf prev-vn vn prev-pv pv prev-id id prev-sub-id sub-id prev-tsch-class tsch-class templates (list template))
-	       ))))
-    (write-line "----" stream)))
 
 (defparameter *id-to-tsch-classes* (make-hash-table :test #'equal))
 
 (defparameter *id-to-roots-table* (make-hash-table))
 (defparameter *id-to-c-root-table* (make-hash-table))
-
-#+test
-(print (gethash 3117 *id-to-roots-table*))
 
 (defun fetch-id-roots ()
   (clrhash *id-to-roots-table*)
@@ -640,71 +306,15 @@
 	(pushnew (gethash (list id sub-id-list) *id-to-tsch-classes*) classes :test #'equal))
     (format nil "~{~a~^/~}" (sort classes #'string<))))
 
-#+test
-(print (get-tsch-classes 771 (list 1 2 3 16 17 18 19 20 22 24 25 64 65 66)))
-
-#+test
-(fetch-tsch-classes)
-
-#||
-(print (select [*] :from [verb-features] :where [= [c-root] "cer"]))
-
-(time (select 'verb-features :where [= [c-root] "TamaS"]))
-
-(defun fst::get-root-override-features (root)
-  (print root)
-  (print (gethash (fst::inv-convert root) fst::*features-table*)))
-
-||#
-
-#+test
-(let ((*package* (find-package :fst))
-      (*print-case* :downcase)
-      )
-  (print (read-from-string (progn ;;fst::convert
-			    (format nil "~s" (fst::get-root-override-features "ndom"))))))
 
 (defun inv-convert-num (str)
-  str
-  #||
-  (if nil;;(stringp str)
-      (let ((c-str (copy-seq str)))
-	(loop for i from 0 for c across str
-	   do (setf (char c-str i) (getf '(#\1 #\± #\2 #\² #\3 #\³ #\4 #\´ #\5 #\µ #\6 #\¶ #\7 #\· #\- #\Â #\| #\ª) c c)))
-	c-str)
-      str)||#)
+  str)
 
 (defun inv-convert-morph (str)
   (if (equal str "-")
       '-
       str))
 
-#||
-
-hash:
-
-("IV²" "1634-3" - (tense {conj-perfect pluperfect perfect})
-  (vn "ãÚäâ×") (c-root "ãÚäâ") (vn "ãÚäâ×") (morph-type passive)
-  (relation relative) (sf "ÛØ"))
-
-sql:
-
-("IV²" "1634-3" nil (root "ãÚäâ") (c-root "ãÚäâ")
-  (tense {conj-perfect pluperfect perfect}) (vn "ãÚäâ×") (sf "ÛØ")
-  (morph-type passive) (relation "relative"))
-
-gv, sf, caus_sf, vv, tsch_class, morph_type, relation, reduplication, red_dir_pv, stem_type, pr_st_ext, pf_sfx, pp_pfx, pp_sfx, passive_sfx, type_aorist, type_obj_3_pfx, type_aorist_3sg, type_optative, nasal_infix, subj_pers, subj_num, obj_pers, type_subj12_sfx, type_subj3_sfx, type_subj2_pfx, type_ev_sfx, type_optative_3pl_en, type_pr_st_ext, paradigm_replacement
-
-
-||#
-
-#+test
-(with-transaction ()
-  (update-records [verb-features]
-		  :av-pairs '(([style] "dangerous"))
-		  :where [= [unique-id] 237320]))
-
-#-(or mysql sqlite)
 (defun fst::get-root-override-features (root)
   (print root)
   (gethash (fst::inv-convert root) fst::*features-table*))
@@ -738,16 +348,9 @@ gv, sf, caus_sf, vv, tsch_class, morph_type, relation, reduplication, red_dir_pv
 	  (t
 	   (car ints)))))
 
-#+test
-(let ((*package* (find-package :fst)))
-  (print (fst::get-root-override-features "azat" :all-participles-p t :use-base-sub-id-p t :clear-cache-p t)))
-
 (defun simple-vn (vn)
   (let ((vn (subseq vn 0 (position #\space vn))))
     (string-trim "[]" (subseq vn 0 (position #\- vn)))))
-
-#+test
-(set-pv-in-verb-translation-table)
 
 ;; sets a representative pv for the whole paradigm; used in paradigm key
 (defun set-pv-in-verb-translation-table ()
@@ -809,34 +412,6 @@ gv, sf, caus_sf, vv, tsch_class, morph_type, relation, reduplication, red_dir_pv
 
 (defparameter *alternation-table* (build-alternation-table))
 
-#+orig
-(defun expand-tense (tense-list &key (add-og-tenses t))
-  (let ((tenses (if (find #\| tense-list)
-		    (mapcar (lambda (str) (intern (string-upcase str) :fst))
-			    (split tense-list #\| nil nil t))
-		    (list (intern (string-upcase tense-list) :fst)))))
-    (when add-og-tenses
-      (when (find 'present tenses)
-	(push 'iter-present tenses))
-      (when (find 'future tenses)
-	(pushnew 'iter-present tenses))
-      (when (find 'imperfect tenses)
-	(setf tenses (list* 'iter-imperfect 'imperative-present tenses)))
-      (when (find 'conditional tenses)
-	(pushnew 'iter-imperfect tenses)
-	(Pushnew 'imperative-present tenses))
-      (when (find 'aorist tenses)
-	(pushnew 'imperative-aorist tenses))
-      (when (find 'optative tenses)
-	(pushnew 'iter-aorist tenses))
-      (when (find 'pluperfect tenses)
-	(push 'iter-perfect tenses))
-      (when (find 'perfect tenses)
-	(push 'iter-perfect1 tenses)))
-    (if (cdr tenses)
-	(parser::make-extended-list :char #\{ :form tenses)
-	(car tenses))))
-
 (defun expand-tense (tense-list &key (add-og-tenses t))
   (let ((tenses (if (find #\| tense-list)
 		    (mapcar (lambda (str) (intern (string-upcase str) :fst))
@@ -889,19 +464,6 @@ gv, sf, caus_sf, vv, tsch_class, morph_type, relation, reduplication, red_dir_pv
 				       [not [no-preverbless-aor]]]]])
       (setf (gethash (list id sub-id) table) t))
     table))
-
-#+test
-(masdar-full
- (case masdar-code
-   ((:A :A1 :A2 :B :P :U)
-    (u:concat masdar "ი"))
-   (otherwise
-    masdar)))
-
-#+test
-(print (gethash (list 6 "*ადვილება") *vn-pv-table*))
-#+test
-(print (gethash (list 2318 "*ფასება") *vn-pv-table*))
 
 (defparameter *vn-pv-table* (make-hash-table :test #'equal))
 
@@ -965,17 +527,6 @@ gv, sf, caus_sf, vv, tsch_class, morph_type, relation, reduplication, red_dir_pv
 	(when pf-12-pv
 	  (pushnew pf-12-pv (gethash (list id vn template) *vn-template-pv-table*) :test #'equal))))))
 
-#+test
-(pprint (fst::get-root-override-features "ჭამ"))
-
-#+test
-(fst::get-root-override-features "კეთ")
-
-#+test
-(update-records [morph verb-paradigm]
-		:av-pairs '(([features-sub-id] [sub-id]))
-		:where [null [features-sub-id]])
-
 ;; new June 2013; todo: add vv info (doesn't work)
 (defun tsch-class-to-version (tsch-class vv)
   ;; (print vv)
@@ -999,28 +550,11 @@ ZP3 OV
 ZP2 LV
 ||#
 
-#+test
-(print (select [count [*]]
-	       :from [morph verb-paradigm]
-	       :where [or [null [disabled]] [<> [disabled] t]]
-	       :flatp t))
-
-#+test
-(print (select [count [*]]
-	       :from [morph verb-paradigm]
-	       :where [= [disabled] :false]
-	       :flatp t))
-
 (def-view-class pv-variant ()
   ((pv :initform nil :initarg :pv :reader pv :type string :db-kind :key)
    (pv-variant :initform nil :initarg :pv-variant :reader pv-variant :type string :db-kind :key)
    )
   (:base-table [morph pv-variant]))
-
-#+test
-(pprint (fst::get-root-override-features "ცოდნ"))
-#+test
-(pprint (fst::get-root-override-features "ალერს"))
 
 ;; used in generate-paradigm() etc.
 (defun fst::get-root-override-features (root &key use-base-sub-id-p (clear-cache-p t) 
@@ -1444,12 +978,16 @@ ZP2 LV
 	  (t
 	   nil))))
 
-;;(print (sort '(("imperfect") ("optative" "aorist") ("future") ("conditional")) #'tense<))
-
 (defun replace-root (new-root root)
   (if new-root
       (u::subst-substrings new-root (list "*" root))
       root))
+
+(defun replace-participle-stem (stem new-root root)
+  (let ((pos (search root stem)))
+    (if pos
+        (concat (subseq stem 0 pos) new-root (subseq stem (+ pos (length root))))
+        stem)))
 
 (defparameter *author* "paul")
 
@@ -1467,11 +1005,6 @@ ZP2 LV
 	  :distinct t :flatp t
 	  :from [morph verb-paradigm]
 	  :order-by (sql-expression :attribute sfeature)))
-
-#+test
-(delete-records :from [morph verb-translation]
-		:where [and [= [id] 3623]
-			    [= [sub-id] 9]])
 
 (defun get-paradigm-features (p-id p-sub-id &key
 			      unique-id
@@ -1670,7 +1203,7 @@ ZP2 LV
 			       :id new-p-id
 			       :sub-id new-p-sub-id
 			       :type (participle-type part)
-			       :stem (participle-stem part)
+			       :stem (replace-participle-stem (participle-stem part) new-root (c-root vpar))
 			       :code (conjugation-code part)
 			       :variety (variety part)
 			       :aspect (aspect part)
@@ -1690,7 +1223,8 @@ ZP2 LV
 					    type-aorist type-obj-3-pfx type-aorist-3sg type-optative
 					    nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
 					    type-subj3-sfx type-subj2-pfx type-ev-sfx
-					    style lang type-pr-st-ext paradigm-replacement) (cdddr row)
+					    style lang type-pr-st-ext paradigm-replacement)
+                      (cdddr row)
 		    (print :inserting)
 		    (when (and copy-p new-id-exists-p)
 		      (remhash root *feature-cache*))
@@ -1735,28 +1269,10 @@ ZP2 LV
 	      (update-paradigm-table :id new-p-id)))))
       (values rows field-count-list paradigm-rows))))
 
-#+test
-(update-records ;;[morph verb-features]
- ;;[morph verb-translation]
- [morph verb-paradigm]
- :av-pairs '(([id] 1936)
-	     ([sub-id] 1))
- :where [and [= [id] 377] [= [sub-id] 4]])
-#+test
-(delete-records
- :from [morph verb-translation]
- :where [and [= [id] 377] [= [sub-id] 4]])
-
-
 (defun get-paradigm-comments (id sub-id)
   (values nil
 	  (car (select [comment] :flatp t :from [morph verb-translation]
 		       :where [and [= [id] ?id] [= [sub-id] ?sub-id]]))))
-
-;;(print (select [c-root] [root] :distinct t :from [verb-features] :where [= [unique-id] 47698]))
-
-#+test
-(delete-recordsxx :from [morph verb-participle] :where [and [= [id] 2424] [= [sub-id] 13]])
 
 (defun store-paradigm-changes (&key id sub-id delete copy changed-features id-comment
 			       sub-id-comment delete-paradigm add-template delete-template)
@@ -1903,25 +1419,6 @@ ZP2 LV
 			  :attributes `([id] [sub-id] [base-sub-id] [translation] [author] [date])
 			  :values (list id sub-id sub-id translation *author* (get-universal-time)))))))
 
-#+test
-(print (gethash (fst::inv-convert "lolosdg") fst::*root-table*))
-
-#+test
-(print (select [vn] :distinct t :from [verb-features] :where [and [like [vn] "% (%"]
-								  [not [like [vn] "%||%"]]]))
-#+test
-(dolist (uid+vn (select [unique-id] [vn] :from [verb-features] :where [like [vn] "% (Dieses%"]))
-  (with-transaction ()
-    (destructuring-bind (uid vn) (print uid+vn)
-      (update-records [verb-features]
-		      :attributes `([vn] [comment])
-		      :values (list (subseq vn 0 (position #\space vn))
-				    (subseq vn (1+ (position #\space vn))))
-		      :where [= [unique-id] uid]))))
-
-#+test
-(print (paradigm-base-sub-id+source "904-30"))
-
 (defun paradigm-base-sub-id (id sub-id &key recursive-p)
   (let ((base-sub-id (car (select [base-sub-id]
 				  :from [morph verb-translation] :flatp t
@@ -1933,10 +1430,6 @@ ZP2 LV
 	     (paradigm-base-sub-id-rec id base-sub-id :recursive-p recursive-p))
 	base-sub-id)))
 
-#+test
-(with-database-connection ()
-  (print (paradigm-base/participle-sub-id+source 2361 2)))
-
 (defun paradigm-base/participle-sub-id+source (id sub-id)
   (debug sub-id)
   (debug (car (select [base-sub-id] [participle-sub-id] [source]
@@ -1944,12 +1437,8 @@ ZP2 LV
 	       :where [and [= [id] ?id] [= [sub-id] ?sub-id]]))))
 
 (defun paradigm-xle-templates (id sub-id)
-  (select [template] :flatp t :from [morph xle-template] :where [and [= [id] ?id] [= [sub-id] ?sub-id]]))
-
-#+test
-(print (paradigm-xle-templates 1266 67))
-#+test
-(print (xle-template-to-frame (car (paradigm-xle-templates 1266 67))))
+  (select [template] :flatp t :from [morph xle-template]
+ :where [and [= [id] ?id] [= [sub-id] ?sub-id]]))
 
 (defun get-available-xle-templates ()
   (select [template] :flatp t :distinct t :from [morph xle-template] :order-by `([template])))
@@ -1975,20 +1464,6 @@ ZP2 LV
 			  :values (list (get-base-sub-id link))
 			  :where [and [= [id] ?id]
 				      [= [sub-id] ?sub-id]]))))))
-
-#+test
-(defun update-base-sub-ids ()
-  (with-transaction ()
-    (dolist (id+link (select [id] [sub-id]
-			     :from [verb-translation]
-			     :where [null [link-sub-id]]))
-      (destructuring-bind (id sub-id) id+link
-	(update-records [verb-translation]
-			:attributes `([base-sub-id])
-			:values (list sub-id)
-			:where [and [= [id] id]
-				    [= [sub-id] sub-id]])))))
-
 
 (defun delete-nonfinite-forms (id sub-id)
   (print (list :delete-nonfinite id sub-id))
@@ -2144,678 +1619,6 @@ ZP2 LV
 				  [= [sub-id] ?sub-id]])))
   (delete-nonfinite-forms id sub-id))
 
-#+test
-(dolist (id+pv (select [root] [id] [sub-id] [count [distinct [pv]]]
-		       :distinct t
-		       :from [verb-features]
-		       ;;:where [> [count [distinct [pv]]] 2]
-		       :group-by `(,[id] ,[sub-id])))
-  (print id+pv))
-
-#+test
-(with-transactionx ()
-  (dolist (id+pv (select [id] [sub-id] [pv]
-			 :distinct t
-			 :from [verb-features]
-			 :where [not [null [pv]]]
-			 :order-by (list [id] [sub-id] [- [length [pv]]])))
-    (destructuring-bind (id sub-id pv) id+pv
-      (update-records [verb-translation]
-		      :attributes `([pv])
-		      :values (list pv)
-		      :where [and [= [id] id]
-				  [= [sub-id] sub-id]]))))
-
-#+test
-(update-base-sub-ids)
-
-;; populate fullform list from corpus counts
-
-#+test
-(with-transaction ()
-  (let ((counter 0))
-    (with-file-lines (line "projects:georgian-morph;opentext-sorted-freq-words-2007-11-10.txt")
-      (destructuring-bind (count word) (split (string-trim " " line) #\space)
-	(let ((count (parse-integer count)))
-	  ;;(print (list word count))
-	  (when (zerop (mod (incf counter) 10000))
-	    (commit)
-	    (print counter))
-	  (insert-records :into [fullform] :values (list word count)))))))
-
-;; link sub-ids to base-sub-ids
-
-#+test
-(with-transaction ()
-  (let ((kt-list (select [id] [sub-id] [pv] [vn] :distinct t
-			 :from [verb-features]
-			 :where [and [= [tsch-class] "KT"]
-				     [like [tense] "%aorist%"]]
-			 )))
-    (dolist (kt kt-list)
-      (destructuring-bind (id sub-id pv vn) kt
-	(let* ((vn (subseq vn 0 (position #\space vn)))
-	       (vn (string-trim "[]" (subseq vn 0 (position #\- vn)))))
-	  (let ((link-sub-id
-		 (car (select [sub-id] :distinct t
-			      :from [verb-features]
-			      :where [and [= [id] id]
-					  [= [vn] vn]
-					  [= [pv] pv]
-					  [= [tsch-class] "T1"]
-					  [like [tense] "%aorist%"]]))))
-	    (when link-sub-id
-	      (update-records [verb-translation]
-			      :attributes `([link-sub-id])
-			      :values (list link-sub-id)
-			      :where [and [= [id] id]
-					  [= [sub-id] sub-id]]))))))))
-
-#+test
-(with-transaction ()
-  (let ((kt-list (select [id] [sub-id] [pv] [vn] :distinct t
-			 :from [verb-features]
-			 :where [and [= [tsch-class] "KT"]
-				     [like [tense] "%aorist%"]]
-			 )))
-    (dolist (kt kt-list)
-      (destructuring-bind (id sub-id pv vn) kt
-	(let* ((vn (subseq vn 0 (position #\space vn)))
-	       (vn (string-trim "[]" (subseq vn 0 (position #\- vn)))))
-	  (let* ((link-sub-id1
-		  (car (select [sub-id] :distinct t
-			       :from [verb-features]
-			       :where [and [= [id] id]
-					   [= [vn] vn]
-					   [= [pv] pv]
-					   [= [tsch-class] "T1"]
-					   [like [tense] "%aorist%"]])))
-		 (link-sub-id5
-		  (unless link-sub-id1
-		    (car (select [sub-id] :distinct t
-				 :from [verb-features]
-				 :where [and [= [id] id]
-					     [= [vn] vn]
-					     [= [pv] pv]
-					     [= [tsch-class] "T5"]
-					     [like [tense] "%aorist%"]]))))
-		 (link-sub-id2
-		  (unless (or link-sub-id1 link-sub-id5)
-		    (car (select [sub-id] :distinct t
-				 :from [verb-features]
-				 :where [and [= [id] id]
-					     [= [vn] vn]
-					     [= [pv] pv]
-					     [= [tsch-class] "T2"]
-					     [like [tense] "%aorist%"]])))))
-	    (when link-sub-id2
-	      (update-records [verb-translation]
-			      :attributes `([link-sub-id])
-			      :values (list link-sub-id2)
-			      :where [and [= [id] id]
-					  [= [sub-id] sub-id]]))))))))
-
-
-#+test
-(let ((kt-list (select [id] [sub-id] [pv] [vn] :distinct t
-		       :from [verb-features]
-		       :where [and [= [tsch-class] "KT"]
-				   [like [tense] "%aorist%"]])))
-  (dolist (kt kt-list)
-    (destructuring-bind (id sub-id pv vn) kt
-      (let* ((vn (subseq vn 0 (position #\space vn)))
-	     (vn (string-trim "[]" (subseq vn 0 (position #\- vn)))))
-	(let* ((link-sub-id1
-		(car (select [sub-id] :distinct t
-			     :from [verb-features]
-			     :where [and [= [id] id]
-					 [= [vn] vn]
-					 [= [pv] pv]
-					 [= [tsch-class] "T1"]
-					 [like [tense] "%aorist%"]])))
-	       (link-sub-id5
-		(unless link-sub-id1
-		  (car (select [sub-id] :distinct t
-			       :from [verb-features]
-			       :where [and [= [id] id]
-					   [= [vn] vn]
-					   [= [pv] pv]
-					   [= [tsch-class] "T5"]
-					   [like [tense] "%aorist%"]])))))
-	  (when (and (null link-sub-id1)
-		     (null link-sub-id5))
-	    (print kt)
-	    ))))))
-
-
-;; P1 -> T1
-;; RP1 -> T3
-
-#+test
-(with-transaction ()
-  (let ((pass-list (select [id] [sub-id] [pv] [vn] :distinct t
-			   :from [verb-features]
-			   :where [and [= [tsch-class] "P1"]
-				       [like [tense] "%aorist%"]])))
-    (dolist (pass pass-list)
-      (destructuring-bind (id sub-id pv vn) pass
-	(let ((link-sub-id
-	       (car (select [sub-id] :distinct t
-			    :from [verb-features]
-			    :where [and [= [id] id]
-					[= [vn] vn]
-					[= [pv] pv]
-					[= [tsch-class] "T1"]
-					[like [tense] "%aorist%"]]))))
-	  (when link-sub-id
-	    (update-records [verb-translation]
-			    :attributes `([link-sub-id])
-			    :values (list link-sub-id)
-			    :where [and [= [id] id]
-					[= [sub-id] sub-id]])))))))
-
-#+test
-(with-transaction ()
-  (let ((pass-list (select [id] [sub-id] [pv] [vn] :distinct t
-			   :from [verb-features]
-			   :where [and [= [tsch-class] "RP1"]
-				       [like [tense] "%aorist%"]])))
-    (dolist (pass pass-list)
-      (destructuring-bind (id sub-id pv vn) pass
-	(let ((link-sub-id
-	       (car (select [sub-id] :distinct t
-			    :from [verb-features]
-			    :where [and [= [id] id]
-					[= [vn] vn]
-					[= [pv] pv]
-					[= [tsch-class] "T3"]
-					[like [tense] "%aorist%"]]))))
-	  (when link-sub-id
-	    (update-records [verb-translation]
-			    :attributes `([link-sub-id])
-			    :values (list link-sub-id)
-			    :where [and [= [id] id]
-					[= [sub-id] sub-id]])))))))
-
-
-#+test
-(print (select [*] :from [verb-features] :where [= [c-root] "cer"]))
-
-#+test
-(let ((table (make-hash-table :test #'equal)))
-  (with-file-lines (line "projects:georgian-morph;Levan;SORTFORM.txt")
-    (destructuring-bind (root masdar form) (split line #\|)
-      (pushnew masdar (gethash root table) :test #'string=)))
-  (maphash (lambda (key val)
-	     (format t "~a:~{ ~a~}~%" key val))
-	   table)
-  (print (hash-table-count table)))
-
-#+test
-(with-open-file (stream "projects:georgian-morph;Levan;root-masdar-form.txt" :direction :output :if-exists :supersede)
-  (with-file-lines (line "projects:georgian-morph;Levan;SORTFORM.txt")
-    (write-line (convert-encoding line :acad :amirani) stream)
-    ))
-
-#+test
-(with-open-file (stream "projects:georgian-morph;Levan;verb-list.txt" :direction :output :if-exists :supersede)
-  (with-file-lines (line "projects:georgian-morph;Levan;SORTFORM.txt")
-    (destructuring-bind (root masdar form) (split line #\|)
-      (write-line (convert-encoding form :acad :amirani) stream)
-      )))
-
-;; lookup ../regex/kartuli-morph.fst < verb-list.txt > verb-list-tagged.txt
-;; 873251/2368948 missing
-
-#+test
-(add-t3)
-
-#+test
-(defun add-t3 ()
-  (with-transaction ()
-    (let ((t1-list (select [id] [sub-id] [pv] [vn] :distinct t
-			   :from [verb-features]
-			   :distinct t
-			   :where [and [= [tsch-class] "T1"]
-				       ;;[= [vn] "abrageba"]
-				       [= [morph-type] "active"]
-				       [like [tense] "%aorist%"]
-				       [< [id] 3824]]
-			   :order-by `([id])))
-	  (date (get-universal-time)))
-      (dolist (t1 t1-list)
-	#+test
-	(print t1)
-	(destructuring-bind (id sub-id t1-pv vn) t1
-	  (let* ((t3 (car (select [sub-id] :distinct t
-				  :from [verb-features]
-				  :where [and [= [id] id]
-					      [= [vn] vn]
-					      [= [pv] t1-pv]
-					      [= [tsch-class] "T3"]
-					      [= [morph-type] "active"]
-					      [like [tense] "%aorist%"]])))
-		 (new-sub-id (1+ (car (select [max [sub-id]] :from [verb-translation] :where [= [id] id] :flatp t)))))
-	    (unless t3
-	      (format t "~d-~d-~a-~a~%"  id sub-id (or t1-pv "") vn)
-	      (let ((uid (car (select [max [unique-id]] :from [verb-features] :flatp t)))
-		    (t3-list (select [id] [tense]
-				     [root] [c-root] [pv] [vn] [gv] [sf] [caus-sf] [vv]
-				     [tsch-class] [morph-type] [relation] [reduplication] [red-dir-pv]
-				     [stem-type] [pr-st-ext] [part-pfx] [part-sfx] [passive-sfx]
-				     [type-aorist] [type-obj-3-pfx] [type-aorist-3sg] [type-optative]
-				     [nasal-infix] [subj-pers] [subj-num] [obj-pers] [type-subj12-sfx]
-				     [type-subj3-sfx] [type-subj2-pfx] [type-ev-sfx]
-				     [style] [type-pr-st-ext] [paradigm-replacement]
-				     :distinct t
-				     :from [verb-features]
-				     :where [and [= [id] id]
-						 [= [sub-id] sub-id]
-						 ;;[= [pv] t1-pv]
-						 ;;[= [vn] vn]
-						 [not [like [tense] "%part%"]]
-						 [not [like [tense] "%masdar%"]]]
-				     )))
-		(dolist (t3 t3-list) ;; (print (list :t3 t3))
-		  (destructuring-bind (id tense
-					  root c-root pv vn gv sf caus-sf vv
-					  tsch-class morph-type relation reduplication red-dir-pv
-					  stem-type pr-st-ext part-pfx part-sfx passive-sfx
-					  type-aorist type-obj-3-pfx type-aorist-3sg type-optative
-					  nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
-					  type-subj3-sfx type-subj2-pfx type-ev-sfx
-					  style type-pr-st-ext paradigm-replacement) t3
-		    (insert-records :into [verb-features]
-				    :attributes (list [unique-id] [id] [sub-id] [tense]
-						      [root] [c-root] [pv] [vn] [gv] [sf] [caus-sf] ;; [vv]
-						      [tsch-class] [morph-type] [relation] [reduplication] [red-dir-pv]
-						      [stem-type] [pr-st-ext] [part-pfx] [part-sfx] [passive-sfx]
-						      [type-aorist] [type-obj-3-pfx] [type-aorist-3sg] [type-optative]
-						      [nasal-infix] [subj-pers] [subj-num] [obj-pers] [type-subj12-sfx]
-						      [type-subj3-sfx] [type-subj2-pfx] [type-ev-sfx]
-						      [style] [type-pr-st-ext] [paradigm-replacement]
-						      [source] [author] [date])
-				    :values (list (incf uid) id new-sub-id tense
-						  root c-root pv vn gv sf caus-sf ;;vv
-						  "T3" morph-type relation reduplication red-dir-pv
-						  stem-type pr-st-ext part-pfx part-sfx passive-sfx
-						  type-aorist type-obj-3-pfx type-aorist-3sg type-optative
-						  nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
-						  type-subj3-sfx type-subj2-pfx type-ev-sfx
-						  style type-pr-st-ext paradigm-replacement "derived" "paul" date))
-		    (when (eq t3 (car t3-list))
-		      (insert-records :into [verb-translation]
-				      :attributes `([id] [sub-id] [base-sub-id] [pv] [source] [author] [date])
-				      :values (list id new-sub-id new-sub-id  t1-pv "derived" "paul" date))
-		      (insert-records :into [xle-template]
-				      :attributes `([id] [sub-id] [template] [author] [date])
-				      :values (list id new-sub-id "V-TRANS-O-SUBJ-OBJ3" "derived" date)))))))))))))
-
-
-#+test
-(defun add-rp3 ()
-  (with-transaction ()
-    (let ((t1-list (select [id] [sub-id] [pv] [vn] :distinct t
-			   :from [verb-features]
-			   :distinct t
-			   :where [and [= [tsch-class] "T1"]
-				       ;;[= [vn] "abrageba"]
-				       [= [morph-type] "active"]
-				       [like [tense] "%aorist%"]
-				       [< [id] 3824]]
-			   :order-by `([id])))
-	  (date (get-universal-time)))
-      (dolist (t1 t1-list)
-	#+test
-	(print t1)
-	(destructuring-bind (id sub-id t1-pv vn) t1
-	  (let* ((t3 (car (select [sub-id] :distinct t
-				  :from [verb-features]
-				  :where [and [= [id] id]
-					      [= [vn] vn]
-					      [= [pv] t1-pv]
-					      [= [tsch-class] "T3"]
-					      [= [morph-type] "active"]
-					      [like [tense] "%aorist%"]])))
-		 (new-sub-id (1+ (car (select [max [sub-id]] :from [verb-translation] :where [= [id] id] :flatp t)))))
-	    (unless t3
-	      (format t "~d-~d-~a-~a~%"  id sub-id (or t1-pv "") vn)
-	      (let ((uid (car (select [max [unique-id]] :from [verb-features] :flatp t)))
-		    (t3-list (select [id] [tense]
-				     [root] [c-root] [pv] [vn] [gv] [sf] [caus-sf] [vv]
-				     [tsch-class] [morph-type] [relation] [reduplication] [red-dir-pv]
-				     [stem-type] [pr-st-ext] [part-pfx] [part-sfx] [passive-sfx]
-				     [type-aorist] [type-obj-3-pfx] [type-aorist-3sg] [type-optative]
-				     [nasal-infix] [subj-pers] [subj-num] [obj-pers] [type-subj12-sfx]
-				     [type-subj3-sfx] [type-subj2-pfx] [type-ev-sfx]
-				     [style] [type-pr-st-ext] [paradigm-replacement]
-				     :distinct t
-				     :from [verb-features]
-				     :where [and [= [id] id]
-						 [= [sub-id] sub-id]
-						 ;;[= [pv] t1-pv]
-						 ;;[= [vn] vn]
-						 [not [like [tense] "%part%"]]
-						 [not [like [tense] "%masdar%"]]]
-				     )))
-		(dolist (t3 t3-list) ;; (print (list :t3 t3))
-		  (destructuring-bind (id tense
-					  root c-root pv vn gv sf caus-sf vv
-					  tsch-class morph-type relation reduplication red-dir-pv
-					  stem-type pr-st-ext part-pfx part-sfx passive-sfx
-					  type-aorist type-obj-3-pfx type-aorist-3sg type-optative
-					  nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
-					  type-subj3-sfx type-subj2-pfx type-ev-sfx
-					  style type-pr-st-ext paradigm-replacement) t3
-		    (insert-records :into [verb-features]
-				    :attributes (list [unique-id] [id] [sub-id] [tense]
-						      [root] [c-root] [pv] [vn] [gv] [sf] [caus-sf] ;; [vv]
-						      [tsch-class] [morph-type] [relation] [reduplication] [red-dir-pv]
-						      [stem-type] [pr-st-ext] [part-pfx] [part-sfx] [passive-sfx]
-						      [type-aorist] [type-obj-3-pfx] [type-aorist-3sg] [type-optative]
-						      [nasal-infix] [subj-pers] [subj-num] [obj-pers] [type-subj12-sfx]
-						      [type-subj3-sfx] [type-subj2-pfx] [type-ev-sfx]
-						      [style] [type-pr-st-ext] [paradigm-replacement]
-						      [source] [author] [date])
-				    :values (list (incf uid) id new-sub-id tense
-						  root c-root pv vn gv sf caus-sf ;;vv
-						  "T3" morph-type relation reduplication red-dir-pv
-						  stem-type pr-st-ext part-pfx part-sfx passive-sfx
-						  type-aorist type-obj-3-pfx type-aorist-3sg type-optative
-						  nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
-						  type-subj3-sfx type-subj2-pfx type-ev-sfx
-						  style type-pr-st-ext paradigm-replacement "derived" "paul" date))
-		    (when (eq t3 (car t3-list))
-		      (insert-records :into [verb-translation]
-				      :attributes `([id] [sub-id] [base-sub-id] [pv] [source] [author] [date])
-				      :values (list id new-sub-id new-sub-id  t1-pv "derived" "paul" date))
-		      (insert-records :into [xle-template]
-				      :attributes `([id] [sub-id] [template] [author] [date])
-				      :values (list id new-sub-id "V-TRANS-O-SUBJ-OBJ3" "derived" date)))))))))))))
-
-#+test
-(clrhash *feature-cache*)
-#+(or mysql sqlite)
-(progn
-  (clrhash fst::*paradigm-table*)
-  (update-paradigm-table))
-
-#+test
-(with-transaction ()
-  (dolist (table (list [xle-template]  [verb-translation]  [verb-features]))
-    (delete-records :from table
-		    :where [and [= [id] 3265]
-				[= [sub-id] 63]])))
-
-#+copy
-(with-transaction ()
-  (let ((kt-list (select [id] [sub-id] [pv] [vn] :distinct t
-			 :from [verb-features]
-			 :where [and [= [tsch-class] "KT"]
-				     [like [tense] "%aorist%"]]
-			 )))
-    (dolist (kt kt-list)
-      (destructuring-bind (id sub-id pv vn) kt
-	(let* ((vn (subseq vn 0 (position #\space vn)))
-	       (vn (string-trim "[]" (subseq vn 0 (position #\- vn)))))
-	  (let* ((link-sub-id1
-		  (car (select [sub-id] :distinct t
-			       :from [verb-features]
-			       :where [and [= [id] id]
-					   [= [vn] vn]
-					   [= [pv] pv]
-					   [= [tsch-class] "T1"]
-					   [like [tense] "%aorist%"]])))
-		 (link-sub-id5
-		  (unless link-sub-id1
-		    (car (select [sub-id] :distinct t
-				 :from [verb-features]
-				 :where [and [= [id] id]
-					     [= [vn] vn]
-					     [= [pv] pv]
-					     [= [tsch-class] "T5"]
-					     [like [tense] "%aorist%"]]))))
-		 (link-sub-id2
-		  (unless (or link-sub-id1 link-sub-id5)
-		    (car (select [sub-id] :distinct t
-				 :from [verb-features]
-				 :where [and [= [id] id]
-					     [= [vn] vn]
-					     [= [pv] pv]
-					     [= [tsch-class] "T2"]
-					     [like [tense] "%aorist%"]])))))
-	    (when link-sub-id2
-	      (update-records [verb-translation]
-			      :attributes `([link-sub-id])
-			      :values (list link-sub-id2)
-			      :where [and [= [id] id]
-					  [= [sub-id] sub-id]]))))))))
-
-#+test
-(print (select [id] [sub-id] [pv] [vn]
-	       :from [verb-features]
-	       :where [and [= [id] 3386]
-			   [like [tsch-class] "T%"]
-			   [like [tense] "%aorist%"]
-			   [= [subj-pers] "3"]]
-	       ))
-
-#+test
-(with-transaction ()
-  (let ((uid (car (select [max [unique-id]] :from [verb-features] :flatp t)))
-	(t3-list (select [id] [sub-id] [tense]
-			 [root] [c-root] [pv] [vn] [gv] [sf] [caus-sf] [vv]
-			 [tsch-class] [morph-type] [relation] [reduplication] [red-dir-pv]
-			 [stem-type] [pr-st-ext] [part-pfx] [part-sfx] [passive-sfx]
-			 [type-aorist] [type-obj-3-pfx] [type-aorist-3sg] [type-optative]
-			 [nasal-infix] [subj-pers] [subj-num] [obj-pers] [type-subj12-sfx]
-			 [type-subj3-sfx] [type-subj2-pfx] [type-ev-sfx]
-			 [style] [type-pr-st-ext] [paradigm-replacement] [source] [author] [date]
-			 :distinct t
-			 :from [verb-features]
-			 :where [and [= [id] 3386]
-				     [like [tsch-class] "T%"]
-				     [like [tense] "%aorist%"]
-				     [= [subj-pers] "3"]]
-			 )))
-    (dolist (t3 t3-list) ;; (print (list :t3 t3))
-      (destructuring-bind (id sub-id tense
-			      root c-root pv vn gv sf caus-sf vv
-			      tsch-class morph-type relation reduplication red-dir-pv
-			      stem-type pr-st-ext part-pfx part-sfx passive-sfx
-			      type-aorist type-obj-3-pfx type-aorist-3sg type-optative
-			      nasal-infix subj-pers subj-num obj-pers type-subj12-sfx
-			      type-subj3-sfx type-subj2-pfx type-ev-sfx
-			      style type-pr-st-ext paradigm-replacement source author date) t3
-	(insert-records :into [verb-features]
-			:attributes (list [unique-id] [id] [sub-id] [tense]
-					  [root] [c-root] [pv] [vn] [gv] [sf] [caus-sf]	[vv]
-					  [tsch-class] [morph-type] [relation] [reduplication] [red-dir-pv]
-					  [stem-type] [pr-st-ext] [part-pfx] [part-sfx] [passive-sfx]
-					  [type-aorist] [type-obj-3-pfx] [type-aorist-3sg] [type-optative]
-					  [nasal-infix] [subj-pers] [subj-num] [obj-pers] [type-subj12-sfx]
-					  [type-subj3-sfx] [type-subj2-pfx] [type-ev-sfx]
-					  [style] [type-pr-st-ext] [paradigm-replacement]
-					  [source] [author] [date])
-			:values (list (incf uid) id sub-id tense
-				      "cqv" c-root pv vn gv sf caus-sf vv
-				      tsch-class morph-type relation reduplication red-dir-pv
-				      stem-type pr-st-ext part-pfx part-sfx passive-sfx
-				      type-aorist type-obj-3-pfx type-aorist-3sg type-optative
-				      nasal-infix "3" "pl" obj-pers type-subj12-sfx
-				      type-subj3-sfx type-subj2-pfx type-ev-sfx
-				      style type-pr-st-ext paradigm-replacement source author date))))))
-
-#+test
-(with-transaction ()
-  (update-records [verb-features]
-		  :attributes '([subj-num])
-		  :values (list "sg")
-		  :where [and [= [id] 3386]
-			      [like [tsch-class] "T%"]
-			      [like [tense] "%aorist%"]
-			      [= [subj-pers] "3"]]
-		  ))
-
-#+test
-(with-transaction ()
-  (update-records [morph participle]
-		  :attributes '([aspect])
-		  :values (list "PERF")
-		  :where [= [aspect] "PF"]
-		  ))
-
-#+test
-(with-transaction ()
-  (update-records [verb-features]
-		  :attributes '([style])
-		  :values (list "bracket")
-		  :where [and [= [unique-id] 25106]]
-		  ))
-
-#+test
-(with-transaction ()
-  (update-records [morph verb-features]
-		  :attributes '([root])
-		  :values (list "ჴმ")
-		  :where [and [= [id] 3659]]
-		  ))
-
-#+test
-(with-transaction ()
-  (update-records [morph verb-features]
-		  :attributes '([root])
-		  :values (list "ყuარ")
-		  :where [and [= [id] 2752]]
-		  ))
-
-;; u -> ვ/უ for verbs; still to be done
-#+test
-(let ((count 0))
-  (do-query ((root)
-	     [select [root] :from [morph verb-features]
-		     :flatp t
-		     :distinct t
-		     :where [like [root] "%ვ%"]])
-    (let ((v-pos (position #\ვ root)))
-      (when (and (> v-pos 0)
-		 (not (find (char root (1- v-pos)) "აეიოუ"))
-		 (or (= v-pos (1- (length root)))
-		     (not (find (char root (1+ v-pos)) "ი"))))
-	(incf count)
-	(write-line root))))
-  (print count))
-  
-#+test
-(pprint (select [verb-paradigm id] [verb-paradigm sub-id] [c-root] [tsch-class] [template]
-		:from [morph verb-paradigm]
-		:left-join [morph xle-template]
-		:on [and [= [verb-paradigm id] [xle-template id]]
-			 [= [verb-paradigm sub-id] [xle-template sub-id]]]
-		:where [like [tsch-class] "RP7%"]))
-
-#+test
-(with-database-connection ()
-  (pprint (select [verb-paradigm id] ;; [verb-paradigm sub-id]
-		  [verb-paradigm c-root] [verb-paradigm tsch-class] [pres morph-type] [fut morph-type]
-		  :from [morph verb-paradigm]
-		  :distinct t
-		  :left-join [morph verb-features :as pres]
-		  :on [and [= [verb-paradigm id] [pres id]]
-			   [= [verb-paradigm features-sub-id] [pres sub-id]]
-			   [like [pres tense] "%|present|%"]]
-		  :left-join [morph verb-features :as fut]
-		  :on [and [= [verb-paradigm id] [fut id]]
-			   [= [verb-paradigm features-sub-id] [fut sub-id]]
-			   [like [fut tense] "%|future|%"]]
-		  :where [<> [pres morph-type] [fut morph-type]]
-		  :order-by [verb-paradigm id])))
-
-;; do the same for RM, IV
-#+test
-(with-database-connection ()
-  (pprint (select [verb-paradigm id] ;; [verb-paradigm sub-id]
-		  [verb-paradigm c-root]
-		  [pf-pv]
-		  [verb-paradigm tsch-class] [pres morph-type] [fut morph-type]
-		  :from [morph verb-paradigm]
-		  :distinct t
-		  :left-join [morph verb-features :as pres]
-		  :on [and [= [verb-paradigm id] [pres id]]
-			   [= [verb-paradigm features-sub-id] [pres sub-id]]
-			   [like [pres tense] "%|present|%"]]
-		  :left-join [morph verb-features :as fut]
-		  :on [and [= [verb-paradigm id] [fut id]]
-			   [= [verb-paradigm features-sub-id] [fut sub-id]]
-			   [like [fut tense] "%|future|%"]
-			   [= [fut passive-sfx] "დ+ებ"]]
-		  :where [and [<> [pres morph-type] [fut morph-type]]
-			      [= [impf-pv] "-"]]
-		  :order-by [verb-paradigm id])))
-
-#+test
-(with-database-connection ()
-  (do-query ((id c-root impf-pv pf-pv tsch pres-morph fut-morph)
-	     [select [verb-paradigm id] ;; [verb-paradigm sub-id]
-		     [verb-paradigm c-root]
-		     [impf-pv] [pf-pv]
-		     [verb-paradigm tsch-class] [pres morph-type] [fut morph-type]
-		     :from [morph verb-paradigm]
-		     :distinct t
-		     :left-join [morph verb-features :as pres]
-		     :on [and [= [verb-paradigm id] [pres id]]
-			      [= [verb-paradigm features-sub-id] [pres sub-id]]
-			      [like [pres tense] "%|present|%"]]
-		     :left-join [morph verb-features :as fut]
-		     :on [and [= [verb-paradigm id] [fut id]]
-			      [= [verb-paradigm features-sub-id] [fut sub-id]]
-			      [like [fut tense] "%|future|%"]]
-		     ;; :where
-		     #+ignore[and [<> [pres morph-type] [fut morph-type]]
-				  ;; [= [impf-pv] "-"]
-				  ]
-		     :order-by [verb-paradigm id]])
-    (print (list  c-root impf-pv pf-pv tsch pres-morph fut-morph
-		  (calculate-class tsch pres-morph fut-morph)
-		  ))))
-
-#+test
-(with-database-connection ()
-  (let ((rows (select [verb-paradigm id]
-		      [verb-paradigm sub-id]
-		      [verb-paradigm c-root]
-		      [impf-pv] [pf-pv]
-		      [verb-paradigm tsch-class]
-		      [pres morph-type]
-		      [fut morph-type]
-		      [fut passive-sfx]
-		      :from [morph verb-paradigm]
-		      :distinct t
-		      :left-join [morph verb-features :as pres]
-		      :on [and [= [verb-paradigm id] [pres id]]
-			       [= [verb-paradigm features-sub-id] [pres sub-id]]
-			       [like [pres tense] "%|present|%"]]
-		      :left-join [morph verb-features :as fut]
-		      :on [and [= [verb-paradigm id] [fut id]]
-			       [= [verb-paradigm features-sub-id] [fut sub-id]]
-			       [like [fut tense] "%|future|%"]]
-		      ;; :where
-		      #+ignore[and [<> [pres morph-type] [fut morph-type]] ;; [= [impf-pv] "-"]
-				   ]
-		      :order-by [verb-paradigm id])))
-    (with-transaction ()
-      (loop for (id sub-id c-root impf-pv pf-pv tsch pres-morph fut-morph pass-sfx) in rows
-	 do
-	   #+debug
-	   (print (list id sub-id c-root impf-pv pf-pv tsch pres-morph fut-morph pass-sfx
-			(calculate-class tsch pres-morph fut-morph pass-sfx)))
-	   (update-records [morph verb-paradigm]
-			    :av-pairs `(([class] ,(calculate-class tsch pres-morph fut-morph pass-sfx)))
-			    :where [and [= [id] ?id]
-					[= [sub-id] ?sub-id]]
-			    )))))
-
-
 (defun calculate-class (tsch-class pres-morph fut-morph pass-sfx)
   (labels ((medium ()
 	     (cond ((equal fut-morph "active")
@@ -2839,261 +1642,5 @@ ZP2 LV
 	     (#\M (medium))
 	     (#\I (medium))
 	     (#\Z "StatPass"))))))
-
-#+test
-(with-database-connection ()
-  (let ((rows (select [verb-paradigm id] [verb-paradigm sub-id]
-		      :from [morph verb-paradigm]
-		      :distinct t
-		      :left-join [morph verb-features :as pres]
-		      :on [and [= [verb-paradigm id] [pres id]]
-			       [= [verb-paradigm features-sub-id] [pres sub-id]]
-			       [like [pres tense] "%|present|%"]]
-		      :left-join [morph verb-features :as fut]
-		      :on [and [= [verb-paradigm id] [fut id]]
-			       [= [verb-paradigm features-sub-id] [fut sub-id]]
-			       [like [fut tense] "%|future|%"]
-			       [= [fut passive-sfx] "დ+ებ"]]
-		      :where [and [<> [pres morph-type] [fut morph-type]]
-				  [= [impf-pv] "-"]]
-		      :order-by [verb-paradigm id])))
-    (with-transaction ()
-      (loop for (id sub-id) in rows
-	   do (delete-records :from [morph verb-features]
-			      :where [and [= [id] ?id]
-					  [= [sub-id] ?sub-id]
-					  [like [tense] "%|present|%"]])
-	   ))))
-
-;; check VN/stem consistency
-#+test
-(defparameter *vn-lemma-table* (dat:make-string-tree))
-
-#+test
-(u:with-file-lines (vn "projects:georgian-morph;regex;vn-lemma-list.txt")
-  (destructuring-bind (lemma root) (u:split vn #\/)
-    (let ((pv-pos (position #\- lemma :end (- (length lemma) 3))))
-      (when pv-pos (setf lemma (subseq lemma (1+ pv-pos)))))
-    (pushnew lemma (dat:string-tree-get *vn-lemma-table* root) :test #'string=)))
-
-#+test
-(dat:do-string-tree (root lemma-list *vn-lemma-table*)
-  (when (find-if (lambda (lemma) (not (search root lemma))) lemma-list)
-    (format t "~a: ~{~a~^, ~}~%" root lemma-list)))
-		    
-
-;; participle decl.
-
-#+test ;; has to be corrected
-(with-database-connection ()
-  (print (select [code] [participle stem]
-		 :from [morph participle]
-		 :where [and [= [type] "NEGATIVE-PART"]
-			     [like [stem] "%აველ"]] )))
-
-#+test ;; has to be corrected
-(with-database-connection ()
-  (do-query ((code stem)
-	     [select [code] [stem]
-		     :from [morph participle]
-		     :where [= [type] "NEGATIVE-PART"]
-		     ;;:limit 40
-		     ])
-    (let ((codes (select [code] :distinct t :flatp t
-			 :from [morph noun-features]
-			 :where [like [stem] (u:concat "%" (string-trim "*" stem))])))
-      (when (or (> (length codes) 1)
-		(not (find code codes :test #'string=)))
-	(print (list code stem codes)))
-      ))) 
-
-#+test
-(with-database-connection ()
-  (do-query ((root)
-	     [select [root]
-		     :from [morph verb-features]
-		     :where [like [root] "%ვ%"]
-		     :distinct t
-		     :order-by [root]
-		     ])
-    (unless (or (char= (char root 0) #\ვ)
-		(search "ოვ" root)
-		(search "ავ" root)
-		(search "ევ" root)
-		(search "უვ" root)
-		(search "ივ" root)
-		(search "-ვ" root)
-		(equal (search "ვრ" root) (- (length root) 2))
-		(equal (search "ვლ" root) (- (length root) 2))
-		(equal (search "ვნ" root) (- (length root) 2)))
-      (print root))))
-
-;; ვ -> u/უ
-#+test
-(with-transactionxx ()
-  (do-query ((id sub-id vn impf-vn pf-vn root)
-	     [select [verbal-noun id] [verbal-noun sub-id]
-		     [verbal-noun vn] [verbal-noun impf-vn] [verbal-noun pf-vn]
-		     [root]
-		     :from [morph verbal-noun]
-		     :left-join [morph verb-features]
-		     :on [and [= [verb-features id] [verbal-noun id]]
-			      [= [verb-features sub-id] [verbal-noun sub-id]]]
-		     :where [like [verb-features root] "%ვ%"]
-		     :distinct t
-		     :order-by [root]
-		     ])
-    (unless (or (char= (char root 0) #\ვ)
-		(search "ოვ" root)
-		(search "ავ" root)
-		(search "ევ" root)
-		(search "უვ" root)
-		(search "ივ" root)
-		(search "-ვ" root)
-		(equal (search "ვრ" root) (- (length root) 2))
-		(equal (search "ვლ" root) (- (length root) 2))
-		(equal (search "ვნ" root) (- (length root) 2)))
-      (print (list id root vn (search root vn)))
-      (let ((u-root (substitute #\u #\ვ root)))
-	(update-records [morph verb-features]
-			:av-pairs `(([root] ,u-root))
-			:where [and [= [verb-features id] ?id]
-				    [= [verb-features sub-id] ?sub-id]
-				    [= [root] ?root]])
-	(when (equal (search root vn) 0)
-	  (let ((u-vn (u:concat u-root (subseq vn (length root)))))
-	    (print (list root u-vn))
-	    (update-records [morph verbal-noun]
-			    :av-pairs `(([vn] ,u-vn))
-			    :where [and [= [verbal-noun id] ?id]
-					[= [verbal-noun sub-id] ?sub-id]
-					[= [vn] ?vn]])))
-	(when (and impf-vn (equal (search root impf-vn) 0)
-	  (let ((u-vn (u:concat u-root (subseq impf-vn (length root)))))
-	    (print (list root u-vn))
-	    (update-records [morph verbal-noun]
-			    :av-pairs `(([impf-vn] ,u-vn))
-			    :where [and [= [verbal-noun id] ?id]
-					[= [verbal-noun sub-id] ?sub-id]
-					[= [impf-vn] ?impf-vn]]))))
-	(when (and pf-vn (equal (search root pf-vn) 0)
-	  (let ((u-vn (u:concat u-root (subseq pf-vn (length root)))))
-	    (print (list root u-vn))
-	    (update-records [morph verbal-noun]
-			    :av-pairs `(([pf-vn] ,u-vn))
-			    :where [and [= [verbal-noun id] ?id]
-					[= [verbal-noun sub-id] ?sub-id]
-					[= [pf-vn] ?pf-vn]]))))))))
-
-#+test
-(with-transactionxx ()
-  (do-query ((id sub-id root p-root stem)
-	     [select [verb-features id] [verb-features sub-id]
-		     [verb-features root] [participle root] [stem]
-		     :from [morph participle]
-		     :left-join [morph verb-features]
-		     :on [and [= [verb-features id] [participle id]]
-			      [= [verb-features sub-id] [participle sub-id]]]
-		     :where [like [verb-features root] "%u%"]
-		     :distinct t
-		     :order-by [verb-features root]
-		     ])
-    (let* ((v-root (substitute #\ვ #\u root))
-	   (pos (search v-root stem)))
-      ;;(when p-root (print p-root))
-      ;;(print (list id sub-id root p-root stem (search v-root stem)  (search v-root p-root)))
-      (when pos
-	(let ((u-stem (u:concat (subseq stem 0 pos)
-				root
-				(subseq stem (+ pos (length root)))))
-	      (u-root (when (equal v-root p-root) root)))
-	  (unless (and (char= (char root (1- (length root))) #\u)
-		       (> (length stem) (+ pos (length root)))
-		       (find (char stem (+ pos (length root))) "უო"))
-	    (print (list id sub-id root stem u-stem))
-	    (update-records [morph participle]
-			    :av-pairs `(([stem] ,u-stem))
-			    :where [and [= [id] ?id]
-					[= [sub-id] ?sub-id]
-					[= [stem] ?stem]])))))))
-
-#+test
-(with-database-connection ()
-  (with-open-file (stream "~/local/verb-features-examples.tsv"
-                          :direction :output :if-exists :supersede)
-    (format stream "~{~a~^	~}~%"
-            (list "unique_id" "id" "sub_id" "root" "c_root" "tense" "pv" "vn" "gv" "sf" "caus_sf" "vv"
-                  "tsch_class" "morph_type" "relation" "reduplication" "red_dir_pv" "stem_type" "pr_st_ext"
-                  "part_pfx" "part_sfx" "passive_sfx" "nasal_infix" "type_aorist" "type_obj_3_pfx" 
-                "type_aorist_3sg" "type_optative" "subj_pers" "subj_num" "obj_pers" "type_subj12_sfx" 
-                "type_subj3_sfx" "type_subj2_pfx" "type_ev_sfx" "style"
-                "type_pr_st_ext" "paradigm_replacement" "deleted" "lang"))
-  (do-query ((unique-id id sub-id root c-root tense pv vn gv sf caus-sf vv
-                        tsch-class morph-type relation reduplication red-dir-pv stem-type pr-st-ext
-                        part-pfx part-sfx passive-sfx nasal-infix type-aorist type-obj-3-pfx
-                        type-aorist-3sg type-optative subj-pers subj-num obj-pers type-subj12-sfx
-                        type-subj3-sfx type-subj2-pfx type-ev-sfx style
-                        type-pr-st-ext paradigm-replacement lang)
-             [select [unique_id] [id] [sub_id] [root] [c_root] [tense] [pv] [vn] [gv] [sf] [caus_sf] [vv]
-                     [tsch_class] [morph_type] [relation] [reduplication] [red_dir_pv] [stem_type] [pr_st_ext]
-                     [part_pfx] [part_sfx] [passive_sfx] [nasal_infix] [type_aorist] [type_obj_3_pfx]
-                     [type_aorist_3sg] [type_optative] [subj_pers] [subj_num] [obj_pers] [type_subj12_sfx]
-                     [type_subj3_sfx] [type_subj2_pfx] [type_ev_sfx] [style]
-                     [type_pr_st_ext] [paradigm_replacement] [lang]
-                     :from [morph verb-features]
-                     :where [in [id] '(3260 904 2073 2120 2764 1116 1628 3581)]
-                     :order-by '([id] [sub-id])])
-    (format stream "~{~a~^	~}~%"
-            (mapcar (lambda (val)
-                      (or val ""))
-                    (list unique-id id sub-id root c-root tense pv vn gv sf caus-sf vv
-                          tsch-class morph-type relation reduplication red-dir-pv stem-type pr-st-ext
-                          part-pfx part-sfx passive-sfx nasal-infix type-aorist type-obj-3-pfx
-                          type-aorist-3sg type-optative subj-pers subj-num obj-pers type-subj12-sfx
-                          type-subj3-sfx type-subj2-pfx type-ev-sfx style
-                          type-pr-st-ext paradigm-replacement lang))))))
-
-#+test
-("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled")
-
-#+test
-(with-database-connection ()
-  (with-open-file (stream "~/local/verb-paradigm-examples.tsv"
-                        :direction :output :if-exists :supersede)
-  (format stream "~{~a~^	~}~%"
-          '("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled"))
-  (do-query ((&rest rest)
-             [select [*]
-                     :from [morph verb-paradigm]
-                     :where [in [id] '(3260 904 2073 2120 2764 1116 1628 3581)]
-                     :order-by '([id] [sub-id])])
-    (format stream "~{~a~^	~}~%"
-            (mapcar (lambda (val)
-                      (or val ""))
-                    rest)))))
-
-#+test
-(debug (select [*] :from [morph verb-features]
-               :where [= [id] 3260]
-               :limit 1))
-
-#+test
-(debug (select [*] :from [morph verb-paradigm]
-               :where [= [id] 3260]
-               :limit 1))
-
-#+test
-(debug (select [*] :from [morph verbal-noun]
-               :where [= [id] 3260]
-               :limit 1))
-
-;; ("id" "sub_id" "vn" "impf_vn" "pf_vn" "variety" "date")
-
-#+test
-(debug (select [*] :from [morph participle]
-               :where [= [id] 3260]
-               :limit 1))
-
-;; ("id" "sub_id" "type" "stem" "code" "variety" "aspect" "date" "attested" "accepted" "main_form" "root" "wrong" "restriction")
 
 :eof

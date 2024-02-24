@@ -243,6 +243,7 @@
    (corpus-count :initform 0 :initarg :corpus-count :reader corpus-count :type integer))
   (:base-table [morph fullform]))
 
+#+disabled
 (dolist (class '(paradigm fullform))
   ;;(drop-table 'paradigm)
   (unless (table-exists-p (view-table (find-class class)))

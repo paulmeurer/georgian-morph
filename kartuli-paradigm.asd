@@ -2,6 +2,10 @@
 
 (in-package :cl-user)
 
+;; URLs:
+;; http://gekko.dyndns.org/kartuli/paradigm
+;; http://gekko.dyndns.org/kartuli/nouns
+
 (asdf:defsystem :kartuli-paradigm
   :depends-on (:encoding
 	       :javascript
@@ -18,7 +22,8 @@
 	       (:file "verb-feature-table-sql")
 	       (:file "paradigms")
 	       (:file "paradigm-www")
-	       (:file "noun-table-www")))
+	       (:file "noun-table-www")
+               ))
 
 
 :eof

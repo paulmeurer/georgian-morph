@@ -32,10 +32,10 @@
    (code :initform nil :initarg :code :reader code :type string)
    (pos :initform nil :initarg :pos :reader part-of-speech :type string)
    (features :initform nil :initarg :features :reader features :type string)
-   (inflects-like :initform nil :initarg :features :reader features :type string)
+   (inflects-like :initform nil :initarg :features :reader inflects-like :type string)
    (typo :initform nil :initarg :typo :reader typo :type boolean)
    (class :initform nil :initarg :class :reader verb-class :type string)
-   (present :initform nil :initarg :present :reader features :type string)
+   (present :initform nil :initarg :present :reader present :type string)
    (future :initform nil :initarg :future :reader future :type string)
    (aorist :initform nil :initarg :aorist :reader aorist :type string)
    (perfect :initform nil :initarg :perfect :reader perfect :type string)
@@ -760,7 +760,7 @@
 	
 	((div :class "title") "Kartuli :: Noun Features")
 
-	((form :method "post" :id "form" :name "form" :action "/kartuli/noun-features.xml")
+	((form :method "post" :id "form" :name "form" :action "/kartuli/nouns")
 	 
 	 ((div :class "text")
 	  "Stem: " ((input :type "text" :style "font-size: 12pt" :name "search-stem"

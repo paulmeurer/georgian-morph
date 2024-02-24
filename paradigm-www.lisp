@@ -151,6 +151,7 @@
 	     :path (concat "/" *url-base* "/paradigm"))
   ;;(print (request-query request))
   (setf counts t)
+  (setf standard-only t)
   (ccl:with-lock-grabbed (*parse-lock*)
     (with-database-connection ()
       (let* ((parser::*dg-vector* (make-array 0 :fill-pointer t :adjustable t))
@@ -242,7 +243,7 @@
 									  :num 'fst::sg
 									  :pers 1
 									  :obj3sg-only-p t
-									  :standard-only-p t
+									  :standard-only-p standard-only
 									  :lang lang
 									  :printp nil)
 						(unless forms
@@ -253,7 +254,7 @@
 									    :num 'fst::sg
 									    :pers 3
 									    :obj3sg-only-p t
-									    :standard-only-p t
+									    :standard-only-p standard-only
 									    :lang lang
 									    :printp nil)))
 						#+debug(print (list forms xle-templates class))
@@ -2397,7 +2398,8 @@
 		(xsl:otherwise
 		 ((xsl:attribute :name "style") "font-weight: bold; color: black")))
 	       (xsl:value-of/ :select "@c-root"))
-	      (xsl:text " | ")
+	      ;;(xsl:text " | ")
+              #+disabled
 	      ((xsl:element :name "a")
 	       ((xsl:attribute :name "href")
 		"georgian-root-paradigms.xml?"
@@ -2405,7 +2407,7 @@
 		;; "&amp;font=" (xsl:value-of/ :select "/paradigms/@font")
 		)
 	       "all paradigms ")
-	      " (" (xsl:value-of/ :select "root-paradigms/@count") ")"
+	      ;; " (" (xsl:value-of/ :select "root-paradigms/@count") ")"
 	      " | "
 	      ((xsl:element :name "a")
 	       ((xsl:attribute :name "href")

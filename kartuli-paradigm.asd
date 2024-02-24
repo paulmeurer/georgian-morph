@@ -4,11 +4,13 @@
 
 (asdf:defsystem :kartuli-paradigm
   :depends-on (:encoding
+	       :javascript
 	       :georgian-morph
 	       :clsql-postgresql-patches
 	       #-(or allegro sbcl) :aserve
 	       #-sbcl :aserve-custom
-	       :javascript :xml
+	       ;; :javascript
+               :xml
 	       :cl-fst)
   :serial t
   :components ((:file "database")

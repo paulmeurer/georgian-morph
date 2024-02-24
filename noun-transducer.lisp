@@ -3539,7 +3539,7 @@
 	     (or (seq ,(utp "ას" '((case-type full)
 			           (case dat))))))
         (seq (or pron-poss3-stem ;; მისსა
-                 pron-poss12-stem))
+                 pron-poss12-stem)
 	     (or (seq ,(utp "სა" '((case-type full)
 			           (case dat)
                                    (lang og))))))

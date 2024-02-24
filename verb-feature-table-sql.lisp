@@ -3018,12 +3018,13 @@ ZP2 LV
 					[= [stem] ?stem]])))))))
 
 #+test
-(with-open-file (stream "/ssd/data/verb-features-examples.tsv"
-                        :direction :output :if-exists :supersede)
-  (format stream "~{~a~^	~}~%"
-          (list "unique_id" "id" "sub_id" "root" "c_root" "tense" "pv" "vn" "gv" "sf" "caus_sf" "vv"
-                "tsch_class" "morph_type" "relation" "reduplication" "red_dir_pv" "stem_type" "pr_st_ext"
-                "part_pfx" "part_sfx" "passive_sfx" "nasal_infix" "type_aorist" "type_obj_3_pfx" 
+(with-database-connection ()
+  (with-open-file (stream "~/local/verb-features-examples.tsv"
+                          :direction :output :if-exists :supersede)
+    (format stream "~{~a~^	~}~%"
+            (list "unique_id" "id" "sub_id" "root" "c_root" "tense" "pv" "vn" "gv" "sf" "caus_sf" "vv"
+                  "tsch_class" "morph_type" "relation" "reduplication" "red_dir_pv" "stem_type" "pr_st_ext"
+                  "part_pfx" "part_sfx" "passive_sfx" "nasal_infix" "type_aorist" "type_obj_3_pfx" 
                 "type_aorist_3sg" "type_optative" "subj_pers" "subj_num" "obj_pers" "type_subj12_sfx" 
                 "type_subj3_sfx" "type_subj2_pfx" "type_ev_sfx" "style"
                 "type_pr_st_ext" "paradigm_replacement" "deleted" "lang"))
@@ -3050,12 +3051,14 @@ ZP2 LV
                           part-pfx part-sfx passive-sfx nasal-infix type-aorist type-obj-3-pfx
                           type-aorist-3sg type-optative subj-pers subj-num obj-pers type-subj12-sfx
                           type-subj3-sfx type-subj2-pfx type-ev-sfx style
-                          type-pr-st-ext paradigm-replacement lang)))))
+                          type-pr-st-ext paradigm-replacement lang))))))
 
+#+test
 ("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled")
 
 #+test
-(with-open-file (stream "/centos6/data/verb-paradigm-examples.tsv"
+(with-database-connection ()
+  (with-open-file (stream "~/local/verb-paradigm-examples.tsv"
                         :direction :output :if-exists :supersede)
   (format stream "~{~a~^	~}~%"
           '("id" "sub_id" "c_root" "vn" "impf_vn" "pf_vn" "tsch_class" "features_sub_id" "link_sub_id" "base_sub_id" "participle_sub_id" "pv" "pf_pv" "impf_pv" "dir_pv_p" "red_dir_pv" "comment" "author" "source" "derived_type" "date" "accepted" "pf_12_pv" "no_preverbless_aor" "class" "disabled"))
@@ -3067,7 +3070,8 @@ ZP2 LV
     (format stream "~{~a~^	~}~%"
             (mapcar (lambda (val)
                       (or val ""))
-                    rest))))
+                    rest)))))
+
 #+test
 (debug (select [*] :from [morph verb-features]
                :where [= [id] 3260]

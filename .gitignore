@@ -2,3 +2,5 @@ wordlists
 lists
 *.*~
 *.tsv
+*.lx64fsl
+*.txt

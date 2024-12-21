@@ -15,6 +15,7 @@
 ;; ჰრქუა
 ;; მოკითხვაჲ
 ;; ყო
+;; იყოვო = იყოო
 
 
 (in-package :fst)
@@ -208,11 +209,13 @@
 	       (vv = -)
 	       (subnorm +)
 	       (lang ng))])
-      (seq (or obj-3   ;; OG
-	       obj-3-s ;; NG
-	       obj-3-h
-	       obj-3-null)
-	   [e ((obj pers = 3))])
+      ;; (seq ;; changed 9.11.2024
+      (or obj-3   ;; OG
+	  obj-3-s ;; NG
+	  obj-3-h
+	  obj-3-null)
+      ;; [e ((obj pers = 3))] ;; not needed here?
+      ;; )
       (or vv-aiue [e ((vv = -))])
       [e ((obj pers = 3))])
      ;; obj pers 1/2
@@ -464,6 +467,28 @@
 ;; + აუკრავსთ subj 3sg obj 3pl
 ;; + გთხოვსთ  subj 3sg obj 2pl
 
+#+ignore
+(seq
+ (or subj-1
+     subj-2-x
+     subj-2
+     [e ((subj pers = 3))])
+ (or obj-3   ;; OG
+     obj-3-s ;; NG
+     obj-3-h
+     obj-3-null)
+ (or vv-aiue [e ((vv = -))])
+ [e ((obj pers = 3))])
+
+#+ignore
+["ა" ((subj pers = 3)
+      (subj num = sg)
+      (inverted = -)
+      (tense {present future})
+      (lang ng)
+      ((type subj3-sfx) "ა"))]
+
+
 #[subj-3sg-t?
   = (or subj-3sg-t
         ;; no -თ
@@ -473,11 +498,7 @@
                  [e (((obj pers) {2 3})
                      ((obj num) sg)
 		     (lang ng))]
-                 [e ((lang og))]
-		 #+test
-                 [e (((obj num) pl) ;; მიხილნა, გიხილნა, იხილნა
-		     ;;(lang og)
-                     (inverted -))])))]
+                 [e ((lang og))])))]
 
 #[subj-3sg-s?
   = (or
@@ -1892,7 +1913,8 @@
 
 ; relative-passive-perfect-sf
 (precompile-u-transducer
- `(or ,(utp-or '("ევ" "ვ" "ე" "მ" "ებ" "ობ")
+ `(or ,(utp-or '("ევ" "ვ" "ე" "მ" "ებ" "ობ"
+                 "ნ") ;; for დამვიწყნია
                `((sf ,morph)))
       (seq (or ,(utp-or '("ევ" "ებ") `((sf ,morph)))
                ,(utp-e '((sf -))))
@@ -1901,7 +1923,7 @@
  :name 'relative-passive-perfect-sf)
 
 (precompile-u-transducer
- `(or ,(utp-or '("ვ" "ე" "მ" "ებ" "ობ")
+ `(or ,(utp-or '("ვ" "ე" "მ" "ებ" "ობ" "ნ")
                `((sf ,morph)))
       ,(utp "ე" '((sf "ევ")))
       (seq (or ,(utp-or '("ევ" "ებ") `((sf ,morph)))
@@ -2689,7 +2711,10 @@
   = (seq
      ;; (utp-not '((pv = "-"))) ;; there are reduplications without pv, but differing roots
      (or
-      (utp "ევ" `((sf "ევ")))
+      (utp "ევ" `((sf "ევ")
+                  (tense {future iter-present conditional conj-future})))
+      (utp "ი" `((sf "ევ") ;; new 2024-12-01
+                 (tense {aorist optative pluperfect conj-perfect})))
       (seq (utp "ი" `((sf {"ი"})
 		      (root "ვლ")
 		      (tense {future iter-present conditional conj-future})))

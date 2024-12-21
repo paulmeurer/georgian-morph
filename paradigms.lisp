@@ -484,6 +484,7 @@
       :V-TRANS-O-SUBJ-OBJ
       :V-TRANS-O-SUBJ-COMP
       :V-DITRANS-SUBJ-OBJ-OBJ
+      :V-DITRANS-O-SUBJ-OBJ-OBJ
       :V-CAUS-SUBJ-OBJ-OBJ)
      :bipers)
     ((:V-INTR-SUBJ-OBJ)
@@ -501,8 +502,10 @@
        ((unerg medioactive) :monopers-unerg)
        ((unacc mediopassive stative) :monopers-unacc)))
     ((:V-INTR-SUBJ
+      :v-intr-subj-oblinst
       ;;:V-INTR-SUBJ3-OBJ
-      :V-INTR-SUBJ-OBJ3)
+      :V-INTR-SUBJ-OBJ3
+      )
      (case morph-syntax
        ((unerg medioactive) :monopers-unerg)
        ((unacc mediopassive stative) :monopers-unacc)

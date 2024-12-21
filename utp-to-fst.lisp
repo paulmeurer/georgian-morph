@@ -9,7 +9,7 @@ How to build the fst morphology:
 
 load the project kartuli-paradigm.asd;
 eval this file;
-run #+main-ccl below;
+run #+main-ccl below (normally without parameters);
 
 write-fst-noun-stems-sql()
 write-fst-participle-stems-sql() ; contains VN
@@ -820,7 +820,7 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 (time (compile-morphology :lists nil :nouns nil))
 
 #+main-ccl ;; 
-(time (compile-morphology :fetch nil))
+(time (compile-morphology :verbs nil))
 
 #+main-ccl ;;
 (time (compile-morphology :lists nil :fetch nil :nouns nil :verbs nil))
@@ -828,11 +828,11 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 #+main-ccl ;;
 (time (compile-morphology :lists nil :fetch nil :nouns t :nouns-only t))
 
-#+main-ccl ;; 10269s; 7574s, 7374s, 8246s, 7764s, 26791, 27992, 26565, 15121, 21155, 31191, 35000
+#+main-ccl ;; 10269s; 7574s, 7374s, 8246s, 7764s, 26791, 27992, 26565, 15121, 21155, 31191, 35000, 17243
 (time (compile-morphology))
 
 #+main-ccl ;; 
-(time (compile-morphology :foma t))
+(time (compile-morphology :fetch nil))
 
 #+test ;; writes only one!
 (write-fst-noun-stems-sql :count 1 :max-count 8)
@@ -935,8 +935,8 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 				     "masdar-list-subset.regex"
 				     "finite-root-list-subset.regex")
 				   '("extracted-noun-adj.regex"
-				     "extracted-adv.regex"
-				     "extracted-interj.regex"
+				     ;; "extracted-adv.regex"
+				     ;; "extracted-interj.regex"
 				     "geonames-list.regex"
 				     "future-part-list.regex"
 				     "past-part-list.regex"
@@ -988,15 +988,10 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 	  (loop (if (find-if (lambda (proc) (eq (ccl::external-process-%status proc) :running)) procs)
 		    (sleep 0.1)
 		    (return)))
-	  (print :done)))
+	  (print :nouns-done)))
       (ccl::run-program fst (list "-f" "noun-productive.regex") :wait t)
       (ccl::run-program fst (list "-f" "numbers.regex") :wait t)
       ;; writes noun morphology to noun.fst
-      #+ignore
-      (ccl::run-program fst (list "-f" "noun-all.regex")
-			:wait t
-			:output *standard-output*
-			:error :output)
       (when nouns
         (ccl::run-program fst
                           (if foma
@@ -1082,7 +1077,8 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
       (print :verbs-done)
       
       (cond (c-root-list
-	     (ccl::run-program fst (list "-f" "syntax-subset.regex") :wait t :output *standard-output* :error :output))
+	     (ccl::run-program fst (list "-f" "syntax-subset.regex")
+                               :wait t :output *standard-output* :error :output))
 	    (t
 	     (print :syntax)
 	     (let ((proc (ccl::run-program fst
@@ -1099,6 +1095,7 @@ define obs R:0 {ობ[ა]-ჲ/}:0 R ;
 	       (loop (if (eq (ccl::external-process-%status proc) :running)
 			 (sleep 1)
 			 (return))))
+             #+disabled
 	     (let ((proc (ccl::run-program fst (list "-f" "noun-guessed.regex") :wait nil
 					   :output *standard-output* :error :output)))
 	       (loop (if (eq (ccl::external-process-%status proc) :running)

@@ -130,6 +130,14 @@
 
 (precompile-u-transducer
  `(? (seq ,(utp-e '((lang ng)))
+	  (or (seq ,(utp "ც" `((rel-sfx "ც")))
+	           (? (seq ,(utp "ა" `((long +)))
+		           (? encl-aux))))
+              (? encl-aux))))
+ :name 'v-enclitica-C-a1)
+
+(precompile-u-transducer
+ `(? (seq ,(utp-e '((lang ng)))
 	  (or (seq (? (seq ,(utp "ა" `((long +)))
 			   (? encl-aux))))
 	      (seq ,(utp "ღა" `((mod-sfx "ღა")))
@@ -719,6 +727,9 @@
 			  ,(utp-or '("დმი" "კე")
 				   `((pp ,morph)))
 			  (? v-enclitica))
+                     (seq ,(utp-or '("და" "დამი") ;; new 2024
+				   `((pp ,morph)))
+			  (? v-enclitica))
 		     ,(utp "ა" `((lang og)
 				 (cat {n a num masdar v-part q allq pron pron+indef })
 				 (long +)))
@@ -820,7 +831,7 @@
 		      ,(utp-or '("დმი" "კე")
 			       `((pp ,morph)))
 		      (? v-enclitica))
-		 (seq ,(utp-or '("დამი") ;; შევარდნაძისდამი
+		 (seq ,(utp-or '("და" "დამი") ;; შევარდნაძისდამი
 			       `((pp ,morph)))
 		      (? v-enclitica))
 		 ,(utp "ა" `((lang og) (long +) (cat {n a q allq num masdar v-part pron})))
@@ -913,7 +924,6 @@
 		    old-plural-d)))))
  :name 'gen-group)
 
-
 ;; for FOMA. recursive-define = ON doesn't work in FOMA
 (precompile-u-transducer
  `(or 
@@ -941,6 +951,9 @@
 		     c-enclitica
 		     (seq ,(utp "ა")
 			  ,(utp-or '("დმი" "კე")
+				   `((pp ,morph)))
+			  (? v-enclitica))
+                     (seq ,(utp-or '("და" "დამი") ;; new 2024
 				   `((pp ,morph)))
 			  (? v-enclitica))
 		     ,(utp "ა" `((lang og)
@@ -1002,7 +1015,7 @@
 		      ,(utp-or '("დმი" "კე")
 			       `((pp ,morph)))
 		      (? v-enclitica))
-		 (seq ,(utp-or '("დამი") ;; შევარდნაძისდამი
+		 (seq ,(utp-or '("და" "დამი") ;; შევარდნაძისდამი
 			       `((pp ,morph)))
 		      (? v-enclitica))
 		 ,(utp "ა" `((lang og) (long +) (cat {n a q allq num masdar v-part pron})))
@@ -1060,6 +1073,9 @@
 			  ,(utp-or '("დმი" "კე")
 				   `((pp ,morph)))
 			  (? v-enclitica))
+                     (seq ,(utp-or '("და" "დამი") ;; new 2024
+			           `((pp ,morph)))
+		          (? v-enclitica))
 		     ,(utp "ა" `((lang og)
 				 (cat {n a num masdar v-part q allq pron pron+indef })
 				 (long +)))
@@ -1161,7 +1177,7 @@
 		      ,(utp-or '("დმი" "კე")
 			       `((pp ,morph)))
 		      (? v-enclitica))
-		 (seq ,(utp-or '("დამი") ;; შევარდნაძისდამი
+		 (seq ,(utp-or '("და" "დამი") ;; შევარდნაძისდამი
 			       `((pp ,morph)))
 		      (? v-enclitica))
 		 ,(utp "ა" `((lang og) (long +) (cat {n a q allq num masdar v-part pron})))
@@ -1282,6 +1298,9 @@
 			  ,(utp-or '("დმი" "კე")
 				   `((pp ,morph)))
 			  (? v-enclitica))
+                     (seq ,(utp-or '("და" "დამი") ;; new 2024
+			           `((pp ,morph)))
+		          (? v-enclitica))
 		     ,(utp "ა" `((lang og)
 				 (cat {n a num masdar v-part q allq pron pron+indef })
 				 (long +)))
@@ -1383,7 +1402,7 @@
 		      ,(utp-or '("დმი" "კე")
 			       `((pp ,morph)))
 		      (? v-enclitica))
-		 (seq ,(utp-or '("დამი") ;; შევარდნაძისდამი
+		 (seq ,(utp-or '("და" "დამი") ;; შევარდნაძისდამი
 			       `((pp ,morph)))
 		      (? v-enclitica))
 		 ,(utp "ა" `((lang og) (long +) (cat {n a q allq num masdar v-part pron})))
@@ -1591,7 +1610,7 @@
  :name 'iani1)
 
 (precompile-u-transducer
- `(or (seq ,(utp-or '("ქვეშ" "წინ" "უკან" "შესახებ" "მიერ" "მიმართ" "შემდეგ"
+ `(or (seq ,(utp-or '("ქვეშ" "წინ" "შესახებ" "მიერ" "მიმართ" "შემდეგ"
                       "წინააღმდეგ" ;; "დროს"
 		      "ნაცვლად"
 		      "მაგიერ" "მაგიერად" "მაგივრად" "სანაცვლოდ"
@@ -1698,7 +1717,7 @@
            (? v-enclitica))
       
       (seq ,(utp-or '("შორის" "შოვრის" "აქეთ" "იქით" "ქვეშ" "მიღმა"
-		      "გადაღმა" "გარეშე" "გარდა" "წინათ" "პირად")
+		      "გადაღმა" "გარეშე" "გარდა" "წინათ" "პირად" "უკან")
                     `((cat pp)
                       (lex ,morph) 
                       ((comp case) dat-gen)))
@@ -1866,6 +1885,7 @@
  :name 'det-dat-pp)
 
 ;; pronoun
+#+orig
 (precompile-u-transducer
  `(or (seq ,(utp-e '((cat pron)
 		     (sub-cat pers)))
@@ -2178,6 +2198,334 @@
  :name 'pronoun)
 
 (precompile-u-transducer
+ `(or (or
+       ;; 1. & 2. pers.
+       (seq ,(utp-e '((cat pron)
+		      (sub-cat pers)))
+	    (or (seq (or ,(utp "შენ" `((num sg)
+				       (pers 2)
+				       (lex "შენ")
+				       (case {nom erg dat})))
+			 ,(utp "ჩueნ" `((num pl)
+					(pers 1)
+					(lex "ჩuენ")
+					(case {nom erg dat})))
+			 ,(utp "თქueნ" `((num pl)
+					 (pers 2)
+					 (lex "თქuენ") 
+					 (case {nom erg dat}))))
+                     (? (or enclitica-ve-Ga-C
+			    ,(utp "ა" `((long +)))
+			    )))
+		(seq ,(utp "მე" `((num sg)
+				  (pers 1)
+				  (lex "მე") 
+				  (case {nom erg dat})))
+		     (? enclitica-ve-Ga-C))
+                (seq (or ,(utp "ჩემ" `((num sg)
+                                       (pers 1)
+                                       (lex "მე")))
+                         ,(utp "შენ" `((num sg)
+                                       (pers 2)
+                                       (lex "შენ")))
+			 ,(utp "ჩueნ" `((num pl)
+                                        (pers 1)
+                                        (lex "ჩuენ")))
+                         ,(utp "თქueნ" `((num pl)
+                                         (pers 2)
+					 (lex "თქuენ"))))
+                     pronoun-pp)
+                ,(utp "შე" `((num sg)
+		             (pers 2)
+		             (lex "შენ")
+		             (case voc)))
+                ,(utp "თქვე" `((num pl)
+		               (pers 2)
+		               (lex "თქვენ")
+		               (lang ng)
+		               (case voc)))
+                ,(utp "თქuე" `((num pl)
+		               (pers 2)
+		               (lex "თქუენ")
+		               (lang og)
+		               (case voc)))))
+       ;; 3.pers
+       ;; nom
+       (seq (or ,(utp "იგი" `((num sg)
+                              (cat pron)
+		              (sub-cat pers)
+                              (pers 3)
+                              (lex "იგი")
+                              (case nom)))
+                ,(utp "იგი" `((num sg)
+		              (cat dem)
+                              (lex "იგი")
+                              (case nom)))
+                ,(utp-or '("ისინი" "ისები")
+                         `((num pl)
+                           (cat pron)
+		           (sub-cat pers)
+                           (pers 3)
+                           (lex "ის")
+                           ;; (cat det)
+                           (case nom)))
+                ,(utp "იგინი"
+                      `((num pl)
+                        (cat dem)
+                        (lex "იგი") 
+                        (case nom)))
+                ,(utp-or '("ესენი" "ესები")
+                         `((num pl)
+                           (cat dem)
+                           (lex "ეს") 
+                           (case nom)))
+                ,(utp-or '("ეგენი" "ეგები")
+                         `((num pl)
+                           (cat dem)
+                           (lex "ეგ") 
+                           (case nom))))
+            (? v-enclitica))
+       (seq (or ,(utp-or '("ის")
+                         `((num sg)
+                           (cat pron)
+		           (sub-cat pers)
+                           (pers 3)
+                           (lex ,morph) 
+                           (case nom)))
+                ,(utp-or '("ის")
+                         `((num sg)
+                           (cat dem)
+                           (lex ,morph) 
+                           (case nom))))
+            (? i-enclitica-ve-Ga-C))
+       (seq ,(utp-or '("ეს") `((num sg)
+                               (cat dem)
+                               (lex ,morph)
+                               (case nom)))
+            (or (? e-enclitica-ve-Ga-C)
+		,(utp "ა" `((long +)))))
+       (seq ,(utp-or '("ეგ") `((num sg)
+                               (cat dem)
+                               (lex ,morph) 
+                               (case nom)))
+            (? e-enclitica-ve-Ga-C))
+       ;; oblique cases ;; bound forms see determiner-ng/og 
+       (seq (or ,(utp "იმ" `((lex "ის")))
+                ,(utp "ამ" `((lex "ეს")))
+                ,(utp "მაგ" `((lex "ეგ"))))
+            ,(utp-e '((cat dem)))
+	    (or (seq (or ,(utp "ან" `((case erg)
+				      (num sg)))
+			 ,(utp "ის" `((case gen)
+				      (num sg)))
+			 ,(utp "ას" `((case dat)
+				      (num sg)))
+			 ,(utp "ად" `((case adv)
+				      (num sg)))
+			 ,(utp "ათ" `((case adv)
+				      (num sg)
+				      (lang ng)
+				      (style nonstandard)))
+			 ,(utp "ით" `((case inst)
+				      (num sg)))
+			 ,(utp "ებს" `((case dat)
+				       (num pl)))
+			 ,(utp "ების" `((case gen)
+					(num pl)))
+			 ,(utp "ებად" `((case adv)
+					(num pl)))
+			 ,(utp "ებათ" `((case adv)
+					(num pl)
+					(lang ng)
+					(style nonstandard)))
+			 ,(utp "ებით" `((case inst)
+					(num pl)))
+			 ,(utp "ათ" `((case {erg dat gen})
+				      (num pl))))
+		     (? (or ,(utp "ა" `((long +))) ;; FIXME: add -ა for some of them
+			    det-pp
+			    a-enclitica-ve-Ga-C)))
+		(seq (or ,(utp "ის" `((case gen)
+                                      (num sg))))
+                     (? (or det-pp
+			    a-enclitica-ve-Ga-C)))
+		,(utp-or '("ისა" "ისდა")
+			 `((case dir)
+			   (num sg)
+			   (lang og)))
+		(seq ,(utp "ისდა"
+			   `((case dir)
+			     (num sg)
+			     (lang og)))
+		     (? ,(utp-or '("მო" "მი") ;; -დამი, -დამო; todo: add თჳსდამი
+				 `((pp ,morph)))))
+		,(utp-or '("ისდა")
+			 `((case gen)
+			   (pp "და")
+			   (num sg)
+			   (lang ng)))
+		,(utp-or '("ათდა")
+			 `((case gen)
+			   (pp "და")
+			   (num pl)
+			   (lang ng)))
+		(seq (or ,(utp "ა" `((case dat)
+				     (num sg))))
+                     det-dat-pp)
+		(seq ,(utp "ებმა" `((case erg)
+                                    (num pl)))
+                     (? (or enclitica-ve-Ga-C)))))
+       (seq ,(utp "ამა" `((lex "ეს") (cat dem) (num pl)))
+	    (or (seq (or ,(utp "ების" `((case gen)
+					(num pl)))
+			 ,(utp "ებად" `((case adv)
+					(num pl)))
+			 ,(utp "ებათ" `((case adv)
+					(num pl)
+					(lang ng)
+					(style nonstandard)))
+			 ,(utp "ებით" `((case inst)
+					(num pl))))
+		     (? (or ,(utp "ა" `((long +))) ;; FIXME: add -ა for some of them
+			    det-pp
+			    a-enclitica-ve-Ga-C)))
+		(seq ,(utp "ებმა" `((case erg)
+                                    (num pl)))
+                     (? (or enclitica-ve-Ga-C)))))
+       (seq ,(utp "მ"
+                  `((lex "ის")
+                    (cat pron)
+                    (pers 3)))
+            (or (seq (or ,(utp "ან" `((case erg)
+                                      (num sg)))
+                         ,(utp "ას" `((case dat)
+                                      (num sg)))
+                         ,(utp "ის" `((case gen)
+                                      (num sg)
+				      (lang ng)))
+			 ,(utp "ად" `((case adv)
+                                      (num sg)))
+			 ,(utp "ით" `((case inst)
+				      (num sg)))
+                         ,(utp "ათ" `((case {erg dat gen})
+				      (num pl))))
+                     (? (or ,(utp "ა")
+			    det-pp
+			    det-dat-pp
+			    a-enclitica-ve-Ga-C)))
+		,(utp "ასსა" `((case dat) ;; მასსა და …
+			       (num sg)
+			       (long +)))
+		(seq (or ,(utp "ის" `((case gen)
+                                      (num sg)
+				      (lang og))))
+                     (? (or det-pp
+			    a-enclitica-ve-Ga-C)))
+		,(utp-or '("ისა" "ისდა")
+			 `((case dir) ;; + ben?
+			   (num sg)
+			   (lang og)))
+		(seq ,(utp "ისდა"
+			   `((case dir)
+			     (num sg)
+			     (lang og)))
+		     (? ,(utp-or '("მო" "მი")
+				 `((pp ,morph)))))
+		,(utp-or '("ისდა")
+			 `((case gen)
+			   (pp "და")
+			   (num sg)
+			   (lang ng)))
+		,(utp-or '("ათდა")
+			 `((case gen)
+			   (pp "და")
+			   (num pl)
+			   (lang ng)))
+		,(utp-or '("ათა" "ათდა")
+			 `((case dir)
+			   (num sg)
+			   (lang og)))
+		(seq ,(utp "ათდა"
+			   `((case dir)
+			     (num pl)
+			     (lang og)))
+		     (? ,(utp-or '("მო" "მი")
+				 `((pp ,morph)))))))
+       (seq (or ,(utp-or '("იგი" "იმა")
+                         `((num sg)
+                           (cat dem)
+                           (morph ,morph)
+                           (lex "იგი")))
+                ,(utp-or '("ამა")
+                         `((num sg)
+                           (cat dem)
+                           (morph ,morph)
+                           (lex "ეს"))))
+            ,(utp "ვე" `((mod-sfx "ვე")))
+            (or (seq ,(utp "მ" '((case erg) ;; *igivem does not exist
+                                 (morph {"იმა" "ამა"})))
+                     (? ,(utp "აც" `((rel-sfx "ც")))))
+                (seq ,(utp "ს" '((case {dat gen}))) c-enclitica-C)
+                ,(utp "თი" '((case inst)))
+                (seq ,(utp "დ" '((case adv))) c-enclitica-C)
+                (seq ,(utp "თ" '((case adv)
+				 (lang ng)
+				 (style nonstandard)))
+		     c-enclitica-C)
+                (seq ,(utp-or '("ში" "ზე")
+                              `((case dat)
+                                (pp ,morph)))
+                     v-enclitica-C)
+		(seq ,(utp-or '("ზედ")
+                              `((case dat)
+                                (pp "ზედ")))
+                     c-enclitica-C)))
+       (seq ,(utp-or '("იგი")
+                     `((cat dem)
+                       (lex "იგი")))
+            ,(utp "ვე" `((mod-sfx "ვე")))
+            ,(utp "ნი" '((case nom)
+			 (num pl)))
+            (? encl-aux)))
+      (seq (or ,(utp "ერთმანეთ"
+		     `((num sg)
+		       (pers 3)
+		       (lex "ერთმანეთ·ი")
+		       (stem-type c)
+		       (cat pron)
+		       (sub-cat recip)))
+	       ,(utp "ერთმანერთ"
+		     `((num sg)
+		       (pers 3)
+		       (lex "ერთმანერთ·ი")
+		       (stem-type c)
+		       (cat pron)
+		       (sub-cat recip)
+		       (lang og)))
+	       ,(utp "ერთიმეორე"
+		     `((num sg)
+		       (pers 3)
+		       (lex "ერთიმეორ[ე]")
+		       (stem-type c)
+		       (cat pron)
+		       (sub-cat recip))))
+	   (or nom-group
+	       erg-group ;; is attested!
+	       (seq ,(utp-e '((case-type full)))
+		    (or dat-group gen-group inst-group adv-group))
+	       ;; iani
+	       ))
+      ,(utp-or '("ურთიერთას"
+		 "ერთიერთას")
+	       `((num sg)
+		 (pers 3)
+		 (lex ,morph)
+		 (cat pron)
+		 (sub-cat recip)
+		 (lang og))))                
+ :name 'pronoun)
+
+(precompile-u-transducer
  `(or (seq (or (seq (or ,(utp "ა" `((cat pron+neg+anim)
 				    (lang ng)
 				    (lex "არაvინ")))
@@ -2382,7 +2730,7 @@
 			   (lex "რა·ჲ")
 			   (lang og))))
            (or (seq ,(utp "ა" `((case nom) (lang ng)))
-                    (? v-enclitica-C-a))
+                    (? v-enclitica-C-a1))
                (seq ,(utp "ანი" `((case nom) (lang ng) (num pl) (old-pl +)))
                     (? v-enclitica-C-a))
                (seq ,(utp "აი" `((case nom) (lang ng) (style nonstandard)))
@@ -2491,6 +2839,8 @@
 			(? v-enclitica-C))
 		   (seq ,(utp "მ" `((case erg)))
 			(? c-enclitica-C))
+		   (seq ,(utp "დ" `((case adv)))
+			(? c-enclitica-C))
 		   (seq ,(utp "ს" `((case {dat gen})))
 			(or (? (seq ,(utp "ა") (? v-enclitica)))
 			    (seq (? ,(utp "ა"))
@@ -2598,7 +2948,9 @@
 	       ,(utp "რაღაც-რაღაც" `((cat pron+indef+inanim)
 				     (lex "რაღაც-რაღაც")))
 	       ,(utp "რომელიღაც" `((cat pron+indef+inanim)
-				   (lex "რომელიღაც"))))
+				   (lex "რომელიღაც")))
+               ,(utp "რამდენიღაც" `((cat pron+indef+inanim)
+				    (lex "რამდენიღაც"))))
 	   ,(utp-e '(;;(sub-cat indet)
 		     (form bound)))
 	   (? ,(utp "ა")))
@@ -2676,6 +3028,8 @@
 
 ;; bound forms
 ;; NG
+;; todo: add ასეთივეს etc.
+#+orig
 (precompile-u-transducer
  `(seq (or (seq ,(utp-or '("ის" "ეს" "ეგ"
 			   "ისა და ის"
@@ -2710,7 +3064,82 @@
 			  (case {nom erg dat gen inst adv}))))
        ,(utp-e '((cat dem)
 		 (lang ng))))
- :name 'determiner-ng) 
+ :name 'determiner-ng)
+
+(precompile-u-transducer
+ `(seq (or (seq ,(utp-or '("ის" "ეს" "ეგ"
+			   "ისა და ის"
+			   "ესა და ეს")
+			 `((lex ,morph)
+			   (case nom))))
+	   (seq (or ,(utp "იმ" `((lex "ის")))
+		    ,(utp "ამ" `((lex "ეს")))
+		    ,(utp "მაგ" `((lex "ეგ")))
+		    ,(utp "იმა და იმ" `((lex "ისა და ის")))
+		    ,(utp "იმადაიმ" `((lex "ისა და ის")))
+		    ,(utp "ამა და ამ" `((lex "ესა და ეს")))
+		    ,(utp "ამადაამ" `((lex "ესა და ეს")))
+		    ,(utp "მაგ" `((lex "ეგ"))))
+		,(utp-e '((case {erg dat gen inst adv}))))
+           ,(utp "იმდენი"
+		 `((lex "იმდენ·ი")
+                   (deixis dist)
+		   (case {nom gen inst})))
+           ,(utp "მაგდენი"
+		 `((lex "მაგდენ·ი")
+                   (deixis med)
+		   (case {nom gen inst})))
+           ,(utp "ამდენი"
+		 `((lex "ამდენ·ი")
+                   (deixis prox)
+		   (case {nom gen inst})))
+           ,(utp "იმდენ"
+		 `((lex "იმდენ·ი")
+		   (deixis dist)
+		   (case {dat adv})))
+           ,(utp "მაგდენ"
+		 `((lex "მაგდენ·ი")
+		   (deixis med)
+		   (case {dat adv})))
+           ,(utp "ამდენ"
+		 `((lex "ამდენ·ი")
+                   (deixis prox)
+		   (case {dat adv})))
+           ,(utp "იმდენმა"
+		 `((lex "იმდენ·ი")
+		   (deixis dist)
+		   (case erg)))
+           ,(utp "მაგდენმა"
+		 `((lex "მაგდენ·ი")
+		   (deixis med)
+		   (case erg)))
+           ,(utp "იმდენმა"
+		 `((lex "იმდენ·ი")
+		   (deixis prox)
+		   (case erg)))
+           ,(utp "ამდენმა"
+		 `((lex "ამდენ·ი")
+		   (deixis dist)
+		   (case erg)))
+	   ,(utp "იგივე" `((lex "იგი")
+			   (mod-sfx "ვე")
+			   (case nom)))
+	   ,(utp "ეგევე" `((lex "ეგ")
+			   (mod-sfx "ვე")
+			   (case nom)))
+	   ,(utp "იმავე" `((lex "იგი")
+			   (mod-sfx "ვე")
+			   (case {erg dat gen inst adv})))
+	   ,(utp "ამავე" `((lex "ეს")
+			   (mod-sfx "ვე")
+			   (case {erg dat gen inst adv})))
+	   ,(utp "იმავ" `((lex "იგი")
+			  (mod-sfx "ვე")
+			  (case {nom erg dat gen inst adv}))))
+       ,(utp-e '((cat dem)
+                 (form bound)
+		 (lang ng))))
+ :name 'determiner-ng)
 
 ;; OG
 (precompile-u-transducer
@@ -2776,6 +3205,7 @@
 		 "თორემ"
 		 "თორემა"
 		 "თვარემ"
+                 "თორო"
 		 "თორე"
 		 ;;"აგერ"
 		 ;; "აბა"
@@ -3037,7 +3467,7 @@
 			  (cat adv)
 			  (sub-cat indet)
 			  (adv-type loc)))
-	       ,(utp-or '("რატომღაც")
+	       ,(utp-or '("რატომღაც" "რადღაც" "რაღატომღაც")
 			`((lex ,morph)
 			  (cat adv)
 			  (sub-cat indet)
@@ -3113,7 +3543,7 @@
 		      ;;"აქით-იქიდან"
 		      ;;"აქეთ-იქედან"
 		      ;;"ამრიგად"
-		      "კიდეც"
+		      ;;"კიდეც"
 		      "უკეთ"
 		      "უკეთესად"
 		      "მარტოოდენ"
@@ -3210,7 +3640,7 @@
        ,(utp-e `((cat n)
 		 (case dat)
 		 (num sg)
-		 (form bound) ;; ??
+		 (form free)
 		 ))
        (or c-enclitica
 	   ,(utp "ა")
@@ -3226,6 +3656,7 @@
 	   "არიქა"
 	   "გუგუ"
 	   "ნწუ"
+           "ბრავო"
 	   "ტფუ"
 	   "რა"
 	   "რაღა"
@@ -3319,6 +3750,9 @@
 	   "ტო"
            "ინდი-მიდნი"
            "ინდი მინდი"
+           "ვეჟო"
+           "აფერუმ"
+           ;; "შაიტან"
 	   )
 	 `((lex ,morph)
 	   (cat ij)))
@@ -3338,7 +3772,7 @@
       ["მათ" ((lex "მათ·ი")(poss-pers 3pl))]
       )
      [e ((cat n)
-	 (sub-cat anim)
+	 (sub-cat anim+qual)
 	 (stem-type c))])]
 
 #[pron-poss12-stem
@@ -3531,8 +3965,17 @@
                       (or ;; dat-group gen-group
 			  inst-group adv-group
                           old-plural))
-		 ;; iani
-		 ))
+		 ;; iani?
+                 ;; შენსავე, მისივე etc.
+                 (seq ,(utp "ივე" '((case-type reduced)
+				    (mod-sfx "ვე")
+                                    (case { nom gen inst }))))
+		 (seq ,(utp "სავე" '((case-type reduced)
+				     (mod-sfx "ვე")
+                                     (case { dat adv }))))
+		 (seq ,(utp "მავე" '((case-type reduced)
+				     (mod-sfx "ვე")
+                                     (case erg))))))
 	;; ჩემსას, მისას, თავიანთსას
 	(seq (or pron-poss3-stem-dat
                  (seq pron-poss12-stem ,(utp "ს")))
@@ -3541,8 +3984,7 @@
         (seq (or pron-poss3-stem ;; მისსა
                  pron-poss12-stem)
 	     (or (seq ,(utp "სა" '((case-type full)
-			           (case dat)
-                                   (lang og))))))
+			           (case dat))))))
 	locative
         pronoun
         determiner-ng

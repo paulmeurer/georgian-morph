@@ -1209,6 +1209,7 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
       (:V-TRANS-O-SUBJ-OBJ-PREDLINKadv "S-DO3-OBen-Pred")
     
       (:V-DITRANS-SUBJ-OBJ-OBJ "S-DO3-OTh")
+      (:V-DITRANS-O-SUBJ-OBJ-OBJ "S-DO3-OTh-OBen") ;; მიჭმიე
     
       (:V-CAUS-SUBJ-OBJ-OBJ "S-DO3-OTh")
       (:V-CAUS-SUBJ-OBJ "S-DO")
@@ -1263,8 +1264,8 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
                       (when (find m markings)
                         (return-from find m)))))
          (or-p (search "(OR)" gv))
-         (split-inversion-p (when (or or-p (find tense '(perfect pluperfect conj-perfect
-							 iter-perfect)))
+         (split-inversion-p (when (or or-p
+                                      (find tense '(perfect pluperfect conj-perfect iter-perfect)))
 			      t)))
     (when (eq marking :codna)
       (setf marking (if (find tense '(present imperfect conj-present))

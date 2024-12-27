@@ -1193,8 +1193,9 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
 (defparameter *xle-template-table* (dat:make-string-tree))
 
 ;; used in verb-lexicon-regexp()
-(defun xle-template-to-frame (xle-template #+ignore tense)
-  (let ((xle-template (intern (string-upcase (delete #\3 xle-template)) :keyword)))
+(defun xle-template-to-frame (full-xle-template)
+  (let ((xle-template (intern (string-upcase (delete #\3 full-xle-template)) :keyword))
+        (full-xle-template (intern (string-upcase full-xle-template) :keyword)))
     (ecase xle-template
       (:?? "??")
       (:V-TRANS-SUBJ-OBJ "S-DO")
@@ -1208,7 +1209,10 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
       (:V-TRANS-S-SUBJ-OBJ-OBLth_ze "S-DO" #+orig "S-DO-Obl_ze")
       (:V-TRANS-O-SUBJ-OBJ-PREDLINKadv "S-DO3-OBen-Pred")
     
-      (:V-DITRANS-SUBJ-OBJ-OBJ "S-DO3-OTh")
+      (:V-DITRANS-SUBJ-OBJ-OBJ
+       (if (eq full-xle-template :V-DITRANS-SUBJ-OBJ-OBJ3) ;; e.g. მიმაჩვევს
+           "S-DO-OTh3"
+           "S-DO3-OTh"))
       (:V-DITRANS-O-SUBJ-OBJ-OBJ "S-DO3-OTh-OBen") ;; მიჭმიე
     
       (:V-CAUS-SUBJ-OBJ-OBJ "S-DO3-OTh")
@@ -1259,7 +1263,7 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
                              (paradigm-person-marking (car template) morph-syntax))
                            xle-templates))
          (marking (block find
-                    (dolist (m '(:bipers :bipers-unacc :bipers-unerg :bipers-inv :monopers-unacc 
+                    (dolist (m '(:bipers :bipers-do :bipers-unacc :bipers-unerg :bipers-inv :monopers-unacc 
 				 :monopers-inv :unpers :codna :monopers-unerg))
                       (when (find m markings)
                         (return-from find m)))))
@@ -1273,7 +1277,7 @@ no present parse: gamomevleba, roots: (svl di val va vl ved vel vid s ar)
 			:monopers-inv)))
     ;;(print (list :templates xle-templates :morph-syntax morph-syntax :tense tense :marking marking))
     (case marking
-      ((:bipers :bipers-unerg)
+      ((:bipers :bipers-unerg :bipers-do)
        (values nil #+orig(when split-inversion-p
                  `(((subj pers) 3)
                    ((subj num) sg)))

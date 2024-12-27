@@ -2005,6 +2005,7 @@
 	     :xsl #'masdars-xsl
 	     :force-xslt :sablotron
 	     :path (concat "/" *url-base* "/masdars"))
+  (debug (request-query request))
   (setf show-participles t)
   (ccl::with-lock-grabbed (*parse-lock*)
     (with-database-connection ()
@@ -2030,7 +2031,7 @@
 			   (destructuring-bind (id sub-id) (split id-subid #\-)
 			     (setf feature (intern (string-upcase feature) :keyword))
 			     (print (list id sub-id impf-pv pf-pv feature value))
-			     (remhash (debug (list (parse-integer id) (parse-integer sub-id) impf-pv pf-pv))
+			     (remhash (list (parse-integer id) (parse-integer sub-id) impf-pv pf-pv)
 				      *paradigm-class-cache*)
 			     (when (and (equal value "-")
 					(not (find feature '(:impf-pv :pf-pv))))
@@ -2115,7 +2116,8 @@
 						  :where [and [= [id] ?id]
 							      [= [sub-id] ?sub-id]
 							      [= [impf-pv] ?impf-pv]
-							      [= [pf-pv] ?pf-pv]])))))))))
+							      [= [pf-pv] ?pf-pv]]))))))))
+             (update-preverbless-aorists))
 	    (accept
 	     (with-transaction ()
 	       (update-records [morph verb-paradigm]
@@ -2670,13 +2672,28 @@
 	    (xsl:value-of/ :select "@id") "$"
 	    (xsl:value-of/ :select "@impf-pv") "$"
 	    (xsl:value-of/ :select "@pf-pv") "-no-preverbless-aor")
+           #-orig
 	   ((xsl:attribute :name "onclick")
 	    "editVn('"
 	    (xsl:value-of/ :select "@id") "$"
 	    (xsl:value-of/ :select "@impf-pv") "$"
 	    (xsl:value-of/ :select "@pf-pv") "','no-preverbless-aor','"
 	    (xsl:value-of/ :select "@no-preverbless-aor") "',true)")
-	   (xsl:value-of/ :select "@no-preverbless-aor"))
+	   (xsl:value-of/ :select "@no-preverbless-aor")
+           #+new ;; doesnt work
+           ((xsl:element :name "input")
+	    ((xsl:attribute :name "type") "checkbox")
+	    ;;((xsl:attribute :name "name") "no-preverbless-aor")
+	    ((xsl:attribute :name "name")
+	     (xsl:value-of/ :select "@id") "$"
+	     (xsl:value-of/ :select "@impf-pv") "$"
+	     (xsl:value-of/ :select "@pf-pv") "-no-preverbless-aor")
+            ((xsl:if :test "@no-preverbless-aor")
+             ((xsl:attribute :name "checked") "true"))
+            
+            )
+           
+           )
 	  
 	  ;;(td (xsl:value-of/ :select "@red-dir-pv"))
 	  ))

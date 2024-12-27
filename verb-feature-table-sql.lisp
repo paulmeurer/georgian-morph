@@ -448,8 +448,11 @@
 
 ;; has to be reinitialized when changes are made
 ;; collect verbs that can have preverb-less imperfective aorists
-(defparameter *preverbless-aorists*
-  (let ((table (make-hash-table :test #'equal)))
+(defparameter *preverbless-aorists* (make-hash-table :test #'equal))
+
+(defun update-preverbless-aorists ()
+  (let ((table *preverbless-aorists*))
+    (clrhash table)
     (do-query ((id sub-id)
 	       [select [id] [sub-id]
 		       :distinct t
@@ -464,6 +467,8 @@
 				       [not [no-preverbless-aor]]]]])
       (setf (gethash (list id sub-id) table) t))
     table))
+
+(update-preverbless-aorists)
 
 (defparameter *vn-pv-table* (make-hash-table :test #'equal))
 

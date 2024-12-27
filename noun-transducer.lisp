@@ -2395,6 +2395,7 @@
        (seq ,(utp "მ"
                   `((lex "ის")
                     (cat pron)
+                    (sub-cat pers)
                     (pers 3)))
             (or (seq (or ,(utp "ან" `((case erg)
                                       (num sg)))

@@ -274,7 +274,7 @@
 ;; from feature-templates.lisp
 (defun generate-paradigm (paradigm-id &key tense pers num (fst *full-verb-fst*) debug allp (printp t) obj3sg-only-p
 			  paradigm-replacement-p standard-only-p (lang :ng) (preverbless-aorists t) function)
-  #-debug(print (list :generating paradigm-id tense pers num allp obj3sg-only-p
+  #+debug(print (list :generating paradigm-id tense pers num allp obj3sg-only-p
 		      :para-rep paradigm-replacement-p standard-only-p printp function))
   (let ((parser::*dg-vector* (or parser::*dg-vector* (make-array 0 :fill-pointer t :adjustable t)))
 	(parser::*body-vector* (or parser::*body-vector* (make-array 0 :fill-pointer t :adjustable t)))
@@ -483,10 +483,12 @@
       :V-TRANS-SUBJ-OBJ-PREDLINKadv
       :V-TRANS-O-SUBJ-OBJ
       :V-TRANS-O-SUBJ-COMP
-      :V-DITRANS-SUBJ-OBJ-OBJ
+      :V-DITRANS-SUBJ-OBJ-OBJ ;; nonexisting?
       :V-DITRANS-O-SUBJ-OBJ-OBJ
       :V-CAUS-SUBJ-OBJ-OBJ)
      :bipers)
+    ((:V-DITRANS-SUBJ-OBJ-OBJ3)
+     :bipers-io)
     ((:V-INTR-SUBJ-OBJ)
      :bipers-unerg)
     ((:V-TRANS-SUBJ3-OBJ

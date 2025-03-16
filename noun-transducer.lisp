@@ -2,12 +2,13 @@
 ;;;
 ;;; Georgian verb mophological parser unsing a finite state 
 ;;; transducer with unification
-;;; (C) Paul Meurer 1999-2017
+;;; (C) Paul Meurer 1999-2025
+
+;; https://ice.tsu.ge/liv/ganmartebiti.php
 
 ;; bugs: mers, merve -> meri +Prop
 
 ;; missing: OG ესე
-;; მეორეჯერ
 
 ;; Nov. 2013
 ;; OG -გან Inst
@@ -196,7 +197,7 @@
 				  (style old)))
 		    (? c-enclitica))))
       (seq ,(utp "მა" `((case erg)
-                        (cat {n a num masdar v-part prop pron q allq pron+neg+inanim})
+                        (cat {n a dem num masdar v-part prop pron q allq pron+neg+inanim})
                         (num sg)
                         (case-type full)
                         (sync-stem -)
@@ -221,9 +222,9 @@
 		  (lang og)
 		  (sub-cat {name+firstname name})))
       ,(utp "მა" `((case erg)
-                   (cat {a
-			 pron ;; შენმა
-			 num masdar v-part q allq})
+                   (cat { a dem
+			  pron ;; შენმა
+			  num masdar v-part q allq })
                    (sync-stem -)
                    (case-type reduced)
                    (stem-type c)
@@ -451,7 +452,9 @@
 			(num sg)
 			(sync-stem -)
 			(stem-type {c bare})
-			(cat {n a num masdar v-part pron prop q allq pron+neg+inanim pron+indef })
+			(cat { n a num masdar v-part pron
+                               dem ;; new 29.12.2024
+                               prop q allq pron+neg+inanim pron+indef })
 			(case-type full)))
 	    ,(utp "ი" `((case nom) ;; ივანეი: ჭავჭავაძე
 			(num sg)
@@ -460,7 +463,7 @@
 			(cat prop)
 			(case-type full)))
 	    ;; bare stem OG
-	,(utp-e `((case { nom erg voc } ) ;; fixme for enclitica etc,
+	    ,(utp-e `((case { nom erg voc } ) ;; fixme for enclitica etc,
 		      (num sg)
 		      (stem-type bare)
 		      (cat {n a num masdar v-part prop pron})
@@ -496,12 +499,12 @@
    ,(utp "ი" `((case {nom gen inst})
 	       (sync-stem -)
 	       (stem-type c)
-	       (cat {a num v-part q allq pron quant})
+	       (cat {a num dem v-part q allq pron quant})
 	       (case-type reduced)))
    ,(utp "ის" `((case inst) ;; კარგის თვალით
 		(sync-stem -)
 		(stem-type c)
-		(cat {a num v-part q allq pron})
+		(cat {a num dem v-part q allq pron})
 		(case-type reduced-ext)))
    ;; old Georgian
    (seq plural
@@ -575,12 +578,12 @@
    #+fst
    ,(utp-e '((case {dat adv})
 	     (stem-type c)
-	     (cat {a num pron v-part q allq quant})
+	     (cat {a num dem pron v-part q allq quant})
 	     (case-type reduced)))
    #+fst
    ,(utp-e '((case gen) ;; ძველ ბაბილონელთა
 	     (stem-type c)
-	     (cat {a num pron v-part q allq})
+	     (cat {a num dem pron v-part q allq})
 	     (case-type reduced-oldpl)))
    (seq plural
 	,(utp-e '((case dat)
@@ -616,12 +619,12 @@
 	;; consonant stem
 	(seq (or (seq plural
 		      ,(utp "ო" `((case voc)
-				  (cat {n a num v-part})
+				  (cat { n a num v-part })
 				  (case-type full))))
 		 ,(utp "ო" `((case voc)
 			     (sync-stem -)
 			     (stem-type c)
-			     (cat { a num v-part })
+			     (cat { a num v-part pron }) ;; added pron 28.12.2024
 			     (case-type reduced)))
 		 (seq ,(utp "ო" `((case voc)
 				  (sync-stem -)
@@ -1277,7 +1280,7 @@
 	    ,(utp "ი" `((stem-type {c "ა" "ე" "ო" bare})
 			(sync-stem +)
 			(rigid-stem -)
-			(cat {n a num masdar v-part q allq pron prop pron+neg+inanim pron+indef })
+			(cat {n a dem num masdar v-part q allq pron prop pron+neg+inanim pron+indef })
 			(num sg)))
 	    ,(utp "-ი" `((stem-type abbr)
 			 (cat {n prop})
@@ -1629,6 +1632,7 @@
 		      "შემდგომ"
 		      "გვერდით"
 		      "კვალდაკვალ"
+                      "ანაბარა"
 		      )
                     `((cat pp)
                       (lex ,morph) 
@@ -2196,6 +2200,16 @@
 		 (sub-cat recip)
 		 (lang og))))                
  :name 'pronoun)
+
+#[pron-dem-stem
+  = (seq (or
+	  ["იმდენ" ((lex "იმდენ·ი") (deixis dist)) ]
+	  ["მაგდენ" ((lex "მაგდენ·ი") (deixis med))]
+	  ["ამდენ" ((lex "ამდენ·ი") (deixis prox))]
+	  )
+     [e ((cat dem)
+	 (stem-type c)
+	 (lang ng))])]
 
 (precompile-u-transducer
  `(or (or
@@ -3082,6 +3096,7 @@
 		    ,(utp "ამადაამ" `((lex "ესა და ეს")))
 		    ,(utp "მაგ" `((lex "ეგ"))))
 		,(utp-e '((case {erg dat gen inst adv}))))
+           #|
            ,(utp "იმდენი"
 		 `((lex "იმდენ·ი")
                    (deixis dist)
@@ -3121,7 +3136,8 @@
            ,(utp "ამდენმა"
 		 `((lex "ამდენ·ი")
 		   (deixis dist)
-		   (case erg)))
+	   (case erg)))
+           |#
 	   ,(utp "იგივე" `((lex "იგი")
 			   (mod-sfx "ვე")
 			   (case nom)))
@@ -3524,7 +3540,7 @@
 		      "ათასობით"
 		      "მილიონობით"
 		      "ორშაბათობით" ;; etc.
-		      "ჯერჯერობით"
+		      ;;"ჯერჯერობით"
 		      "თანდათან"
 		      "თანდათანობით"
 		      "ზოგან"
@@ -3807,6 +3823,57 @@
 	 (sub-cat poss)
 	 (stem-type c))])]
 
+#[pronoun-gan
+  = (seq (or
+	  ["ჩვენ" ((lex "ჩვენ")
+                   (cat pron)
+		   (sub-cat pers)
+                   (pers 1)
+                   (num pl))]
+	  ["თქვენ" ((lex "თქვენ")
+                    (cat pron)
+		    (sub-cat pers)
+                    (pers 2)
+                    (num pl))]
+	  ["ჩვენთა" ((lex "ჩვენ")
+                     (cat pron)
+		     (sub-cat pers)
+                     (pers 1)
+                     (num pl))]
+	  ["თქვენთა" ((lex "თქვენ")
+                      (cat pron)
+		      (sub-cat pers)
+                      (pers 2)
+                      (num pl))]
+	  ["მათ" ((lex "ის")
+                  (cat pron)
+		  (sub-cat pers)
+                  (pers 3)
+                  (num pl))]
+	  ["ამათ" ((lex "ეს")
+                   (cat dem)
+                   (num pl)
+                   (deixis prox))]
+	  ["იმათ" ((lex "ის")
+                   (cat dem)
+                   (num pl)
+                   (deixis dist))]
+	  ["მაგათ" ((lex "ეგ")
+                    (cat dem)
+                    (num pl)
+                    (deixis med))])
+     ["გან" ((pp "გან")
+	     (case gen))]
+     (seq [e ((double +))]
+      `,(utp-e '((stem-type c)
+		 (cat n)) ;; ??
+	       :augment 'der)
+      (or nom-group 
+	  erg-group dat-group
+	  gen-group adv-group inst-group voc-group
+	  (seq [e ((double -))] ;; blocks recursion
+	       old-plural-d))))]
+
 ;; ჩემსას, მათსას, თავიანთსას, …
 
 #[pron-poss3-stem-dat
@@ -3930,7 +3997,8 @@
 		 ;; pron-poss3-stem
 		 pron-refl-stem
 		 pron-neg-stem
-		 indet-stem)
+                 pron-dem-stem ;; new 29.12.2024
+                 indet-stem)
              (or nom-group ;; contains
 		 erg-group ;; adjectives
                  voc-group
@@ -3988,6 +4056,7 @@
 			           (case dat))))))
 	locative
         pronoun
+        pronoun-gan
         determiner-ng
 	determiner-og
         postposition

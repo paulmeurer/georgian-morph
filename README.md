@@ -2,7 +2,6 @@
 
 Common Lisp and Xerox FST code to generate (Old, Middle, Modern) Georgian finite state transducers for morphosyntax.
 
-
 How to build the fst morphology:
 
 Load the system kartuli-paradigm.asd
@@ -10,7 +9,7 @@ Load the system kartuli-paradigm.asd
 (Reload paradigm-www.lisp to get web page encoding right.)
 
 eval the file utp-to-fst.lisp;
-run #+main-ccl in that file;
+run #+main-ccl in that file:
 
 * write-fst-noun-stems-sql()
 * write-fst-participle-stems-sql() ; contains VN

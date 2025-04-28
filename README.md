@@ -12,15 +12,15 @@ Load the system kartuli-paradigm.asd
 eval the file utp-to-fst.lisp;
 run #+main-ccl in that file;
 
-write-fst-noun-stems-sql()
-write-fst-participle-stems-sql() ; contains VN
-write-verb-lexicon-regexp()
-  verb-lexicon-regexp()
-    get-root-override-features()
-see verb-feature-table-sql.lisp: get-root-override-features() for vn etc.
+* write-fst-noun-stems-sql()
+* write-fst-participle-stems-sql() ; contains VN
+* write-verb-lexicon-regexp()
+*  verb-lexicon-regexp()
+*    get-root-override-features()
+* see verb-feature-table-sql.lisp: get-root-override-features() for vn etc.
 
-write-verb-regex-file()
-write-noun-regex-file()
+* write-verb-regex-file()
+* write-noun-regex-file()
 
 fst to foma: see regex/syntax.regex
 

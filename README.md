@@ -26,9 +26,9 @@ fst to foma: see regex/syntax.regex
 
 URLs:
 
-http://gekko.local/kartuli/roots
-http://gekko.local/kartuli/masdars
-http://gekko.local/kartuli/nouns
+* http://gekko.local/kartuli/roots
+* http://gekko.local/kartuli/masdars
+* http://gekko.local/kartuli/nouns
 
 Database: localhost/gnc/gnc/kartuli
 

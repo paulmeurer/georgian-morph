@@ -2,7 +2,6 @@
 
 Common Lisp and Xerox FST code to generate (Old, Middle, Modern) Georgian finite state transducers for morphosyntax.
 
-
 How to build the fst morphology:
 
 Load the system kartuli-paradigm.asd
@@ -10,25 +9,25 @@ Load the system kartuli-paradigm.asd
 (Reload paradigm-www.lisp to get web page encoding right.)
 
 eval the file utp-to-fst.lisp;
-run #+main-ccl in that file;
+run #+main-ccl in that file:
 
-write-fst-noun-stems-sql()
-write-fst-participle-stems-sql() ; contains VN
-write-verb-lexicon-regexp()
-  verb-lexicon-regexp()
-    get-root-override-features()
-see verb-feature-table-sql.lisp: get-root-override-features() for vn etc.
+* write-fst-noun-stems-sql()
+* write-fst-participle-stems-sql() ; contains VN
+* write-verb-lexicon-regexp()
+*  verb-lexicon-regexp()
+*    get-root-override-features()
+* see verb-feature-table-sql.lisp: get-root-override-features() for vn etc.
 
-write-verb-regex-file()
-write-noun-regex-file()
+* write-verb-regex-file()
+* write-noun-regex-file()
 
 fst to foma: see regex/syntax.regex
 
 URLs:
 
-http://gekko.local/kartuli/roots
-http://gekko.local/kartuli/masdars
-http://gekko.local/kartuli/nouns
+* http://gekko.local/kartuli/roots
+* http://gekko.local/kartuli/masdars
+* http://gekko.local/kartuli/nouns
 
 Database: localhost/gnc/gnc/kartuli
 

@@ -865,6 +865,9 @@
   (format stream " ETC.~2%----~%")
   nil)
 
+#+test
+(debug (alternate-stem "ექთან" :d t))
+
 ;; :H is bare hyphenated stem: აშშ, აშშ-ს, აშშ-ის, …
 ;; from morphology.lisp, adapted to changed char set 
 ;; see there for more info
@@ -903,7 +906,8 @@
 	      ((:A :A1 :A2 :B :B1 :P :U :AA :ZA) "·ი") ;; AA: MWE of type დიდი დიღომი
 	      ((:C :H :X :Z :-) "")
 	      ((:D :D1 :F :I :IA :JA :K :M :M1 :O :O1 :O2 :O3 :ON :R :OA) ;; OA: MWE of type დიდი რაყა
-	       (if (or prop masdar) "" "·ჲ"))))
+	       ;; 2026 (if (or prop masdar) "" "·ჲ")
+               "")))
 	   (marked-stem (mark-stem stem conjugation))
 	   (lemma (or lemma (concat marked-stem nom-ending))))
       lemma)))
@@ -987,7 +991,8 @@
 		      ((:A :A1 :A2 :B :B1 :P :U :ZA) "·ი")
 		      ((:C :H :X :Z) "")
 		      ((:D :F :I :K :M :M1 :O :O1 :O2 :O3 :R)
-		       (if (string-equal pos1 'prop) "" "·ჲ"))))
+		       ;; 2026 (if (string-equal pos1 'prop) "" "·ჲ")
+                       "")))
 		   #+orig
 		   (marked-stem (mark-stem stem conjugation))
 		   #+orig
@@ -1149,7 +1154,9 @@
 	    ((:A :A1 :A2 :B :B1 :P :U) "·ი")
 	    ((:C :H :X :Z :ZA :-) "")
 	    ((:D :D1 :F :I :K :M :M1 :O :O1 :O2 :O3 :R)
-	     (if (string-equal pos 'prop) "" "·ჲ"))))
+	     ;; 2026 (if (string-equal pos 'prop) "" "·ჲ")
+             ""
+             )))
 	 (marked-stem (mark-stem stem conjugation))
 	 (lemma (or lemma (concat marked-stem nom-ending))))
     (multiple-value-bind (alt-conjugation alt-stem subnorm-conj subnorm-stem)
@@ -1351,7 +1358,9 @@
 			(ecase conj
 			  ((:A :A1 :A2 :B :B1 :BX :P :PX :U :UX :AZ) "·ი")
 			  ((:C :H :R :X :Z) "")
-			  ((:D :D1 :DX :F :I :K :M :M1 :O :O1 :O2 :O3) "·ჲ")))
+			  ((:D :D1 :DX :F :I :K :M :M1 :O :O1 :O2 :O3)
+                           ;; 2026 "·ჲ"
+                           "")))
 		       (base-stem stem)
 		       (lemma (concat stem nom-ending))
 		       ;;(stem (cadr (assoc 'fst::stem features)))

@@ -496,11 +496,14 @@
 	(or (? v-enclitica)
 	    (seq ,(utp "ვით" '((pp "ვით")))
 		 c-enclitica)))
-   ,(utp "ი" `((case {nom gen inst})
-	       (sync-stem -)
-	       (stem-type c)
-	       (cat {a num dem v-part q allq pron quant})
-	       (case-type reduced)))
+   (seq ,(utp "ი" `((case {nom gen inst})
+	            (sync-stem -)
+	            (stem-type c)
+	            (cat {a num dem v-part q allq pron quant})
+	            (case-type reduced)))
+        (? (seq ,(utp-e '((cat n)
+                          (sub-cat meas))))) ;; ერთი თავიც ველური ეშვისა
+        )
    ,(utp "ის" `((case inst) ;; კარგის თვალით
 		(sync-stem -)
 		(stem-type c)
@@ -676,256 +679,6 @@
                 (? ,(utp "ა")))))
  :name 'old-plural-d)
 
-#+ignore
-(precompile-u-transducer
- `(or 
-   ;; Consonant or truncated stem
-   (seq (or (seq plural ,(utp "ი" `((cat {n a num v-part masdar pron prop pron+indef }))))
-	    ,(utp "ი" `((stem-type {c "ა" "ე" "ო" bare})
-			(sync-stem +)
-			(rigid-stem -)
-			(cat {n a num masdar v-part q allq pron prop quant pron+neg+inanim pron+indef })
-			(num sg)))
-	    ,(utp "-ი" `((stem-type abbr)
-			 (cat {n prop})
-			 (num sg))))
-	(or ,(utp "სა" '((case dir)
-			 (lang og)))
-	    ,(utp "სა" '((case ben)
-			 (lang og)))
-	    ,(utp "სა" '((case gen)
-			 (lang og)))
-	    )))
- :name 'gen-group-d)
-
-;; A+Gen+Full missing?
-;; -euli ?
-;; gen-group, contains dat for vowel stem
-#+orig ;; for FST
-(precompile-u-transducer
- `(or 
-   ;; Consonant or truncated stem
-   (seq (or (seq plural ,(utp "ი" `((cat {n a num v-part masdar pron prop pron+indef }))))
-	    ,(utp "ი" `((stem-type {c "ა" "ე" "ო" bare})
-			(sync-stem +)
-			(rigid-stem -)
-			(cat {n a num masdar v-part q allq pron prop pron+neg+inanim pron+indef })
-			(num sg)))
-	    ,(utp "-ი" `((stem-type abbr)
-			 (cat {n prop})
-			 (num sg))))
-	(or ,(utp "სა" '((case dir)
-			 (lang og)))
-	    ,(utp "სა" '((case ben)
-			 (lang og)))
-	    (seq ,(utp "ს" '((case gen)))
-		 (or (seq (or (seq ,(utp "ა" '((long +)))
-				   ,(utp-or '("გან" "თვის" "ვით" "კენ" "მებრ")
-					    `((pp ,morph))))
-			      ,(utp-or '("გან" "თვის" "ვით" "კენ" "ებრ" "ებრივ" "თან")
-				       `((pp ,morph))))
-			  c-enclitica)
-		     c-enclitica
-		     (seq ,(utp "ა")
-			  ,(utp-or '("დმი" "კე")
-				   `((pp ,morph)))
-			  (? v-enclitica))
-                     (seq ,(utp-or '("და" "დამი") ;; new 2024
-				   `((pp ,morph)))
-			  (? v-enclitica))
-		     ,(utp "ა" `((lang og)
-				 (cat {n a num masdar v-part q allq pron pron+indef })
-				 (long +)))
-		     ,(utp "ა" `((lang ng) (long +)))
-		     ;; double case; gen is base case
-		     (seq (or (seq ,(utp-e '((stem-type bare) ;; truncated stem in OG is augmented to c
-					     (lang og)))      ;; e.g., შუშანიკისი
-				   ,(utp-e '((stem-type c)
-					     (cat n)
-					     (case {nom erg dat gen ben dir adv adv-tr inst voc})
-					     ;; no reduced case in double case
-					     (case-type full))
-					   :augment 'der))
-			      (seq (or ,(utp-not '((stem-type bare))) ;; consonant stem
-				       ,(utp-e '((stem-type bare) ;; truncated stem
-						 (lang ng))))
-				   (or ,(utp "ა" '((stem-type v) ; ###
-						   (cat n)
-						   (case {nom erg dat adv voc}) ;; no abs?
-						   ;; no reduced case in double declension
-						   (case-type full))
-					     :augment 'der)
-				       ,(utp "ა" '((stem-type v)
-						   (cat n)
-						   (lang og)
-						   (case {gen ben dir inst}) ;; no abs?
-						   ;; no reduced case in double declension
-						   (case-type full))
-					     :augment 'der)
-				       ,(utp-e '((stem-type c) ;; ბიჭისით, ბიჭისის (??) Hewitt p. 44
-						 (cat n)
-						 (lang ng)
-						 (case {gen inst})
-						 ;; no reduced case in double declension
-						 (case-type full))
-					       :augment 'der))))
-			  (or nom-group erg-group dat-group gen-group adv-group
-			      (seq (or inst-group voc-group)
-				   #+why,(utp-e '((lang og))))
-			      old-plural-d))
-		     ;; double declension plural
-		     (seq ,(utp-e `((num pl)
-				    (cat n)
-				    (case {nom erg gen ben dir dat adv inst voc})
-				    (stem-type c)
-				    (case-type full))
-				  :augment 'der)
-			  (or nom-group erg-group dat-group gen-group inst-group adv-group voc-group))))))
-   (seq ;; Vowel stem
-    (or ,(utp "ჲ" `((stem-type {v propv prop-ე "ა"})
-		    (sync-stem -)
-		    (rigid-stem +)
-		    (case { gen dir ben })
-		    (lang og)))
-	,(utp-e `((stem-type {v prop-ე "ა"}) ;; სარჯ. p. 33, შენ. 8
-		  (sync-stem -)
-		  (rigid-stem +)
-		  (case { gen dir ben })
-		  (lang og)))
-	,(utp "ი" `((stem-type {v propv prop-ე "ა"})
-		    (sync-stem -)
-		    (rigid-stem +)
-		    (case gen)
-		    (style old)
-		    (lang ng)))
-	,(utp-e `((stem-type "ა") ;; new March 2015
-		  (sync-stem -)
-		  (rigid-stem +)
-		  (cat {n a num masdar v-part q allq pron prop pron+indef })
-		  (lang ng)
-		  (num sg)))
-	;; #-ignore ;; removed April 2016: erroneous forms გულსა -> გალა·ჲ Dat
-	,(utp-e `((case dat)
-		  (stem-type {v propv prop-ე "ი"})
-		  (lang og)))
-	,(utp-e `((lang ng)
-		  ;; new
-		  (stem-type {v propv prop-ე "ი"}))))
-    (or ,(utp "სა" '((case dir)
-		     (num sg)
-		     (lang og)))
-	,(utp "სა" '((case ben)
-		     (num sg)
-		     (lang og)))
-	(seq ,(utp "ს" `((stem-type {v "ა" propv prop-ე "ი"})
-			 (cat {n a q allq num masdar v-part pron prop})
-			 (num sg)
-			 (case {dat gen})))
-	     (or (seq (or (seq ,(utp "ა")
-			       ,(utp-or '("გან" "თვის" "ვით" "კენ" "მებრ")
-					`((pp ,morph)
-					  (case gen))))
-			  ,(utp-or '("გან" "თვის" "ვით" "კენ" "ებრ" "ებრივ")
-				   `((pp ,morph)
-				     (case gen)))) 
-		      c-enclitica)
-		 c-enclitica
-		 (seq ,(utp "ა" '((long +)))
-		      ,(utp-or '("დმი" "კე")
-			       `((pp ,morph)))
-		      (? v-enclitica))
-		 (seq ,(utp-or '("და" "დამი") ;; შევარდნაძისდამი
-			       `((pp ,morph)))
-		      (? v-enclitica))
-		 ,(utp "ა" `((lang og) (long +) (cat {n a q allq num masdar v-part pron})))
-		 ,(utp "ა" `((lang ng) (long +)))
-		 ;; dative
-		 (seq (or ,(utp-or '("თან" "ზედ")
-				   `((pp ,morph)
-				     (case dat)))
-			  ,(utp-or '("ავით")
-				   '((pp "ვით")
-				     (long +)
-				     (case dat))))
-		      c-enclitica)
-		 ;; double declension
-		 (or (seq ,(utp-e '((case gen)))
-			  ,(utp-e '((stem-type c)
-				    (cat n)
-				    (case {nom adv inst})
-				    (case-type full)
-				    (num sg))
-				  :augment 'der)
-			  (or nom-group
-			      adv-group
-			      inst-group))
-		     (seq ,(utp-e '((case gen)
-				    (lang og)
-				    (cat prop)))
-			  ;; the following are already augmented, coming after AugmentFlagDiacritics
-			  ,(utp-e '((stem-type c)
-				    (cat n)
-				    (case {erg dat gen})
-				    (case-type full)
-				    (num sg))
-				  :augment 'der)
-			  (or gen-group
-			      dat-group;; ქრისტჱსსა
-			      erg-group))
-		     (seq ,(utp-e '((case gen)))
-			  (or (seq ,(utp-e '((stem-type {v "ი"}))) ;; ??? nom?? where is stem-type ა?
-				   ,(utp "ა" '((stem-type v)
-					       (cat n)
-					       (case {nom erg gen dat adv inst})
-					       (case-type full))
-					 :augment 'der))
-			      (seq ,(utp-e '((stem-type {propv prop-ე})))
-				   ,(utp-e '((stem-type c)
-					     (cat n)
-					     (case {nom erg gen dat adv inst})
-					     (case-type full))
-					   :augment 'der)))
-			  (or nom-group
-			      dat-group
-			      gen-group ;; dat is in gen-group for stem-type v
-			      erg-group
-			      inst-group
-			      adv-group
-			      voc-group
-			      old-plural-d)))
-		 ;; double declension plural
-		 (seq ,(utp-e '((case gen)))
-		      ,(utp-e `((num pl)
-				(old-pl -)
-				(cat n)
-				(case {nom erg gen dat adv inst voc})
-				(stem-type c)
-				(case-type full))
-			      :augment 'der)
-		      (or nom-group erg-group dat-group gen-group inst-group adv-group voc-group))))))
-   ;; old pl
-   (seq (or ,(utp-e '((stem-type {v propv prop-ე c "ი" "ა" bare})
-		      (sync-stem -)))
-	    ,(utp-or '("ე" "ო") `((stem-type ,morph))))
-	,(utp "თა" `((case gen)
-		     (num pl)
-		     (old-pl +)
-		     (cat {n pron a num masdar v-part q allq pron+indef })))
-	;; double declension
-	(? (seq ,(utp-e '((stem-type v)
-			  (cat n)
-			  (case-type full)
-			  (case {nom erg gen dat adv inst voc}) ;; what about ben, dir?
-			  )
-			:augment 'der)
-		(or ;; avoid double declension without nom marker
-		    (seq nom-group ,(utp-e '((lang og) (case nom))))
-		    gen-group ;; dat is in gen-group for stem-type v
-		    inst-group
-		    adv-group
-		    erg-group
-		    old-plural-d)))))
- :name 'gen-group)
 
 ;; for FOMA. recursive-define = ON doesn't work in FOMA
 (precompile-u-transducer
@@ -946,7 +699,8 @@
 			 (lang og)))
 	    (seq ,(utp "ს" '((case gen)))
 		 (or (seq (or (seq ,(utp "ა" '((long +)))
-				   ,(utp-or '("გან" "თვის" "ვით" "კენ" "მებრ")
+				   ,(utp-or '("გან" "თვის" "ვით" "კენ" "მებრ"
+                                              "ებრ") ;; OG: განწესებისაებრ
 					    `((pp ,morph))))
 			      ,(utp-or '("გან" "თვის" "ვით" "კენ" "ებრ" "ებრივ" "თან")
 				       `((pp ,morph))))
@@ -1066,7 +820,7 @@
 			 (lang og)))
 	    (seq ,(utp "ს" '((case gen)))
 		 (or (seq (or (seq ,(utp "ა" '((long +)))
-				   ,(utp-or '("გან" "თვის" "ვით" "კენ" "მებრ")
+				   ,(utp-or '("გან" "თვის" "ვით" "კენ" "მებრ" "ებრ")
 					    `((pp ,morph))))
 			      ,(utp-or '("გან" "თვის" "ვით" "კენ" "ებრ" "ებრივ" "თან")
 				       `((pp ,morph))))
@@ -1545,7 +1299,7 @@
 						 (or nom-group 
 						     erg-group dat-group
 						     gen-group adv-group inst-group voc-group
-						     (seq ,(utp-e '((double -))) ;; blocks recursion
+						     (seq ;; ,(utp-e '((double -))) ;; blocks recursion removed 2026
 							  old-plural-d))))))))
 		       (seq ,(utp "ა") (? v-enclitica)))))))
  :name 'old-plural)
@@ -2182,7 +1936,7 @@
 		     `((num sg)
 		       (pers 3)
 		       (lex "ერთიმეორ[ე]")
-		       (stem-type c)
+		       (stem-type v)
 		       (cat pron)
 		       (sub-cat recip))))
 	   (or nom-group
@@ -2517,11 +2271,11 @@
 		       (cat pron)
 		       (sub-cat recip)
 		       (lang og)))
-	       ,(utp "ერთიმეორე"
+	       ,(utp "ერთიმეორე" ;; todo: add gen!
 		     `((num sg)
 		       (pers 3)
 		       (lex "ერთიმეორ[ე]")
-		       (stem-type c)
+		       (stem-type v)
 		       (cat pron)
 		       (sub-cat recip))))
 	   (or nom-group
@@ -2639,8 +2393,13 @@
 	       (seq ,(utp "აჲთ" `((case inst)
 				  (lang og))))
 	       (seq ,(utp "ას" `((case dat))))
+	       (seq ,(utp "ად" `((case adv))))
+	       (seq ,(utp "ით" `((case inst))))
+	       (seq ,(utp "აით" `((case inst))))
+	       (seq ,(utp "აით" `((case inst))))
 	       (seq ,(utp "ისა" `((case dir))))
-	       (seq ,(utp "ის" `((case gen)))
+	       (seq (? ,(utp "ა"))
+                    ,(utp "ის" `((case gen)))
 		    (? (seq ,(utp-or '("გან" "თან" "ზედ" "თვის" "კენ" "ებრ" "ებრივ") ;; ???
 				     `((pp ,morph)))
 			    (? c-enclitica))))
@@ -3687,6 +3446,7 @@
 	   "ვენაცვალე"
 	   ;;"ამენ"
 	   "ამჱნ"
+           "ამინ"
 	   "აჰა"
 	   "დეე"
 	   "დაე"
@@ -4020,13 +3780,14 @@
 		 pron-poss12-stem)
              (or nom-group
 		 erg-group
+                 gen-group ;; new 2026 მისისაჲ ?
                  voc-group
 		 ;; ჩემს, შენს, მისს, თავიანთს etc.
 		 (seq ,(utp "ს" '((case-type reduced)
 				  (case { dat adv }))))
 		 ;; ჩემის ხელის
 		 (seq ,(utp "ის" '((case-type reduced)
-				  (case gen))))
+				   (case gen))))
 		 (seq ,(utp "ისა" '((case-type full) ;; მისისა
 				    (case gen)
                                     (lang og))))
